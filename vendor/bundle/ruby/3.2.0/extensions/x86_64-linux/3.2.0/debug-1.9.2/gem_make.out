@@ -1,0 +1,19 @@
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+/home/samuel/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241021-737255-ov25o3 sitelibdir\=./.gem.20241021-737255-ov25o3 clean
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241021-737255-ov25o3 sitelibdir\=./.gem.20241021-737255-ov25o3
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241021-737255-ov25o3 sitelibdir\=./.gem.20241021-737255-ov25o3 install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20241021-737255-ov25o3/debug
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241021-737255-ov25o3 sitelibdir\=./.gem.20241021-737255-ov25o3 clean
