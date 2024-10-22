@@ -105,6 +105,17 @@ RSpec.describe User, type: :model do
         expect(result).to eq false
       end
     end
+
+    context "deve ser válido" do
+      it 'cpf' do
+        # Arrange
+        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com', password: '12345671011', cpf: '034667985AZ')
+        # Act
+        result = user.valid?
+        # Assert
+        expect(result).to eq false
+      end
+    end
     
   end
   
