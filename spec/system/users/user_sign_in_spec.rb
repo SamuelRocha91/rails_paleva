@@ -21,9 +21,13 @@ describe 'Usuário acessa página de login' do
     fill_in "E-mail",	with: "samuel@hotmail.com" 
     fill_in "Senha",	with: "12345678910111"
     click_on 'Log in'
-    click_on 'Sair'
+    within 'header' do
+      click_on 'Sair'
+    end
     # Assert
-    expect(page).not_to have_content "#{user.first_name} #{user.last_name} - #{user.email}"
+    within 'header' do
+      expect(page).not_to have_content "#{user.first_name} #{user.last_name} - #{user.email}"
+    end
     expect(current_path).to eq new_user_session_path  
   end
 end
