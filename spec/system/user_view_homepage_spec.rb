@@ -5,6 +5,6 @@ describe "Usuário acessa a aplicação" do
     # Act
     visit root_path
     # Assert
-    expect(current_path).to eq '/login/user' 
+    expect(current_path).to eq new_user_session_path 
   end
 end
