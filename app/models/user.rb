@@ -4,9 +4,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validate :is_valid_cpf? 
   validates :cpf, :first_name,:last_name, presence: true
+  validates :cpf, uniqueness: true
 
   def description
     "#{first_name} #{last_name} - #{email}"
+  end
+
+  private
+
+  def is_valid_cpf?
+    if self.cpf.present? && !(CPF.valid?(cpf.to_i))
+      self.errors.add :cpf, " deve ser um número válido"
+    end
   end
 end

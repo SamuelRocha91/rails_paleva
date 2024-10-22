@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário acessa página de login' do
   it 'e faz login com sucesso' do
     # Arrange
-    user = User.create!(first_name: 'Samuel', last_name: 'Rocha', email: 'samuel@hotmail.com', password: '12345678910111',  cpf: '03466588911')
+    user = User.create!(first_name: 'Samuel', last_name: 'Rocha', email: 'samuel@hotmail.com', password: '12345678910111',  cpf: CPF.generate.to_s)
     # Act
     visit root_path
     fill_in "E-mail",	with: "samuel@hotmail.com" 
@@ -15,7 +15,7 @@ describe 'Usuário acessa página de login' do
 
   it 'e faz logout' do
     # Arrange
-    user = User.create!(first_name: 'Samuel', last_name: 'Rocha', email: 'samuel@hotmail.com', password: '12345678910111',  cpf: '03466588911')
+    user = User.create!(first_name: 'Samuel', last_name: 'Rocha', email: 'samuel@hotmail.com', password: '12345678910111',  cpf: CPF.generate.to_s)
     # Act
     visit root_path
     fill_in "E-mail",	with: "samuel@hotmail.com" 
