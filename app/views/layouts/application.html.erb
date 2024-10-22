@@ -10,6 +10,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if user_signed_in? %>
+        <h2><%= current_user.description %></h2>
+      <% end %>    
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
