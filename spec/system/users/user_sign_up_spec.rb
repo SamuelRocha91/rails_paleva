@@ -14,5 +14,22 @@ describe 'Usuário que não é ainda cadastrado' do
     expect(page).to have_content 'CPF'
     expect(page).to have_content 'Nome'
     expect(page).to have_content 'Sobrenome'
+    expect(page).to have_button 'Cadastrar'  
+  end
+
+   it 'não consegue cadastro sem preencher campos obrigatórios' do
+    # Arrange
+    # Act
+    visit root_path    
+    click_on 'Criar conta'
+    fill_in 'E-mail',	with: 'samuel@example.com' 
+    fill_in 'Senha',	with: '12345678912345'
+    fill_in 'Confirme sua senha',	with: '12345678912345'
+    click_on 'Cadastrar'
+    # Assert
+    expect(page).to have_content 'Não foi possível salvar usuário: 3 erros.'
+    expect(page).to have_content 'CPF não pode ficar em branco'
+    expect(page).to have_content 'Nome não pode ficar em branco'
+    expect(page).to have_content 'Sobrenome não pode ficar em branco'
   end
 end
