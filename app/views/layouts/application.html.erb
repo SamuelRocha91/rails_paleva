@@ -10,6 +10,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if user_signed_in? %>
+        <h2><%= current_user.description %></h2>
+        <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+      <% end %>    
+    </header>
+    <main>
+      <div>
+        <%= notice %>
+        <%= alert %>
+      </div>
+      <%= yield %>
+    </main>
   </body>
 </html>
