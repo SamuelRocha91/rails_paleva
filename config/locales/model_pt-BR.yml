@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+     establishment: Resteurante
+    attributes:
+      establishment:
+        trade_name: Nome Social
+        legal_name: Nome Fantasia
+        cnpj: CNPJ
+        address: Endereço
+        phone_number: Telefone
+        email: E-mail

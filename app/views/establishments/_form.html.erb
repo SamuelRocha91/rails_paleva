@@ -1,0 +1,33 @@
+<%= form_with(model: @establishment) do |f| %>
+  <div>
+    <%= f.label :trade_name %>
+    <%= f.text_field :trade_name %>
+  </div>
+
+  <div>
+    <%= f.label :legal_name %>
+    <%= f.text_field :legal_name %>
+  </div>
+
+   <div>
+    <%= f.label :cnpj %>
+    <%= f.text_field :cnpj %>
+  </div>
+
+   <div>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+   <div>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %>
+  </div>
+
+   <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <%= f.submit 'Cadastrar'%>
+<% end %>
