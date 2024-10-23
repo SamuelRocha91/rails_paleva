@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
+  random_cpf = CPF.generate.to_s
   describe 'Método description da model de usuário' do
     it 'exibe nome completo e email' do
       # Arrange
@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
           last_name: 'Rocha', 
           email: '', 
           password: '123456789101112', 
-          cpf: '03478599927'
+          cpf: random_cpf
         )
         # Act
         result = user.valid?
@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
           last_name: 'Rocha',
           email: 'sam@hotmail.com', 
           password: '123456789101112', 
-          cpf: '03478599927'
+          cpf: random_cpf
         )
         # Act
         result = user.valid?
@@ -52,7 +52,7 @@ RSpec.describe User, type: :model do
           last_name: '', 
           email: 'sam@hotmail.com', 
           password: '123456789101112', 
-          cpf: '03478599927'
+          cpf: random_cpf
         )
         # Act
         result = user.valid?
@@ -67,7 +67,7 @@ RSpec.describe User, type: :model do
           last_name: 'Rocha',
           email: 'sam@hotmail.com', 
           password: '', 
-          cpf: '03478599927'
+          cpf: random_cpf
         )
         # Act
         result = user.valid?
@@ -123,7 +123,7 @@ RSpec.describe User, type: :model do
           last_name: 'Rocha', 
           email: 'sam@hotmail.com', 
           password: '123456789101112', 
-          cpf: CPF.generate.to_s
+          cpf: random_cpf
         )
         user_two = User.new(
           first_name: 'Robson', 

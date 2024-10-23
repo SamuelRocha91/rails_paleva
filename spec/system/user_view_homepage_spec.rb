@@ -18,7 +18,7 @@ describe "Usuário acessa a aplicação" do
       cpf: CPF.generate.to_s
     )
     # Act
-    login_as(user)
+    login_as user
     visit root_path
     # Assert
     expect(current_path).to eq '/establishment/new'
