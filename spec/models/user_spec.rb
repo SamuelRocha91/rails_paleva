@@ -100,14 +100,14 @@ RSpec.describe User, type: :model do
           last_name: 'Rocha', 
           email: 'sam@hotmail.com', 
           password: '123456789101112', 
-          cpf: random_cpf
+          cpf: '22611819572'
         )
         user_two = User.new(
           first_name: 'Robson', 
           last_name: 'Rocha', 
           email: 'rob@hotmail.com', 
           password: '123456789101112', 
-          cpf: random_cpf
+          cpf: '22611819572'
         )
 
         # Act
@@ -123,7 +123,7 @@ RSpec.describe User, type: :model do
           last_name: 'Rocha', 
           email: 'sam@hotmail.com', 
           password: '123456789101112', 
-          cpf: random_cpf
+          cpf: '22611819572'
         )
         user_two = User.new(
           first_name: 'Robson', 

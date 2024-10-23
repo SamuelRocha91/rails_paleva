@@ -26,7 +26,7 @@ describe 'Usuário acessa página de login' do
       last_name: 'Rocha', 
       email: 'samuel@hotmail.com', 
       password: '12345678910111',  
-      cpf: CPF.generate.to_s
+      cpf: '22611819572'
     )
     # Act
     visit root_path
