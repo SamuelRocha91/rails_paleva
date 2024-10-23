@@ -1,7 +1,8 @@
 pt-BR:
   activerecord:
     models:
-     establishment: Resteurante
+     establishment: Restaurante
+     operating_hour: Horário de funcionamento
     attributes:
       establishment:
         trade_name: Nome Social
@@ -10,3 +11,17 @@ pt-BR:
         address: Endereço
         phone_number: Telefone
         email: E-mail
+      operating_hour:
+        week_day: Dia da semana
+        start_time: 'Horário de abertura'
+        end_time: Horário de fechamento
+        is_closed?: Fechar?
+        monday: Segunda
+        tuesday: Terça
+        wednesday: Quarta
+        thursday: Quinta
+        friday: Sexta
+        saturday: Sábado
+        sunday: Domingo
+
+        

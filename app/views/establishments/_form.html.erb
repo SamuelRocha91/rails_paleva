@@ -14,19 +14,90 @@
     <%= f.text_field :cnpj %>
   </div>
 
-   <div>
+  <div>
     <%= f.label :address %>
     <%= f.text_field :address %>
   </div>
 
-   <div>
+  <div>
     <%= f.label :phone_number %>
     <%= f.text_field :phone_number %>
   </div>
 
-   <div>
+  <div>
     <%= f.label :email %>
     <%= f.text_field :email %>
+  </div>
+
+  <div>
+    <h2>Horário de funcionamento</h2>
+    <%= f.fields_for :operating_hours do |oh| %>
+
+      <div>
+        <%= oh.label :monday %>
+        <%= oh.label :start_time  %>
+        <%= oh.time_field :start_time %>
+        <%= oh.label :end_time %>
+        <%= oh.time_field :end_time %>
+        <%= oh.label :is_closed? %>
+        <%= oh.check_box :is_closed? %>
+      </div>
+
+      <div>
+        <%= oh.label :tuesday %>
+        <%= oh.label :start_time %>
+        <%= oh.time_field :start_time %>
+        <%= oh.label :end_time %>
+        <%= oh.time_field :end_time %>
+        <%= oh.label :is_closed? %>
+        <%= oh.check_box :is_closed? %>
+      </div>
+
+      <div>
+        <%= oh.label :wednesday %>
+        <%= oh.label :start_time %>
+        <%= oh.time_field :start_time %>
+        <%= oh.time_field :end_time %>
+        <%= oh.label :is_closed? %>
+        <%= oh.check_box :is_closed? %>
+      </div>
+      <div>
+        <%= oh.label :thursday %>
+        <%= oh.label :start_time %>
+        <%= oh.time_field :start_time %>
+        <%= oh.label :end_time %>
+        <%= oh.time_field :end_time %>
+        <%= oh.label :is_closed? %>
+        <%= oh.check_box :is_closed? %>
+      </div>  
+      <div>
+        <%= oh.label :friday %>
+        <%= oh.label :start_time %>
+        <%= oh.time_field :start_time %>
+        <%= oh.label :end_time %>
+        <%= oh.time_field :end_time %>
+        <%= oh.label :is_closed? %>
+        <%= oh.check_box :is_closed? %>
+      </div>  
+      <div>
+        <%= oh.label :saturday %>
+        <%= oh.label :start_time %>
+        <%= oh.time_field :start_time %>
+        <%= oh.label :end_time %>
+        <%= oh.time_field :end_time %>
+        <%= oh.label :is_closed? %>
+        <%= oh.check_box :is_closed? %>
+      </div>  
+      <div>
+        <%= oh.label :sunday %>
+        <%= oh.label :start_time %>
+        <%= oh.time_field :start_time%>
+        <%= oh.label :end_time %>
+        <%= oh.time_field :end_time%>
+        <%= oh.label :is_closed? %>
+        <%= oh.check_box :is_closed? %>
+      </div>
+    <% end %>
   </div>
 
   <%= f.submit 'Cadastrar'%>

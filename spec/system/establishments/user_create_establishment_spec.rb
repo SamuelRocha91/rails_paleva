@@ -29,6 +29,14 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     expect(page).to have_field 'Endereço'
     expect(page).to have_field 'Telefone'
     expect(page).to have_field 'E-mail'
+    expect(page).to have_content 'Horário de funcionamento'
+    expect(page).to have_selector 'label', text: 'Domingo'
+    expect(page).to have_selector 'label', text: 'Segunda'
+    expect(page).to have_selector 'label', text: 'Terça'
+    expect(page).to have_selector 'label', text: 'Quarta'
+    expect(page).to have_selector 'label', text: 'Quinta'
+    expect(page).to have_selector 'label', text: 'Sexta'
+    expect(page).to have_selector  'label', text: 'Sábado'
     expect(page).to have_button 'Cadastrar'
   end
 end
