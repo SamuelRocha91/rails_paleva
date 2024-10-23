@@ -16,7 +16,7 @@ describe 'Usuário acessa página de login' do
     fill_in "Senha",	with: "12345678910111"
     click_on 'Entrar'
     # Assert
-    expect(page).to have_content "#{user.first_name} #{user.last_name} - #{user.email}"
+    expect(page).to have_content "#{user.first_name} #{user.last_name} - #{user.email}"  
   end
 
   it 'e faz logout' do
