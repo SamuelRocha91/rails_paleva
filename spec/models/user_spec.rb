@@ -17,7 +17,13 @@ RSpec.describe User, type: :model do
     context 'presença obrigatória de' do
       it 'email' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: '', password: '123456789101112', cpf: '03478599927')
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: '', 
+          password: '123456789101112', 
+          cpf: '03478599927'
+        )
         # Act
         result = user.valid?
         # Assert
@@ -26,7 +32,13 @@ RSpec.describe User, type: :model do
 
       it 'first_name' do
         # Arrange
-        user = User.new(first_name: '', last_name: 'Rocha', email: 'sam@hotmail.com', password: '123456789101112', cpf: '03478599927')
+        user = User.new(
+          first_name: '', 
+          last_name: 'Rocha',
+          email: 'sam@hotmail.com', 
+          password: '123456789101112', 
+          cpf: '03478599927'
+        )
         # Act
         result = user.valid?
         # Assert
@@ -35,7 +47,13 @@ RSpec.describe User, type: :model do
 
       it 'last_name' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: '', email: 'sam@hotmail.com', password: '123456789101112', cpf: '03478599927')
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: '', 
+          email: 'sam@hotmail.com', 
+          password: '123456789101112', 
+          cpf: '03478599927'
+        )
         # Act
         result = user.valid?
         # Assert
@@ -44,7 +62,13 @@ RSpec.describe User, type: :model do
 
       it 'password' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com', password: '', cpf: '03478599927')
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha',
+          email: 'sam@hotmail.com', 
+          password: '', 
+          cpf: '03478599927'
+        )
         # Act
         result = user.valid?
         # Assert
@@ -53,7 +77,13 @@ RSpec.describe User, type: :model do
 
       it 'cpf' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com', password: '123456789101112', cpf: '')
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com', 
+          password: '123456789101112', 
+          cpf: ''
+        )
         # Act
         result = user.valid?
         # Assert
@@ -65,8 +95,20 @@ RSpec.describe User, type: :model do
       it 'cpf' do
         # Arrange
         random_cpf = CPF.generate.to_s
-        User.create!(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com', password: '123456789101112', cpf: random_cpf)
-        user_two = User.new(first_name: 'Robson', last_name: 'Rocha', email: 'rob@hotmail.com', password: '123456789101112', cpf: random_cpf)
+        User.create!(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com', 
+          password: '123456789101112', 
+          cpf: random_cpf
+        )
+        user_two = User.new(
+          first_name: 'Robson', 
+          last_name: 'Rocha', 
+          email: 'rob@hotmail.com', 
+          password: '123456789101112', 
+          cpf: random_cpf
+        )
 
         # Act
         result = user_two.valid?
@@ -76,8 +118,20 @@ RSpec.describe User, type: :model do
 
       it 'email' do
         # Arrange
-        User.create!(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com', password: '123456789101112', cpf: CPF.generate.to_s)
-        user_two = User.new(first_name: 'Robson', last_name: 'Rocha', email: 'sam@hotmail.com', password: '123456129101112', cpf: CPF.generate.to_s)
+        User.create!(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com', 
+          password: '123456789101112', 
+          cpf: CPF.generate.to_s
+        )
+        user_two = User.new(
+          first_name: 'Robson', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com', 
+          password: '123456129101112', 
+          cpf: CPF.generate.to_s
+        )
 
         # Act
         result = user_two.valid?
@@ -89,7 +143,13 @@ RSpec.describe User, type: :model do
     context 'Campo deve ter comprimento adequado' do
       it 'cpf' do
         # Arrange
-        user = User.new(first_name: 'Robson', last_name: 'Rocha', email: 'rob@hotmail.com', password: '123456789101112', cpf: '0348859995')
+        user = User.new(
+          first_name: 'Robson', 
+          last_name: 'Rocha', 
+          email: 'rob@hotmail.com', 
+          password: '123456789101112', 
+          cpf: '0348859995'
+        )
         # Act
         result = user.valid?
         # Assert
@@ -98,7 +158,13 @@ RSpec.describe User, type: :model do
 
       it 'password' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com', password: '12345671011', cpf: CPF.generate.to_s)
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com', 
+          password: '12345671011', 
+          cpf: CPF.generate.to_s
+        )
         # Act
         result = user.valid?
         # Assert
@@ -109,7 +175,13 @@ RSpec.describe User, type: :model do
     context "deve ser válido" do
       it 'cpf' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com', password: '12345671011', cpf: '034667985AZ')
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com', 
+          password: '12345671011', 
+          cpf: '034667985AZ'
+        )
         # Act
         result = user.valid?
         # Assert
