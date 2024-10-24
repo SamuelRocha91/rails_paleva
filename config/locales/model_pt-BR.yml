@@ -1,0 +1,28 @@
+pt-BR:
+  activerecord:
+    models:
+     establishment: Restaurante
+     operating_hours: Horário de funcionamento
+    attributes:
+      establishment:
+        trade_name: Nome Social
+        legal_name: Nome Fantasia
+        cnpj: CNPJ
+        address: Endereço
+        phone_number: Telefone
+        email: E-mail
+        operating_hours: Horário de funcionamento
+        code: Código
+      operating_hour:
+        week_day: Dia da semana
+        start_time: Horário de abertura
+        end_time: Horário de fechamento
+        is_closed: Fechar?
+        monday: Segunda
+        tuesday: Terça
+        wednesday: Quarta
+        thursday: Quinta
+        friday: Sexta
+        saturday: Sábado
+        sunday: Domingo
+

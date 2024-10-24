@@ -54,14 +54,13 @@ describe 'Usuário que não é ainda cadastrado' do
 
   it 'cadastra-se com sucesso' do
     # Arrange
-    cpf = CPF.generate.to_s
     # Act
     visit root_path    
     click_on 'Criar conta'
     fill_in 'E-mail',	with: 'samuel@example.com' 
     fill_in 'Senha',	with: '12345678912345'
     fill_in 'Confirme sua senha',	with: '12345678912345'
-    fill_in 'CPF',	with: cpf
+    fill_in 'CPF',	with: '22611819572'
     fill_in 'Nome',	with: 'Samuel'
     fill_in 'Sobrenome',	with: 'Rocha'
 
