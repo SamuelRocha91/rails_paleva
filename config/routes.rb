@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  resources :establishments, only: [:new, :create]
+  resources :establishments, only: [:new, :create, :edit, :update]
 end

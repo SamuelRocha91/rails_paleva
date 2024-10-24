@@ -1,12 +1,8 @@
 class EstablishmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :establishment_created, only: [:new]
-  def new
-    @establishment = Establishment.new
-    [:sunday, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday].each do |day|
-      @establishment.operating_hours.build(week_day: day)
-    end
-  end
+  before_action :start_establishment, only: [:new, :edit]
+  def new; end
 
   def create
     @establishment = Establishment.new(establishment_params)
@@ -17,6 +13,8 @@ class EstablishmentsController < ApplicationController
       render :new
     end
   end
+
+  def edit; end
 
   private
 
@@ -29,4 +27,12 @@ class EstablishmentsController < ApplicationController
   def establishment_created
     redirect_to root_path if current_user.establishment != nil
   end
+
+  def start_establishment
+    @establishment = Establishment.new
+    [:sunday, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday].each do |day|
+      @establishment.operating_hours.build(week_day: day)
+    end
+  end
+
 end

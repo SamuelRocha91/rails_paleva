@@ -82,5 +82,6 @@ describe "Usuário acessa a aplicação" do
     expect(page).to have_content 'Sexta: Fechado'
     expect(page).to have_content 'Sábado: 08:00 - 22:00'
     expect(page).to have_content 'Domingo: Fechado'
+    expect(page).to have_link 'Editar informações'  
   end
 end

@@ -37,7 +37,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     expect(page).to have_content 'Quinta'
     expect(page).to have_content 'Sexta'
     expect(page).to have_content 'Sábado'
-    expect(page).to have_button 'Cadastrar'
+    expect(page).to have_button 'Salvar'
   end
 
   it 'tem cadastro recusado por falta de campo obrigatório' do
@@ -55,7 +55,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     fill_in 'Nome Social',	with: 'Comidícia'
     fill_in 'CNPJ',	with: '56924048000140'
     fill_in 'Endereço',	with: 'Rua da Fome, 100'
-    click_on 'Cadastrar'
+    click_on 'Salvar'
     # Assert
     expect(page).to have_content 'Nome Fantasia não pode ficar em branco'
     expect(page).to have_content 'Telefone não pode ficar em branco'
@@ -85,7 +85,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     find('input[type="checkbox"].tuesday').set(true)
     find('input[type="checkbox"].wednesday').set(true)
 
-    click_on 'Cadastrar'
+    click_on 'Salvar'
     # Assert
     expect(page).not_to have_content 'Horário de funcionamento de Sábado deve ser definido ou marcado como fechado.'
     expect(page).to have_content 'Horário de funcionamento de Quinta deve ser definido ou marcado como fechado.'
@@ -121,7 +121,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     all('input[type="time"].friday')[1].set('22:00')
     all('input[type="time"].saturday')[0].set('08:00')
     all('input[type="time"].saturday')[1].set('22:00')
-    click_on 'Cadastrar'
+    click_on 'Salvar'
     # Assert
     expect(page)
       .to have_content 'Horário de funcionamento de Quinta deve ser definido ' +
@@ -157,7 +157,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     all('input[type="time"].friday')[1].set('22:00')
     all('input[type="time"].saturday')[0].set('08:00')
     all('input[type="time"].saturday')[1].set('22:00')
-    click_on 'Cadastrar'
+    click_on 'Salvar'
     # Assert
     expect(current_path).to eq root_path
     expect(page).to have_content 'Cadastro de restaurante efetuado com sucesso!'
