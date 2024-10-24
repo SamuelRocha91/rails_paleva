@@ -16,7 +16,7 @@ class User < ApplicationRecord
   private
 
   def is_valid_cpf?
-    if self.cpf.present? && !(CPF.valid?(cpf.to_i))
+    if self.cpf.present? && !CPF.valid?(cpf)
       self.errors.add :cpf, " deve ser um número válido"
     end
   end

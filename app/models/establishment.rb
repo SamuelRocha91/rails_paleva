@@ -1,6 +1,8 @@
 class Establishment < ApplicationRecord
   validates :trade_name, :legal_name, :cnpj, :address,
-             :phone_number, :email, presence: true
+             :phone_number, :email, :code, presence: true
+
+  before_validation :generate_code
   belongs_to :user
   has_many :operating_hours
   accepts_nested_attributes_for :operating_hours
@@ -46,10 +48,14 @@ class Establishment < ApplicationRecord
         end
       end
       
-      if operating_hour.is_closed == false && (operating_hour.start_time <= operating_hour.end_time)
+      if operating_hour.is_closed == false && (operating_hour.start_time >= operating_hour.end_time)
          self.errors.add :operating_hours, 
                       "de #{week_day_name} deve ser definido corretamente(Hora de abertura deve ser menor que a de fechamento)."
       end
     end
+  end
+
+  def generate_code
+    self.code = SecureRandom.alphanumeric(6)
   end
 end

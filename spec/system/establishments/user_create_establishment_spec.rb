@@ -115,12 +115,12 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     find('input[type="checkbox"].monday').set(true)
     find('input[type="checkbox"].tuesday').set(true)
     find('input[type="checkbox"].wednesday').set(true)
-    all('input[type="time"].thursday')[0].set('08:00')
-    all('input[type="time"].thursday')[1].set('22:00')
-    all('input[type="time"].friday')[1].set('08:00')
-    all('input[type="time"].friday')[0].set('22:00')
-    all('input[type="time"].saturday')[1].set('08:00')
-    all('input[type="time"].saturday')[0].set('22:00')
+    all('input[type="time"].thursday')[1].set('08:00')
+    all('input[type="time"].thursday')[0].set('22:00')
+    all('input[type="time"].friday')[0].set('08:00')
+    all('input[type="time"].friday')[1].set('22:00')
+    all('input[type="time"].saturday')[0].set('08:00')
+    all('input[type="time"].saturday')[1].set('22:00')
     click_on 'Cadastrar'
     # Assert
     expect(page)
@@ -151,12 +151,12 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     find('input[type="checkbox"].monday').set(true)
     find('input[type="checkbox"].tuesday').set(true)
     find('input[type="checkbox"].wednesday').set(true)
-    all('input[type="time"].thursday')[1].set('08:00')
-    all('input[type="time"].thursday')[0].set('22:00')
-    all('input[type="time"].friday')[1].set('08:00')
-    all('input[type="time"].friday')[0].set('22:00')
-    all('input[type="time"].saturday')[1].set('08:00')
-    all('input[type="time"].saturday')[0].set('22:00')
+    all('input[type="time"].thursday')[0].set('08:00')
+    all('input[type="time"].thursday')[1].set('22:00')
+    all('input[type="time"].friday')[0].set('08:00')
+    all('input[type="time"].friday')[1].set('22:00')
+    all('input[type="time"].saturday')[0].set('08:00')
+    all('input[type="time"].saturday')[1].set('22:00')
     click_on 'Cadastrar'
     # Assert
     expect(current_path).to eq root_path

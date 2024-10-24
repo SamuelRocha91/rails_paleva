@@ -12,6 +12,7 @@ pt-BR:
         phone_number: Telefone
         email: E-mail
         operating_hours: Horário de funcionamento
+        code: Código
       operating_hour:
         week_day: Dia da semana
         start_time: Horário de abertura
