@@ -4,7 +4,7 @@ class Establishment < ApplicationRecord
 
   before_validation :generate_code
   belongs_to :user
-  has_many :operating_hours
+  has_many :operating_hours, dependent: :destroy
   accepts_nested_attributes_for :operating_hours
   validate :is_valid_cnpj?
   validate :is_valid_phone_number?

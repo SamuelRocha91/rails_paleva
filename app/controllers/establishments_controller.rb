@@ -1,8 +1,13 @@
 class EstablishmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :establishment_created, only: [:new]
-  before_action :start_establishment, only: [:new, :edit]
-  def new; end
+  before_action :set_establishment, only: [:edit, :update]
+  def new
+    @establishment = Establishment.new
+    [:sunday, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday].each do |day|
+      @establishment.operating_hours.build(week_day: day)
+    end
+  end
 
   def create
     @establishment = Establishment.new(establishment_params)
@@ -14,7 +19,16 @@ class EstablishmentsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit;  end
+
+  def update
+    if @establishment.update(establishment_params)
+      redirect_to root_path, notice: 'Estabelecimento atualizado com sucesso'
+    else
+      flash.now[:alert] = 'Não foi possível atualizar o estabelecimento'
+      render :new
+    end
+  end
 
   private
 
@@ -28,11 +42,8 @@ class EstablishmentsController < ApplicationController
     redirect_to root_path if current_user.establishment != nil
   end
 
-  def start_establishment
-    @establishment = Establishment.new
-    [:sunday, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday].each do |day|
-      @establishment.operating_hours.build(week_day: day)
-    end
+  def set_establishment
+    @establishment = Establishment.find(params[:id])
   end
 
 end
