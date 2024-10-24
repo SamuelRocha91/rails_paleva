@@ -93,7 +93,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     expect(page).to have_content 'Horário de funcionamento de Domingo deve ser definido ou marcado como fechado.'
   end
 
-  it 'cadastra restaurante e é direcionado pra página root' do
+  it 'tenta cadastrar horario de fechamento menor que o de abertura' do
     # Arrange
     user = User.create!(
       first_name: 'Samuel', 
@@ -117,13 +117,48 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     find('input[type="checkbox"].wednesday').set(true)
     all('input[type="time"].thursday')[0].set('08:00')
     all('input[type="time"].thursday')[1].set('22:00')
-    all('input[type="time"].friday')[0].set('08:00')
-    all('input[type="time"].friday')[1].set('22:00')
-    all('input[type="time"].saturday')[0].set('08:00')
-    all('input[type="time"].saturday')[1].set('22:00')
+    all('input[type="time"].friday')[1].set('08:00')
+    all('input[type="time"].friday')[0].set('22:00')
+    all('input[type="time"].saturday')[1].set('08:00')
+    all('input[type="time"].saturday')[0].set('22:00')
+    click_on 'Cadastrar'
+    # Assert
+    expect(page).to have_content 'Horário de funcionamento de Quinta deve ser definido corretamente(Hora de abertura deve ser menor que a de fechamento).'
+
+  end
+
+  it 'cadastra restaurante e é direcionado pra página root' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+    # Act
+    login_as user
+    visit root_path
+    fill_in 'Nome Social',	with: 'Comidícia'
+    fill_in 'CNPJ',	with: '56924048000140'
+    fill_in 'Endereço',	with: 'Rua da Fome, 100'
+    fill_in 'Nome Fantasia',	with: 'Engordante LTDA'
+    fill_in 'Telefone',	with: '71992594946'
+    fill_in 'E-mail',	with: 'sam@gmail.com'
+    find('input[type="checkbox"].sunday').set(true)
+    find('input[type="checkbox"].monday').set(true)
+    find('input[type="checkbox"].tuesday').set(true)
+    find('input[type="checkbox"].wednesday').set(true)
+    all('input[type="time"].thursday')[1].set('08:00')
+    all('input[type="time"].thursday')[0].set('22:00')
+    all('input[type="time"].friday')[1].set('08:00')
+    all('input[type="time"].friday')[0].set('22:00')
+    all('input[type="time"].saturday')[1].set('08:00')
+    all('input[type="time"].saturday')[0].set('22:00')
     click_on 'Cadastrar'
     # Assert
     expect(current_path).to eq root_path
     expect(page).to have_content 'Cadastro de restaurante efetuado com sucesso!'
+
   end
 end

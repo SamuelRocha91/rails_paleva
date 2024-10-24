@@ -34,13 +34,21 @@ class Establishment < ApplicationRecord
 
   def validate_operating_hours_filled
     self.operating_hours.each do |operating_hour|
+
+      week_day_name = I18n
+        .t("activerecord.attributes.operating_hour.#{operating_hour.week_day}")
+  
       if operating_hour.start_time.blank? || operating_hour.end_time.blank?
         if operating_hour.is_closed == false
-          week_day_name = I18n
-            .t("activerecord.attributes.operating_hour.#{operating_hour.week_day}")
           self.errors.add :operating_hours, 
                       "de #{week_day_name} deve ser definido ou marcado como fechado."
+           next
         end
+      end
+      
+      if operating_hour.is_closed == false && (operating_hour.start_time <= operating_hour.end_time)
+         self.errors.add :operating_hours, 
+                      "de #{week_day_name} deve ser definido corretamente(Hora de abertura deve ser menor que a de fechamento)."
       end
     end
   end
