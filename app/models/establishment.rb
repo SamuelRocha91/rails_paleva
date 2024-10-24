@@ -7,6 +7,7 @@ class Establishment < ApplicationRecord
   validate :is_valid_cnpj?
   validate :is_valid_phone_number?
   validate :is_email_valid?
+  validate :validate_operating_hours_filled
 
   private
 
@@ -28,6 +29,19 @@ class Establishment < ApplicationRecord
     regex = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
     if self.email.present? && !email.match?(regex)
       self.errors.add :email, " deve ser um número válido"
+    end
+  end
+
+  def validate_operating_hours_filled
+    self.operating_hours.each do |operating_hour|
+      if operating_hour.start_time.blank? || operating_hour.end_time.blank?
+        if operating_hour.is_closed == false
+          week_day_name = I18n
+            .t("activerecord.attributes.operating_hour.#{operating_hour.week_day}")
+          self.errors.add :operating_hours, 
+                      "de #{week_day_name} deve ser definido ou marcado como fechado."
+        end
+      end
     end
   end
 end

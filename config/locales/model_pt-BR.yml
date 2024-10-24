@@ -2,7 +2,7 @@ pt-BR:
   activerecord:
     models:
      establishment: Restaurante
-     operating_hour: Horário de funcionamento
+     operating_hours: Horário de funcionamento
     attributes:
       establishment:
         trade_name: Nome Social
@@ -11,11 +11,12 @@ pt-BR:
         address: Endereço
         phone_number: Telefone
         email: E-mail
+        operating_hours: Horário de funcionamento
       operating_hour:
         week_day: Dia da semana
-        start_time: 'Horário de abertura'
+        start_time: Horário de abertura
         end_time: Horário de fechamento
-        is_closed?: Fechar?
+        is_closed: Fechar?
         monday: Segunda
         tuesday: Terça
         wednesday: Quarta
@@ -24,4 +25,3 @@ pt-BR:
         saturday: Sábado
         sunday: Domingo
 
-        

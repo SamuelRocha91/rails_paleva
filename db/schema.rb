@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_23_220155) do
     t.integer "establishment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_closed?"
+    t.boolean "is_closed"
     t.index ["establishment_id"], name: "index_operating_hours_on_establishment_id"
   end
 

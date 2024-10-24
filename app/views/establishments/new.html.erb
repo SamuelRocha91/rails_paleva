@@ -4,8 +4,10 @@
   <p>Verifique os erros abaixo:</p>
   <ul>
     <% @establishment.errors.full_messages.each do |msg|%>
-    <li><%= msg %></li>
-    <% end %>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
   </ul>
 <% end %>
 

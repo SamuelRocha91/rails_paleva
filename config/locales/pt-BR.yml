@@ -222,3 +222,11 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: pm
+  sunday: Domingo
+  monday: Segunda
+  tuesday: Terça
+  wednesday: Quarta
+  thursday: Quinta
+  friday: Sexta
+  saturday: Sábado
+  sunday: Domingo

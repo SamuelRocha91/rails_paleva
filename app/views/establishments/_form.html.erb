@@ -32,71 +32,17 @@
   <div>
     <h2>Horário de funcionamento</h2>
     <%= f.fields_for :operating_hours do |oh| %>
+      <%= oh.label :week_day, I18n.t(oh.object.week_day) %>
+      <%= oh.hidden_field :week_day %>
 
-      <div>
-        <%= oh.label :monday %>
-        <%= oh.label :start_time  %>
-        <%= oh.time_field :start_time %>
-        <%= oh.label :end_time %>
-        <%= oh.time_field :end_time %>
-        <%= oh.label :is_closed? %>
-        <%= oh.check_box :is_closed? %>
-      </div>
+      <%= oh.label :start_time, "Início" %>
+      <%= oh.time_field :start_time %>
 
-      <div>
-        <%= oh.label :tuesday %>
-        <%= oh.label :start_time %>
-        <%= oh.time_field :start_time %>
-        <%= oh.label :end_time %>
-        <%= oh.time_field :end_time %>
-        <%= oh.label :is_closed? %>
-        <%= oh.check_box :is_closed? %>
-      </div>
+      <%= oh.label :end_time, "Término" %>
+      <%= oh.time_field :end_time %>
 
-      <div>
-        <%= oh.label :wednesday %>
-        <%= oh.label :start_time %>
-        <%= oh.time_field :start_time %>
-        <%= oh.time_field :end_time %>
-        <%= oh.label :is_closed? %>
-        <%= oh.check_box :is_closed? %>
-      </div>
-      <div>
-        <%= oh.label :thursday %>
-        <%= oh.label :start_time %>
-        <%= oh.time_field :start_time %>
-        <%= oh.label :end_time %>
-        <%= oh.time_field :end_time %>
-        <%= oh.label :is_closed? %>
-        <%= oh.check_box :is_closed? %>
-      </div>  
-      <div>
-        <%= oh.label :friday %>
-        <%= oh.label :start_time %>
-        <%= oh.time_field :start_time %>
-        <%= oh.label :end_time %>
-        <%= oh.time_field :end_time %>
-        <%= oh.label :is_closed? %>
-        <%= oh.check_box :is_closed? %>
-      </div>  
-      <div>
-        <%= oh.label :saturday %>
-        <%= oh.label :start_time %>
-        <%= oh.time_field :start_time %>
-        <%= oh.label :end_time %>
-        <%= oh.time_field :end_time %>
-        <%= oh.label :is_closed? %>
-        <%= oh.check_box :is_closed? %>
-      </div>  
-      <div>
-        <%= oh.label :sunday %>
-        <%= oh.label :start_time %>
-        <%= oh.time_field :start_time%>
-        <%= oh.label :end_time %>
-        <%= oh.time_field :end_time%>
-        <%= oh.label :is_closed? %>
-        <%= oh.check_box :is_closed? %>
-      </div>
+      <%= oh.label :is_closed %>
+      <%= oh.check_box :is_closed, class: oh.object.week_day %>
     <% end %>
   </div>
 
