@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :establishments, only: [:new, :create, :edit, :update] do
-    resources :dishes, only: [:new, :create]
+    resources :dishes, only: [:new, :create, :index]
   end
 end
