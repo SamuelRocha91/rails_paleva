@@ -184,5 +184,35 @@ RSpec.describe Establishment, type: :model do
       # Assert
       expect(establishment.code).not_to eq establishment_two.code
     end
+
+     it 'e não muda com atualização do estabelecimento' do 
+      # Arrange
+      user = User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572'
+      )
+      establishment = Establishment.new(
+        email:'sam@gmail.com', 
+        trade_name: 'Samsumg', 
+        legal_name: 'Samsumg LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas' 
+      )
+      operating_hour = []
+      7.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
+
+      establishment.operating_hours = operating_hour
+      user.establishment = establishment
+      establishment.save
+      original_code = establishment.code
+      # Act
+      establishment.update!(phone_number: '85992588546')
+      # Assert
+      expect(establishment.code).to eq original_code
+    end
   end
 end
