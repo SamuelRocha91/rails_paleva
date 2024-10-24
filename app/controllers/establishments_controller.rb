@@ -1,5 +1,6 @@
 class EstablishmentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :establishment_created, only: [:new]
   def new
     @establishment = Establishment.new
     [:sunday, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday].each do |day|
@@ -23,5 +24,9 @@ class EstablishmentsController < ApplicationController
     params.require(:establishment).permit(:trade_name, :legal_name, :cnpj, :address,:phone_number, 
                                           :email, operating_hours_attributes:
                                           [:week_day, :start_time, :end_time, :is_closed])
+  end
+
+  def establishment_created
+    redirect_to root_path if current_user.establishment != nil
   end
 end
