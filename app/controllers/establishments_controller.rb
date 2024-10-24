@@ -11,7 +11,7 @@ class EstablishmentsController < ApplicationController
     @establishment = Establishment.new(establishment_params)
     @establishment.user = current_user
     if @establishment.save
-      redirect_to root_path, notice: 'Estabelecimento criado com sucesso.'
+      redirect_to root_path, notice: 'Cadastro de restaurante efetuado com sucesso!'
     else
       render :new
     end

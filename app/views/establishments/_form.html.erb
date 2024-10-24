@@ -35,11 +35,11 @@
       <%= oh.label :week_day, I18n.t(oh.object.week_day) %>
       <%= oh.hidden_field :week_day %>
 
-      <%= oh.label :start_time, "Início" %>
-      <%= oh.time_field :start_time %>
+      <%= oh.label :start_time %>
+      <%= oh.time_field :start_time, class: oh.object.week_day %>
 
-      <%= oh.label :end_time, "Término" %>
-      <%= oh.time_field :end_time %>
+      <%= oh.label :end_time %>
+      <%= oh.time_field :end_time, class: oh.object.week_day %>
 
       <%= oh.label :is_closed %>
       <%= oh.check_box :is_closed, class: oh.object.week_day %>
