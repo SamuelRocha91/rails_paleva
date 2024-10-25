@@ -171,8 +171,10 @@ describe 'Usuário vê seus próprios pratos' do
       user: user_two
     )
 
-    Dish.create!(name: 'lasagna', description: 'pão com ovo', calories: '185', establishment: establishment)
-    dish_two = Dish.create!(name: 'macarrão', description: 'arroz integral', calories: '15', establishment: establishment_two)
+    Dish.create!(name: 'lasagna', description: 'pão com ovo', 
+                 calories: '185', establishment: establishment)
+    dish_two = Dish.create!(name: 'macarrão', description: 'arroz integral', 
+                            calories: '15', establishment: establishment_two)
 
     # Act
     login_as user
