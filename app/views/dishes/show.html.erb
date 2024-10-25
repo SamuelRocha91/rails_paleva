@@ -8,4 +8,6 @@
   <dd><%= @dish.calories || 'Não informado' %></dd>
   <%= link_to 'Editar prato', 
     edit_establishment_dish_path(current_user.establishment.id, @dish.id) %>
+  <%= button_to 'Excluir prato', establishment_dish_path(current_user.establishment.id, @dish.id), 
+         data: { turbo_confirm: 'Tem certeza que deseja apagar o registro desse prato?' }, method: :delete  %>
 </dl>

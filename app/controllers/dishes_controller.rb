@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_user, only: [:show, :index, :new, :update, :edit]
+  before_action :check_user, only: [:show, :index, :new, :update, :edit, :destroy]
   before_action :set_dish, only: [:edit, :show, :update]
   
   def index
@@ -29,6 +29,9 @@ class DishesController < ApplicationController
       redirect_to establishment_dish_path(current_user.establishment, @dish), 
                        notice: 'Prato atualizado com sucesso'
     end
+  end
+
+  def destroy
   end
 
   private
