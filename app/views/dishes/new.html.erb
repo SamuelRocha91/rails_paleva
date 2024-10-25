@@ -1,0 +1,16 @@
+<h1>Cadastro de novo prato</h1>
+<h2>Restaurante <%= current_user.establishment.trade_name %></h2>
+
+
+<% if @dish.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @dish.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>

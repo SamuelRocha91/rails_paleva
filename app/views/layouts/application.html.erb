@@ -6,15 +6,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= javascript_importmap_tags %>
+
     <%= stylesheet_link_tag "application" %>
   </head>
 
   <body>
     <header>
       <% if user_signed_in? %>
+        <% if current_user.establishment.present? && current_user.establishment.id.present? %>
+          <%= link_to 'Meus Pratos', establishment_dishes_path(current_user.establishment.id) %>
+        <% end %>   
         <h2><%= current_user.description %></h2>
         <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
-      <% end %>    
+      <% end %>   
     </header>
     <main>
       <div>

@@ -1,0 +1,12 @@
+<h1>Menu de pratos</h1>
+
+<%= link_to 'Cadastrar novo prato', new_establishment_dish_path(@establishment.id) %>
+<% @dishes.each do |dish| %>
+  <dl>
+    <dt><%=  Dish.human_attribute_name(:name) %>:</dt>
+    <dd><%= link_to dish.name,
+      establishment_dish_path(current_user.establishment.id, dish.id) %></dd>
+    <dt><%= Dish.human_attribute_name(:description) %>:</dt>
+    <dd><%= dish.description %></dd>
+  </dl>
+<% end %>

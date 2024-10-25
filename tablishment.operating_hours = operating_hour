@@ -1,0 +1,25 @@
+=> 
+[[32m#<OperatingHour:0x00007b8f8c838c58[0m id: [36m[1mnil[0m, week_day: [31m[1m"[0m[31msunday[0m[31m[1m"[0m, start_time: [36m[1mnil[0m, end_time: [36m[1mnil[0m, establishment_id: [36m[1mnil[0m, created_at: [36m[1mnil[0m, updated_at: [36m[1mnil[0m, is_closed: [36m[1mtrue[0m[32m>[0m,
+ [32m#<OperatingHour:0x00007b8f8702b420[0m id: [36m[1mnil[0m, week_day: [31m[1m"[0m[31mmonday[0m[31m[1m"[0m, start_time: [36m[1mnil[0m, end_time: [36m[1mnil[0m, establishment_id: [36m[1mnil[0m, created_at: [36m[1mnil[0m, updated_at: [36m[1mnil[0m, is_closed: [36m[1mtrue[0m[32m>[0m,
+ [32m#<OperatingHour:0x00007b8f8702b2e0[0m id: [36m[1mnil[0m, week_day: [31m[1m"[0m[31mtuesday[0m[31m[1m"[0m, start_time: [36m[1mnil[0m, end_time: [36m[1mnil[0m, establishment_id: [36m[1mnil[0m, created_at: [36m[1mnil[0m, updated_at: [36m[1mnil[0m, is_closed: [36m[1mtrue[0m[32m>[0m,
+ [32m#<OperatingHour:0x00007b8f8702b1a0[0m id: [36m[1mnil[0m, week_day: [31m[1m"[0m[31mwednesday[0m[31m[1m"[0m, start_time: [36m[1mnil[0m, end_time: [36m[1mnil[0m, establishment_id: [36m[1mnil[0m, created_at: [36m[1mnil[0m, updated_at: [36m[1mnil[0m, is_closed: [36m[1mtrue[0m[32m>[0m,
+ [32m#<OperatingHour:0x00007b8f8702b060[0m id: [36m[1mnil[0m, week_day: [31m[1m"[0m[31mthursday[0m[31m[1m"[0m, start_time: [36m[1mnil[0m, end_time: [36m[1mnil[0m, establishment_id: [36m[1mnil[0m, created_at: [36m[1mnil[0m, updated_at: [36m[1mnil[0m, is_closed: [36m[1mtrue[0m[32m>[0m,
+ [32m#<OperatingHour:0x00007b8f8702af20[0m id: [36m[1mnil[0m, week_day: [31m[1m"[0m[31mfriday[0m[31m[1m"[0m, start_time: [36m[1mnil[0m, end_time: [36m[1mnil[0m, establishment_id: [36m[1mnil[0m, created_at: [36m[1mnil[0m, updated_at: [36m[1mnil[0m, is_closed: [36m[1mtrue[0m[32m>[0m,
+ [32m#<OperatingHour:0x00007b8f8702ab60[0m
+  id: [36m[1mnil[0m,
+  week_day: [31m[1m"[0m[31msaturday[0m[31m[1m"[0m,
+  start_time: Sat, 01 Jan 2000 08:00:00.000000000 UTC +00:00,
+  end_time: Sat, 01 Jan 2000 22:00:00.000000000 UTC +00:00,
+  establishment_id: [36m[1mnil[0m,
+  created_at: [36m[1mnil[0m,
+  updated_at: [36m[1mnil[0m,
+  is_closed: [36m[1mfalse[0m[32m>[0m,
+ [32m#<OperatingHour:0x00007b8f8767d210[0m
+  id: [36m[1mnil[0m,
+  week_day: [31m[1m"[0m[31msaturday[0m[31m[1m"[0m,
+  start_time: Sat, 01 Jan 2000 08:00:00.000000000 UTC +00:00,
+  end_time: Sat, 01 Jan 2000 22:00:00.000000000 UTC +00:00,
+  establishment_id: [36m[1mnil[0m,
+  created_at: [36m[1mnil[0m,
+  updated_at: [36m[1mnil[0m,
+  is_closed: [36m[1mfalse[0m[32m>[0m]

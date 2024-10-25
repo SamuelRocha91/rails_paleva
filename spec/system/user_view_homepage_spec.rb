@@ -64,12 +64,16 @@ describe "Usuário acessa a aplicação" do
     6.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
     operating_hour <<  OperatingHour.new(week_day: 6, start_time: Time.zone.parse('08:00'), end_time: Time.zone.parse('22:00'), is_closed: false)
     establishment.operating_hours = operating_hour
-    establishment.save
-    user.establishment = establishment 
+    establishment.user = user
+    establishment.save!
     # Act
     login_as user
     visit root_path
     # Assert
+    within('header') do
+      expect(page).to have_link 'Meus Pratos'
+      expect(page).to have_content 'Samuel Rocha - samuel@hotmail.com'  
+    end
     expect(page).to have_content 'Nome Social: Samsumg'
     expect(page).to have_content "Código: #{establishment.code}"
     expect(page).to have_content 'CNPJ: 56924048000140'
