@@ -38,7 +38,7 @@ describe 'Usuário vê seus próprios pratos' do
     login_as user
     visit root_path
     click_on 'Meus Pratos'
-    click_on 'Ver detalhes'
+    click_on 'lasagna'
 
     # Assert
     expect(current_path).to eq establishment_dish_path(establishment.id, dish.id)
