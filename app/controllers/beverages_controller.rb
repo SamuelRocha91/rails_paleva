@@ -2,6 +2,7 @@ class BeveragesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @beverages = current_user.establishment.beverages
   end
 
   def new
@@ -10,12 +11,15 @@ class BeveragesController < ApplicationController
 
   def create
     @beverage = Beverage.new beverage_params
+    @beverage.establishment = current_user.establishment
     if @beverage.save
-      redirect_to establishment_beverages_path current_user.establishment.id,
-                   notice: 'Bebida cadastrada com sucesso'
+      redirect_to establishment_beverages_path, notice: 'Bebida cadastrada com sucesso'
     else
       render :new
     end
+  end
+
+  def show
   end
 
   private
