@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_user, only: [:show, :index, :new]
+  before_action :check_user, only: [:show, :index, :new, :update, :edit]
   before_action :set_dish, only: [:edit, :show, :update]
   
   def index
