@@ -1,7 +1,7 @@
 class DishesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_user, only: [:show, :index, :new, :update, :edit, :destroy]
-  before_action :set_dish, only: [:edit, :show, :update]
+  before_action :set_dish, only: [:edit, :show, :update, :destroy]
   
   def index
     @dishes = current_user.establishment.dishes
@@ -32,6 +32,10 @@ class DishesController < ApplicationController
   end
 
   def destroy
+    if @dish.destroy
+      redirect_to establishment_dishes_path(current_user.establishment), 
+                   notice: 'Registro excluído com sucesso'
+    end
   end
 
   private

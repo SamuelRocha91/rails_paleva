@@ -61,9 +61,8 @@ describe 'Usuário deleta um prato' do
     click_on 'Meus Pratos'
     click_on 'lasagna'
     click_on 'Excluir prato'
-    click_on 'sim'
     # Assert
-    expect(page).to have_content 'Prato apagado com sucesso'
+    expect(page).to have_content 'Registro excluído com sucesso'
     expect(page).not_to have_content 'lasagna'
     expect(page).not_to have_content 'massa, queijo e presunto'
   end
