@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_25_213459) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_25_215926) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_25_213459) do
 
   create_table "beverages", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.boolean "is_alcoholic"
     t.string "calories"
     t.integer "establishment_id", null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_25_213459) do
 
   create_table "dishes", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "calories"
     t.integer "establishment_id", null: false
     t.datetime "created_at", null: false
