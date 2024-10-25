@@ -32,4 +32,5 @@ pt-BR:
         name: Nome
         description: Descrição
         calories: Quantidade de calorias
+        image: Imagem do prato
 
