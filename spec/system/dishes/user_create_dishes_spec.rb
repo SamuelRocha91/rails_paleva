@@ -154,9 +154,7 @@ describe 'Usuário acessa formulário de criar pratos' do
     expect(current_path).to eq establishment_dishes_path(establishment.id)
     expect(page).to have_content 'Prato cadastrado com sucesso'
     expect(page).to have_content 'Nome: Lasagna'
-    expect(page).to have_content 'Quantidade de calorias: 185'
     expect(page).to have_content 'Descrição: pao com ovo'
-    expect(page).to have_css('img[src*="pao.jpg"]')
-    expect(page).to have_link 'Editar prato'  
+    expect(page).to have_link 'Ver detalhes'  
   end
 end

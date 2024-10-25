@@ -99,6 +99,10 @@ GEM
     connection_pool (2.4.1)
     cpf_cnpj (0.5.0)
     crass (1.0.6)
+    database_cleaner-active_record (2.2.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -291,6 +295,7 @@ DEPENDENCIES
   bootstrap
   capybara
   cpf_cnpj
+  database_cleaner-active_record
   debug
   devise (~> 4.9)
   image_processing (>= 1.2)

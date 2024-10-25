@@ -1,0 +1,11 @@
+<dl>
+  <%= image_tag url_for(@dish.image) if @dish.image.attached? %>
+  <dt><%= Dish.human_attribute_name(:name) %>:</dt>
+  <dd><%= @dish.name %></dd>
+  <dt><%= Dish.human_attribute_name(:description) %>:</dt>
+  <dd><%= @dish.description %></dd>
+  <dt><%= Dish.human_attribute_name(:calories) %>:</dt>
+  <dd><%= @dish.calories || 'Não informado' %></dd>
+  <%= link_to 'Editar prato', 
+    edit_establishment_dish_path(current_user.establishment.id, @dish.id) %>
+</dl>
