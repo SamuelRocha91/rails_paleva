@@ -2,6 +2,7 @@ class DishesController < ApplicationController
   before_action :authenticate_user!
   
   def index
+    @dishes = current_user.establishment.dishes
   end
   def new
     @dish = Dish.new
