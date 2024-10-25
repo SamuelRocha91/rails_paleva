@@ -3,6 +3,9 @@ pt-BR:
     models:
      establishment: Restaurante
      operating_hours: Horário de funcionamento
+     dish:
+       one: Prato
+       other: Pratos
     attributes:
       establishment:
         trade_name: Nome Social
@@ -25,4 +28,8 @@ pt-BR:
         friday: Sexta
         saturday: Sábado
         sunday: Domingo
+      dish:
+        name: Nome
+        description: Descrição
+        calories: Quantidade de calorias
 
