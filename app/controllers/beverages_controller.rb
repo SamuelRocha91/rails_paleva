@@ -1,6 +1,7 @@
 class BeveragesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_beverage, only: [:edit, :show]
+  before_action :check_user, only: [:show, :edit, :index]
 
   def index
     @beverages = current_user.establishment.beverages
@@ -34,5 +35,13 @@ class BeveragesController < ApplicationController
 
   def set_beverage
     @beverage = Beverage.find(params[:id])
+  end
+
+
+  def check_user
+    @establishment = Establishment.find(params[:establishment_id])
+    if @establishment.user != current_user
+      redirect_to root_path, notice: 'Você não possui acesso a essa bebida'
+    end
   end
 end
