@@ -17,6 +17,15 @@
         <% if current_user.establishment.present? && current_user.establishment.id.present? %>
           <%= link_to 'Meus Pratos', establishment_dishes_path(current_user.establishment.id) %>
           <%= link_to 'Bebidas', establishment_beverages_path(current_user.establishment.id) %>
+        <% end %>
+        <%= form_with(url: search_path, method: :get) do |form| %>
+          <%= form.label :query, 'Buscar Item' %>
+          <%= form.text_field :query %>
+
+          <%= form.label :type, 'Tipo' %>
+          <%= form.select :type, ['Bebida', 'Comida', 'Ambos'] %>
+
+          <%= form.submit 'Pesquisar' %>
         <% end %>   
         <h2><%= current_user.description %></h2>
         <%= button_to 'Sair', destroy_user_session_path, method: :delete %>

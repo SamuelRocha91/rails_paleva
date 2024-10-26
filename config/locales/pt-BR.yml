@@ -1,4 +1,10 @@
 pt-BR:
+  result:
+    one: 'Resultado'
+    other: 'Resultados'
+  found: 
+    one: 'encontrado'
+    other: 'encontrados'
   activerecord:
     errors:
       messages:

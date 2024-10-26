@@ -50,9 +50,11 @@ class Establishment < ApplicationRecord
         end
       end
       
-      if operating_hour.is_closed == false && (operating_hour.start_time >= operating_hour.end_time)
+      if operating_hour.is_closed == false &&
+         (operating_hour.start_time >= operating_hour.end_time)
          self.errors.add :operating_hours, 
-                      "de #{week_day_name} deve ser definido corretamente(Hora de abertura deve ser menor que a de fechamento)."
+                      "de #{week_day_name} deve ser definido corretamente" + 
+                      "(Hora de abertura deve ser menor que a de fechamento)."
       end
     end
   end
