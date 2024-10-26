@@ -4,7 +4,8 @@ class EstablishmentsController < ApplicationController
   before_action :set_establishment, only: [:edit, :update]
   def new
     @establishment = Establishment.new
-    [:sunday, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday].each do |day|
+    [:sunday, :monday, :tuesday, :wednesday, 
+      :thursday, :friday, :saturday].each do |day|
       @establishment.operating_hours.build(week_day: day)
     end
   end
