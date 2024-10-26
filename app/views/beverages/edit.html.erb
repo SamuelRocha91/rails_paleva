@@ -1,0 +1,14 @@
+<h1>Editar Bebida</h1>
+
+<% if @beverage.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @beverage.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>

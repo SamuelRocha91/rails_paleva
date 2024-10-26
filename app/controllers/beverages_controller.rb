@@ -1,6 +1,6 @@
 class BeveragesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_beverage, only: [:edit, :show]
+  before_action :set_beverage, only: [:edit, :show, :update]
   before_action :check_user, only: [:show, :edit, :index]
 
   def index
@@ -27,6 +27,13 @@ class BeveragesController < ApplicationController
   def edit
   end
 
+  def update
+    if @beverage.update(beverage_params)
+      redirect_to establishment_beverage_path(current_user.establishment, @beverage), 
+                       notice: 'Bebida atualizada com sucesso'
+    end
+  end
+
   private
 
   def beverage_params
@@ -36,7 +43,6 @@ class BeveragesController < ApplicationController
   def set_beverage
     @beverage = Beverage.find(params[:id])
   end
-
 
   def check_user
     @establishment = Establishment.find(params[:establishment_id])
