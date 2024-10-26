@@ -1,0 +1,8 @@
+<h1> Exbindo resultados da pesquisa<h1>
+<p><%= @count %> <%= I18n.translate(:result, count: @count)%> <%= I18n.translate(:found, count: @count)%></p>
+
+<% if @beverages.present? %>
+  <% @beverages.each do |beverage| %>
+    <%= render 'shared/beverage', beverage: beverage %>
+  <% end %>
+<% end%>

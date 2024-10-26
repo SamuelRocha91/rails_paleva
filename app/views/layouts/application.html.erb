@@ -18,7 +18,7 @@
           <%= link_to 'Meus Pratos', establishment_dishes_path(current_user.establishment.id) %>
           <%= link_to 'Bebidas', establishment_beverages_path(current_user.establishment.id) %>
         <% end %>
-        <%= form_with(url: search_path, local: true, method: :get) do |form| %>
+        <%= form_with(url: search_path, method: :get) do |form| %>
           <%= form.label :query, 'Buscar Item' %>
           <%= form.text_field :query %>
 

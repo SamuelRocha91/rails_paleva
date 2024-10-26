@@ -147,7 +147,8 @@ describe 'Usuário vê suas próprias bebidas' do
     Beverage.create!(name: 'Chimarrão', description: 'mate com agua', 
                  calories: '15', establishment: establishment, is_alcoholic: true)
 
-    beverage_two = Beverage.create!(name: 'Suco da embasa', description: 'Água que mata a sede', calories: '1', establishment: establishment_two, is_alcoholic: false)
+    beverage_two = Beverage.create!(name: 'Suco da embasa', description: 'Água que mata a sede', 
+                            calories: '1', establishment: establishment_two, is_alcoholic: false)
     # Act
     login_as user
     visit establishment_beverage_path(establishment_two, beverage_two)

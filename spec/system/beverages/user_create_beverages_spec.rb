@@ -21,8 +21,6 @@ describe 'Usuário acessa formulário de criar bebidas' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment)
     # Act
     visit new_establishment_beverage_path establishment.id
     # Assert
@@ -39,7 +37,7 @@ describe 'Usuário acessa formulário de criar bebidas' do
       cpf: '22611819572'
     )
 
-    establishment = Establishment.create!(
+    Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
@@ -49,8 +47,7 @@ describe 'Usuário acessa formulário de criar bebidas' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment)
+
     # Act
     login_as user
     visit root_path
