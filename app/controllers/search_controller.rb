@@ -2,13 +2,27 @@ class SearchController < ApplicationController
   
   def search
     if params[:type] == 'Bebida'
-      @beverages = Beverage.where('name LIKE ? or description LIKE ? ',
-                                   "%#{params[:query]}%",  "%#{params[:query]}%")
+      search_beverages
       @count = @beverages.length
     elsif params[:type] == 'Comida'
-      @dishes = Dish.where('name LIKE ? or description LIKE ? ',
-                                   "%#{params[:query]}%",  "%#{params[:query]}%")
+      search_dishes
       @count = @dishes.length
+    else
+      search_beverages
+      search_dishes
+      @count = @beverages.length + @dishes.length
     end
+  end
+
+  private
+
+  def search_beverages
+    @beverages = Beverage.where('name LIKE ? or description LIKE ? ',
+                                  "%#{params[:query]}%",  "%#{params[:query]}%")
+  end
+
+  def search_dishes
+    @dishes = Dish.where('name LIKE ? or description LIKE ? ',
+                          "%#{params[:query]}%",  "%#{params[:query]}%")
   end
 end
