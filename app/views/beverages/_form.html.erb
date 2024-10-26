@@ -1,0 +1,24 @@
+<%= form_with(model: [current_user.establishment, @beverage]) do |f| %>
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+   <div>
+    <%= f.label :calories %>
+    <%= f.text_field :calories %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+   <div>
+    <%= f.label :is_alcoholic %>
+    <%= f.check_box :is_alcoholic %>
+  </div>
+
+  <%= f.submit 'Salvar' %>
+<% end %>

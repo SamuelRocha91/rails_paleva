@@ -6,6 +6,7 @@ class Establishment < ApplicationRecord
   belongs_to :user
   has_many :operating_hours, dependent: :destroy
   has_many :dishes
+  has_many :beverages
   accepts_nested_attributes_for :operating_hours
   validate :is_valid_cnpj?
   validate :is_valid_phone_number?

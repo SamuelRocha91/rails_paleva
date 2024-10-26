@@ -1,0 +1,14 @@
+<h1>Bebidas cadastradas</h1>
+
+<%= link_to 'Cadastrar nova bebida', 
+  new_establishment_beverage_path(current_user.establishment.id) %>
+
+<% @beverages.each do |beverage| %>
+  <dl>
+    <dt><%=  Beverage.human_attribute_name(:name) %>:</dt>
+    <dd><%= link_to beverage.name,
+      establishment_beverage_path(current_user.establishment.id, beverage.id) %></dd>
+    <dt><%= Beverage.human_attribute_name(:description) %>:</dt>
+    <dd><%= beverage.description %></dd>
+  </dl>
+<% end %>

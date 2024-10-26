@@ -1,0 +1,14 @@
+<dl>
+  <%= image_tag url_for(@beverage.image) if @beverage.image.attached? %>
+  <dt><%= Beverage.human_attribute_name(:name) %>:</dt>
+  <dd><%= @beverage.name %></dd>
+  <dt><%= Beverage.human_attribute_name(:description) %>:</dt>
+  <dd><%= @beverage.description %></dd>
+  <dt><%= Beverage.human_attribute_name(:calories) %>:</dt>
+  <dd><%= @beverage.calories || 'Não informado' %></dd>
+  <dt><%= Beverage.human_attribute_name(:is_alcoholic) %></dt>
+  <dd><%= @beverage.is_alcoholic ?  'Sim' : 'Não' %></dd>
+  <%= link_to 'Editar bebida', edit_establishment_beverage_path(current_user.establishment, @beverage) %>
+  <%= button_to 'Excluir bebida', establishment_beverage_path(current_user.establishment.id, @beverage.id), 
+         data: { turbo_confirm: 'Tem certeza que deseja apagar o registro dessa bebida?' }, method: :delete  %>
+</dl>

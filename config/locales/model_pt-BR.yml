@@ -6,6 +6,9 @@ pt-BR:
      dish:
        one: Prato
        other: Pratos
+     beverage:
+       one: Bebida
+       other: Bebidas
     attributes:
       establishment:
         trade_name: Nome Social
@@ -33,4 +36,10 @@ pt-BR:
         description: Descrição
         calories: Quantidade de calorias
         image: Imagem do prato
+      beverage:
+        name: Nome
+        description: Descrição
+        calories: Quantidade de calorias
+        image: Imagem da bebida
+        is_alcoholic: É alcoólica?
 

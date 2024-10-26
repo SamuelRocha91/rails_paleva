@@ -114,7 +114,7 @@ describe 'Usuário acessa formulário de criar pratos' do
     expect(page).to have_content 'Descrição não pode ficar em branco'
   end
 
-  it 'falha no cadastro por falta de campo obrigatório' do
+  it 'e cadastra prato com sucesso' do
     # Arrange
     user = User.create!(
       first_name: 'Samuel', 
