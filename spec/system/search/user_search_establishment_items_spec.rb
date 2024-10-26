@@ -149,5 +149,8 @@ describe 'Usuário busca por um item' do
     expect(page).to have_content 'Descrição: mate com agua'
     expect(page).to have_content 'Nome: macarrão'
     expect(page).to have_content 'Descrição: arroz integral com agua'
+    expect(page).to have_link 'Editar prato'
+    expect(page).to have_link 'Editar bebida'
+
   end
 end
