@@ -8,11 +8,15 @@
 <% if @beverages.present? %>
   <% @beverages.each do |beverage| %>
     <%= render 'shared/beverage', beverage: beverage %>
+    <%= link_to 'Editar bebida', 
+      edit_establishment_beverage_path(current_user.establishment, beverage) %>
   <% end %>
 <% end%>
 
 <% if @dishes.present? %>
   <% @dishes.each do |dish| %>
     <%= render 'shared/dish', dish: dish %>
+    <%= link_to 'Editar prato', 
+      edit_establishment_dish_path(current_user.establishment.id, dish.id) %>
   <% end %>
 <% end%>
