@@ -6,3 +6,9 @@
     <%= render 'shared/beverage', beverage: beverage %>
   <% end %>
 <% end%>
+
+<% if @dishes.present? %>
+  <% @dishes.each do |dish| %>
+    <%= render 'shared/dish', dish: dish %>
+  <% end %>
+<% end%>
