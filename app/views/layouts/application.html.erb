@@ -15,26 +15,43 @@
     <header>
       <% if user_signed_in? %>
         <% if current_user.establishment.present? && current_user.establishment.id.present? %>
-          <%= link_to 'Meus Pratos', establishment_dishes_path(current_user.establishment.id) %>
-          <%= link_to 'Bebidas', establishment_beverages_path(current_user.establishment.id) %>
+          <nav class='nav-item'>
+            <%= link_to 'Meus Pratos', establishment_dishes_path(current_user.establishment.id), class:'nav-link' %>
+            <%= link_to 'Bebidas', establishment_beverages_path(current_user.establishment.id), class:'nav-link' %>
+          </nav>
         <% end %>
-        <%= form_with(url: search_path, method: :get) do |form| %>
-          <%= form.label :query, 'Buscar Item' %>
-          <%= form.text_field :query %>
+        <%= form_with(url: search_path, method: :get, class:'form-header') do |form| %>
 
-          <%= form.label :type, 'Tipo' %>
-          <%= form.select :type, ['Bebida', 'Comida', 'Ambos'] %>
+          <div class='form-header-fields'>
+            <%= form.label :query, 'Buscar Item:', class:'item-label' %>
+            <%= form.text_field :query, class: 'form-control', placeholder: 'digite o nome ou sua característica' %>
+          </div>
 
-          <%= form.submit 'Pesquisar' %>
+          <div class='form-header-fields'>
+            <%= form.label :type, 'Tipo:', class: 'form-label' %>
+            <%= form.select :type, ['Bebida', 'Comida', 'Ambos'], class: 'form-select form-select-lg mb-3' %>
+          </div>
+
+          <%= form.submit 'Pesquisar', class:'btn btn-primary' %>
         <% end %>   
-        <h2><%= current_user.description %></h2>
-        <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+        <div class='data-user'>
+          <%= current_user.description %>
+          <%= button_to 'Sair', destroy_user_session_path, method: :delete, class:'btn btn-danger' %>
+        </div>
       <% end %>   
     </header>
     <main>
       <div>
-        <%= notice %>
-        <%= alert %>
+        <% if notice %>
+          <div class='alert alert-success'>
+            <%= notice %>
+          </div>
+        <% end %>
+        <% if alert %>
+          <div class='alert alert-danger'>
+            <%= alert %>
+          </div>
+        <% end %>
       </div>
       <%= yield %>
     </main>

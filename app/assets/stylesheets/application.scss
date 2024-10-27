@@ -1,1 +1,162 @@
 @import "bootstrap";
+
+header {
+  display: flex;
+  box-shadow: 2px 4px 8px black;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  height: 8vh;
+}
+
+.data-user {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  align-content: center;
+}
+
+.nav-item {
+  display: flex;
+  gap: 15px;
+  color: blue;
+}
+
+.form-header-fields {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+}
+
+select {
+  display: inline-block;
+  width: 100%;
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  appearance: none;
+}
+
+select:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.item-label {
+  width: 100px;
+}
+
+.form-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  padding: 10px;
+}
+
+.general-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.list-dl {
+  display: flex; 
+  flex-direction: column;
+  align-items: self-start;
+  width: 30%;
+
+}
+
+.field-value {
+  display:  flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+.form-edit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.operating-form {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.operating-items {
+  display: flex;
+  gap:5px;
+  align-items: center;
+  align-content: center;
+  padding: 5px;
+}
+
+.flex-item {
+  margin: 0;
+}
+
+.day-week {
+  width: 150px;
+}
+
+.form-control {
+  width: 700px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.ch {
+  display: flex;
+  gap: 5px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
+
+.card {
+  width: 300px;
+  height: 300px;
+}
+
+.card-new {
+  max-width: 800px;
+  max-height: 500px;
+}
+
+.card-single {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}

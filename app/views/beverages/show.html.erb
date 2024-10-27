@@ -1,14 +1,28 @@
-<dl>
-  <%= image_tag url_for(@beverage.image) if @beverage.image.attached? %>
-  <dt><%= Beverage.human_attribute_name(:name) %>:</dt>
-  <dd><%= @beverage.name %></dd>
-  <dt><%= Beverage.human_attribute_name(:description) %>:</dt>
-  <dd><%= @beverage.description %></dd>
-  <dt><%= Beverage.human_attribute_name(:calories) %>:</dt>
-  <dd><%= @beverage.calories || 'Não informado' %></dd>
-  <dt><%= Beverage.human_attribute_name(:is_alcoholic) %></dt>
-  <dd><%= @beverage.is_alcoholic ?  'Sim' : 'Não' %></dd>
-  <%= link_to 'Editar bebida', edit_establishment_beverage_path(current_user.establishment, @beverage) %>
-  <%= button_to 'Excluir bebida', establishment_beverage_path(current_user.establishment.id, @beverage.id), 
-         data: { turbo_confirm: 'Tem certeza que deseja apagar o registro dessa bebida?' }, method: :delete  %>
-</dl>
+<div class='card-single'>
+  <dl class="card card-new" style="width: 18rem;">
+    <%= image_tag url_for(@beverage.image), class: 'card-img-top'  if @beverage.image.attached? %>
+    <div class="card-body">
+      <div class='field-value'>
+        <dt><%= Beverage.human_attribute_name(:name) %>:</dt>
+        <dd><%= @beverage.name %></dd>
+      </div>
+      <div class='field-value'>
+        <dt><%= Beverage.human_attribute_name(:description) %>:</dt>
+        <dd><%= @beverage.description %></dd>
+      </div>
+      <div class='field-value'>
+        <dt><%= Beverage.human_attribute_name(:calories) %>:</dt>
+        <dd><%= @beverage.calories.present? ? @beverage.calories : 'Não informado' %></dd>
+      </div>
+      <div class='field-value'>
+        <dt><%= Beverage.human_attribute_name(:is_alcoholic) %></dt>
+        <dd><%= @beverage.is_alcoholic ?  'Sim' : 'Não' %></dd>
+      </div>
+      <div class='btn-center'>
+        <%= link_to 'Editar bebida', edit_establishment_beverage_path(current_user.establishment, @beverage), class: 'btn btn-light' %>
+        <%= button_to 'Excluir bebida', establishment_beverage_path(current_user.establishment.id, @beverage.id), 
+              data: { turbo_confirm: 'Tem certeza que deseja apagar o registro dessa bebida?' }, method: :delete, class: 'btn btn-danger'   %>
+      </div>
+    </div>
+  </dl>
+</div>

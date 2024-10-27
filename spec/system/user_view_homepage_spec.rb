@@ -77,8 +77,8 @@ describe "Usuário acessa a aplicação" do
     end
     expect(page).to have_content 'Nome Social: Samsumg'
     expect(page).to have_content "Código: #{establishment.code}"
-    expect(page).to have_content 'CNPJ: 56924048000140'
-    expect(page).to have_content 'Telefone: 71992594946'
+    expect(page).to have_content 'CNPJ: 56.924.048/0001-40'
+    expect(page).to have_content 'Telefone: (71) 99259-4946'
     expect(page).to have_content 'Endereço: Rua das Alamedas avenidas'
     expect(page).to have_content 'Segunda: Fechado'
     expect(page).to have_content 'Terça: Fechado'

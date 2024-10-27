@@ -85,7 +85,7 @@ RSpec.describe Establishment, type: :model do
       it 'phone_number' do
         # Arrange
         user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
-        establishment = Establishment.new(email:'samsu@gmail.com', trade_name: 'Samsumg', legal_name: 'Samsumg LTDA', cnpj: '56924048000140', phone_number: '71992594a46', address: 'Rua das Alamedas avenidas' )
+        establishment = Establishment.new(email:'samsu@gmail.com', trade_name: 'Samsumg', legal_name: 'Samsumg LTDA', cnpj: '56924048000140', phone_number: '71992594a4', address: 'Rua das Alamedas avenidas' )
         establishment.user = user
         # Act
         result = establishment.valid?

@@ -1,22 +1,28 @@
-<h1> Exbindo resultados da pesquisa<h1>
+<h1 class='title'>Exbindo resultados da pesquisa<h1>
 <p>    
   <%= @count %> 
   <%= I18n.translate(:result, count: @count)%> 
   <%= I18n.translate(:found, count: @count)%>
 </p>
+<div class="card-container">
 
-<% if @beverages.present? %>
-  <% @beverages.each do |beverage| %>
-    <%= render 'shared/beverage', beverage: beverage %>
-    <%= link_to 'Editar bebida', 
-      edit_establishment_beverage_path(current_user.establishment, beverage) %>
-  <% end %>
-<% end%>
+  <% if @beverages.present? %>
+    <% @beverages.each do |beverage| %>
+      <div class="card border-primary mb-3" style="max-width: 18rem;">
+        <%= render 'shared/beverage', beverage: beverage %>
+        <%= link_to 'Editar bebida', 
+        edit_establishment_beverage_path(current_user.establishment, beverage) %>
+      </div>
+    <% end %>
+  <% end%>
 
-<% if @dishes.present? %>
-  <% @dishes.each do |dish| %>
-    <%= render 'shared/dish', dish: dish %>
-    <%= link_to 'Editar prato', 
-      edit_establishment_dish_path(current_user.establishment.id, dish.id) %>
-  <% end %>
-<% end%>
+  <% if @dishes.present? %>
+    <% @dishes.each do |dish| %>
+      <div class="card border-primary mb-3" style="max-width: 18rem;">
+        <%= render 'shared/dish', dish: dish %>
+        <%= link_to 'Editar prato', 
+        edit_establishment_dish_path(current_user.establishment.id, dish.id) %>
+      </div>
+    <% end %>
+  <% end%>
+</div>

@@ -16,7 +16,7 @@ class DishesController < ApplicationController
     if @dish.save
       redirect_to establishment_dishes_path, notice: 'Prato cadastrado com sucesso'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

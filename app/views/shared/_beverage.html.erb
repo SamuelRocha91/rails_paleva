@@ -1,7 +1,11 @@
 <dl>
-  <dt><%= Beverage.human_attribute_name(:name) %>:</dt>
-  <dd><%= link_to beverage.name,
-      establishment_beverage_path(current_user.establishment.id, beverage.id) %></dd>
-  <dt><%= Beverage.human_attribute_name(:description) %>:</dt>
-  <dd><%= beverage.description %></dd>
+  <div class="card-header ch">
+    <dt><%= Beverage.human_attribute_name(:name) %>:</dt>
+    <dd><%= link_to beverage.name,
+        establishment_beverage_path(current_user.establishment.id, beverage.id) %></dd>
+  </div>
+  <div class="card-body text-primary">
+    <dt class="card-title"><%= Beverage.human_attribute_name(:description) %>:</dt>
+    <dd class="card-text"><%= beverage.description %></dd>
+  </div>
 </dl>

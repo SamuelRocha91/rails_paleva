@@ -17,7 +17,7 @@ class BeveragesController < ApplicationController
     if @beverage.save
       redirect_to establishment_beverages_path, notice: 'Bebida cadastrada com sucesso'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

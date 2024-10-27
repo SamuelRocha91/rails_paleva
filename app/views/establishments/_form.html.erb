@@ -1,50 +1,57 @@
-<%= form_with(model: @establishment) do |f| %>
-  <div>
-    <%= f.label :trade_name %>
-    <%= f.text_field :trade_name %>
+<%= form_with(model: @establishment, class: 'form-edit') do |f| %>
+  <div class='mb-3'>
+    <%= f.label :trade_name, class: 'form-label' %>
+    <%= f.text_field :trade_name, class: 'form-control' %>
+  </div>
+
+  <div class='mb-3'>
+    <%= f.label :legal_name, class: 'form-label' %>
+    <%= f.text_field :legal_name, class: 'form-control' %>
+  </div>
+
+   <div class='mb-3'>
+    <%= f.label :cnpj, class: 'form-label' %>
+    <%= f.text_field :cnpj, class: 'form-control' %>
+  </div>
+
+  <div class='mb-3'>
+    <%= f.label :address, class: 'form-label' %>
+    <%= f.text_field :address, class: 'form-control' %>
+  </div>
+
+  <div class='mb-3'>
+    <%= f.label :phone_number, class: 'form-label' %>
+    <%= f.text_field :phone_number, class: 'form-control' %>
+  </div>
+
+  <div class='mb-3'>
+    <%= f.label :email, class: 'form-label' %>
+    <%= f.text_field :email, class: 'form-control' %>
   </div>
 
   <div>
-    <%= f.label :legal_name %>
-    <%= f.text_field :legal_name %>
-  </div>
-
-   <div>
-    <%= f.label :cnpj %>
-    <%= f.text_field :cnpj %>
-  </div>
-
-  <div>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </div>
-
-  <div>
-    <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
-  </div>
-
-  <div>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div>
-    <h2>Horário de funcionamento</h2>
+    <h2 class='title'>Horário de funcionamento</h2>
     <%= f.fields_for :operating_hours do |oh| %>
-      <%= oh.label :week_day, I18n.t(oh.object.week_day) %>
-      <%= oh.hidden_field :week_day %>
-
-      <%= oh.label :start_time %>
-      <%= oh.time_field :start_time, class: oh.object.week_day %>
-
-      <%= oh.label :end_time %>
-      <%= oh.time_field :end_time, class: oh.object.week_day %>
-
-      <%= oh.label :is_closed %>
-      <%= oh.check_box :is_closed, class: oh.object.week_day %>
+      <div class='operating-form'>
+        <div class='operating-items day-week'>
+          <%= oh.label :week_day, I18n.t(oh.object.week_day), class: 'title' %>
+          <%= oh.hidden_field :week_day %>
+        </div>
+        <div class='operating-items'>
+          <%= oh.label :start_time, class: 'form-label' %>
+          <%= oh.time_field :start_time, class: oh.object.week_day  %>
+        </div>
+        <div class='operating-items'>
+          <%= oh.label :end_time, class: 'form-label' %>
+          <%= oh.time_field :end_time, class: oh.object.week_day %>
+        </div>
+        <div class='operating-items'>
+          <%= oh.label :is_closed, class: 'form-label flex-item' %>
+          <%= oh.check_box :is_closed, class: oh.object.week_day + ' flex-item'  %>
+        </div>
+      </div>
     <% end %>
   </div>
 
-  <%= f.submit 'Salvar'%>
+  <%= f.submit 'Salvar', class:'btn btn-primary'%>
 <% end %>
