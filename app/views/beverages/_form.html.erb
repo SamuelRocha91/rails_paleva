@@ -1,4 +1,4 @@
-<%= form_with(model: [current_user.establishment, @beverage]) do |f| %>
+<%= form_with(model: [current_user.establishment, @beverage], class: 'form-edit') do |f| %>
   <div class='mb-3'>
     <%= f.label :image, class: 'form-label'  %>
     <%= f.file_field :image, class: 'form-control' %>

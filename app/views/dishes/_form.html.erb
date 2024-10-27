@@ -1,4 +1,4 @@
-<%= form_with(model: [current_user.establishment, @dish]) do |f| %>
+<%= form_with(model: [current_user.establishment, @dish], class: 'form-edit') do |f| %>
     
   <div class='mb-3'>
     <%= f.label :image, class: 'form-label' %>
@@ -11,7 +11,7 @@
   <div class='mb-3' >
     <%= f.label :description, class: 'form-label' %>
     <%= f.text_area :description, class: 'form-control' %>
-  </div>S
+  </div>
   <div class='mb-3'>
     <%= f.label :calories, class: 'form-label' %>
     <%= f.text_field :calories, class: 'form-control' %>
