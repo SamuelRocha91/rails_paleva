@@ -91,3 +91,38 @@ select:focus {
 .btn-container {
   text-align: center;
 }
+
+.form-edit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.operating-form {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.operating-items {
+  display: flex;
+  gap:5px;
+  align-items: center;
+  align-content: center;
+  padding: 5px;
+}
+
+.flex-item {
+  margin: 0;
+}
+
+.day-week {
+  width: 150px;
+}
+
+.form-control {
+  width: 700px;
+  padding: 10px;
+  font-size: 16px;
+}

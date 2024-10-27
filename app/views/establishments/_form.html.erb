@@ -1,4 +1,4 @@
-<%= form_with(model: @establishment) do |f| %>
+<%= form_with(model: @establishment, class: 'form-edit') do |f| %>
   <div class='mb-3'>
     <%= f.label :trade_name, class: 'form-label' %>
     <%= f.text_field :trade_name, class: 'form-control' %>
@@ -30,26 +30,25 @@
   </div>
 
   <div>
-    <h2>Horário de funcionamento</h2>
+    <h2 class='title'>Horário de funcionamento</h2>
     <%= f.fields_for :operating_hours do |oh| %>
-      <div class='mb-3'>
-        <%= oh.label :week_day, I18n.t(oh.object.week_day), class: 'form-label' %>
-        <%= oh.hidden_field :week_day %>
-      </div>
-
-      <div class='mb-3'>
-        <%= oh.label :start_time, class: 'form-label' %>
-        <%= oh.time_field :start_time, class: oh.object.week_day  + ' form-control'%>
-      </div>
-
-      <div class='mb-3'>
-        <%= oh.label :end_time, class: 'form-label' %>
-        <%= oh.time_field :end_time, class: oh.object.week_day + ' form-control' %>
-      </div>
-
-      <div class='form-check'>
-        <%= oh.label :is_closed, class: 'form-label' %>
-        <%= oh.check_box :is_closed, class: oh.object.week_day + ' form-control' %>
+      <div class='operating-form'>
+        <div class='operating-items day-week'>
+          <%= oh.label :week_day, I18n.t(oh.object.week_day), class: 'title' %>
+          <%= oh.hidden_field :week_day %>
+        </div>
+        <div class='operating-items'>
+          <%= oh.label :start_time, class: 'form-label' %>
+          <%= oh.time_field :start_time, class: oh.object.week_day  %>
+        </div>
+        <div class='operating-items'>
+          <%= oh.label :end_time, class: 'form-label' %>
+          <%= oh.time_field :end_time, class: oh.object.week_day %>
+        </div>
+        <div class='operating-items'>
+          <%= oh.label :is_closed, class: 'form-label flex-item' %>
+          <%= oh.check_box :is_closed, class: oh.object.week_day + ' flex-item'  %>
+        </div>
       </div>
     <% end %>
   </div>
