@@ -36,7 +36,7 @@ class EstablishmentsController < ApplicationController
   def establishment_params
     params.require(:establishment).permit(:trade_name, :legal_name, :cnpj, :address,:phone_number, 
                                           :email, operating_hours_attributes:
-                                          [:week_day, :start_time, :end_time, :is_closed])
+                                          [:id, :week_day, :start_time, :end_time, :is_closed])
   end
 
   def establishment_created

@@ -126,6 +126,11 @@ describe 'Usuário edita seu restabelecimento' do
     expect(page).to have_content 'Estabelecimento atualizado com sucesso'
     expect(page).to have_content "Código: #{establishment.code}"
     expect(page).to have_content 'Telefone: (85) 99259-4946'
-    expect(page).to have_content 'Endereço: Rua nova das novidades' 
+    expect(page).to have_content 'Segunda: Fechado' 
+    expect(page).to have_content 'Terça: Fechado' 
+    expect(page).to have_content 'Sábado: 08:00 - 22:00' 
+    expect(page).to have_selector('dt', text: 'Segunda:', count: 1)
+    expect(page).to have_selector('dt', text: 'Terça:', count: 1)
+    expect(page).to have_selector('dt', text: 'Domingo:', count: 1)
   end
 end

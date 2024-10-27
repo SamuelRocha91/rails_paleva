@@ -7,7 +7,7 @@ class Establishment < ApplicationRecord
   has_many :operating_hours, dependent: :destroy
   has_many :dishes
   has_many :beverages
-  accepts_nested_attributes_for :operating_hours
+  accepts_nested_attributes_for :operating_hours, allow_destroy: true, update_only: true
   validate :is_valid_cnpj?
   validate :is_valid_phone_number?
   validate :is_email_valid?
