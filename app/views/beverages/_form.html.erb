@@ -1,24 +1,24 @@
 <%= form_with(model: [current_user.establishment, @beverage]) do |f| %>
-  <div>
-    <%= f.label :image %>
-    <%= f.file_field :image %>
+  <div class='mb-3'>
+    <%= f.label :image, class: 'form-label'  %>
+    <%= f.file_field :image, class: 'form-control' %>
   </div>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class='mb-3'>
+    <%= f.label :name, class: 'form-label'  %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
-   <div>
-    <%= f.label :calories %>
-    <%= f.text_field :calories %>
+   <div class='mb-3'>
+    <%= f.label :calories, class: 'form-label'  %>
+    <%= f.text_field :calories, class: 'form-control' %>
   </div>
-  <div>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+  <div class='mb-3'>
+    <%= f.label :description, class: 'form-label'  %>
+    <%= f.text_area :description, class: 'form-control' %>
   </div>
-   <div>
-    <%= f.label :is_alcoholic %>
-    <%= f.check_box :is_alcoholic %>
+   <div class='form-check'>
+    <%= f.label :is_alcoholic, class: 'form-label'  %>
+    <%= f.check_box :is_alcoholic, class: 'form-check-input'  %>
   </div>
 
-  <%= f.submit 'Salvar' %>
+  <%= f.submit 'Salvar', class:'btn btn-primary' %>
 <% end %>

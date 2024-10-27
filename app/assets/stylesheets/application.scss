@@ -1,1 +1,31 @@
 @import "bootstrap";
+
+.title {
+  text-align: center;
+  padding: 10px;
+}
+.painel-geral {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.list-dl {
+  display: flex; 
+  flex-direction: column;
+  align-items: self-start;
+  width: 33%;
+
+}
+
+.campo-valor {
+  display:  flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-container {
+  text-align: center;
+}
