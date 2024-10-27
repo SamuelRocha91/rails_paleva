@@ -16,7 +16,7 @@ class EstablishmentsController < ApplicationController
     if @establishment.save
       redirect_to root_path, notice: 'Cadastro de restaurante efetuado com sucesso!'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +27,7 @@ class EstablishmentsController < ApplicationController
       redirect_to root_path, notice: 'Estabelecimento atualizado com sucesso'
     else
       flash.now[:alert] = 'Não foi possível atualizar o estabelecimento'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

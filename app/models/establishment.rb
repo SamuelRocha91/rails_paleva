@@ -12,6 +12,8 @@ class Establishment < ApplicationRecord
   validate :is_valid_phone_number?
   validate :is_email_valid?
   validate :validate_operating_hours_filled
+  after_find :format_data
+  before_validation :remove_formatting
 
   private
 
@@ -61,5 +63,15 @@ class Establishment < ApplicationRecord
 
   def generate_code
     self.code = SecureRandom.alphanumeric(6)
+  end
+
+  def format_data
+    self.cnpj = CNPJ.new(cnpj).formatted
+    self.phone_number = phone_number.gsub(/(\d{2})(\d{5})(\d{4})/, '(\1) \2-\3')
+  end
+
+  def remove_formatting
+    self.cnpj = cnpj.gsub(/\D/, '') 
+    self.phone_number = phone_number.gsub(/\D/, '') 
   end
 end

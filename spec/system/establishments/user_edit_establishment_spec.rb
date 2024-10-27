@@ -125,7 +125,7 @@ describe 'Usuário edita seu restabelecimento' do
     # Assert
     expect(page).to have_content 'Estabelecimento atualizado com sucesso'
     expect(page).to have_content "Código: #{establishment.code}"
-    expect(page).to have_content 'Telefone: 85992594946'
+    expect(page).to have_content 'Telefone: (85) 99259-4946'
     expect(page).to have_content 'Endereço: Rua nova das novidades' 
   end
 end
