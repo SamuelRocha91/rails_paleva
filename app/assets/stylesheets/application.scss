@@ -52,7 +52,7 @@ select:focus {
 }
 
 .item-label {
-  width: 150px;
+  width: 100px;
 }
 
 .form-header {
@@ -125,4 +125,21 @@ select:focus {
   width: 700px;
   padding: 10px;
   font-size: 16px;
+}
+
+.ch {
+  display: flex;
+  gap: 5px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
+
+.card {
+  width: 300px;
+  height: 300px;
 }

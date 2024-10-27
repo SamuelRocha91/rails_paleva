@@ -1,7 +1,11 @@
 <dl>
-  <dt><%=  Dish.human_attribute_name(:name) %>:</dt>
-  <dd><%= link_to dish.name,
+  <div class="card-header ch">
+    <dt><%=  Dish.human_attribute_name(:name) %>:</dt>
+    <dd><%= link_to dish.name,
       establishment_dish_path(current_user.establishment.id, dish.id) %></dd>
-  <dt><%= Dish.human_attribute_name(:description) %>:</dt>
-  <dd><%= dish.description %></dd>
+  </div>
+  <div class="card-body text-primary">
+    <dt class="card-title"><%= Dish.human_attribute_name(:description) %>:</dt>
+    <dd class="card-text"><%= dish.description %></dd>
+  </div>
 </dl>
