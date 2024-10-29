@@ -7,5 +7,9 @@
   <div class="card-body text-primary">
     <dt class="card-title"><%= Beverage.human_attribute_name(:description) %>:</dt>
     <dd class="card-text"><%= beverage.description %></dd>
+    <div>
+      <dt class='card-text'><%= Beverage.human_attribute_name(:status) %>:</dt>
+      <dd><%= beverage.status ? 'Ativo' : 'Inativo' %></dd>
+    </div>
   </div>
 </dl>
