@@ -158,5 +158,7 @@ describe 'Usuário acessa formulário de criar pratos' do
     expect(page).to have_content 'Prato cadastrado com sucesso'
     expect(page).to have_content 'Nome: Lasagna'
     expect(page).to have_content 'Descrição: pao com ovo'
+    expect(page).to have_content 'Status: Ativo'
+
   end
 end

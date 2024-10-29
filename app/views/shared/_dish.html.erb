@@ -1,11 +1,15 @@
 <dl>
-  <div class="card-header ch">
+  <div class='card-header ch'>
     <dt><%=  Dish.human_attribute_name(:name) %>:</dt>
     <dd><%= link_to dish.name,
       establishment_dish_path(current_user.establishment.id, dish.id) %></dd>
   </div>
-  <div class="card-body text-primary">
-    <dt class="card-title"><%= Dish.human_attribute_name(:description) %>:</dt>
-    <dd class="card-text"><%= dish.description %></dd>
+  <div class='card-body text-primary'>
+      <dt class='card-title'><%= Dish.human_attribute_name(:description) %>:</dt>
+      <dd class='card-text'><%= dish.description %></dd>
+      <div>
+        <dt class='card-text'><%= Dish.human_attribute_name(:status) %>:</dt>
+        <dd><%= dish.status ? 'Ativo' : 'Inativo' %></dd>
+      </div>
   </div>
 </dl>
