@@ -14,7 +14,12 @@
         <dt><%= Dish.human_attribute_name(:calories) %>:</dt>
         <dd><%= @dish.calories.present? ? @dish.calories : 'Não informada' %></dd>
       </div>
+      <div class='field-value'>
+        <dt><%= Dish.human_attribute_name(:status) %>:</dt>
+        <dd><%= @dish.status ? 'Ativo' : 'Inativo' %></dd>
+      </div>
       <div class='btn-center'>
+        <%= button_to 'Desativar Prato' if @dish.status %>
         <%= link_to 'Editar prato',
           edit_establishment_dish_path(current_user.establishment.id, @dish.id), class: 'btn btn-light' %>
         <%= button_to 'Excluir prato', establishment_dish_path(current_user.establishment.id, @dish.id),
