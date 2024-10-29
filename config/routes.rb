@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   get 'search', to: 'search#search'
   resources :establishments, only: [:new, :create, :edit, :update] do
-    resources :dishes, only: [:new, :create, :index, :edit, :update, :show, :destroy]
+    resources :dishes, only: [:new, :create, :index, :edit, :update, :show, :destroy] do
+      post 'deactivate', on: :member
+    end
     resources :beverages, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
 end
