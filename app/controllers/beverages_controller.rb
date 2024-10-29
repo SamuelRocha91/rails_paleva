@@ -1,6 +1,6 @@
 class BeveragesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_beverage, only: [:edit, :show, :update, :destroy]
+  before_action :set_beverage, only: [:edit, :show, :update, :destroy, :deactivate, :activate]
   before_action :check_user, only: [:show, :edit, :index]
 
   def index
@@ -34,6 +34,15 @@ class BeveragesController < ApplicationController
     end
   end
 
+  def deactivate
+    @beverage.update(status: false)
+    redirect_to establishment_beverage_path(@beverage.establishment, @beverage)
+  end
+
+  def activate
+    @beverage.update(status: true)
+    redirect_to establishment_beverage_path(@beverage.establishment, @beverage)
+  end
   def destroy
     if @beverage.destroy
       redirect_to establishment_beverages_path(current_user.establishment), 

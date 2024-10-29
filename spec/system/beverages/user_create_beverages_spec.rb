@@ -130,5 +130,6 @@ describe 'Usuário acessa formulário de criar bebidas' do
     expect(page).to have_content 'Bebida cadastrada com sucesso'
     expect(page).to have_content 'Nome: Cachaça'
     expect(page).to have_content 'Descrição: bebida forte 99 porcento alcool'
+    expect(page).to have_content 'Status: Ativo'
   end
 end

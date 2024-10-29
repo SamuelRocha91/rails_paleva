@@ -30,6 +30,118 @@ describe 'Usuário edita uma bebida' do
     expect(current_path).to eq new_user_session_path  
   end
 
+  it 'e vê página de detalhes com botão de editar e de atualizar status' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      user: user
+    )
+
+    Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
+                 calories: '185', establishment: establishment, is_alcoholic: true)
+    
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Bebidas'
+    click_on 'cachaça'
+    # Assert
+    expect(page).to have_content 'Nome: cachaça'
+    expect(page).to have_content 'Descrição: alcool delicioso baiano'
+    expect(page).to have_content 'Quantidade de calorias: 185'
+    expect(page).to have_content 'É alcoólica? Sim'
+    expect(page).to have_content 'Status: Ativo'
+    expect(page).to have_button 'Desativar Bebida'
+    expect(page).to have_content 'Editar bebida'
+  end
+
+  it 'e desativa uma bebida' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      user: user
+    )
+
+    Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
+                 calories: '185', establishment: establishment, is_alcoholic: true)
+    
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Bebidas'
+    click_on 'cachaça'
+    click_on 'Desativar Bebida'
+
+    # Assert
+    expect(page).to have_content 'Nome: cachaça'
+    expect(page).to have_content 'Descrição: alcool delicioso baiano'
+    expect(page).to have_content 'Status: Inativo'
+    expect(page).to have_button 'Ativar Bebida'
+  end
+
+  it 'e ativa uma bebida' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      user: user
+    )
+
+    Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
+                 calories: '185', establishment: establishment, is_alcoholic: true, status: false)
+    
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Bebidas'
+    click_on 'cachaça'
+    click_on 'Ativar Bebida'
+
+    # Assert
+    expect(page).to have_content 'Nome: cachaça'
+    expect(page).to have_content 'Descrição: alcool delicioso baiano'
+    expect(page).to have_content 'Status: Ativo'
+    expect(page).to have_button 'Desativar Bebida'
+  end
+
   it 'com sucesso' do
     # Arrange
     user = User.create!(
