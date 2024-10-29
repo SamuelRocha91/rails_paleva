@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     resources :beverages, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
       post 'deactivate', on: :member
+      post 'activate', on: :member
     end
   end
 end
