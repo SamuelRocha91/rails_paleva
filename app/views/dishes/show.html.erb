@@ -20,7 +20,7 @@
       </div>
       <div class='btn-center'>
         <%= button_to 'Desativar Prato', deactivate_establishment_dish_path(@dish.establishment, @dish.id) if @dish.status %>
-        <%= button_to 'Ativar Prato', deactivate_establishment_dish_path(@dish.establishment, @dish.id) unless @dish.status %>
+        <%= button_to 'Ativar Prato', activate_establishment_dish_path(@dish.establishment, @dish.id) unless @dish.status %>
         <%= link_to 'Editar prato',
           edit_establishment_dish_path(current_user.establishment.id, @dish.id), class: 'btn btn-light' %>
         <%= button_to 'Excluir prato', establishment_dish_path(current_user.establishment.id, @dish.id),

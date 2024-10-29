@@ -65,7 +65,7 @@ describe 'Usuário edita um prato' do
     expect(page).to have_button 'Desativar Prato'
   end
 
-  it 'e desativa um prato com sucesso' do
+  it 'e desativa um prato' do
     # Arrange
     user = User.create!(
       first_name: 'Samuel', 
@@ -99,6 +99,42 @@ describe 'Usuário edita um prato' do
     expect(page).to have_content 'Status: Inativo'
     expect(page).to have_content 'Quantidade de calorias: 185'
     expect(page).to have_button 'Ativar Prato'
+  end
+
+   it 'e ativa um prato' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      user: user
+    )
+
+    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
+                 calories: '185', establishment: establishment, status: false)
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Meus Pratos'
+    click_on 'lasagna'
+    click_on 'Ativar Prato'
+    # Assert
+    expect(page).to have_content 'Nome: lasagna'
+    expect(page).to have_content 'Descrição: massa, queijo e presunto'
+    expect(page).to have_content 'Status: Ativo'
+    expect(page).to have_content 'Quantidade de calorias: 185'
+    expect(page).to have_button 'Desativar Prato'
   end
 
   it 'com sucesso' do
