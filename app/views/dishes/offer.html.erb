@@ -1,3 +1,25 @@
 <h1>Cadastro de porção de <%= @dish.name%></h1>
 
+<% if @format.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @format.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
+<% if @dish.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @dish.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
 <%= render 'shared/form_offer'%>
