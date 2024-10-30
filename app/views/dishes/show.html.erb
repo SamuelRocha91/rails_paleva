@@ -18,6 +18,19 @@
         <dt><%= Dish.human_attribute_name(:status) %>:</dt>
         <dd><%= @dish.status ? 'Ativo' : 'Inativo' %></dd>
       </div>
+      <div>
+        <h3>Porções Disponíveis</h3>
+        <% if @dish.portions.any? %>
+          <%= @dish.portions.each do |portion| %>
+            <div class='field-value'>
+              <dt>Porção <%= portion.format.name %>:</dt>
+              <dd> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
+            </div>
+            <%= button_to 'Editar oferta', root_path %>
+            <%= button_to 'Retirar oferta', root_path %>
+          <% end %>
+        </div>
+       <% end %>
       <div class='btn-center'>
         <%= link_to 'Cadastrar porção',
           offer_establishment_dish_path(current_user.establishment.id, @dish.id), class: 'btn btn-light' %>

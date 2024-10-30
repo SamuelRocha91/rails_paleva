@@ -75,13 +75,17 @@ class DishesController < ApplicationController
 
   def create_offer
     
-    if @dish.portions.create(format: format, details: params[:offer][:details], price: params[:offer][:price].to_f.round(2), start_offer: DateTime.now, active: true)
+    if @dish.portions.create(
+      format: @format, 
+      details: params[:offer][:details], 
+      price: params[:offer][:price].to_f.round(2), 
+    )
       redirect_to establishment_dish_path(@dish.establishment, @dish), notice: 'Porção cadastrada com sucesso'
     else
       render :offer
     end
   end
-
+  
   private
 
   def dish_params
