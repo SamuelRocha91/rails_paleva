@@ -1,0 +1,15 @@
+<%= form_with(url: offer_establishment_dish_path(current_user.establishment.id, @dish.id)) do |f| %>
+  <div>
+    <%= f.label :name, 'Nome da porção' %>
+    <%= f.text_field :name, name: 'format[name]' %>
+  </div>
+  <div>
+    <%= f.label :details, 'Detalhes da porção' %>
+    <%= f.text_field :details, name: 'offer[details]' %>
+  </div>
+   <div>
+    <%= f.label :price, 'Preço da porção' %>
+    <%= f.number_field :price, name: 'offer[price]' %>
+  </div>
+  <%= f.submit 'Salvar' %>
+<% end %>

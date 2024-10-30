@@ -31,13 +31,13 @@ describe 'Usuário acessa formulário de criar oferta' do
     visit root_path
     click_on 'Meus Pratos'
     click_on 'lasagna'
-    click_on 'Cadastrar Porção'
+    click_on 'Cadastrar porção'
 
     # Assert
     expect(page).to have_content 'Cadastro de porção de lasagna'
-    expect(page).to have_field 'Nome da porção:'
-    expect(page).to have_field 'Detalhes da porção:'
-    expect(page).to have_field 'Preço da porção:'
+    expect(page).to have_field 'Nome da porção'
+    expect(page).to have_field 'Detalhes da porção'
+    expect(page).to have_field 'Preço da porção'
     expect(page).to have_button 'Salvar'
   end
 end

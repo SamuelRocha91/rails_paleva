@@ -14,7 +14,8 @@ class DishesController < ApplicationController
     :update, 
     :destroy, 
     :deactivate, 
-    :activate
+    :activate,
+    :offer
   ]
   
   def index
@@ -63,6 +64,9 @@ class DishesController < ApplicationController
       redirect_to establishment_dishes_path(current_user.establishment), 
                    notice: 'Registro excluído com sucesso'
     end
+  end
+
+  def offer
   end
 
   private

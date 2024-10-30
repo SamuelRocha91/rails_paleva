@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :dishes, only: [:new, :create, :index, :edit, :update, :show, :destroy] do
       post 'deactivate', on: :member
       post 'activate', on: :member
+      get 'offer', on: :member
+      post 'offer', on: :member, to: 'dishes#create_offer'
+
     end
     resources :beverages, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
       post 'deactivate', on: :member
