@@ -39,11 +39,16 @@ describe 'Usuário edita um prato' do
       user: user_two
     )
 
-    dish = Dish.create!(name: 'lasagna', description: 'pão com ovo', 
-                 calories: '185', establishment: establishment)
+    dish = Dish.create!(
+      name: 'lasagna', 
+      description: 'pão com ovo', 
+      calories: '185', 
+      establishment: establishment
+    )
     # Act
     login_as(user_two)
-    patch(establishment_dish_path(establishment.id, dish.id), params: { dish: { name: 'Feijoada'}})
+    patch(establishment_dish_path(establishment.id, dish.id), 
+            params: { dish: { name: 'Feijoada'}})
     # Assert
     expect(response).to redirect_to(root_path)
   end

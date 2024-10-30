@@ -34,10 +34,14 @@ describe 'Usuário edita um restaurante' do
       phone_number: '71992194946', 
       address: 'Rua das Alamedas  d dsdavenidas' 
     )
+
     operating_hour = []
     operating_hour_two = []
-    7.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
-    7.times { |i| operating_hour_two << OperatingHour.new(week_day: i, is_closed: true)}
+
+    7.times { |i| operating_hour << OperatingHour
+                                      .new(week_day: i, is_closed: true)}
+    7.times { |i| operating_hour_two << OperatingHour
+                                          .new(week_day: i, is_closed: true)}
 
     establishment.operating_hours = operating_hour
     user.establishment = establishment
@@ -45,7 +49,8 @@ describe 'Usuário edita um restaurante' do
     user_two.establishment = establishment_two
     # Act
     login_as(user_two)
-    patch(establishment_path(establishment.id), params: { establishment: { phone_number: '85992554946'}})
+    patch(establishment_path(establishment.id), 
+            params: { establishment: { phone_number: '85992554946'}})
     # Assert
     expect(response).to redirect_to(root_path)
   end

@@ -1,6 +1,13 @@
 class BeveragesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_beverage, only: [:edit, :show, :update, :destroy, :deactivate, :activate]
+  before_action :set_beverage, only: [
+    :edit, 
+    :show, 
+    :update, 
+    :destroy, 
+    :deactivate, 
+    :activate
+  ]
   before_action :check_user, only: [:show, :edit, :index]
 
   def index
@@ -15,7 +22,8 @@ class BeveragesController < ApplicationController
     @beverage = Beverage.new(beverage_params)
     @beverage.establishment = Establishment.find(params[:establishment_id])
     if @beverage.save
-      redirect_to establishment_beverages_path, notice: 'Bebida cadastrada com sucesso'
+      redirect_to establishment_beverages_path, 
+                    notice: 'Bebida cadastrada com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,30 +38,41 @@ class BeveragesController < ApplicationController
   def update
     if @beverage.update(beverage_params)
       redirect_to establishment_beverage_path(current_user.establishment, @beverage), 
-                       notice: 'Bebida atualizada com sucesso'
+                    notice: 'Bebida atualizada com sucesso'
     end
   end
 
   def deactivate
     @beverage.update(status: false)
-    redirect_to establishment_beverage_path(@beverage.establishment, @beverage)
+    redirect_to establishment_beverage_path(
+      @beverage.establishment, 
+      @beverage
+    )
   end
 
   def activate
     @beverage.update(status: true)
-    redirect_to establishment_beverage_path(@beverage.establishment, @beverage)
+    redirect_to establishment_beverage_path(
+      @beverage.establishment, 
+      @beverage
+    )
   end
   def destroy
     if @beverage.destroy
       redirect_to establishment_beverages_path(current_user.establishment), 
-                   notice: 'Registro excluído com sucesso'
+                    notice: 'Registro excluído com sucesso'
     end
   end
   private
 
   def beverage_params
-    params.require(:beverage).permit(:name, :description, 
-                                    :calories, :is_alcoholic, :image)
+    params.require(:beverage).permit(
+      :name, 
+      :description, 
+      :calories, 
+      :is_alcoholic, 
+      :image
+    )
   end
 
   def set_beverage
@@ -63,7 +82,8 @@ class BeveragesController < ApplicationController
   def check_user
     @establishment = Establishment.find(params[:establishment_id])
     if @establishment.user != current_user
-      redirect_to root_path, notice: 'Você não possui acesso a essa bebida'
+      redirect_to root_path, 
+        notice: 'Você não possui acesso a essa bebida'
     end
   end
 end

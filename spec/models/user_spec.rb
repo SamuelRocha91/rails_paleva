@@ -5,7 +5,11 @@ RSpec.describe User, type: :model do
   describe 'Método description da model de usuário' do
     it 'exibe nome completo e email' do
       # Arrange
-      user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
+      user = User.new(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'sam@hotmail.com'
+      )
       # Act
       result = user.description
       # Assert
@@ -187,8 +191,7 @@ RSpec.describe User, type: :model do
         # Assert
         expect(result).to eq false
       end
-    end
-    
+    end    
   end
   
 end

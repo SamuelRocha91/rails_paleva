@@ -21,8 +21,12 @@ describe 'Usuário deleta um prato' do
       user: user
     )
 
-    dish = Dish.create!(name: 'lasagna', description: 'pão com ovo', 
-                 calories: '185', establishment: establishment)
+    dish = Dish.create!(
+      name: 'lasagna', 
+      description: 'pão com ovo', 
+      calories: '185', 
+      establishment: establishment
+    )
     
     # Act
     visit establishment_dish_path(establishment.id, dish.id)
@@ -50,11 +54,19 @@ describe 'Usuário deleta um prato' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'massa, queijo e presunto', 
+      calories: '185', 
+      establishment: establishment
+    )
 
-    Dish.create!(name: 'Pão com ovos', description: 'ovo de galinha 10 reais', 
-                 calories: '185', establishment: establishment)
+    Dish.create!(
+      name: 'Pão com ovos', 
+      description: 'ovo de galinha 10 reais', 
+      calories: '185', 
+      establishment: establishment
+    )
     # Act
     login_as user
     visit root_path

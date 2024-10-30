@@ -39,8 +39,12 @@ describe 'Usuário deleta um prato' do
       user: user_two
     )
 
-    dish = Dish.create!(name: 'lasagna', description: 'pão com ovo', 
-                 calories: '185', establishment: establishment)
+    dish = Dish.create!(
+      name: 'lasagna', 
+      description: 'pão com ovo', 
+      calories: '185', 
+      establishment: establishment
+    )
     # Act
     login_as(user_two)
     delete(establishment_dish_path(establishment.id, dish.id))

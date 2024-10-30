@@ -14,7 +14,8 @@ class EstablishmentsController < ApplicationController
     @establishment = Establishment.new(establishment_params)
     @establishment.user = current_user
     if @establishment.save
-      redirect_to root_path, notice: 'Cadastro de restaurante efetuado com sucesso!'
+      redirect_to root_path, 
+                    notice: 'Cadastro de restaurante efetuado com sucesso!'
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,9 +35,16 @@ class EstablishmentsController < ApplicationController
   private
 
   def establishment_params
-    params.require(:establishment).permit(:trade_name, :legal_name, :cnpj, :address,:phone_number, 
-                                          :email, operating_hours_attributes:
-                                          [:id, :week_day, :start_time, :end_time, :is_closed])
+    params.require(:establishment).permit(
+      :trade_name, 
+      :legal_name, 
+      :cnpj, 
+      :address,
+      :phone_number, 
+      :email, 
+      operating_hours_attributes: 
+        [:id, :week_day, :start_time, :end_time, :is_closed]
+    )
   end
 
   def establishment_created

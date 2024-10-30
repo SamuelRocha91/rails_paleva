@@ -5,8 +5,19 @@ RSpec.describe Establishment, type: :model do
     context 'presença obrigatória de' do
       it 'email' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
-        establishment = Establishment.new(email:'', trade_name: 'Samsumg', legal_name: 'Samsumg LTDA', cnpj: '56924048000140', phone_number: '71992594946', address: 'Rua das Alamedas avenidas' )
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com'
+        )
+        establishment = Establishment.new(
+          email:'', 
+          trade_name: 'Samsumg', 
+          legal_name: 'Samsumg LTDA', 
+          cnpj: '56924048000140', 
+          phone_number: '71992594946', 
+          address: 'Rua das Alamedas avenidas' 
+        )
         establishment.user = user
         # Act
         result = establishment.valid?
@@ -16,8 +27,19 @@ RSpec.describe Establishment, type: :model do
 
       it 'trade_name' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
-        establishment = Establishment.new(email:'sam@hotmail.com', trade_name: '', legal_name: 'Samsumg LTDA', cnpj: '56924048000140', phone_number: '71992594946', address: 'Rua das Alamedas avenidas' )
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com'
+        )
+        establishment = Establishment.new(
+          email:'sam@hotmail.com', 
+          trade_name: '', 
+          legal_name: 'Samsumg LTDA', 
+          cnpj: '56924048000140', 
+          phone_number: '71992594946', 
+          address: 'Rua das Alamedas avenidas' 
+        )
         establishment.user = user
         # Act
         result = establishment.valid?
@@ -27,8 +49,19 @@ RSpec.describe Establishment, type: :model do
 
       it 'legal_name' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
-        establishment = Establishment.new(email:'sam@hotmail.com', trade_name: 'Samsumg', legal_name: '', cnpj: '56924048000140', phone_number: '71992594946', address: 'Rua das Alamedas avenidas' )
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com'
+        )
+        establishment = Establishment.new(
+          email:'sam@hotmail.com', 
+          trade_name: 'Samsumg', 
+          legal_name: '', 
+          cnpj: '56924048000140', 
+          phone_number: '71992594946', 
+          address: 'Rua das Alamedas avenidas' 
+        )
         establishment.user = user
         # Act
         result = establishment.valid?
@@ -38,8 +71,19 @@ RSpec.describe Establishment, type: :model do
 
       it 'cnpj' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
-        establishment = Establishment.new(email:'sam@hotmail.com', trade_name: 'Samsumg', legal_name: 'Samsumg LTDA', cnpj: '', phone_number: '71992594946', address: 'Rua das Alamedas avenidas' )
+        user = User.new(
+          first_name: 'Samuel',
+          last_name: 'Rocha',
+          email: 'sam@hotmail.com'
+        )
+        establishment = Establishment.new(
+          email:'sam@hotmail.com',
+          trade_name: 'Samsumg', 
+          legal_name: 'Samsumg LTDA', 
+          cnpj: '', 
+          phone_number: '71992594946', 
+          address: 'Rua das Alamedas avenidas' 
+        )
         establishment.user = user
         # Act
         result = establishment.valid?
@@ -49,8 +93,19 @@ RSpec.describe Establishment, type: :model do
 
       it 'phone_number' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
-        establishment = Establishment.new(email:'sam@hotmail.com', trade_name: 'Samsumg', legal_name: 'Samsumg LTDA', cnpj: '56924048000140', phone_number: '', address: 'Rua das Alamedas avenidas' )
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com'
+        )
+        establishment = Establishment.new(
+          email:'sam@hotmail.com', 
+          trade_name: 'Samsumg', 
+          legal_name: 'Samsumg LTDA', 
+          cnpj: '56924048000140', 
+          phone_number: '', 
+          address: 'Rua das Alamedas avenidas' 
+        )
         establishment.user = user
         # Act
         result = establishment.valid?
@@ -60,8 +115,19 @@ RSpec.describe Establishment, type: :model do
 
       it 'address' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
-        establishment = Establishment.new(email:'sam@hotmail.com', trade_name: 'Samsumg', legal_name: 'Samsumg LTDA', cnpj: '56924048000140', phone_number: '71992594946', address: '' )
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com'
+        )
+        establishment = Establishment.new(
+          email:'sam@hotmail.com', 
+          trade_name: 'Samsumg', 
+          legal_name: 'Samsumg LTDA', 
+          cnpj: '56924048000140', 
+          phone_number: '71992594946', 
+          address: '' 
+        )
         establishment.user = user
         # Act
         result = establishment.valid?
@@ -73,8 +139,19 @@ RSpec.describe Establishment, type: :model do
     context 'deve ser válido' do
       it 'cnpj' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
-        establishment = Establishment.new(email:'samsu@gmail.com', trade_name: 'Samsumg', legal_name: 'Samsumg LTDA', cnpj: '569240480140', phone_number: '71992594946', address: 'Rua das Alamedas avenidas' )
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com'
+        )
+        establishment = Establishment.new(
+          email:'samsu@gmail.com', 
+          trade_name: 'Samsumg', 
+          legal_name: 'Samsumg LTDA', 
+          cnpj: '569240480140', 
+          phone_number: '71992594946', 
+          address: 'Rua das Alamedas avenidas'
+        )
         establishment.user = user
         # Act
         result = establishment.valid?
@@ -84,8 +161,19 @@ RSpec.describe Establishment, type: :model do
 
       it 'phone_number' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
-        establishment = Establishment.new(email:'samsu@gmail.com', trade_name: 'Samsumg', legal_name: 'Samsumg LTDA', cnpj: '56924048000140', phone_number: '71992594a4', address: 'Rua das Alamedas avenidas' )
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com'
+        )
+        establishment = Establishment.new(
+          email:'samsu@gmail.com', 
+          trade_name: 'Samsumg', 
+          legal_name: 'Samsumg LTDA', 
+          cnpj: '56924048000140', 
+          phone_number: '71992594a4', 
+          address: 'Rua das Alamedas avenidas' 
+        )
         establishment.user = user
         # Act
         result = establishment.valid?
@@ -96,8 +184,19 @@ RSpec.describe Establishment, type: :model do
 
       it 'email' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
-        establishment = Establishment.new(email:'samsu@gmail', trade_name: 'Samsumg', legal_name: 'Samsumg LTDA', cnpj: '56924048000140', phone_number: '71992594946', address: 'Rua das Alamedas avenidas' )
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com'
+        )
+        establishment = Establishment.new(
+          email:'samsu@gmail', 
+          trade_name: 'Samsumg', 
+          legal_name: 'Samsumg LTDA', 
+          cnpj: '56924048000140', 
+          phone_number: '71992594946', 
+          address: 'Rua das Alamedas avenidas'
+        )
         establishment.user = user
         # Act
         result = establishment.valid?
@@ -126,7 +225,8 @@ RSpec.describe Establishment, type: :model do
         address: 'Rua das Alamedas avenidas' 
       )
       operating_hour = []
-      7.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
+      7.times { |i| operating_hour << OperatingHour
+                                        .new(week_day: i, is_closed: true)}
       establishment.operating_hours = operating_hour
       user.establishment = establishment 
       # Act
@@ -169,10 +269,14 @@ RSpec.describe Establishment, type: :model do
         phone_number: '71992194946', 
         address: 'Rua das Alamedas  d dsdavenidas' 
       )
+
       operating_hour = []
       operating_hour_two = []
-      7.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
-      7.times { |i| operating_hour_two << OperatingHour.new(week_day: i, is_closed: true)}
+
+      7.times { |i| operating_hour << OperatingHour
+                                        .new(week_day: i, is_closed: true)}
+      7.times { |i| operating_hour_two << OperatingHour
+                                            .new(week_day: i, is_closed: true)}
 
       establishment.operating_hours = operating_hour
       user.establishment = establishment
@@ -203,7 +307,8 @@ RSpec.describe Establishment, type: :model do
         address: 'Rua das Alamedas avenidas' 
       )
       operating_hour = []
-      7.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
+      7.times { |i| operating_hour << OperatingHour
+                                        .new(week_day: i, is_closed: true)}
 
       establishment.operating_hours = operating_hour
       user.establishment = establishment

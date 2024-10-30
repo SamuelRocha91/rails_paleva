@@ -21,8 +21,13 @@ RSpec.describe Beverage, type: :model do
           address: 'Rua das Alamedas avenidas',
           user: user
         )
-        beverage = Beverage.new(name: '', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
+        beverage = Beverage.new(
+          name: '', 
+          description: 'alcool delicioso baiano', 
+          calories: '185', 
+          establishment: establishment, 
+          is_alcoholic: true
+        )
         # Act
         result = beverage.valid?
         # Assert
@@ -47,8 +52,13 @@ RSpec.describe Beverage, type: :model do
           address: 'Rua das Alamedas avenidas',
           user: user
         )
-        beverage = Beverage.new(name: 'Cachaça', description: '', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
+        beverage = Beverage.new(
+          name: 'Cachaça', 
+          description: '', 
+          calories: '185', 
+          establishment: establishment, 
+          is_alcoholic: true
+        )
         # Act
         result = beverage.valid?
         # Assert

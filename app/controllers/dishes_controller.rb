@@ -1,7 +1,21 @@
 class DishesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_user, only: [:show, :index, :new, :update, :edit, :destroy]
-  before_action :set_dish, only: [:edit, :show, :update, :destroy, :deactivate, :activate]
+  before_action :check_user, only: [
+    :show, 
+    :index, 
+    :new, 
+    :update, 
+    :edit, 
+    :destroy
+  ]
+  before_action :set_dish, only: [
+    :edit, 
+    :show, 
+    :update, 
+    :destroy, 
+    :deactivate, 
+    :activate
+  ]
   
   def index
     @dishes = current_user.establishment.dishes
@@ -14,7 +28,8 @@ class DishesController < ApplicationController
     @dish = Dish.new(dish_params)
     @dish.establishment = Establishment.find(params[:establishment_id])
     if @dish.save
-      redirect_to establishment_dishes_path, notice: 'Prato cadastrado com sucesso'
+      redirect_to establishment_dishes_path, 
+                    notice: 'Prato cadastrado com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,8 +41,10 @@ class DishesController < ApplicationController
 
   def update
     if @dish.update(dish_params)
-      redirect_to establishment_dish_path(current_user.establishment, @dish), 
-                       notice: 'Prato atualizado com sucesso'
+      redirect_to establishment_dish_path(
+        current_user.establishment,
+         @dish
+      ), notice: 'Prato atualizado com sucesso'
     end
   end
 

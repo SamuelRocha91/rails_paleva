@@ -22,11 +22,26 @@ describe 'Usuário vê suas próprias bebidas' do
       user: user
     )
 
-    beverage = Beverage.create!(name: 'Cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
-    beverage.image.attach(io: File.open(Rails.root.join('spec', 'support', 'pao.jpg')), filename: 'pao.jpg')
+    beverage = Beverage.create!(
+      name: 'Cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
 
-    Beverage.create!(name: 'Suco da embasa', description: 'Água que mata a sede', calories: '1', establishment: establishment, is_alcoholic: false)
+    beverage.image.attach(
+      io: File.open(Rails.root.join('spec', 'support', 'pao.jpg')),
+      filename: 'pao.jpg'
+    )
+
+    Beverage.create!(
+      name: 'Suco da embasa', 
+      description: 'Água que mata a sede', 
+      calories: '1', 
+      establishment: establishment, 
+      is_alcoholic: false
+    )
     # Act
     login_as user
     visit root_path
@@ -82,14 +97,34 @@ describe 'Usuário vê suas próprias bebidas' do
       user: user_two
     )
 
-    beverage = Beverage.create!(name: 'Cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
-    beverage.image.attach(io: File.open(Rails.root.join('spec', 'support', 'pao.jpg')), filename: 'pao.jpg')
+    beverage = Beverage.create!(
+      name: 'Cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
+    
+    beverage.image.attach(
+      io: File.open(Rails.root.join('spec', 'support', 'pao.jpg')), 
+      filename: 'pao.jpg'
+    )
 
-    Beverage.create!(name: 'Chimarrão', description: 'mate com agua', 
-                 calories: '15', establishment: establishment, is_alcoholic: true)
+    Beverage.create!(
+      name: 'Chimarrão', 
+      description: 'mate com agua', 
+      calories: '15', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
 
-    Beverage.create!(name: 'Suco da embasa', description: 'Água que mata a sede', calories: '1', establishment: establishment_two, is_alcoholic: false)
+    Beverage.create!(
+      name: 'Suco da embasa', 
+      description: 'Água que mata a sede', 
+      calories: '1', 
+      establishment: establishment_two, 
+      is_alcoholic: false
+    )
     # Act
     login_as user
     visit root_path
@@ -140,15 +175,33 @@ describe 'Usuário vê suas próprias bebidas' do
       user: user_two
     )
 
-    beverage = Beverage.create!(name: 'Cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
-    beverage.image.attach(io: File.open(Rails.root.join('spec', 'support', 'pao.jpg')), filename: 'pao.jpg')
+    beverage = Beverage.create!(
+      name: 'Cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
+    beverage.image.attach(
+      io: File.open(Rails.root.join('spec', 'support', 'pao.jpg')), 
+      filename: 'pao.jpg'
+    )
 
-    Beverage.create!(name: 'Chimarrão', description: 'mate com agua', 
-                 calories: '15', establishment: establishment, is_alcoholic: true)
+    Beverage.create!(
+      name: 'Chimarrão', 
+      description: 'mate com agua', 
+      calories: '15',
+      establishment: establishment,
+      is_alcoholic: true
+    )
 
-    beverage_two = Beverage.create!(name: 'Suco da embasa', description: 'Água que mata a sede', 
-                            calories: '1', establishment: establishment_two, is_alcoholic: false)
+    beverage_two = Beverage.create!(
+      name: 'Suco da embasa',
+      description: 'Água que mata a sede', 
+      calories: '1', 
+      establishment: establishment_two,
+      is_alcoholic: false
+    )
     # Act
     login_as user
     visit establishment_beverage_path(establishment_two, beverage_two)

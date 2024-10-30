@@ -21,8 +21,12 @@ describe 'Usuário edita um prato' do
       user: user
     )
 
-    dish = Dish.create!(name: 'lasagna', description: 'pão com ovo', 
-                 calories: '185', establishment: establishment)
+    dish = Dish.create!(
+      name: 'lasagna', 
+      description: 'pão com ovo', 
+      calories: '185', 
+      establishment: establishment
+    )
     
     # Act
     visit edit_establishment_dish_path(establishment.id, dish.id)
@@ -50,8 +54,12 @@ describe 'Usuário edita um prato' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'massa, queijo e presunto', 
+      calories: '185', 
+      establishment: establishment
+    )
     # Act
     login_as user
     visit root_path
@@ -85,8 +93,12 @@ describe 'Usuário edita um prato' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'massa, queijo e presunto', 
+      calories: '185',
+      establishment: establishment
+    )
     # Act
     login_as user
     visit root_path
@@ -121,8 +133,13 @@ describe 'Usuário edita um prato' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment, status: false)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'massa, queijo e presunto', 
+      calories: '185', 
+      establishment: establishment, 
+      status: false
+    )
     # Act
     login_as user
     visit root_path
@@ -157,8 +174,12 @@ describe 'Usuário edita um prato' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'massa, queijo e presunto', 
+      calories: '185', 
+      establishment: establishment
+    )
     # Act
     login_as user
     visit root_path
@@ -215,8 +236,12 @@ describe 'Usuário edita um prato' do
       user: user_two
     )
 
-    dish = Dish.create!(name: 'lasagna', description: 'pão com ovo', 
-                 calories: '185', establishment: establishment)
+    dish = Dish.create!(
+      name: 'lasagna', 
+      description: 'pão com ovo', 
+      calories: '185', 
+      establishment: establishment
+    )
     # Act
     login_as user_two
     visit establishment_dish_path(establishment.id, dish.id)

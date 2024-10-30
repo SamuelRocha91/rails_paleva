@@ -21,8 +21,13 @@ describe 'Usuário deleta um prato' do
       user: user
     )
 
-    beverage = Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
+    beverage = Beverage.create!(
+      name: 'cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
     
     # Act
     visit establishment_dish_path(establishment.id, beverage.id)
@@ -50,11 +55,21 @@ describe 'Usuário deleta um prato' do
       user: user
     )
 
-    Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
+    Beverage.create!(
+      name: 'cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
 
-    Beverage.create!(name: 'Suco de goiaba', description: 'agua vegana', 
-                 calories: '17', establishment: establishment, is_alcoholic: true)
+    Beverage.create!(
+      name: 'Suco de goiaba', 
+      description: 'agua vegana', 
+      calories: '17', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
     # Act
     login_as user
     visit root_path
