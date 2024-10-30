@@ -151,6 +151,7 @@ describe 'Usuário edita um prato' do
     expect(page).to have_content 'Descrição: massa, queijo e presunto'
     expect(page).to have_content 'Status: Ativo'
     expect(page).to have_content 'Quantidade de calorias: 185'
+    expect(page).to have_link 'Cadastrar porção'
     expect(page).to have_button 'Desativar Prato'
   end
 
