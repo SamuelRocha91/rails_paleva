@@ -22,12 +22,14 @@
         <h3>Porções Disponíveis</h3>
         <% if @dish.portions.any? %>
           <% @dish.portions.each do |portion| %>
-            <div class='field-value'>
-              <dt>Porção <%= portion.format.name %>:</dt>
-              <dd> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
-            </div>
-            <%= link_to 'Editar Preço', edit_offer_dish_path(@dish.id, portion.id)  %>
-            <%= button_to 'Retirar Oferta', edit_offer_dish_path(@dish.id, portion.id) %>
+            <% if portion.active %>
+              <div class='field-value'>
+                <dt>Porção <%= portion.format.name %>:</dt>
+                <dd> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
+              </div>
+              <%= link_to 'Editar Preço', edit_offer_dish_path(@dish.id, portion.id)  %>
+              <%= button_to 'Retirar Oferta', edit_offer_dish_path(@dish.id, portion.id) %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

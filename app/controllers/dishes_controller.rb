@@ -9,8 +9,8 @@ class DishesController < ApplicationController
     :destroy
   ]
   before_action :set_dish, only: [
-    :edit, 
-    :show, 
+    :edit,
+    :show,
     :update, 
     :destroy, 
     :deactivate, 
@@ -43,7 +43,8 @@ class DishesController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+  end
 
   def edit; end
 
