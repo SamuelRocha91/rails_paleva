@@ -6,18 +6,22 @@ Rails.application.routes.draw do
   get 'search', to: 'search#search'
 
   resources :establishments, only: [:new, :create, :edit, :update] do
-    resources :dishes, only: [:new, :create, :index]
-    resources :beverages, only: [:index, :new, :create]
+    resources :dishes, only: [:new, :create, :index, :edit, :update, :show, :destroy]
+    resources :beverages, only: [:index, :new, :create, :edit, :update, :show, :destroy]
   end
 
-  resources :dishes, only: [:edit, :update, :show, :destroy] do
-    post 'deactivate', on: :member
-    post 'activate', on: :member
-    get 'offer', on: :member
-    post 'offer', on: :member, to: 'dishes#create_offer'    
+  resources :dishes, only: [] do
+    member do
+      post 'deactivate'
+      post 'activate'
+      get 'offer'
+      post 'offer', to: 'dishes#create_offer'
+      get 'offer/:offer_id/edit', to: 'dishes#edit_offer', as: 'edit_offer'
+      post 'offer/:offer_id/update', to: 'dishes#update_offer', as: 'update_offer'
+    end   
   end
 
-  resources :beverages, only: [:new, :create, :index] do
+  resources :beverages, only: [] do
     post 'deactivate', on: :member
     post 'activate', on: :member
   end

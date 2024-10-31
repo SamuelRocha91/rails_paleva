@@ -11,7 +11,7 @@
       <div class="card border-primary mb-3" style="max-width: 18rem;">
         <%= render 'shared/beverage', beverage: beverage %>
         <%= link_to 'Editar bebida', 
-        edit_establishment_beverage_path(current_user.establishment, beverage) %>
+        edit_establishment_beverage_path(current_user.establishment.id, beverage) %>
       </div>
     <% end %>
   <% end%>

@@ -30,7 +30,7 @@ describe 'Usuário deleta um prato' do
     )
     
     # Act
-    visit establishment_dish_path(establishment.id, beverage.id)
+    visit establishment_beverage_path(establishment.id, beverage.id)
     # Assert
     expect(current_path).to eq new_user_session_path  
   end

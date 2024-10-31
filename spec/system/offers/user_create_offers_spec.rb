@@ -120,7 +120,7 @@ describe 'Usuário acessa formulário de criar oferta' do
     expect(page).to have_content 'Porção cadastrada com sucesso'
     expect(page).to have_content 'Porções Disponíveis' 
     expect(page).to have_content 'Porção Giga gante: R$ 50,00'
-    expect(page).to have_button 'Editar oferta'  
-    expect(page).to have_button 'Retirar oferta'  
+    expect(page).to have_link 'Editar Preço'  
+    expect(page).to have_button 'Retirar Oferta'  
   end
 end

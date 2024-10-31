@@ -50,6 +50,7 @@ describe 'Usuário vê seus próprios pratos' do
 
     # Assert
     expect(current_path).to eq establishment_dish_path(establishment.id, dish.id)
+
     expect(page).to have_content 'Nome: lasagna'
     expect(page).to have_content 'Descrição: pao com ovo'
     expect(page).to have_css('img[src*="pao.jpg"]')
@@ -204,7 +205,7 @@ describe 'Usuário vê seus próprios pratos' do
 
     # Act
     login_as user
-    visit establishment_dish_path(establishment_two, dish_two)
+    visit establishment_dish_path(establishment_two.id, dish_two)
 
     # Assert
     expect(current_path).to eq root_path

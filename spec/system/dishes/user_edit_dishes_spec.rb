@@ -247,6 +247,7 @@ describe 'Usuário edita um prato' do
     login_as user_two
     visit establishment_dish_path(establishment.id, dish.id)
 
+
     # Assert
     expect(current_path).to eq root_path
     expect(page).to have_content 'Você não possui acesso a esse prato'

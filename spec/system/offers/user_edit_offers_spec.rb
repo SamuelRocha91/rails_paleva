@@ -17,14 +17,14 @@ describe 'Usuário acessa formulário de edição de oferta' do
       address: 'Rua das Alamedas avenidas',
       user: user
     )
-    Dish.create!(
+    dish = Dish.create!(
       name: 'lasagna', 
       description: 'massa, queijo e presunto', 
       calories: '185', 
       establishment: establishment
     )
     format = Format.create!(name: 'Porção Giga gante')
-    Offer.new(
+    Offer.create!(
       format: format,
       item: dish,
       price: 25
@@ -34,8 +34,8 @@ describe 'Usuário acessa formulário de edição de oferta' do
     visit root_path
     click_on 'Meus Pratos'
     click_on 'lasagna'
-    click_on 'Editar preço'
-    fill_in 'Preço',	with: '50' 
+    click_on 'Editar Preço'
+    fill_in 'Preço', with: '50' 
     click_on 'Salvar'
     # Assert
     expect(page).to have_content 'Porção atualizada com sucesso'

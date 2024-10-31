@@ -49,7 +49,7 @@ describe 'Usuário edita uma bebida' do
     )
     # Act
     login_as(user_two)
-    patch(establishment_dish_path(establishment.id, beverage.id), 
+    patch(establishment_beverage_path(establishment.id, beverage.id), 
             params: { beverage: { name: 'Coca-cola'}})
     # Assert
     expect(response).to redirect_to(root_path)

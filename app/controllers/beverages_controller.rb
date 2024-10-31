@@ -8,7 +8,7 @@ class BeveragesController < ApplicationController
     :deactivate, 
     :activate
   ]
-  before_action :check_user, only: [:show, :edit, :index]
+  before_action :check_user, only: [:show, :edit, :index, :update]
 
   def index
     @beverages = current_user.establishment.beverages

@@ -23,9 +23,9 @@
         <dd><%= @beverage.status ? 'Ativo' : 'Inativo' %></dd>
       </div>
       <div class='btn-center'>
-        <%= link_to 'Editar bebida', edit_establishment_beverage_path(current_user.establishment, @beverage), class: 'btn btn-light' %>
-        <%= button_to 'Desativar Bebida', deactivate_establishment_beverage_path(@beverage.establishment, @beverage.id) if @beverage.status %>
-        <%= button_to 'Ativar Bebida', activate_establishment_beverage_path(@beverage.establishment, @beverage.id) unless @beverage.status %>
+        <%= link_to 'Editar bebida', edit_establishment_beverage_path(@beverage), class: 'btn btn-light' %>
+        <%= button_to 'Desativar Bebida', deactivate_beverage_path(@beverage.id) if @beverage.status %>
+        <%= button_to 'Ativar Bebida', activate_beverage_path(@beverage.id) unless @beverage.status %>
         <%= button_to 'Excluir bebida', establishment_beverage_path(current_user.establishment.id, @beverage.id), 
               data: { turbo_confirm: 'Tem certeza que deseja apagar o registro dessa bebida?' }, method: :delete, class: 'btn btn-danger'   %>
       </div>
