@@ -1,3 +1,14 @@
 <h1>Atualização de preço</h1>
 
+<% if @dish.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @dish.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
 <%= render 'shared/offer_price'%>

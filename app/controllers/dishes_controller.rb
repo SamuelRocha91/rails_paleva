@@ -78,12 +78,7 @@ class DishesController < ApplicationController
   end
 
   def create_offer
-    if create_dish_portion
-      redirect_to establishment_dish_path(@dish.establishment, @dish), 
-                    notice: 'Porção cadastrada com sucesso'
-    else
-      render :offer
-    end
+    set_portion 'Porção cadastrada com sucesso'
   end
 
   def edit_offer; end
@@ -91,12 +86,7 @@ class DishesController < ApplicationController
   def update_offer
     if @offer.update(active: false)
       @format = Format.find_by(name: params[:format][:name])
-      if create_dish_portion
-        redirect_to establishment_dish_path(@dish.establishment, @dish), 
-                      notice: 'Porção atualizada com sucesso'
-      else
-        render :edit_offer
-      end
+      set_portion 'Porção atualizada com sucesso'
     end
   end
   
@@ -121,11 +111,21 @@ class DishesController < ApplicationController
     @offer = Offer.find(params[:offer_id])
   end
 
-  def create_dish_portion
-    @dish.portions.create(
+  def set_portion(message)
+    portion = @dish.portions.new(
       format: @format, 
       details: params[:offer][:details], 
       price: params[:offer][:price].to_f.round(2), 
     )
+    if portion.save
+      redirect_to establishment_dish_path(@dish.establishment, @dish), 
+                    notice: message
+    else
+      portion.errors.full_messages.each do |error_message|
+        @dish.errors.add(:base, error_message)
+      end
+      render :offer, status: :unprocessable_entity
+    end
   end
+
 end
