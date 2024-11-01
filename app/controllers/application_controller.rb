@@ -20,7 +20,19 @@ class ApplicationController < ActionController::Base
   def check_user_establishment
     if user_signed_in? && current_user.establishment.nil?
       redirect_to new_establishment_path, 
-                  alert: 'Você precisa criar um estabelecimento antes de continuar.'
+                    alert: 'Você precisa criar um estabelecimento antes de continuar.'
+    end
+  end
+
+  def set_format
+    @format = Format.find_by(name: params[:format][:name])
+    if @format.nil?
+      @format = Format.new(name: params[:format][:name])
+      if @format.save
+        @format
+      else
+        render :offer, status: :unprocessable_entity
+      end
     end
   end
 

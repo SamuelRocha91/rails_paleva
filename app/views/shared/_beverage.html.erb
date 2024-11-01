@@ -2,7 +2,7 @@
   <div class="card-header ch">
     <dt><%= Beverage.human_attribute_name(:name) %>:</dt>
     <dd><%= link_to beverage.name,
-        establishment_beverage_path(current_user.establishment.id, beverage.id) %></dd>
+        establishment_beverage_path(current_user.establishment.id,beverage.id) %></dd>
   </div>
   <div class="card-body text-primary">
     <dt class="card-title"><%= Beverage.human_attribute_name(:description) %>:</dt>

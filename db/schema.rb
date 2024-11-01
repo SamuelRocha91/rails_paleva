@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_29_223257) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_30_234810) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -76,6 +76,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_29_223257) do
     t.index ["user_id"], name: "index_establishments_on_user_id"
   end
 
+  create_table "formats", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.integer "format_id", null: false
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.datetime "start_offer"
+    t.datetime "end_offer"
+    t.boolean "active", default: true
+    t.text "details"
+    t.decimal "price", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["format_id"], name: "index_offers_on_format_id"
+    t.index ["item_type", "item_id"], name: "index_offers_on_item"
+  end
+
   create_table "operating_hours", force: :cascade do |t|
     t.integer "week_day"
     t.time "start_time"
@@ -107,5 +128,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_29_223257) do
   add_foreign_key "beverages", "establishments"
   add_foreign_key "dishes", "establishments"
   add_foreign_key "establishments", "users"
+  add_foreign_key "offers", "formats"
   add_foreign_key "operating_hours", "establishments"
 end

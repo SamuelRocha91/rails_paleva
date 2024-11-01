@@ -26,7 +26,10 @@ describe 'Usuário busca por um item' do
     # Assert
     within('header') do
       expect(page).to have_field 'Buscar Item'
-      expect(page).to have_select('type', with_options: ['Bebida', 'Comida', 'Ambos'])
+      expect(page).to have_select(
+        'type',
+         with_options: ['Bebida', 'Comida', 'Ambos']
+      )
       expect(page).to have_button 'Pesquisar'  
     end
   end
@@ -51,11 +54,21 @@ describe 'Usuário busca por um item' do
       user: user
     )
 
-    Beverage.create!(name: 'Chimarrão', description: 'mate com agua', 
-                      calories: '15', establishment: establishment, is_alcoholic: true)
+    Beverage.create!(
+      name: 'Chimarrão', 
+      description: 'mate com agua', 
+      calories: '15', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
 
-    Beverage.create!(name: 'Suco da embasa', description: 'Água que mata a sede', 
-                      calories: '1', establishment: establishment, is_alcoholic: false)
+    Beverage.create!(
+      name: 'Suco da embasa', 
+      description: 'Água que mata a sede', 
+      calories: '1', 
+      establishment: establishment, 
+      is_alcoholic: false
+    )
     # Act
     login_as(user)
     visit root_path
@@ -89,10 +102,18 @@ describe 'Usuário busca por um item' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'queijo, presunto e molho', 
-                 calories: '185', establishment: establishment)
-    Dish.create!(name: 'macarrão', description: 'arroz integral', 
-                 calories: '15', establishment: establishment)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'queijo, presunto e molho', 
+      calories: '185', 
+      establishment: establishment
+    )
+    Dish.create!(
+      name: 'macarrão', 
+      description: 'arroz integral', 
+      calories: '15', 
+      establishment: establishment
+    )
     # Act
     login_as(user)
     visit root_path
@@ -126,16 +147,33 @@ describe 'Usuário busca por um item' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'queijo, presunto e molho', 
-                 calories: '185', establishment: establishment)
-    Dish.create!(name: 'macarrão', description: 'arroz integral com agua', 
-                 calories: '15', establishment: establishment)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'queijo, presunto e molho', 
+      calories: '185', 
+      establishment: establishment
+    )
+    Dish.create!(
+      name: 'macarrão', 
+      description: 'arroz integral com agua', 
+      calories: '15', 
+      establishment: establishment
+    )
     
-    Beverage.create!(name: 'Chimarrão', description: 'mate com agua', 
-                      calories: '15', establishment: establishment, is_alcoholic: true)
-
-    Beverage.create!(name: 'Suco da embasa', description: 'tonico que mata a sede', 
-                      calories: '1', establishment: establishment, is_alcoholic: false)
+    Beverage.create!(
+      name: 'Chimarrão', 
+      description: 'mate com agua', 
+      calories: '15', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
+    Beverage.create!(
+      name: 'Suco da embasa', 
+      description: 'tonico que mata a sede', 
+      calories: '1', 
+      establishment: establishment, 
+      is_alcoholic: false
+    )
     # Act
     login_as(user)
     visit root_path
@@ -151,6 +189,5 @@ describe 'Usuário busca por um item' do
     expect(page).to have_content 'Descrição: arroz integral com agua'
     expect(page).to have_link 'Editar prato'
     expect(page).to have_link 'Editar bebida'
-
   end
 end

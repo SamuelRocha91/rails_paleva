@@ -1,0 +1,39 @@
+<h1>Cadastro de porção de <%= @dish.name%></h1>
+
+<% if @format.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @format.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
+<% if @dish.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @dish.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(url: offer_dish_path(@dish.id)) do |f| %>
+  <div>
+    <%= f.label :name, 'Nome da porção' %>
+    <%= f.text_field :name, name: 'format[name]' %>
+  </div>
+  <div>
+    <%= f.label :details, 'Detalhes da porção' %>
+    <%= f.text_field :details, name: 'offer[details]' %>
+  </div>
+   <div>
+    <%= f.label :price, 'Preço da porção' %>
+    <%= f.number_field :price, name: 'offer[price]' %>
+  </div>
+  <%= f.submit 'Salvar' %>
+<% end %>

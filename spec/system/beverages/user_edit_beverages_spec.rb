@@ -21,8 +21,13 @@ describe 'Usuário edita uma bebida' do
       user: user
     )
 
-    beverage = Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
+    beverage = Beverage.create!(
+      name: 'cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
     
     # Act
     visit edit_establishment_beverage_path(establishment.id, beverage.id)
@@ -50,8 +55,13 @@ describe 'Usuário edita uma bebida' do
       user: user
     )
 
-    Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
+    Beverage.create!(
+      name: 'cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
     
     # Act
     login_as user
@@ -88,8 +98,13 @@ describe 'Usuário edita uma bebida' do
       user: user
     )
 
-    Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
+    Beverage.create!(
+      name: 'cachaça',
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
     
     # Act
     login_as user
@@ -125,8 +140,14 @@ describe 'Usuário edita uma bebida' do
       user: user
     )
 
-    Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true, status: false)
+    Beverage.create!(
+      name: 'cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true, 
+      status: false
+    )
     
     # Act
     login_as user
@@ -162,8 +183,13 @@ describe 'Usuário edita uma bebida' do
       user: user
     )
 
-    Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
+    Beverage.create!(
+      name: 'cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
     
     # Act
     login_as user
@@ -220,8 +246,13 @@ describe 'Usuário edita uma bebida' do
       user: user_two
     )
 
-    beverage = Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
+    beverage = Beverage.create!(
+      name: 'cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
     # Act
     login_as user_two
     visit establishment_dish_path(establishment.id, beverage.id)

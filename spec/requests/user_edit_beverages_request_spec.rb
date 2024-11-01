@@ -40,11 +40,17 @@ describe 'Usuário edita uma bebida' do
     )
 
 
-    beverage = Beverage.create!(name: 'cachaça', description: 'alcool delicioso baiano', 
-                 calories: '185', establishment: establishment, is_alcoholic: true)
+    beverage = Beverage.create!(
+      name: 'cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
     # Act
     login_as(user_two)
-    patch(establishment_dish_path(establishment.id, beverage.id), params: { beverage: { name: 'Coca-cola'}})
+    patch(establishment_beverage_path(establishment.id, beverage.id), 
+            params: { beverage: { name: 'Coca-cola'}})
     # Assert
     expect(response).to redirect_to(root_path)
   end

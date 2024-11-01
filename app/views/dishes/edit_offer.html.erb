@@ -1,0 +1,28 @@
+<h1>Atualização de preço</h1>
+
+<% if @dish.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @dish.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(url: update_offer_dish_path(@dish.id, @offer.id)) do |f| %>
+  <div>
+    <%= f.label :name, 'Nome da porção' %>
+    <%= f.text_field :name, name: 'format[name]', value: @offer.format.name, readonly: true %>
+  </div>
+  <div>
+    <%= f.label :details, 'Detalhes da porção' %>
+    <%= f.text_field :details, name: 'offer[details]' %>
+  </div>
+   <div>
+    <%= f.label :price, 'Preço da porção' %>
+    <%= f.number_field :price, name: 'offer[price]' %>
+  </div>
+  <%= f.submit 'Salvar' %>
+<% end %>

@@ -5,7 +5,11 @@ RSpec.describe Dish, type: :model do
     context 'presença obrigatória de' do
       it 'name' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com'
+        )
         establishment = Establishment.new(
           email:'xxxx@hotmail.com', 
           trade_name: 'Samsumg', 
@@ -15,7 +19,10 @@ RSpec.describe Dish, type: :model do
           address: 'Rua das Alamedas avenidas' 
         )
         establishment.user = user
-        dish = Dish.new(name: '', description: 'massa, queijo e presunto com molho de tomate')
+        dish = Dish.new(
+          name: '', 
+          description: 'massa, queijo e presunto com molho de tomate'
+        )
         dish.establishment = establishment
         # Act
         result = dish.valid?
@@ -25,7 +32,11 @@ RSpec.describe Dish, type: :model do
 
       it 'description' do
         # Arrange
-        user = User.new(first_name: 'Samuel', last_name: 'Rocha', email: 'sam@hotmail.com')
+        user = User.new(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'sam@hotmail.com'
+        )
         establishment = Establishment.new(
           email:'xxxx@hotmail.com', 
           trade_name: 'Samsumg', 

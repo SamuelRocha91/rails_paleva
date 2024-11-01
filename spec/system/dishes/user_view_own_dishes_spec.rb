@@ -20,7 +20,8 @@ describe 'Usuário vê seus próprios pratos' do
       address: 'Rua das Alamedas avenidas' 
     )
     operating_hour = []
-    6.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
+    6.times { |i| operating_hour << OperatingHour
+                                      .new(week_day: i, is_closed: true)}
     operating_hour <<  OperatingHour.new(
       week_day: 6, 
       start_time: Time.zone.parse('08:00'), 
@@ -30,8 +31,15 @@ describe 'Usuário vê seus próprios pratos' do
     establishment.operating_hours = operating_hour
     establishment.save
     user.establishment = establishment 
-    dish = Dish.new(name: 'lasagna', description: 'pao com ovo', calories: '185')
-    dish.image.attach(io: File.open(Rails.root.join('spec', 'support', 'pao.jpg')), filename: 'pao.jpg')
+    dish = Dish.new(
+      name: 'lasagna', 
+      description: 'pao com ovo', 
+      calories: '185'
+    )
+    dish.image.attach(
+      io: File.open(Rails.root.join('spec', 'support', 'pao.jpg')), 
+      filename: 'pao.jpg'
+    )
     dish.establishment = establishment
     dish.save
     # Act
@@ -42,6 +50,7 @@ describe 'Usuário vê seus próprios pratos' do
 
     # Assert
     expect(current_path).to eq establishment_dish_path(establishment.id, dish.id)
+
     expect(page).to have_content 'Nome: lasagna'
     expect(page).to have_content 'Descrição: pao com ovo'
     expect(page).to have_css('img[src*="pao.jpg"]')
@@ -86,7 +95,8 @@ describe 'Usuário vê seus próprios pratos' do
     operating_hour = []
     operating_hour_two = []
 
-    6.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
+    6.times { |i| operating_hour << OperatingHour
+                                      .new(week_day: i, is_closed: true)}
     operating_hour <<  OperatingHour.new(
       week_day: 6, 
       start_time: Time.zone.parse('08:00'), 
@@ -94,7 +104,8 @@ describe 'Usuário vê seus próprios pratos' do
       is_closed: false
     )
 
-    6.times { |i| operating_hour_two << OperatingHour.new(week_day: i, is_closed: true)}
+    6.times { |i| operating_hour_two << OperatingHour
+                                          .new(week_day: i, is_closed: true)}
     operating_hour <<  OperatingHour.new(
       week_day: 6, 
       start_time: Time.zone.parse('08:00'), 
@@ -113,8 +124,16 @@ describe 'Usuário vê seus próprios pratos' do
     establishment.save!
     establishment_two.save!
 
-    dish = Dish.new(name: 'lasagna', description: 'pao com ovo', calories: '185')
-    dish_two = Dish.new(name: 'macarrao', description: 'arroz integral', calories: '15')
+    dish = Dish.new(
+      name: 'lasagna', 
+      description: 'pao com ovo', 
+      calories: '185'
+    )
+    dish_two = Dish.new(
+      name: 'macarrao', 
+      description: 'arroz integral', 
+      calories: '15'
+    )
 
     dish.establishment = establishment
     dish_two.establishment = establishment
@@ -171,14 +190,22 @@ describe 'Usuário vê seus próprios pratos' do
       user: user_two
     )
 
-    Dish.create!(name: 'lasagna', description: 'pão com ovo', 
-                 calories: '185', establishment: establishment)
-    dish_two = Dish.create!(name: 'macarrão', description: 'arroz integral', 
-                            calories: '15', establishment: establishment_two)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'pão com ovo', 
+      calories: '185', 
+      establishment: establishment
+    )
+    dish_two = Dish.create!(
+      name: 'macarrão', 
+      description: 'arroz integral', 
+      calories: '15', 
+      establishment: establishment_two
+    )
 
     # Act
     login_as user
-    visit establishment_dish_path(establishment_two, dish_two)
+    visit establishment_dish_path(establishment_two.id, dish_two)
 
     # Assert
     expect(current_path).to eq root_path

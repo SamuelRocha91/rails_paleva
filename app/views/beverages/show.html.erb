@@ -22,13 +22,57 @@
         <dt><%= Beverage.human_attribute_name(:status) %>:</dt>
         <dd><%= @beverage.status ? 'Ativo' : 'Inativo' %></dd>
       </div>
+      <div>
+        <h3>Volumes Disponíveis</h3>
+        <% if @beverage.volumes.any? %>
+          <% @beverage.volumes.each do |volume| %>
+            <% if volume.active %>
+              <div class='field-value'>
+                <dt>Volume <%= volume.format.name %>:</dt>
+                <dd> <%= number_to_currency(volume.price, unit: "R$", separator: ",", precision: 2) %></dd>
+              </div>
+              <%= link_to 'Editar Preço', edit_offer_beverage_path(@beverage.id, volume.id) %>
+              <%= button_to 'Retirar Oferta', deactivate_offer_beverage_path(@beverage.id, volume.id), class: "#{volume.format.name.gsub(' ', '-')} btn btn-danger" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
       <div class='btn-center'>
-        <%= link_to 'Editar bebida', edit_establishment_beverage_path(current_user.establishment, @beverage), class: 'btn btn-light' %>
-        <%= button_to 'Desativar Bebida', deactivate_establishment_beverage_path(@beverage.establishment, @beverage.id) if @beverage.status %>
-        <%= button_to 'Ativar Bebida', activate_establishment_beverage_path(@beverage.establishment, @beverage.id) unless @beverage.status %>
+        <%= link_to 'Cadastrar volume',
+          offer_beverage_path(@beverage.id), class: 'btn btn-light' %>
+        <%= link_to 'Editar bebida', edit_establishment_beverage_path(@beverage), class: 'btn btn-light' %>
+        <%= button_to 'Desativar Bebida', deactivate_beverage_path(@beverage.id) if @beverage.status %>
+        <%= button_to 'Ativar Bebida', activate_beverage_path(@beverage.id) unless @beverage.status %>
         <%= button_to 'Excluir bebida', establishment_beverage_path(current_user.establishment.id, @beverage.id), 
               data: { turbo_confirm: 'Tem certeza que deseja apagar o registro dessa bebida?' }, method: :delete, class: 'btn btn-danger'   %>
       </div>
     </div>
   </dl>
 </div>
+<table>
+  <caption>
+    Histórico
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Nome do volume</th>
+      <th scope="col">Data de início</th>
+      <th scope="col">Data de término</th>
+      <th scope="col">Preço</th>
+    </tr>
+  </thead>
+  <% if @beverage.volumes.any? %>
+    <% @beverage.volumes.each do |volume| %>
+      <% if !(volume.active) %>
+        <tbody>
+          <tr>
+            <td><%= volume.format.name %></td>
+            <td><%= volume.start_offer.strftime("%d-%m-%Y") %></td>
+            <td><%= volume.end_offer.strftime("%d-%m-%Y") %></td>
+            <td><%= number_to_currency(volume.price, unit: "R$", separator: ",", precision: 2) %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>

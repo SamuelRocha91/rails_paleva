@@ -42,4 +42,8 @@ pt-BR:
         calories: Quantidade de calorias
         image: Imagem da bebida
         is_alcoholic: É alcoólica?
+      format:
+        name: Nome da porção
+      offer:
+        price: Preço
 

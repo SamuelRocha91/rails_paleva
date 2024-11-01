@@ -18,9 +18,26 @@
         <dt><%= Dish.human_attribute_name(:status) %>:</dt>
         <dd><%= @dish.status ? 'Ativo' : 'Inativo' %></dd>
       </div>
+      <div>
+        <h3>Porções Disponíveis</h3>
+        <% if @dish.portions.any? %>
+          <% @dish.portions.each do |portion| %>
+            <% if portion.active %>
+              <div class='field-value'>
+                <dt>Porção <%= portion.format.name %>:</dt>
+                <dd> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
+              </div>
+              <%= link_to 'Editar Preço', edit_offer_dish_path(@dish.id, portion.id)  %>
+              <%= button_to 'Retirar Oferta',deactivate_offer_dish_path(@dish.id, portion.id), class: "#{portion.format.name.gsub(' ', '-')} btn btn-danger" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
       <div class='btn-center'>
-        <%= button_to 'Desativar Prato', deactivate_establishment_dish_path(@dish.establishment, @dish.id) if @dish.status %>
-        <%= button_to 'Ativar Prato', activate_establishment_dish_path(@dish.establishment, @dish.id) unless @dish.status %>
+        <%= link_to 'Cadastrar porção',
+          offer_dish_path(@dish.id), class: 'btn btn-light' %>
+        <%= button_to 'Desativar Prato', deactivate_dish_path( @dish.id) if @dish.status %>
+        <%= button_to 'Ativar Prato', activate_dish_path(@dish.id) unless @dish.status %>
         <%= link_to 'Editar prato',
           edit_establishment_dish_path(current_user.establishment.id, @dish.id), class: 'btn btn-light' %>
         <%= button_to 'Excluir prato', establishment_dish_path(current_user.establishment.id, @dish.id),
@@ -29,3 +46,31 @@
     </div>
   </dl>
 </div>
+
+<table>
+  <caption>
+    Histórico
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Nome da porção</th>
+      <th scope="col">Data de início</th>
+      <th scope="col">Data de término</th>
+      <th scope="col">Preço</th>
+    </tr>
+  </thead>
+  <% if @dish.portions.any? %>
+    <% @dish.portions.each do |portion| %>
+      <% if !portion.active %>
+        <tbody>
+          <tr>
+            <td><%= portion.format.name %></td>
+            <td><%= portion.start_offer.strftime("%d-%m-%Y") %></td>
+            <td><%= portion.end_offer.strftime("%d-%m-%Y") %></td>
+            <td><%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>

@@ -21,8 +21,12 @@ describe 'Usuário edita um prato' do
       user: user
     )
 
-    dish = Dish.create!(name: 'lasagna', description: 'pão com ovo', 
-                 calories: '185', establishment: establishment)
+    dish = Dish.create!(
+      name: 'lasagna', 
+      description: 'pão com ovo', 
+      calories: '185', 
+      establishment: establishment
+    )
     
     # Act
     visit edit_establishment_dish_path(establishment.id, dish.id)
@@ -50,8 +54,12 @@ describe 'Usuário edita um prato' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'massa, queijo e presunto', 
+      calories: '185', 
+      establishment: establishment
+    )
     # Act
     login_as user
     visit root_path
@@ -85,8 +93,12 @@ describe 'Usuário edita um prato' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'massa, queijo e presunto', 
+      calories: '185',
+      establishment: establishment
+    )
     # Act
     login_as user
     visit root_path
@@ -121,8 +133,13 @@ describe 'Usuário edita um prato' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment, status: false)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'massa, queijo e presunto', 
+      calories: '185', 
+      establishment: establishment, 
+      status: false
+    )
     # Act
     login_as user
     visit root_path
@@ -134,6 +151,7 @@ describe 'Usuário edita um prato' do
     expect(page).to have_content 'Descrição: massa, queijo e presunto'
     expect(page).to have_content 'Status: Ativo'
     expect(page).to have_content 'Quantidade de calorias: 185'
+    expect(page).to have_link 'Cadastrar porção'
     expect(page).to have_button 'Desativar Prato'
   end
 
@@ -157,8 +175,12 @@ describe 'Usuário edita um prato' do
       user: user
     )
 
-    Dish.create!(name: 'lasagna', description: 'massa, queijo e presunto', 
-                 calories: '185', establishment: establishment)
+    Dish.create!(
+      name: 'lasagna', 
+      description: 'massa, queijo e presunto', 
+      calories: '185', 
+      establishment: establishment
+    )
     # Act
     login_as user
     visit root_path
@@ -215,11 +237,16 @@ describe 'Usuário edita um prato' do
       user: user_two
     )
 
-    dish = Dish.create!(name: 'lasagna', description: 'pão com ovo', 
-                 calories: '185', establishment: establishment)
+    dish = Dish.create!(
+      name: 'lasagna', 
+      description: 'pão com ovo', 
+      calories: '185', 
+      establishment: establishment
+    )
     # Act
     login_as user_two
     visit establishment_dish_path(establishment.id, dish.id)
+
 
     # Assert
     expect(current_path).to eq root_path

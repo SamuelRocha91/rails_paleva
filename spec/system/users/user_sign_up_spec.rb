@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe 'Usuário que não é ainda cadastrado' do
   it 'consegue acessar a página de cadastro' do
-    # Arrange
     # Act
     visit root_path
     click_on 'Criar conta'
@@ -18,7 +17,6 @@ describe 'Usuário que não é ainda cadastrado' do
   end
 
    it 'não consegue cadastro sem preencher campos obrigatórios' do
-    # Arrange
     # Act
     visit root_path    
     click_on 'Criar conta'

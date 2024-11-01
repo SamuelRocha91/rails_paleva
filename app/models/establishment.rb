@@ -7,11 +7,14 @@ class Establishment < ApplicationRecord
   has_many :operating_hours, dependent: :destroy
   has_many :dishes
   has_many :beverages
-  accepts_nested_attributes_for :operating_hours, allow_destroy: true, update_only: true
+  accepts_nested_attributes_for :operating_hours, allow_destroy: true, 
+                                                    update_only: true
+
   validate :is_valid_cnpj?
   validate :is_valid_phone_number?
   validate :is_email_valid?
   validate :validate_operating_hours_filled
+
   after_find :format_data
   before_validation :remove_formatting
 
@@ -46,17 +49,21 @@ class Establishment < ApplicationRecord
   
       if operating_hour.start_time.blank? || operating_hour.end_time.blank?
         if operating_hour.is_closed == false
-          self.errors.add :operating_hours, 
-                      "de #{week_day_name} deve ser definido ou marcado como fechado."
+          self.errors.add(
+            :operating_hours, 
+            "de #{week_day_name} deve ser definido ou marcado como fechado."
+          )
            next
         end
       end
       
       if operating_hour.is_closed == false &&
          (operating_hour.start_time >= operating_hour.end_time)
-         self.errors.add :operating_hours, 
-                      "de #{week_day_name} deve ser definido corretamente" + 
-                      "(Hora de abertura deve ser menor que a de fechamento)."
+         self.errors.add(
+          :operating_hours, 
+          "de #{week_day_name} deve ser definido corretamente" + 
+          "(Hora de abertura deve ser menor que a de fechamento)."
+         )
       end
     end
   end
@@ -67,7 +74,8 @@ class Establishment < ApplicationRecord
 
   def format_data
     self.cnpj = CNPJ.new(cnpj).formatted
-    self.phone_number = phone_number.gsub(/(\d{2})(\d{5})(\d{4})/, '(\1) \2-\3')
+    self.phone_number = phone_number
+                          .gsub(/(\d{2})(\d{5})(\d{4})/, '(\1) \2-\3')
   end
 
   def remove_formatting

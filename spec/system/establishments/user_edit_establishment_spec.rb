@@ -18,9 +18,17 @@ describe 'Usuário edita seu restabelecimento' do
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas' 
     )
+
     operating_hour = []
-    6.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
-    operating_hour <<  OperatingHour.new(week_day: 6, start_time: Time.zone.parse('08:00'), end_time: Time.zone.parse('22:00'), is_closed: false)
+    6.times { |i| operating_hour << OperatingHour
+                                      .new(week_day: i, is_closed: true)}
+    operating_hour <<  OperatingHour.new(
+      week_day: 6, 
+      start_time: Time.zone.parse('08:00'), 
+      end_time: Time.zone.parse('22:00'), 
+      is_closed: false
+    )
+  
     establishment.operating_hours = operating_hour
     establishment.save
     user.establishment = establishment 
@@ -65,8 +73,10 @@ describe 'Usuário edita seu restabelecimento' do
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas' 
     )
+  
     operating_hour = []
-    6.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
+    6.times { |i| operating_hour << OperatingHour
+                                      .new(week_day: i, is_closed: true)}
     operating_hour <<  OperatingHour.new(
       week_day: 6,
       start_time: Time.zone.parse('08:00'), 
@@ -104,14 +114,17 @@ describe 'Usuário edita seu restabelecimento' do
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas' 
     )
+
     operating_hour = []
-    6.times { |i| operating_hour << OperatingHour.new(week_day: i, is_closed: true)}
+    6.times { |i| operating_hour << OperatingHour
+                                      .new(week_day: i, is_closed: true)}
     operating_hour <<  OperatingHour.new(
       week_day: 6, 
       start_time: Time.zone.parse('08:00'), 
       end_time: Time.zone.parse('22:00'), 
       is_closed: false
     )
+
     establishment.operating_hours = operating_hour
     establishment.save
     user.establishment = establishment 
