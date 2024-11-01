@@ -74,10 +74,10 @@ class BeveragesController < ApplicationController
 
   def create_offer
     if @beverage.portions.any? {|portion| portion.active && (portion.format.name == @format.name)}
-      flash[:alert] = 'Não é possível cadastrar porções idênticas para o mesmo prato'
+      flash[:alert] = 'Não é possível cadastrar volumes idênticos para a mesma bebida'
       render :offer, status: :unprocessable_entity
     else
-      set_portion 'Porção cadastrada com sucesso'
+      set_portion 'Volume cadastrado com sucesso'
     end
   end
   private
@@ -111,7 +111,7 @@ class BeveragesController < ApplicationController
       price: params[:offer][:price].to_f.round(2), 
     )
     if portion.save
-      redirect_to establishment_dish_path(@beverage.establishment, @beverage), 
+      redirect_to establishment_beverage_path(@beverage.establishment, @beverage), 
                     notice: message
     else
       portion.errors.full_messages.each do |error_message|

@@ -22,7 +22,21 @@
         <dt><%= Beverage.human_attribute_name(:status) %>:</dt>
         <dd><%= @beverage.status ? 'Ativo' : 'Inativo' %></dd>
       </div>
-      
+      <div>
+        <h3>Volumes Disponíveis</h3>
+        <% if @beverage.portions.any? %>
+          <% @beverage.portions.each do |portion| %>
+            <% if portion.active %>
+              <div class='field-value'>
+                <dt>Volume <%= portion.format.name %>:</dt>
+                <dd> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
+              </div>
+              <%= link_to 'Editar Preço', root_path %>
+              <%= button_to 'Retirar Oferta', root_path, class: "#{portion.format.name.gsub(' ', '-')} btn btn-danger" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
       <div class='btn-center'>
         <%= link_to 'Cadastrar volume',
           offer_beverage_path(@beverage.id), class: 'btn btn-light' %>
