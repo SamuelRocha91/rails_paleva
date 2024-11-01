@@ -2,7 +2,7 @@ class Offer < ApplicationRecord
   belongs_to :format
   belongs_to :item, polymorphic: true
   before_validation :set_start_offer, on: :create
-  before_validation :set_end_offer, on: :update
+  before_validation :set_end_offer
   validate :is_valid_price?
   validates :price, presence: true
 
@@ -13,7 +13,9 @@ class Offer < ApplicationRecord
   end
 
   def set_end_offer
-    self.end_offer = DateTime.now
+    if self.active == false
+      self.end_offer = DateTime.now
+    end
   end
 
   def is_valid_price?

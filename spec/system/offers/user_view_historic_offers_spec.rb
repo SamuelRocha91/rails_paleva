@@ -67,7 +67,6 @@ describe 'Usuário acessa página de detalhes de item' do
       expect(page).to have_content 'Preço' 
       expect(page).to have_content 'Porção Giga gante'
       expect(page).to have_content 'Porção média'  
-      expect(page).to have_content '31-12-2064'  
       expect(page).to have_content 'R$ 25,00'  
       expect(page).to have_content 'R$ 30,00'  
       expect(page).not_to have_content 'Porção pequena'  
@@ -132,7 +131,6 @@ describe 'Usuário acessa página de detalhes de item' do
       expect(page).to have_content 'Preço' 
       expect(page).not_to have_content 'Bombinha 50ml'
       expect(page).to have_content 'Bombinha 1l'
-      expect(page).to have_content '31-12-2064'  
       expect(page).to have_content 'R$ 33,00'  
       expect(page).not_to have_content 'R$ 25,00'  
     end
