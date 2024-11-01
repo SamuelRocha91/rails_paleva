@@ -4,12 +4,14 @@ class BeveragesController < ApplicationController
     :edit, 
     :show, 
     :update, 
-    :destroy, 
+    :destroy,
+    :create_offer,
     :deactivate, 
     :activate,
     :offer
   ]
   before_action :check_user, only: [:show, :edit, :index, :update]
+  before_action :set_format, only: [:create_offer]
 
   def index
     @beverages = current_user.establishment.beverages
@@ -69,6 +71,15 @@ class BeveragesController < ApplicationController
     @format = Format.new
   end
 
+
+  def create_offer
+    if @beverage.portions.any? {|portion| portion.active && (portion.format.name == @format.name)}
+      flash[:alert] = 'Não é possível cadastrar porções idênticas para o mesmo prato'
+      render :offer, status: :unprocessable_entity
+    else
+      set_portion 'Porção cadastrada com sucesso'
+    end
+  end
   private
 
   def beverage_params
@@ -90,6 +101,23 @@ class BeveragesController < ApplicationController
     if @establishment.user != current_user
       redirect_to root_path, 
         notice: 'Você não possui acesso a essa bebida'
+    end
+  end
+
+  def set_portion(message)
+    portion = @beverage.portions.new(
+      format: @format, 
+      details: params[:offer][:details], 
+      price: params[:offer][:price].to_f.round(2), 
+    )
+    if portion.save
+      redirect_to establishment_dish_path(@beverage.establishment, @beverage), 
+                    notice: message
+    else
+      portion.errors.full_messages.each do |error_message|
+        @beverage.errors.add(:base, error_message)
+      end
+      render :offer, status: :unprocessable_entity
     end
   end
 end
