@@ -42,7 +42,7 @@ describe 'Usuário acessa página para desativar oferta de uma bebida' do
 
   it 'e desativa com sucesso' do
     # Arrange
-user = User.create!(
+    user = User.create!(
       first_name: 'Samuel', 
       last_name: 'Rocha', 
       email: 'samuel@hotmail.com', 

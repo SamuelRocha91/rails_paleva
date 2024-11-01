@@ -49,3 +49,30 @@
     </div>
   </dl>
 </div>
+<table>
+  <caption>
+    Histórico
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Nome do volume</th>
+      <th scope="col">Data de início</th>
+      <th scope="col">Data de término</th>
+      <th scope="col">Preço</th>
+    </tr>
+  </thead>
+  <% if @beverage.volumes.any? %>
+    <% @beverage.volumes.each do |volume| %>
+      <% if !(volume.active) %>
+        <tbody>
+          <tr>
+            <td><%= volume.format.name %></td>
+            <td><%= volume.start_offer.strftime("%d-%m-%Y") %></td>
+            <td><%= volume.end_offer.strftime("%d-%m-%Y") %></td>
+            <td><%= number_to_currency(volume.price, unit: "R$", separator: ",", precision: 2) %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>
