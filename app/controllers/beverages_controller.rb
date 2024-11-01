@@ -88,7 +88,7 @@ class BeveragesController < ApplicationController
   def update_offer
     if @offer.update(active: false)
       @format = Format.find_by(name: params[:format][:name])
-      set_volume 'Porção atualizada com sucesso'
+      set_volume 'Volume atualizado com sucesso'
     end
   end
 
