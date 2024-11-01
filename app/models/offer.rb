@@ -5,7 +5,7 @@ class Offer < ApplicationRecord
   before_validation :set_end_offer, on: :update
   validate :is_valid_price?
   validates :price, presence: true
-  
+
   private
 
   def set_start_offer
