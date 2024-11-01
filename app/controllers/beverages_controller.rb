@@ -8,10 +8,12 @@ class BeveragesController < ApplicationController
     :create_offer,
     :deactivate, 
     :activate,
-    :offer
+    :offer,
+    :edit_offer
   ]
   before_action :check_user, only: [:show, :edit, :index, :update]
   before_action :set_format, only: [:create_offer]
+   before_action :set_offer, only: [:edit_offer]
 
   def index
     @beverages = current_user.establishment.beverages
@@ -71,7 +73,6 @@ class BeveragesController < ApplicationController
     @format = Format.new
   end
 
-
   def create_offer
     if @beverage.portions.any? {|portion| portion.active && (portion.format.name == @format.name)}
       flash[:alert] = 'Não é possível cadastrar volumes idênticos para a mesma bebida'
@@ -80,6 +81,9 @@ class BeveragesController < ApplicationController
       set_portion 'Volume cadastrado com sucesso'
     end
   end
+
+  def edit_offer; end
+
   private
 
   def beverage_params
@@ -119,5 +123,9 @@ class BeveragesController < ApplicationController
       end
       render :offer, status: :unprocessable_entity
     end
+  end
+
+  def set_offer
+    @offer = Offer.find(params[:offer_id])
   end
 end
