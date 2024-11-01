@@ -113,7 +113,6 @@ describe 'Usuário acessa página de detalhes de item' do
       item: beverage,
       price: 33,
       active: false,
-      end_offer: "2064-12-31 15:45:22"
     )
 
     # Act
@@ -128,7 +127,7 @@ describe 'Usuário acessa página de detalhes de item' do
       expect(page).to have_content 'Nome do volume'
       expect(page).to have_content 'Data de início' 
       expect(page).to have_content'Data de término' 
-      expect(page).to have_content 'Preço' 
+      expect(page).to have_content 'Preço'
       expect(page).not_to have_content 'Bombinha 50ml'
       expect(page).to have_content 'Bombinha 1l'
       expect(page).to have_content 'R$ 33,00'  

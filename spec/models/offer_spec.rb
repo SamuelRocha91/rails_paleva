@@ -313,6 +313,7 @@ RSpec.describe Offer, type: :model do
           price: 25,
           active: false
         )
+
         # Act
         offer.save!
         # Assert
