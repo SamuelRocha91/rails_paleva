@@ -10,7 +10,7 @@ class TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.new(name: params[:name])
+    @tag = Tag.new(name: params[:tag][:name])
     if @tag.save
       redirect_to tags_path, notice: 'Marcador cadastrado com sucesso'
     else

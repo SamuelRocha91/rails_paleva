@@ -133,4 +133,37 @@ describe "Usuário acessa página de marcadores" do
     # Assert
     expect(page).to have_content 'Nome do marcador não pode ficar em branco'
   end
+
+  it 'e cadastra marcador com sucesso' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+    Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      user: user
+    )
+
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Marcadores'
+    click_on 'Cadastrar novo marcador'
+    fill_in 'Nome do marcador',	with: 'Apimentado' 
+    click_on 'Salvar'
+
+    # Assert
+    expect(current_path).to eq tags_path  
+    expect(page).to have_content 'Marcador cadastrado com sucesso'
+    expect(page).to have_content 'Apimentado'
+  end
 end
