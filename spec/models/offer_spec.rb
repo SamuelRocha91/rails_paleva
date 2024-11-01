@@ -112,5 +112,6 @@ RSpec.describe Offer, type: :model do
       # Assert
       expect(offer.start_offer).not_to be_nil
     end
+
   end
 end

@@ -28,7 +28,7 @@
                 <dd> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
               </div>
               <%= link_to 'Editar Preço', edit_offer_dish_path(@dish.id, portion.id)  %>
-              <%= button_to 'Retirar Oferta', edit_offer_dish_path(@dish.id, portion.id) %>
+              <%= button_to 'Retirar Oferta',deactivate_offer_dish_path(@dish.id, portion.id), class: "#{portion.format.name.gsub(' ', '-')} btn btn-danger" %>
             <% end %>
           <% end %>
         <% end %>

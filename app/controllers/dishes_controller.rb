@@ -18,12 +18,13 @@ class DishesController < ApplicationController
     :offer,
     :create_offer,
     :edit_offer,
-    :update_offer
+    :update_offer,
+    :deactivate_offer
   ]
 
   before_action :set_format, only: [:create_offer]
 
-  before_action :set_offer, only: [:edit_offer, :update_offer]
+  before_action :set_offer, only: [:edit_offer, :update_offer, :deactivate_offer]
   
   def index
     @dishes = current_user.establishment.dishes
@@ -89,6 +90,11 @@ class DishesController < ApplicationController
       @format = Format.find_by(name: params[:format][:name])
       set_portion 'Porção atualizada com sucesso'
     end
+  end
+
+  def deactivate_offer
+    @offer.update(active: false)
+    redirect_to establishment_dish_path(@dish.establishment, @dish)
   end
   
   private
