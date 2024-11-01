@@ -18,7 +18,7 @@
           <nav class='nav-item'>
             <%= link_to 'Meus Pratos', establishment_dishes_path(current_user.establishment.id), class:'nav-link' %>
             <%= link_to 'Bebidas', establishment_beverages_path(current_user.establishment.id), class:'nav-link' %>
-            <%= link_to 'Marcadores', establishment_beverages_path(current_user.establishment.id), class:'nav-link' %>
+            <%= link_to 'Marcadores', tags_path, class:'nav-link' %>
 
           </nav>
         <% end %>

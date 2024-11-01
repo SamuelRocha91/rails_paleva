@@ -1,0 +1,10 @@
+<h1>Marcadores Disponíveis</h1>
+<%= link_to 'Cadastrar novo marcador', root_path %>
+
+<% if @tags.present? %>
+  <% @tags.each do |tag| %>
+    <div>
+      <h3><%= tag.name %></h3>
+    </div>
+  <% end %>
+<% end %>
