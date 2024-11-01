@@ -33,4 +33,6 @@ Rails.application.routes.draw do
       post 'offer/:offer_id/deactivate', to: 'beverages#deactivate_offer', as: 'deactivate_offer'
     end
   end
+
+  resources :tags, only: [:index]
 end
