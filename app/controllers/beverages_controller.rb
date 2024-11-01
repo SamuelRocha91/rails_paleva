@@ -6,7 +6,8 @@ class BeveragesController < ApplicationController
     :update, 
     :destroy, 
     :deactivate, 
-    :activate
+    :activate,
+    :offer
   ]
   before_action :check_user, only: [:show, :edit, :index, :update]
 
@@ -65,8 +66,9 @@ class BeveragesController < ApplicationController
   end
 
   def offer
+    @format = Format.new
   end
-  
+
   private
 
   def beverage_params

@@ -1,0 +1,39 @@
+<h1>Cadastro de volume de <%= @beverage.name%></h1>
+
+<% if @format.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @format.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
+<% if @beverage.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @beverage.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(url: offer_beverage_path(@beverage.id)) do |f| %>
+  <div>
+    <%= f.label :name, 'Nome do volume' %>
+    <%= f.text_field :name, name: 'format[name]' %>
+  </div>
+  <div>
+    <%= f.label :details, 'Detalhes do volume' %>
+    <%= f.text_field :details, name: 'offer[details]' %>
+  </div>
+   <div>
+    <%= f.label :price, 'Preço do volume' %>
+    <%= f.number_field :price, name: 'offer[price]' %>
+  </div>
+  <%= f.submit 'Salvar' %>
+<% end %>
