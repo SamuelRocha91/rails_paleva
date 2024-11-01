@@ -81,6 +81,7 @@ describe "Usuário acessa a aplicação" do
     within('header') do
       expect(page).to have_link 'Meus Pratos'
       expect(page).to have_link 'Bebidas'
+      expect(page).to have_link 'Marcadores'
       expect(page).to have_content 'Samuel Rocha - samuel@hotmail.com'  
     end
     expect(page).to have_content 'Nome Social: Samsumg'
