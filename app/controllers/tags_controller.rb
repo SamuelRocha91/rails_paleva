@@ -8,4 +8,13 @@ class TagsController < ApplicationController
   def new
     @tag = Tag.new
   end
+
+  def create
+    @tag = Tag.new(name: params[:name])
+    if @tag.save
+      redirect_to tags_path, notice: 'Marcador cadastrado com sucesso'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 end
