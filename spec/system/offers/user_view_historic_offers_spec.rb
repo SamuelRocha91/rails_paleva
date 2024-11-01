@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário acessa página de detalhes de item' do
-  it 'e consegue ver histórico de ofertas' do
+  it 'e consegue ver histórico de ofertas de um prato' do
     # Arrange
     user = User.create!(
       first_name: 'Samuel', 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário acessa formulário de edição de oferta' do
+describe 'Usuário acessa formulário de edição de oferta prato' do
   it 'e deve estar autenticado' do
     # Arrange
     user = User.create!(

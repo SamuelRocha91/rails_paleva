@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário acessa página para desativar oferta' do
+describe 'Usuário acessa página para desativar oferta de um prato' do
   it 'e deve estar autenticado' do
     # Arrange
     user = User.create!(
