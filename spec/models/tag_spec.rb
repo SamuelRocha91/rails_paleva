@@ -39,5 +39,18 @@ RSpec.describe Tag, type: :model do
         expect(result).to eq false
       end
     end
+
+    context 'mínimo de caracteres' do
+      it 'para name são 3' do
+        # Arrange
+        format = Tag.new(name: 'Ap')
+
+        # Act
+        result = format.valid?
+
+        # Assert
+        expect(result).to eq false
+      end
+    end
   end
 end
