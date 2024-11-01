@@ -25,11 +25,14 @@ class ApplicationController < ActionController::Base
   end
 
   def set_format
-    @format = Format.new(name: params[:format][:name])
-    if @format.save
-      @format
-    else
-      render :offer, status: :unprocessable_entity
+    @format = Format.find_by(name: params[:format][:name])
+    if @format.nil?
+      @format = Format.new(name: params[:format][:name])
+      if @format.save
+        @format
+      else
+        render :offer, status: :unprocessable_entity
+      end
     end
   end
 

@@ -80,7 +80,12 @@ class DishesController < ApplicationController
   end
 
   def create_offer
-    set_portion 'Porção cadastrada com sucesso'
+    if @dish.portions.any? {|portion| portion.active && (portion.format.name == @format.name)}
+      flash[:alert] = 'Não é possível cadastrar porções idênticas para o mesmo prato'
+      render :offer, status: :unprocessable_entity
+    else
+      set_portion 'Porção cadastrada com sucesso'
+    end
   end
 
   def edit_offer; end
