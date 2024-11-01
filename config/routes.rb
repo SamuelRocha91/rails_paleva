@@ -34,5 +34,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tags, only: [:index]
+  resources :tags, only: [:index, :create, :new]
 end

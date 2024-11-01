@@ -1,0 +1,14 @@
+<h1 class='title'>Cadastro de novo marcador</h1>
+
+<% if @tag.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @tag.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>

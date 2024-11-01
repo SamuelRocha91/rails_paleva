@@ -46,4 +46,6 @@ pt-BR:
         name: Nome da porção
       offer:
         price: Preço
+      tag:
+        name: Nome do marcador
 

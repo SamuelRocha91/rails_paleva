@@ -67,8 +67,40 @@ describe "Usuário acessa página de marcadores" do
     login_as user
     visit root_path
     click_on 'Marcadores'
+
     # Assert
     expect(page).to have_content 'Marcadores Disponíveis'
     expect(page).to have_content 'Não existem ainda marcadores cadastrados'
+  end
+
+  it 'e visualiza página de cadastro de tags corretamente' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+    Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      user: user
+    )
+
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Marcadores'
+    click_on 'Cadastrar novo marcador'
+
+    # Assert
+    expect(page).to have_content 'Cadastro de novo marcador'
+    expect(page).to have_field 'Nome do marcador'
+    expect(page).to have_button 'Salvar'
   end
 end
