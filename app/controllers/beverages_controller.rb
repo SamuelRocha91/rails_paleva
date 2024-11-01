@@ -9,11 +9,12 @@ class BeveragesController < ApplicationController
     :deactivate, 
     :activate,
     :offer,
-    :edit_offer
+    :edit_offer,
+    :update_offer
   ]
   before_action :check_user, only: [:show, :edit, :index, :update]
   before_action :set_format, only: [:create_offer]
-   before_action :set_offer, only: [:edit_offer]
+  before_action :set_offer, only: [:edit_offer, :update_offer]
 
   def index
     @beverages = current_user.establishment.beverages
@@ -74,15 +75,22 @@ class BeveragesController < ApplicationController
   end
 
   def create_offer
-    if @beverage.portions.any? {|portion| portion.active && (portion.format.name == @format.name)}
+    if @beverage.volumes.any? {|volume| volume.active && (volume.format.name == @format.name)}
       flash[:alert] = 'Não é possível cadastrar volumes idênticos para a mesma bebida'
       render :offer, status: :unprocessable_entity
     else
-      set_portion 'Volume cadastrado com sucesso'
+      set_volume 'Volume cadastrado com sucesso'
     end
   end
 
   def edit_offer; end
+
+  def update_offer
+    if @offer.update(active: false)
+      @format = Format.find_by(name: params[:format][:name])
+      set_volume 'Porção atualizada com sucesso'
+    end
+  end
 
   private
 
@@ -108,17 +116,17 @@ class BeveragesController < ApplicationController
     end
   end
 
-  def set_portion(message)
-    portion = @beverage.portions.new(
+  def set_volume(message)
+    volume = @beverage.volumes.new(
       format: @format, 
       details: params[:offer][:details], 
       price: params[:offer][:price].to_f.round(2), 
     )
-    if portion.save
+    if volume.save
       redirect_to establishment_beverage_path(@beverage.establishment, @beverage), 
                     notice: message
     else
-      portion.errors.full_messages.each do |error_message|
+      volume.errors.full_messages.each do |error_message|
         @beverage.errors.add(:base, error_message)
       end
       render :offer, status: :unprocessable_entity

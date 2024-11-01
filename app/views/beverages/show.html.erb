@@ -24,15 +24,15 @@
       </div>
       <div>
         <h3>Volumes Disponíveis</h3>
-        <% if @beverage.portions.any? %>
-          <% @beverage.portions.each do |portion| %>
-            <% if portion.active %>
+        <% if @beverage.volumes.any? %>
+          <% @beverage.volumes.each do |volume| %>
+            <% if volume.active %>
               <div class='field-value'>
-                <dt>Volume <%= portion.format.name %>:</dt>
-                <dd> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
+                <dt>Volume <%= volume.format.name %>:</dt>
+                <dd> <%= number_to_currency(volume.price, unit: "R$", separator: ",", precision: 2) %></dd>
               </div>
-              <%= link_to 'Editar Preço', root_path %>
-              <%= button_to 'Retirar Oferta', root_path, class: "#{portion.format.name.gsub(' ', '-')} btn btn-danger" %>
+              <%= link_to 'Editar Preço', edit_offer_beverage_path(@beverage.id, volume.id) %>
+              <%= button_to 'Retirar Oferta', root_path, class: "#{volume.format.name.gsub(' ', '-')} btn btn-danger" %>
             <% end %>
           <% end %>
         <% end %>
