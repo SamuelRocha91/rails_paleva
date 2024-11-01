@@ -23,7 +23,11 @@ Rails.application.routes.draw do
   end
 
   resources :beverages, only: [] do
-    post 'deactivate', on: :member
-    post 'activate', on: :member
+    member do
+      post 'deactivate'
+      post 'activate'
+      get 'offer'
+      post 'offer', to: 'beverages#create_offer'
+    end
   end
 end

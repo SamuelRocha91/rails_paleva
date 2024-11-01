@@ -63,6 +63,10 @@ class BeveragesController < ApplicationController
                     notice: 'Registro excluído com sucesso'
     end
   end
+
+  def offer
+  end
+  
   private
 
   def beverage_params

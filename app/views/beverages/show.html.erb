@@ -22,7 +22,10 @@
         <dt><%= Beverage.human_attribute_name(:status) %>:</dt>
         <dd><%= @beverage.status ? 'Ativo' : 'Inativo' %></dd>
       </div>
+      
       <div class='btn-center'>
+        <%= link_to 'Cadastrar volume',
+          offer_beverage_path(@beverage.id), class: 'btn btn-light' %>
         <%= link_to 'Editar bebida', edit_establishment_beverage_path(@beverage), class: 'btn btn-light' %>
         <%= button_to 'Desativar Bebida', deactivate_beverage_path(@beverage.id) if @beverage.status %>
         <%= button_to 'Ativar Bebida', activate_beverage_path(@beverage.id) unless @beverage.status %>

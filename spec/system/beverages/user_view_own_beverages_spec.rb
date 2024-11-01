@@ -55,6 +55,7 @@ describe 'Usuário vê suas próprias bebidas' do
     expect(page).to have_css('img[src*="pao.jpg"]')
     expect(page).to have_content 'Quantidade de calorias: 185'
     expect(page).to have_content 'É alcoólica? Sim'
+    expect(page).to have_link 'Cadastrar volume'
     expect(page).to have_link 'Editar bebida'  
     expect(page).to have_button 'Excluir bebida'  
   end 
