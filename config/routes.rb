@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       post 'offer', to: 'beverages#create_offer'
       get 'offer/:offer_id/edit', to: 'beverages#edit_offer', as: 'edit_offer'
       post 'offer/:offer_id/update', to: 'beverages#update_offer', as: 'update_offer'
+      post 'offer/:offer_id/deactivate', to: 'beverages#deactivate_offer', as: 'deactivate_offer'
     end
   end
 end

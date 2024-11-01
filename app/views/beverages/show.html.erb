@@ -32,7 +32,7 @@
                 <dd> <%= number_to_currency(volume.price, unit: "R$", separator: ",", precision: 2) %></dd>
               </div>
               <%= link_to 'Editar Preço', edit_offer_beverage_path(@beverage.id, volume.id) %>
-              <%= button_to 'Retirar Oferta', root_path, class: "#{volume.format.name.gsub(' ', '-')} btn btn-danger" %>
+              <%= button_to 'Retirar Oferta', deactivate_offer_beverage_path(@beverage.id, volume.id), class: "#{volume.format.name.gsub(' ', '-')} btn btn-danger" %>
             <% end %>
           <% end %>
         <% end %>

@@ -10,11 +10,12 @@ class BeveragesController < ApplicationController
     :activate,
     :offer,
     :edit_offer,
-    :update_offer
+    :update_offer,
+    :deactivate_offer
   ]
   before_action :check_user, only: [:show, :edit, :index, :update]
   before_action :set_format, only: [:create_offer]
-  before_action :set_offer, only: [:edit_offer, :update_offer]
+  before_action :set_offer, only: [:edit_offer, :update_offer, :deactivate_offer]
 
   def index
     @beverages = current_user.establishment.beverages
@@ -90,6 +91,11 @@ class BeveragesController < ApplicationController
       @format = Format.find_by(name: params[:format][:name])
       set_volume 'Volume atualizado com sucesso'
     end
+  end
+
+  def deactivate_offer
+    @offer.update(active: false)
+    redirect_to establishment_beverage_path(@beverage.establishment, @beverage)
   end
 
   private
