@@ -18,6 +18,13 @@
         <dt><%= Dish.human_attribute_name(:status) %>:</dt>
         <dd><%= @dish.status ? 'Ativo' : 'Inativo' %></dd>
       </div>
+      <div class='field-value'>
+        <% if @dish.tags.any? %>
+          <% @dish.tags.each do |tag| %>
+            <dd>#<%= tag.name %> </dd>
+          <% end %>
+        <% end %>
+      </div>
       <div>
         <h3>Porções Disponíveis</h3>
         <% if @dish.portions.any? %>
