@@ -76,6 +76,7 @@ describe 'Usuário acessa formulário de edição de oferta prato' do
     click_on 'Meus Pratos'
     click_on 'lasagna'
     click_on 'Editar Preço'
+    fill_in 'Preço',	with: '' 
     click_on 'Salvar'
 
     # Assert

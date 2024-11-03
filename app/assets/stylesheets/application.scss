@@ -145,8 +145,14 @@ select:focus {
 }
 
 .card-new {
-  max-width: 800px;
-  max-height: 500px;
+  width: 800px;
+  display: flex;
+}
+
+.card-body {
+  max-width: 600px;
+  padding: 20px;
+  gap: 10px;
 }
 
 .card-single {
