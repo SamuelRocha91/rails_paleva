@@ -160,9 +160,9 @@ describe 'Usuário acessa formulário de criar pratos' do
     fill_in 'Nome',	with: 'Lasagna'
     fill_in 'Descrição',	with: 'pao com ovo'
     fill_in 'Quantidade de calorias',	with: '185'
+    fill_in 'Características',	with: 'misto, parmegiana'
     attach_file 'Imagem', Rails.root.join('spec', 'support', 'pao.jpg')
     click_on 'Salvar'
-
     # Assert
     expect(current_path).to eq establishment_dishes_path(establishment.id)
     expect(page).to have_content 'Prato cadastrado com sucesso'
