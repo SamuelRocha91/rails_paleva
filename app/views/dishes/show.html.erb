@@ -1,5 +1,5 @@
-<div class='card-single'>
-  <dl class="card card-new" style="width: 18rem;">
+<div class='card p-3 shadow-sm'>
+  <dl class="card-single card-new" style="width: 18rem;">
     <%= image_tag url_for(@dish.image), class: 'card-img-top' if @dish.image.attached? %>
     <div class="card-body">
       <div class='field-value'>
@@ -26,8 +26,8 @@
         <% end %>
       </div>
       <div>
-        <h3>Porções Disponíveis</h3>
         <% if @dish.portions.any? %>
+          <h6>Porções Disponíveis:</h6>
           <% @dish.portions.each do |portion| %>
             <% if portion.active %>
               <div class='field-value'>
@@ -40,22 +40,25 @@
           <% end %>
         <% end %>
       </div>
-      <div class='btn-center'>
-        <%= link_to 'Cadastrar porção',
-          offer_dish_path(@dish.id), class: 'btn btn-light' %>
-        <%= button_to 'Desativar Prato', deactivate_dish_path( @dish.id) if @dish.status %>
-        <%= button_to 'Ativar Prato', activate_dish_path(@dish.id) unless @dish.status %>
-        <%= link_to 'Editar prato',
-          edit_establishment_dish_path(current_user.establishment.id, @dish.id), class: 'btn btn-light' %>
-        <%= button_to 'Excluir prato', establishment_dish_path(current_user.establishment.id, @dish.id),
-              data: { turbo_confirm: 'Tem certeza que deseja apagar o registro desse prato?' }, method: :delete, class: 'btn btn-danger'  %>
+      <div class="btn-group-double d-flex justify-content-around">
+        <div class="btn-group-vertical w-50 px-2">
+          <%= link_to 'Cadastrar porção', offer_dish_path(@dish.id), class: 'btn btn-light mb-2' %>
+          <%= button_to 'Desativar Prato', deactivate_dish_path(@dish.id), class: 'btn btn-warning mb-2' if @dish.status %>
+          <%= button_to 'Ativar Prato', activate_dish_path(@dish.id), class: 'btn btn-success mb-2' unless @dish.status %>
+        </div>
+        <div class="btn-group-vertical w-50 px-2">
+          <%= link_to 'Editar prato', edit_establishment_dish_path(current_user.establishment.id, @dish.id), class: 'btn btn-light mb-2' %>
+          <%= button_to 'Excluir prato', establishment_dish_path(current_user.establishment.id, @dish.id), 
+                  data: { turbo_confirm: 'Tem certeza que deseja apagar o registro desse prato?' }, 
+                  method: :delete, class: 'btn btn-danger mb-2' %>
+        </div>
       </div>
     </div>
   </dl>
 </div>
 
-<table>
-  <caption>
+<table  class='table table-dark table-striped caption-top'>
+  <caption class='title'>
     Histórico
   </caption>
   <thead>
