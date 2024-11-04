@@ -54,14 +54,14 @@
           <%= link_to 'Editar prato', edit_establishment_dish_path(current_user.establishment.id, @dish.id) %>
           <%= button_to 'Excluir prato', establishment_dish_path(current_user.establishment.id, @dish.id), 
                   data: { turbo_confirm: 'Tem certeza que deseja apagar o registro desse prato?' }, 
-                  method: :delete, class: 'btn btn-danger mb-2' %>
+                  method: :delete, class: 'btn btn-danger' %>
         </div>
       </div>
     </div>
   </dl>
 </div>
 
-<table  class='table table-dark table-striped caption-top'>
+<table class='table table-dark table-striped caption-top'>
   <caption class='title'>
     Histórico
   </caption>
