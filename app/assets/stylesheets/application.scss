@@ -142,6 +142,7 @@ select:focus {
 .card {
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .card-new {
@@ -169,4 +170,24 @@ select:focus {
 
 .btn-group-double {
   display: flex;
+}
+
+.list-item {
+  display: flex;
+  width: 650px;
+}
+
+.list-item img {
+  width: 50%;
+}
+
+.btn-group {
+  gap: 10px;
+}
+
+.btn-group-single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
