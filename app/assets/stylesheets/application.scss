@@ -129,7 +129,14 @@ select:focus {
 
 .ch {
   display: flex;
+  justify-content: center;
+  width: 100%;
   gap: 5px;
+  border-bottom: 1px solid black;
+}
+
+.list-container {
+  width: 100%;
 }
 
 .card-container {
@@ -140,18 +147,32 @@ select:focus {
 }
 
 .card {
-  width: 300px;
-  height: 300px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .card-new {
-  max-width: 800px;
-  max-height: 500px;
+  width: 800px;
+  display: flex;
+}
+
+.card-body {
+  max-width: 600px;
+  padding: 20px;
+  gap: 10px;
+}
+
+.info-line {
+  display: flex;
+  gap: 5px;
 }
 
 .card-single {
   display: flex;
-  justify-content: center;
+  width: 25%;
+  border: 1px solid blue;
+  padding: 10px;
 }
 
 .btn-center {
@@ -159,4 +180,36 @@ select:focus {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+}
+
+.btn-group-double {
+  display: flex;
+}
+
+.list-item {
+  display: flex;
+  width: 650px;
+}
+
+.active {
+  color: green;
+}
+
+.inative {
+  color: red;
+}
+
+.list-item img {
+  width: 50%;
+}
+
+.btn-group {
+  gap: 10px;
+}
+
+.btn-group-single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }

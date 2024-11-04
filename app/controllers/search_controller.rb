@@ -22,7 +22,7 @@ class SearchController < ApplicationController
   end
 
   def search_dishes
-    @dishes = Dish.where('name LIKE ? or description LIKE ? ',
+    @dishes = Dish.left_joins(:tags).where('Dishes.name LIKE ? or Tags.name LIKE ? ',
                           "%#{params[:query]}%",  "%#{params[:query]}%")
   end
 end

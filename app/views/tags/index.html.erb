@@ -1,12 +1,15 @@
-<h1>Marcadores Disponíveis</h1>
-<%= link_to 'Cadastrar novo marcador', new_tag_path %>
+<h1 class='title'>Marcadores Disponíveis</h1>
+
+<div class='title mb-5'>
+  <%= link_to 'Cadastrar novo marcador', new_tag_path, class:'btn btn-dark'  %>
+<div>
 
 <% if @tags.present? %>
-  <% @tags.each do |tag| %>
-    <div>
-      <h3><%= tag.name %></h3>
-    </div>
-  <% end %>
-<% else%>
-  <p>Não existem ainda marcadores cadastrados</p>
+  <div class='card-container'>
+    <% @tags.each do |tag| %>
+      <h3>#<%= tag.name %></h3>
+    <% end %>
+  </div>
+<% else %>
+  <p class='title mt-5'>Não existem ainda marcadores cadastrados</p>
 <% end %>

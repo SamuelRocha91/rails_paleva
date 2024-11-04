@@ -1,4 +1,4 @@
-<h1>Cadastro de porção de <%= @dish.name%></h1>
+<h1 class='title'>Cadastro de porção de <%= @dish.name%></h1>
 
 <% if @format.errors.any? %>
   <p>Verifique os erros abaixo:</p>
@@ -22,18 +22,18 @@
   </ul>
 <% end %>
 
-<%= form_with(url: offer_dish_path(@dish.id)) do |f| %>
-  <div>
-    <%= f.label :name, 'Nome da porção' %>
-    <%= f.text_field :name, name: 'format[name]' %>
+<%= form_with(url: offer_dish_path(@dish.id), class: 'form-edit') do |f| %>
+  <div class='mb-3 mt-5'>
+    <%= f.label :name, 'Nome da porção', class: 'form-label'  %>
+    <%= f.text_field :name, name: 'format[name]', class: 'form-control', placeholder: 'Porção grande'  %>
   </div>
-  <div>
-    <%= f.label :details, 'Detalhes da porção' %>
-    <%= f.text_field :details, name: 'offer[details]' %>
+  <div class='mb-3'>
+    <%= f.label :details, 'Detalhes da porção', class: 'form-label'  %>
+    <%= f.text_field :details, name: 'offer[details]', class: 'form-control', placeholder: 'Serve x pessoas'  %>
   </div>
-   <div>
-    <%= f.label :price, 'Preço da porção' %>
-    <%= f.number_field :price, name: 'offer[price]' %>
+   <div class='mb-3'>
+    <%= f.label :price, 'Preço da porção', class: 'form-label'  %>
+    <%= f.number_field :price, name: 'offer[price]', class: 'form-control'  %>
   </div>
-  <%= f.submit 'Salvar' %>
+  <%= f.submit 'Salvar', class:'btn btn-primary' %>
 <% end %>

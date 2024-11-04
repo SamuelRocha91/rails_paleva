@@ -1,7 +1,7 @@
-<%= form_with(model: @tag) do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<%= form_with(model: @tag, class: 'form-edit') do |f| %>
+  <div class='field-value mb-5 mt-5 d-flex align-items-center'>
+    <%= f.label :name, class: 'form-label'  %>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'ex: Apimentado' %>
   </div>
-  <%= f.submit 'Salvar' %>
+  <%= f.submit 'Salvar', class:'btn btn-primary'  %>
 <% end %>

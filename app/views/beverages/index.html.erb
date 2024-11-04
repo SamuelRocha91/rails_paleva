@@ -4,9 +4,9 @@
   <%= link_to 'Cadastrar nova bebida',
     new_establishment_beverage_path(current_user.establishment.id), class:'btn btn-dark' %>
 </div>
-<div class="card-container">
+<div class='card-container'>
   <% @beverages.each do |beverage| %>
-    <div class="card border-primary mb-3" style="max-width: 18rem;">
+    <div class='card-single mb-3'>
       <%= render 'shared/beverage', beverage: beverage %>
     </div>
   <% end %>
