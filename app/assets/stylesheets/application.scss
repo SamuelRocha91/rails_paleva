@@ -138,6 +138,7 @@ select:focus {
 .list-container {
   width: 100%;
 }
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -166,12 +167,12 @@ select:focus {
   display: flex;
   gap: 5px;
 }
+
 .card-single {
   display: flex;
   width: 25%;
   border: 1px solid blue;
   padding: 10px;
-  box-shadow: 2px 2px 4px blue;
 }
 
 .btn-center {

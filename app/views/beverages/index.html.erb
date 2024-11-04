@@ -6,7 +6,7 @@
 </div>
 <div class='card-container'>
   <% @beverages.each do |beverage| %>
-    <div class="card border-primary mb-3" style="max-width: 18rem;">
+    <div class='card-single mb-3'>
       <%= render 'shared/beverage', beverage: beverage %>
     </div>
   <% end %>
