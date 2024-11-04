@@ -129,9 +129,15 @@ select:focus {
 
 .ch {
   display: flex;
+  justify-content: center;
+  width: 100%;
   gap: 5px;
+  border-bottom: 1px solid black;
 }
 
+.list-container {
+  width: 100%;
+}
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -156,9 +162,16 @@ select:focus {
   gap: 10px;
 }
 
+.info-line {
+  display: flex;
+  gap: 5px;
+}
 .card-single {
   display: flex;
-  justify-content: center;
+  width: 25%;
+  border: 1px solid blue;
+  padding: 10px;
+  box-shadow: 2px 2px 4px blue;
 }
 
 .btn-center {
@@ -175,6 +188,14 @@ select:focus {
 .list-item {
   display: flex;
   width: 650px;
+}
+
+.active {
+  color: green;
+}
+
+.inative {
+  color: red;
 }
 
 .list-item img {
