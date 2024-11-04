@@ -7,7 +7,7 @@
 <% if @tags.present? %>
   <div class='card-container'>
     <% @tags.each do |tag| %>
-      <h3><%= tag.name %></h3>
+      <h3>#<%= tag.name %></h3>
     <% end %>
   </div>
 <% else %>
