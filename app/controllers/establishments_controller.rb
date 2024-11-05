@@ -2,6 +2,10 @@ class EstablishmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :establishment_created, only: [:new]
   before_action :set_establishment, only: [:edit, :update]
+
+  def index
+    @establishment = Establishment.find_by(user: current_user)
+  end
   def new
     @establishment = Establishment.new
     [:sunday, :monday, :tuesday, :wednesday, 
@@ -14,7 +18,7 @@ class EstablishmentsController < ApplicationController
     @establishment = Establishment.new(establishment_params)
     @establishment.user = current_user
     if @establishment.save
-      redirect_to root_path, 
+      redirect_to establishments_path, 
                     notice: 'Cadastro de restaurante efetuado com sucesso!'
     else
       render :new, status: :unprocessable_entity
@@ -25,7 +29,7 @@ class EstablishmentsController < ApplicationController
 
   def update
     if @establishment.update(establishment_params)
-      redirect_to root_path, notice: 'Estabelecimento atualizado com sucesso'
+      redirect_to establishments_path, notice: 'Estabelecimento atualizado com sucesso'
     else
       flash.now[:alert] = 'Não foi possível atualizar o estabelecimento'
       render :new, status: :unprocessable_entity

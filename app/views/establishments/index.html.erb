@@ -1,0 +1,58 @@
+<h1 class='title'>Sistema de gerenciamento de estabelecimento</h1>
+
+<div class='general-panel'>
+  <h2>Dados do estabelecimento</h2>
+  <dl class='list-dl'>
+    <div class='field-value'>
+      <dt><%= Establishment.human_attribute_name(:trade_name) %>:</dt>
+      <dd><%= @establishment.trade_name %></dd>
+    </div>
+    <div class='field-value'>
+      <dt><%= Establishment.human_attribute_name(:legal_name) %>:</dt>
+      <dd><%= @establishment.legal_name %></dd>
+    </div>
+     <div class='field-value'>
+      <dt><%= Establishment.human_attribute_name(:phone_number) %>:</dt>
+      <dd><%= @establishment.phone_number %></dd>
+    </div>
+    <div class='field-value'>
+      <dt><%= Establishment.human_attribute_name(:cnpj) %>:</dt>
+      <dd><%= @establishment.cnpj %></dd>
+    </div>
+    <div class='field-value'>
+      <dt><%= Establishment.human_attribute_name(:email) %>:</dt>
+      <dd><%= @establishment.email %></dd>
+    </div>
+    <div class='field-value'>
+      <dt><%= Establishment.human_attribute_name(:code) %>:</dt>
+      <dd><%= @establishment.code %></dd>
+    </div>
+    <div class='field-value'>
+      <dt><%= Establishment.human_attribute_name(:address) %>:</dt>
+      <dd><%= @establishment.address %></dd>
+    </div>
+  </dl>
+</div>
+<div class='general-panel'>
+  <h2><%= Establishment.human_attribute_name(:operating_hours) %></h2>
+  <dl class='list-dl'>
+    <% @establishment.operating_hours.each do |day| %>
+      <% if day.is_closed == true %>
+        <div class='field-value'>
+          <dt><%= I18n.t(day.week_day) %>:</dt>
+          <dd>Fechado</dd>
+        </div>
+      <% else %>
+        <div class='field-value'>
+          <dd><%= I18n.t(day.week_day) %>:</dd>
+          <dd><%= day.start_time.strftime("%H:%M") %> - <%= day.end_time.strftime("%H:%M") %> </dd>
+        </div>
+      <% end %>
+    <% end %>
+  </dl>
+</div>
+
+<div class='btn-container'>
+  <%= link_to 'Editar informações', edit_establishment_path(@establishment.id), class: 'btn btn-primary'
+   %>
+</div>

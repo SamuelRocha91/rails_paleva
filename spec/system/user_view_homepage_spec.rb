@@ -43,7 +43,7 @@ describe "Usuário acessa a aplicação" do
     expect(page).to have_content 'Você precisa criar um estabelecimento antes de continuar.' 
   end
 
-  it 'com estabelecimento criado, acessa página inicial' do
+  it 'com estabelecimento criado e sem cardápio cadastrado' do
     # Arrange
     user = User.create!(
       first_name: 'Samuel', 
@@ -84,18 +84,7 @@ describe "Usuário acessa a aplicação" do
       expect(page).to have_link 'Marcadores'
       expect(page).to have_content 'Samuel Rocha - samuel@hotmail.com'  
     end
-    expect(page).to have_content 'Nome Social: Samsumg'
-    expect(page).to have_content "Código: #{establishment.code}"
-    expect(page).to have_content 'CNPJ: 56.924.048/0001-40'
-    expect(page).to have_content 'Telefone: (71) 99259-4946'
-    expect(page).to have_content 'Endereço: Rua das Alamedas avenidas'
-    expect(page).to have_content 'Segunda: Fechado'
-    expect(page).to have_content 'Terça: Fechado'
-    expect(page).to have_content 'Quarta: Fechado'
-    expect(page).to have_content 'Quinta: Fechado'
-    expect(page).to have_content 'Sexta: Fechado'
-    expect(page).to have_content 'Sábado: 08:00 - 22:00'
-    expect(page).to have_content 'Domingo: Fechado'
-    expect(page).to have_link 'Editar informações'  
+    expect(page).to have_content 'Não existem ainda cardápios cadastrados'
+    expect(page).to have_button 'Cadastrar cardápio'
   end
 end
