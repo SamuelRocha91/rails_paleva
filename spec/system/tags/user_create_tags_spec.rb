@@ -34,6 +34,7 @@ describe "Usuário acessa página de marcadores" do
     # Act
     login_as user
     visit root_path
+    click_on 'Meus Pratos'
     click_on 'Marcadores'
     # Assert
     expect(page).to have_content 'Marcadores Disponíveis'
@@ -66,6 +67,7 @@ describe "Usuário acessa página de marcadores" do
     # Act
     login_as user
     visit root_path
+    click_on 'Meus Pratos'
     click_on 'Marcadores'
 
     # Assert
@@ -95,6 +97,7 @@ describe "Usuário acessa página de marcadores" do
     # Act
     login_as user
     visit root_path
+    click_on 'Meus Pratos'
     click_on 'Marcadores'
     click_on 'Cadastrar novo marcador'
 
@@ -126,6 +129,7 @@ describe "Usuário acessa página de marcadores" do
     # Act
     login_as user
     visit root_path
+    click_on 'Meus Pratos'
     click_on 'Marcadores'
     click_on 'Cadastrar novo marcador'
     click_on 'Salvar'
@@ -156,6 +160,7 @@ describe "Usuário acessa página de marcadores" do
     # Act
     login_as user
     visit root_path
+    click_on 'Meus Pratos'
     click_on 'Marcadores'
     click_on 'Cadastrar novo marcador'
     fill_in 'Nome do marcador',	with: 'Apimentado' 
