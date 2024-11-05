@@ -44,7 +44,7 @@ describe 'Usuário acessa página de estabelecimento' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meu Restaurante'
+    click_on establishment.trade_name
 
     # Assert
     expect(page).to have_content 'Nome Social: Samsung'
