@@ -73,7 +73,7 @@ describe 'Usuário acessa formulário de edição de oferta prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Editar Preço'
     fill_in 'Preço',	with: '' 
@@ -117,7 +117,7 @@ describe 'Usuário acessa formulário de edição de oferta prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Editar Preço'
     fill_in 'Preço', with: '50' 

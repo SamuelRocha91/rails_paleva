@@ -45,7 +45,7 @@ describe 'Usuário vê seus próprios pratos' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
 
     # Assert
@@ -143,7 +143,7 @@ describe 'Usuário vê seus próprios pratos' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
 
     # Assert
     expect(page).to have_content 'Nome: lasagna'

@@ -69,7 +69,7 @@ describe 'Usuário acessa formulário de criar pratos' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'Cadastrar novo prato'
     # Assert
     expect(current_path).to eq new_establishment_dish_path establishment.id
@@ -113,7 +113,7 @@ describe 'Usuário acessa formulário de criar pratos' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'Cadastrar novo prato'
     fill_in 'Nome',	with: 'Lasagna'
     fill_in 'Quantidade de calorias',	with: '185'
@@ -155,7 +155,7 @@ describe 'Usuário acessa formulário de criar pratos' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'Cadastrar novo prato'
     fill_in 'Nome',	with: 'Lasagna'
     fill_in 'Descrição',	with: 'pao com ovo'

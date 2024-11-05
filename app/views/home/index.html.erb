@@ -1,0 +1,7 @@
+<h1 class='title'>Cardápios</h1>
+<div class='d-flex justify-content-center mb-3 mt-4 gap-2'>
+  <%= link_to 'Cadastrar cardápio', root_path, class: 'btn btn-dark' %>
+</div>
+<% if @menu.empty? %>
+  <p class='title'>Não existem ainda cardápios cadastrados</p>
+<% end %>

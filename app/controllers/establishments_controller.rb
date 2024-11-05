@@ -4,7 +4,7 @@ class EstablishmentsController < ApplicationController
   before_action :set_establishment, only: [:edit, :update]
 
   def index
-    @establishment = Establishment.find_by(user: current_user)
+    @establishment = current_user.establishment
   end
   def new
     @establishment = Establishment.new

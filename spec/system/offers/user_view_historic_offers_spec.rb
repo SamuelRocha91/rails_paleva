@@ -55,7 +55,7 @@ describe 'Usuário acessa página de detalhes de item' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
 
     # Assert

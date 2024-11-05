@@ -79,12 +79,14 @@ describe "Usuário acessa a aplicação" do
     visit root_path
     # Assert
     within('header') do
-      expect(page).to have_link 'Meus Pratos'
+      expect(page).to have_link 'Pratos'
       expect(page).to have_link 'Bebidas'
-      expect(page).to have_link 'Marcadores'
+      expect(page).to have_link 'Cardápio'
+      expect(page).to have_link "#{establishment.trade_name}"
       expect(page).to have_content 'Samuel Rocha - samuel@hotmail.com'  
     end
+    expect(page).to have_content 'Cardápios'  
     expect(page).to have_content 'Não existem ainda cardápios cadastrados'
-    expect(page).to have_button 'Cadastrar cardápio'
+    expect(page).to have_link 'Cadastrar cardápio'
   end
 end
