@@ -4,4 +4,20 @@ class MenusController < ApplicationController
   def new
     @menu = Menu.new
   end
+
+  def create
+    @menu = Menu.new(establishment: current_user.establishment, name: menu_params[:name])
+    if @menu.save
+      p @menu
+      redirect_to @menu, notice: 'Cardápio cadastrado com sucesso'
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def menu_params
+    params.require(:menu).permit(:name)
+  end
 end
