@@ -15,9 +15,9 @@ class MenuItemsController < ApplicationController
 
   def create
     @menu_item = MenuItem.new(menu_item_params)
-    p @menu_item 
     if @menu_item.save
-      redirect_to menu_path params[:menu_id], notice: 'Item adicionado com sucesso'
+      flash[:notice] = 'Item adicionado com sucesso'
+      redirect_to menu_path params[:menu_id]
     else
       render :new
     end
