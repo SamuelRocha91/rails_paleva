@@ -6,10 +6,12 @@
   <p class='title'>Não existem ainda cardápios cadastrados</p>
 <% else %>
   <% @menus.each do |menu| %>
-    <h3><%= menu.name %></h3>
+    <%= link_to menu_path(menu) do %>
+      <h3><%= menu.name %></h3>
+    <% end %>
     <% menu.menu_items.each do |menu_item| %>
       <% if menu_item.item_type == 'Dish' %>
-        <p>Prato: <%= menu_item.item.name %></p>
+        <p>Prato: <%=  menu_item.item.name  %></p>
       <% elsif menu_item.item_type == 'Beverage' %>
         <p>Bebida: <%= menu_item.item.name %></p>
       <% end %>

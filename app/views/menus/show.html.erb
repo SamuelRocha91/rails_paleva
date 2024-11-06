@@ -1,4 +1,12 @@
 <h1>Cardápio: <%= @menu.name %><h1>
 
-<%= link_to 'Adicionar Prato'%>
-<%= link_to 'Adicionar Bebida'%>
+<% @menu.menu_items.each do |menu_item| %>
+  <% if menu_item.item_type == 'Dish' %>
+    <p>Prato: <%=  menu_item.item.name  %></p>
+  <% elsif menu_item.item_type == 'Beverage' %>
+    <p>Bebida: <%= menu_item.item.name %></p>
+  <% end %>
+<% end %>
+
+<%= link_to 'Adicionar Prato', new_menu_menu_item_path(@menu, type: 'dish') %>
+<%= link_to 'Adicionar Bebida', new_menu_menu_item_path(@menu, tipo: 'beverage') %>
