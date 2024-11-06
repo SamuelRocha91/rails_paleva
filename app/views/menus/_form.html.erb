@@ -1,0 +1,7 @@
+<%= form_with(model: @menu, class: 'form-edit') do |f| %>
+  <div class='mb-3'>
+    <%= f.label :name, class: 'form-label' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Salvar'%>
+<% end %>
