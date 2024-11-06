@@ -100,6 +100,5 @@ describe 'Usuário acessa formulário de cadastro de cardápio' do
     expect(page).to have_content 'Café da manhã'
     expect(page).to have_link 'Adicionar Prato'
     expect(page).to have_content 'Adicionar Bebida'
-
   end
 end
