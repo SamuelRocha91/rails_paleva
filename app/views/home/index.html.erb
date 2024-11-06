@@ -2,6 +2,17 @@
 <div class='d-flex justify-content-center mb-3 mt-4 gap-2'>
   <%= link_to 'Cadastrar cardápio', root_path, class: 'btn btn-dark' %>
 </div>
-<% if @menu.empty? %>
+<% if @menus.empty? %>
   <p class='title'>Não existem ainda cardápios cadastrados</p>
+<% else %>
+  <% @menus.each do |menu| %>
+    <h3><%= menu.name %></h3>
+    <% menu.menu_items.each do |menu_item| %>
+      <% if menu_item.item_type == 'Dish' %>
+        <p>Prato: <%= menu_item.item.name %></p>
+      <% elsif menu_item.item_type == 'Beverage' %>
+        <p>Bebida: <%= menu_item.item.name %></p>
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>
