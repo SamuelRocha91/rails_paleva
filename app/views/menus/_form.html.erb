@@ -1,7 +1,7 @@
 <%= form_with(model: @menu, class: 'form-edit') do |f| %>
-  <div class='mb-3'>
+  <div class='mb-3 mt-5'>
     <%= f.label :name, class: 'form-label' %>
-    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'ex: Café da manhã' %>
   </div>
-  <%= f.submit 'Salvar'%>
+  <%= f.submit 'Salvar', class: 'btn btn-primary'%>
 <% end %>
