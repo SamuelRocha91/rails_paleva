@@ -4,12 +4,19 @@ class MenuItemsController < ApplicationController
   def new
     @menu = Menu.find(params[:menu_id])
     @menu_item = MenuItem.new
+    existing_items = @menu.menu_items
     if params[:type] == 'dish'
       @type = 'Dish'
-      @items = current_user.establishment.dishes
+      @items = current_user.establishment.dishes.reject do |dish|
+        existing_items.any? { |item| dish.id == item.id && 
+                                          item.type == 'Dish'}
+      end
     else
       @type = 'Beverage'
-      @items = current_user.establishment.beverages
+      @items = current_user.establishment.beverages.reject do |beverage|
+        existing_items.any? { |item| item.item_id == beverage.id &&
+                                      item.item_type == 'Beverage' }
+      end
     end
   end
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Menu, type: :model do
   context 'Validações' do
-    it 'Presença pbrigatória de #name' do
+    it 'Presença obrigatória de #name' do
       # Arrange
       user = User.create!(
         first_name: 'Samuel', 
