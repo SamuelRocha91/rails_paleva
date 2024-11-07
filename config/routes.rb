@@ -37,7 +37,10 @@ Rails.application.routes.draw do
   end
 
   resources :tags, only: [:index, :create, :new]
+
   resources :menus, only: [:new, :create, :show] do
     resources :menu_items, only: [:new, :create]
   end
+
+  resources :orders, only: [:new, :create]
 end
