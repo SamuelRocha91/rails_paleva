@@ -5,8 +5,10 @@ Rails.application.routes.draw do
 
   get 'search', to: 'search#search'
 
-  resources :establishments, only: [:new, :create, :edit, :update] do
+  resources :establishments, only: [:index, :new, :create, :edit, :update] do
+  
     resources :dishes, only: [:new, :create, :index, :edit, :update, :show, :destroy]
+  
     resources :beverages, only: [:index, :new, :create, :edit, :update, :show, :destroy]
   end
 
@@ -35,4 +37,7 @@ Rails.application.routes.draw do
   end
 
   resources :tags, only: [:index, :create, :new]
+  resources :menus, only: [:new, :create, :show] do
+    resources :menu_items, only: [:new, :create]
+  end
 end

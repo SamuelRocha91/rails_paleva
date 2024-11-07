@@ -1,8 +1,10 @@
 <h1 class='title'>Menu de pratos</h1>
 
-<div class='title mb-3'>
+<div class='d-flex justify-content-center mb-3 mt-4 gap-2'>
+  <%= link_to 'Marcadores', tags_path, class: 'btn btn-outline-secondary' %>
   <%= link_to 'Cadastrar novo prato', new_establishment_dish_path(@establishment.id), class:'btn btn-dark' %>
 </div>
+
 <div class='card-container'>
   <% @dishes.each do |dish| %>
     <div class='card-single mb-3'>

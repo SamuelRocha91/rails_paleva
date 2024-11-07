@@ -43,7 +43,7 @@ describe "Usuário acessa a aplicação" do
     expect(page).to have_content 'Você precisa criar um estabelecimento antes de continuar.' 
   end
 
-  it 'com estabelecimento criado, acessa página inicial' do
+  it 'com estabelecimento criado e sem cardápio cadastrado' do
     # Arrange
     user = User.create!(
       first_name: 'Samuel', 
@@ -79,23 +79,73 @@ describe "Usuário acessa a aplicação" do
     visit root_path
     # Assert
     within('header') do
-      expect(page).to have_link 'Meus Pratos'
+      expect(page).to have_link 'Pratos'
       expect(page).to have_link 'Bebidas'
-      expect(page).to have_link 'Marcadores'
+      expect(page).to have_link 'Cardápios'
+      expect(page).to have_link "#{establishment.trade_name}"
       expect(page).to have_content 'Samuel Rocha - samuel@hotmail.com'  
     end
-    expect(page).to have_content 'Nome Social: Samsumg'
-    expect(page).to have_content "Código: #{establishment.code}"
-    expect(page).to have_content 'CNPJ: 56.924.048/0001-40'
-    expect(page).to have_content 'Telefone: (71) 99259-4946'
-    expect(page).to have_content 'Endereço: Rua das Alamedas avenidas'
-    expect(page).to have_content 'Segunda: Fechado'
-    expect(page).to have_content 'Terça: Fechado'
-    expect(page).to have_content 'Quarta: Fechado'
-    expect(page).to have_content 'Quinta: Fechado'
-    expect(page).to have_content 'Sexta: Fechado'
-    expect(page).to have_content 'Sábado: 08:00 - 22:00'
-    expect(page).to have_content 'Domingo: Fechado'
-    expect(page).to have_link 'Editar informações'  
+    expect(page).to have_content 'Cardápios'  
+    expect(page).to have_content 'Não existem ainda cardápios cadastrados'
+    expect(page).to have_link 'Cadastrar cardápio'
+  end
+
+  it 'com estabelecimento criado e cardápios cadastrados' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      user: user
+    )
+    
+    dish = Dish.create!(
+      name: 'Lasagna', 
+      description: 'queijo, presunto e molho', 
+      calories: '185', 
+      establishment: establishment
+    )
+
+    dish_two = Dish.create!(
+      name: 'Macarrão', 
+      description: 'ao dente', 
+      calories: '15', 
+      establishment: establishment
+    )
+
+    beverage = Beverage.create!(
+      name: 'Cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
+
+    menu = Menu.create!(name: 'Café da manhã', establishment: establishment)
+    MenuItem.create!(menu: menu, item: beverage)
+    MenuItem.create!(menu: menu, item: dish)
+    MenuItem.create!(menu: menu, item: dish_two)
+
+    # Act
+    login_as user
+    visit root_path
+    # Assert
+    expect(page).to have_content 'Cardápios'  
+    expect(page).not_to have_content 'Não existem ainda cardápios cadastrados'
+    expect(page).to have_content 'Café da manhã'
+    expect(page).to have_content 'Cachaça'
+    expect(page).to have_content 'Macarrão'
+    expect(page).to have_content 'Lasagna'
   end
 end

@@ -35,6 +35,7 @@ describe 'Usuário edita seu restabelecimento' do
     # Act
     login_as user
     visit root_path
+    click_on establishment.trade_name
     click_on 'Editar informações'
     # Assert
     expect(current_path).to eq edit_establishment_path establishment.id
@@ -89,6 +90,7 @@ describe 'Usuário edita seu restabelecimento' do
     # Act
     login_as user
     visit root_path
+    click_on establishment.trade_name
     click_on 'Editar informações'
     fill_in 'Endereço',	with: ''
     fill_in 'Telefone',	with: ''
@@ -131,6 +133,7 @@ describe 'Usuário edita seu restabelecimento' do
     # Act
     login_as user
     visit root_path
+    click_on establishment.trade_name
     click_on 'Editar informações'
     fill_in 'Endereço',	with: 'Rua nova das novidades'
     fill_in 'Telefone',	with: '85992594946'

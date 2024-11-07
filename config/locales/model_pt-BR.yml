@@ -48,4 +48,6 @@ pt-BR:
         price: Preço
       tag:
         name: Nome do marcador
+      menu:
+        name: Nome do Cardápio
 

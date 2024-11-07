@@ -1,0 +1,12 @@
+<h1>Adicionando item ao Cardápio <%= @menu.name %></h1>
+
+<%= form_with(model: [@menu, @menu_item], class: 'form-edit') do |f| %>
+  <%= f.hidden_field :menu_id, value: @menu.id %>
+  <%= f.hidden_field :item_type, value: @type %>
+
+  <div class='mb-3 mt-5'>
+    <%= f.label :item_id, class: 'form-label' %>
+    <%= f.collection_select :item_id, @items, :id, :name %>
+  </div>
+  <%= f.submit 'Salvar', class: 'btn btn-primary'%>
+<% end %>

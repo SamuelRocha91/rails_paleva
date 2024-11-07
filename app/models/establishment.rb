@@ -3,6 +3,7 @@ class Establishment < ApplicationRecord
              :phone_number, :email, :code, presence: true
 
   before_validation :generate_code, on: :create
+  has_many :menus
   belongs_to :user
   has_many :operating_hours, dependent: :destroy
   has_many :dishes

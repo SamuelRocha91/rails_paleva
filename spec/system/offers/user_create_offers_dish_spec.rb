@@ -61,7 +61,7 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Cadastrar porção'
 
@@ -101,7 +101,7 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Cadastrar porção'
     fill_in 'Detalhes da porção',	with: 'Alimenta 50 pessoas'
@@ -139,7 +139,7 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Cadastrar porção'
     fill_in 'Nome da porção',	with: 'Giga gante'
@@ -190,7 +190,7 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Cadastrar porção'
     fill_in 'Nome da porção',	with: 'media'
@@ -238,7 +238,7 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Cadastrar porção'
     fill_in 'Nome da porção',	with: 'Porção Giga gante'
@@ -293,7 +293,7 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'macarronada'
     click_on 'Cadastrar porção'
     fill_in 'Nome da porção',	with: 'Porção Giga gante'

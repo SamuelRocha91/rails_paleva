@@ -74,7 +74,7 @@ describe 'Usuário acessa página para desativar oferta de um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     find('button.Porção-Giga-gante').click
     # Assert

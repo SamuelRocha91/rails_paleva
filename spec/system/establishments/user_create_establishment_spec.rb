@@ -169,7 +169,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
   
     click_on 'Salvar'
     # Assert
-    expect(current_path).to eq root_path
+    expect(current_path).to eq establishments_path
     expect(page).to have_content 'Cadastro de restaurante efetuado com sucesso!'
   end
 

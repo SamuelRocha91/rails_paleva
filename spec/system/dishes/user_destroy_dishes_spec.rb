@@ -70,7 +70,7 @@ describe 'Usuário deleta um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Excluir prato'
     # Assert

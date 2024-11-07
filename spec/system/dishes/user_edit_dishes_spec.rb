@@ -63,7 +63,7 @@ describe 'Usuário edita um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     # Assert
     expect(page).to have_content 'Nome: lasagna'
@@ -102,7 +102,7 @@ describe 'Usuário edita um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Desativar Prato'
     # Assert
@@ -143,7 +143,7 @@ describe 'Usuário edita um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Ativar Prato'
     # Assert
@@ -184,7 +184,7 @@ describe 'Usuário edita um prato' do
     # Act
     login_as user
     visit root_path
-    click_on 'Meus Pratos'
+    click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Editar prato'
     fill_in 'Nome',	with: 'Pão com ovo'

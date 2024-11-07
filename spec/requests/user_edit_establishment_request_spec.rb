@@ -52,6 +52,6 @@ describe 'Usuário edita um restaurante' do
     patch(establishment_path(establishment.id), 
             params: { establishment: { phone_number: '85992554946'}})
     # Assert
-    expect(response).to redirect_to(root_path)
+    expect(response).to redirect_to(establishments_path)
   end
 end
