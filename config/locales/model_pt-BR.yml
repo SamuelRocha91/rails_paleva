@@ -9,6 +9,7 @@ pt-BR:
      beverage:
        one: Bebida
        other: Bebidas
+     customer: Clientes
     attributes:
       establishment:
         trade_name: Nome Social
@@ -50,4 +51,11 @@ pt-BR:
         name: Nome do marcador
       menu:
         name: Nome do Cardápio
+      order:
+        customer_id: Cliente
+      customer:
+        name: Nome do cliente
+        phone_number: Telefone
+        email: E-mail
+        cpf: CPF
 

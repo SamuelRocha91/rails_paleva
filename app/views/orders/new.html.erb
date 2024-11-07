@@ -1,0 +1,24 @@
+<%= form_with(model: @order, class: 'form-edit') do |f| %>
+  <%= f.fields_for :customer do |c| %>
+    <div class="field mb-3">
+      <%= c.label :name %><br />
+      <%= c.text_field :name %>
+    </div>
+  
+    <div class="field mb-3">
+      <%= c.label :cpf %><br />
+      <%= c.text_field :cpf %>
+    </div>
+  
+    <div class="field mb-3">
+      <%= c.label :email %><br />
+      <%= c.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="field mb-3">
+      <%= c.label :phone_number %><br />
+      <%= c.email_field :phone_number %>
+    </div>
+  <% end %>
+  <%= f.submit 'Salvar', class:'btn btn-primary'%>
+<% end %>
