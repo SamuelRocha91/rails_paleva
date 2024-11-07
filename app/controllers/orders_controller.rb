@@ -20,6 +20,9 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def new_offer
+  end
+
   private
 
   def order_params

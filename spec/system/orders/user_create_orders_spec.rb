@@ -92,6 +92,7 @@ describe 'Usuário cadastra um pedido' do
       address: 'Rua das Alamedas avenidas',
       user: user
     )
+
     # Act
     login_as user
     visit root_path

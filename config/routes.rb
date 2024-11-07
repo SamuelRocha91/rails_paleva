@@ -42,5 +42,7 @@ Rails.application.routes.draw do
     resources :menu_items, only: [:new, :create]
   end
 
-  resources :orders, only: [:new, :create, :show]
+  resources :orders, only: [:new, :create, :show] do
+    get 'offer/new', on: :member, to: 'orders#new_offer'
+  end
 end
