@@ -5,4 +5,6 @@ class Menu < ApplicationRecord
   has_many :beverages, through: :menu_items, source: :item, source_type: 'Beverage'
 
   validates :name, presence: true, length: { minimum: 3}
+  validates :name, uniqueness: { scope: :establishment_id }
+
 end
