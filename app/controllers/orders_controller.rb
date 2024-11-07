@@ -10,10 +10,14 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       redirect_to @order, 
-                    notice: 'Cliente vinculado ao pedido'
+                    notice: 'Pedido aberto com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @order = Order.find(params[:id])
   end
 
   private

@@ -1,0 +1,36 @@
+ <h1>Pedido</h1>
+
+ 
+<div>
+  <div>
+    <h3>Dados do cliente<h3>
+    <% if @order.customer.name.present? %>
+      <div class='field-value'>
+        <dt><%= Customer.human_attribute_name(:name) %>:</dt>
+        <dd><%= @order.customer.name %></dd>
+      </div>
+    <% end %>
+
+    <% if @order.customer.phone_number.present? %>
+      <div class='field-value'>
+        <dt><%= Customer.human_attribute_name(:phone_number) %>:</dt>
+        <dd><%= @order.customer.phone_number %></dd>
+      </div>
+    <% end %>
+
+    <% if @order.customer.email.present? %>
+      <div class='field-value'>
+        <dt><%= Customer.human_attribute_name(:email) %>:</dt>
+        <dd><%= @order.customer.email %></dd>
+      </div>
+    <% end %>
+
+    <% if @order.customer.cpf.present? %>
+      <div class='field-value'>
+        <dt><%= Customer.human_attribute_name(:cpf) %>:</dt>
+        <dd><%= @order.customer.cpf %></dd>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to 'Adicionar Item', root_path %>
+</div>
