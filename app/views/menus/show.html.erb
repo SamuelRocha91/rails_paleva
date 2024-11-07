@@ -3,8 +3,24 @@
 <% @menu.menu_items.each do |menu_item| %>
   <% if menu_item.item_type == 'Dish' %>
     <p>Prato: <%=  menu_item.item.name  %></p>
+    <% menu_item.item.portions.each do |portion| %>
+      <% if portion.active %>
+        <div class='field-value'>
+          <dt>Porção <%= portion.format.name %>:</dt>
+          <dd class='active'> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
+        </div>
+      <% end %>
+    <% end %>
   <% elsif menu_item.item_type == 'Beverage' %>
     <p>Bebida: <%= menu_item.item.name %></p>
+    <% menu_item.item.volumes.each do |volume| %>
+      <% if volume.active %>
+        <div class='field-value'>
+          <dt>Volume <%= volume.format.name %>:</dt>
+          <dd class='active'> <%= number_to_currency(volume.price, unit: "R$", separator: ",", precision: 2) %></dd>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
 
