@@ -42,5 +42,5 @@ Rails.application.routes.draw do
     resources :menu_items, only: [:new, :create]
   end
 
-  resources :orders, only: [:new, :create]
+  resources :orders, only: [:new, :create, :show]
 end

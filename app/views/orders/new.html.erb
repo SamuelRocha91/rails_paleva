@@ -1,3 +1,17 @@
+<h1>Cadastro de novo pedido</h1>
+
+
+<% if @order.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @order.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
 <%= form_with(model: @order, class: 'form-edit') do |f| %>
   <%= f.fields_for :customer do |c| %>
     <div class="field mb-3">
