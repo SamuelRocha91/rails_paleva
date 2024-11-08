@@ -5,9 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validate :is_valid_cpf? 
-  validates :cpf, :first_name,:last_name, presence: true
+  validates :cpf, :first_name, :last_name, presence: true
   validates :cpf, uniqueness: true
   has_one :establishment
+
 
   def description
     "#{first_name} #{last_name} - #{email}"

@@ -1,4 +1,4 @@
-<h1>Cardápio: <%= @menu.name %><h1>
+<h1>Cardápio: <%= @menu.name %></h1>
 
 <% @menu.menu_items.each do |menu_item| %>
   <% if menu_item.item_type == 'Dish' %>
@@ -8,6 +8,7 @@
         <div class='field-value'>
           <dt>Porção <%= portion.format.name %>:</dt>
           <dd class='active'> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
+          <%= link_to 'Adicionar ao pedido', new_item_to_order_orders_path(portion.id), class: "btn btn-primary #{portion.format.name.gsub(' ', '-')}-#{menu_item.item.name}"%> 
         </div>
       <% end %>
     <% end %>
@@ -18,11 +19,14 @@
         <div class='field-value'>
           <dt>Volume <%= volume.format.name %>:</dt>
           <dd class='active'> <%= number_to_currency(volume.price, unit: "R$", separator: ",", precision: 2) %></dd>
+          <%= link_to 'Adicionar ao pedido', new_item_to_order_orders_path(volume.id), class: "btn btn-primary #{volume.format.name.gsub(' ', '-')}-#{menu_item.item.name}-" %> 
         </div>
       <% end %>
     <% end %>
   <% end %>
 <% end %>
 
-<%= link_to 'Adicionar Prato', new_menu_menu_item_path(@menu, type: 'dish') %>
-<%= link_to 'Adicionar Bebida', new_menu_menu_item_path(@menu, tipo: 'beverage') %>
+<div class="menu-actions">
+  <%= link_to 'Adicionar Prato ao Menu', new_menu_menu_item_path(@menu, type: 'dish'), class: 'btn btn-secondary' %>
+  <%= link_to 'Adicionar Bebida ao Menu', new_menu_menu_item_path(@menu, type: 'beverage'), class: 'btn btn-secondary' %>
+</div>

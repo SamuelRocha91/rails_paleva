@@ -121,7 +121,7 @@ RSpec.describe Menu, type: :model do
         email: 'dam@gmail.com', 
         trade_name: 'Apple', 
         legal_name: 'Apple LTDA', 
-        cnpj: CNPJ.generate,
+        cnpj: '19047952000199',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
         user: user_two

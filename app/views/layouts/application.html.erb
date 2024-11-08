@@ -7,7 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= javascript_importmap_tags %>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <%= stylesheet_link_tag "application" %>
   </head>
 
@@ -18,6 +18,7 @@
           <nav class='nav-item gap-5'>
             <%= link_to "#{current_user.establishment.trade_name}", establishments_path, class:'color-dark'%>
             <div class='d-flex gap-2'>
+              <%= link_to 'Pedidos', orders_path, class:'nav-link' %>
               <%= link_to 'Cardápios', root_path, class:'nav-link' %>
               <%= link_to 'Pratos', establishment_dishes_path(current_user.establishment.id), class:'nav-link' %>
               <%= link_to 'Bebidas', establishment_beverages_path(current_user.establishment.id), class:'nav-link' %>
@@ -40,6 +41,9 @@
         <% end %>   
         <div class='data-user'>
           <%= current_user.description %>
+          <%= link_to preview_order_path, class: 'icon-preview' do %>
+            <i class="bi bi-cart4 custom-icon"></i>
+         <% end %>
           <%= button_to 'Sair', destroy_user_session_path, method: :delete, class:'btn btn-danger' %>
         </div>
       <% end %>   

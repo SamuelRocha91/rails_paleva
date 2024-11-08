@@ -9,6 +9,7 @@ pt-BR:
      beverage:
        one: Bebida
        other: Bebidas
+     customer: Clientes
     attributes:
       establishment:
         trade_name: Nome Social
@@ -50,4 +51,20 @@ pt-BR:
         name: Nome do marcador
       menu:
         name: Nome do Cardápio
+      order:
+        customer_id: Cliente
+        status: Status
+      customer:
+        name: Nome do cliente
+        phone_number: Telefone
+        email: E-mail
+        cpf: CPF
+    enums: 
+      order: 
+        status: 
+          pending_kitchen_confirmation: Aguardando confirmação da cozinha
+          in_preparation: Em preparação
+          canceled: Cancelado
+          ready: Pronto para entrega
+          delivered: Entregue
 
