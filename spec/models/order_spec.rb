@@ -507,5 +507,35 @@ RSpec.describe Order, type: :model do
       # Assert
       expect(order.code.length).to eq 8
     end
+
+    it 'Código alfanumérico não é atualizado com atualização de pedido' do
+      # Arrange
+      user = User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572'
+      )
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+        user: user
+      )
+
+      customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
+
+      order = Order.create!(establishment: establishment, customer: customer)
+      initial_code = order.code
+      # Act
+      order.in_preparation!
+
+      # Assert
+      expect(initial_code).to eq order.code
+    end
   end
 end
