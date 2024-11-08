@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   get 'orders/preview', to: 'orders#preview_order', as: 'preview_order'
 
   resources :establishments, only: [:index, :new, :create, :edit, :update] do
-    get 'employee/new', on: :member, to: 'establishments#pre_registration_employee'
-  
+    get 'user/new', on: :member, to: 'establishments#form_registration_user'
+    post 'user/new', on: :member, to: 'establishments#pre_registration_user'
+
     resources :dishes, only: [:new, :create, :index, :edit, :update, :show, :destroy]
   
     resources :beverages, only: [:index, :new, :create, :edit, :update, :show, :destroy]

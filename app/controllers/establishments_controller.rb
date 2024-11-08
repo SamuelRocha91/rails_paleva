@@ -36,7 +36,22 @@ class EstablishmentsController < ApplicationController
     end
   end
 
-  def pre_registration_employee
+  def form_registration_user
+    @establishment = current_user.establishment
+  end
+
+  def pre_registration_user
+    @establishment = current_user.establishment
+    user = TemporaryUser.new(
+      cpf: params[:cpf], 
+      email: params[:email],
+      establishment: @establishment
+    )
+    if user.save
+      redirect_to establishment_path, notice: 'Pré-cadastro realizado com sucesso'
+    else 
+      render :form_registration_user
+    end
   end
   
   private
