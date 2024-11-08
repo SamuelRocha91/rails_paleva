@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: [:in_preparation]
+  before_action :set_order, only: [:in_preparation, :ready]
   
   def index
     @orders = Order.where(establishment: current_user.establishment)
@@ -63,6 +63,12 @@ class OrdersController < ApplicationController
 
   def in_preparation
     if @order.in_preparation!
+      redirect_to orders_path, notice: 'Status do Pedido atualizado com sucesso'
+    end
+  end
+
+  def ready
+    if @order.ready!
       redirect_to orders_path, notice: 'Status do Pedido atualizado com sucesso'
     end
   end

@@ -53,6 +53,8 @@ Rails.application.routes.draw do
     post 'add_item/:portion_id', to: 'orders#add_item', as: 'add_item_to_order', on: :collection
     post 'canceled', on: :member
     post 'in-preparation', on: :member
+    post 'ready', on: :member
+
   end
 
 end
