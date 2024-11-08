@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   
+  def index
+    @orders = Order.where(establishment: current_user.establishment)
+  end
   def new
     @order = Order.new
     @order.build_customer
@@ -16,6 +19,7 @@ class OrdersController < ApplicationController
         portion = Offer.find(item["portion_id"])
         OrderItem.create!(offer: portion, note: item["observation"], order: @order)
       end
+      session[:order_items] = nil
       redirect_to root_path, 
                     notice: 'Pedido realizado com sucesso'
     else

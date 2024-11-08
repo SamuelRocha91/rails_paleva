@@ -1,0 +1,28 @@
+<table class='table table-dark table-striped caption-top'>
+  <caption class='title'>
+    Acompanhamento de pedidos
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Pedido</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Data</th>
+      <th scope="col">Preço</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <% if @orders.present? %>
+    <% @orders.each do |order| %>
+      <tbody>
+        <tr>
+          <td><%= order.code %></td>
+          <td><%= order.customer.name %></td>
+          <td><%= order.created_at.strftime("%d-%m-%Y") %></td>
+          <% total = order.order_items.reduce(0) { |acc, curr|  acc + curr.offer.price } %>
+          <td><%= number_to_currency(total, unit: "R$", separator: ",", precision: 2) %></td>
+          <td><%= I18n.t("activerecord.enums.order.status.#{order.status}") %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  <% end %>
+</table>

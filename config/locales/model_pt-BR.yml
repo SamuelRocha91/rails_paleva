@@ -53,9 +53,18 @@ pt-BR:
         name: Nome do Cardápio
       order:
         customer_id: Cliente
+        status: Status
       customer:
         name: Nome do cliente
         phone_number: Telefone
         email: E-mail
         cpf: CPF
+    enums: 
+      order: 
+        status: 
+          pending_kitchen_confirmation: Aguardando confirmação da cozinha
+          in_preparation: Em preparação
+          canceled: Cancelado
+          ready: Pronto
+          delivered: Entregue
 
