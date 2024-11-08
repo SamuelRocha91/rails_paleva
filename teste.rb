@@ -1,4 +1,14 @@
-  it 'com estabelecimento criado, acessa página inicial' do
+require 'rails_helper'
+
+describe 'Usuário cadastra um pedido' do
+  it 'e deve estar autenticado' do
+    # ACT
+    visit new_order_path
+    # Assert
+    expect(current_path).to eq new_user_session_path  
+  end
+
+  it 'e adiciona itens ao pedido' do
     # Arrange
     user = User.create!(
       first_name: 'Samuel', 
@@ -7,49 +17,131 @@
       password: '12345678910111',  
       cpf: '22611819572'
     )
-    establishment = Establishment.new(
-      email:'sam@gmail.com', 
-      trade_name: 'Samsumg', 
-      legal_name: 'Samsumg LTDA', 
+
+    Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas' 
-    )
-
-    operating_hour = []
-    6.times { |i| operating_hour << OperatingHour
-                                      .new(week_day: i, is_closed: true)}
-    operating_hour <<  OperatingHour.new(
-      week_day: 6, 
-      start_time: Time.zone.parse('08:00'), 
-      end_time: Time.zone.parse('22:00'), 
-      is_closed: false
+      address: 'Rua das Alamedas avenidas',
+      user: user
     )
     
-    establishment.operating_hours = operating_hour
-    establishment.user = user
-    establishment.save!
     # Act
     login_as user
     visit root_path
+    click_on 'Registrar pedido'
+
     # Assert
-    within('header') do
-      expect(page).to have_link 'Meus Pratos'
-      expect(page).to have_link 'Bebidas'
-      expect(page).to have_link 'Marcadores'
-      expect(page).to have_content 'Samuel Rocha - samuel@hotmail.com'  
-    end
-    expect(page).to have_content 'Nome Social: Samsumg'
-    expect(page).to have_content "Código: #{establishment.code}"
-    expect(page).to have_content 'CNPJ: 56.924.048/0001-40'
-    expect(page).to have_content 'Telefone: (71) 99259-4946'
-    expect(page).to have_content 'Endereço: Rua das Alamedas avenidas'
-    expect(page).to have_content 'Segunda: Fechado'
-    expect(page).to have_content 'Terça: Fechado'
-    expect(page).to have_content 'Quarta: Fechado'
-    expect(page).to have_content 'Quinta: Fechado'
-    expect(page).to have_content 'Sexta: Fechado'
-    expect(page).to have_content 'Sábado: 08:00 - 22:00'
-    expect(page).to have_content 'Domingo: Fechado'
-    expect(page).to have_link 'Editar informações'  
+    expect(page).to have_content 'Cadastro de novo pedido'
+    expect(page).to have_content 'E-mail'
+    expect(page).to have_content 'CPF'
+    expect(page).to have_content 'Telefone'
+    expect(page).to have_content 'Nome do cliente'
+    expect(page).to have_button 'Salvar'
+  end
+
+  it 'falha ao tentar vincular cliente ao pedido' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+
+    Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      user: user
+    )
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Registrar pedido'
+    fill_in 'E-mail',	with: ''
+    fill_in 'Nome',	with: 'Samuel'
+    click_on 'Salvar'
+
+    # Assert
+    expect(page).to have_content 'E-mail ou telefone deve ser preenchido'
+  end
+
+  it 'com sucesso' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+
+    Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      user: user
+    )
+
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Registrar pedido'
+    fill_in 'E-mail',	with: 'samuel@gmail.com'
+    fill_in 'Nome do cliente',	with: 'Samuel'
+    fill_in 'Telefone',	with: '71992594946'
+
+    click_on 'Salvar'
+
+    # Assert
+    expect(page).to have_content 'Pedido aberto com sucesso'
+    expect(page).to have_content 'Dados do cliente'
+    expect(page).to have_content 'Nome do cliente: Samuel'
+    expect(page).to have_content 'E-mail: samuel@gmail.com'
+    expect(page).to have_content 'Telefone: 71992594946'
+    expect(page).to have_link 'Adicionar Item'
+  end
+end
+
+require 'rails_helper'
+
+describe 'Usuário cadastra um pedido' do
+  it 'e deve estar autenticado' do
+    # Arrange
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572'
+    )
+
+    Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      user: user
+    )
+
+    customer = Customer.create!(email: 'samuel@gmail.com')
+    order = Order.create!(customer: customer)
+
+    # Act
+    visit offer_new_order_path order.id
+    # Assert
+    expect(current_path).to eq new_user_session_path  
+  end
 end

@@ -8,7 +8,8 @@ describe 'Usuário cadastra um pedido' do
     expect(current_path).to eq new_user_session_path  
   end
 
-  it 'e visualiza campos corretamente' do
+
+  it 'e visualiza página de cadastro de observações' do
     # Arrange
     user = User.create!(
       first_name: 'Samuel', 
@@ -18,7 +19,7 @@ describe 'Usuário cadastra um pedido' do
       cpf: '22611819572'
     )
 
-    Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
@@ -27,22 +28,46 @@ describe 'Usuário cadastra um pedido' do
       address: 'Rua das Alamedas avenidas',
       user: user
     )
-    
+    menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
+    Menu.create!(establishment: establishment, name: 'Almoço')
+
+    dish = Dish.create!(
+          name: 'lasagna', 
+          description: 'massa, queijo e presunto', 
+          calories: '185', 
+          establishment: establishment
+    )
+
+    format = Format.create!(name: 'Porção grande')
+    format_two = Format.create!(name: 'Porção média')
+
+    Offer.create!(
+      format: format,
+      item: dish,
+      price: 55
+    )
+    Offer.create!(
+      format: format_two,
+      item: dish,
+      price: 25
+    )
+
+    MenuItem.create!(item: dish, menu: menu)
+
     # Act
     login_as user
     visit root_path
-    click_on 'Registrar pedido'
-
+    click_on 'Café da manhã'
+    save_page
+    find('.Porção-grande-lasagna').click
+    save_page
     # Assert
-    expect(page).to have_content 'Cadastro de novo pedido'
-    expect(page).to have_content 'E-mail'
-    expect(page).to have_content 'CPF'
-    expect(page).to have_content 'Telefone'
-    expect(page).to have_content 'Nome do cliente'
-    expect(page).to have_button 'Salvar'
+    expect(page).to have_content  'Adicionar Porção ao Pedido'
+    expect(page).to have_field 'Observação'
+    expect(page).to have_button 'Adicionar ao Pedido'
   end
 
-  it 'falha ao tentar vincular cliente ao pedido' do
+  it 'e adiciona item ao pedido' do
     # Arrange
     user = User.create!(
       first_name: 'Samuel', 
@@ -52,7 +77,7 @@ describe 'Usuário cadastra um pedido' do
       cpf: '22611819572'
     )
 
-    Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
@@ -61,54 +86,46 @@ describe 'Usuário cadastra um pedido' do
       address: 'Rua das Alamedas avenidas',
       user: user
     )
-    # Act
-    login_as user
-    visit root_path
-    click_on 'Registrar pedido'
-    fill_in 'E-mail',	with: ''
-    fill_in 'Nome',	with: 'Samuel'
-    click_on 'Salvar'
+    menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
+    Menu.create!(establishment: establishment, name: 'Almoço')
 
-    # Assert
-    expect(page).to have_content 'E-mail ou telefone deve ser preenchido'
-  end
-
-  it 'com sucesso' do
-    # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
+    dish = Dish.create!(
+          name: 'lasagna', 
+          description: 'massa, queijo e presunto', 
+          calories: '185', 
+          establishment: establishment
     )
 
-    Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-      user: user
+    format = Format.create!(name: 'Porção grande')
+    format_two = Format.create!(name: 'Porção média')
+
+    Offer.create!(
+      format: format,
+      item: dish,
+      price: 55
     )
+    Offer.create!(
+      format: format_two,
+      item: dish,
+      price: 25
+    )
+
+    MenuItem.create!(item: dish, menu: menu)
 
     # Act
     login_as user
     visit root_path
-    click_on 'Registrar pedido'
-    fill_in 'E-mail',	with: 'samuel@gmail.com'
-    fill_in 'Nome do cliente',	with: 'Samuel'
-    fill_in 'Telefone',	with: '71992594946'
-
-    click_on 'Salvar'
+    click_on 'Café da manhã'
+    save_page
+    find('.Porção-grande-lasagna').click
+    fill_in 'Observação',	with: 'Sem cebola' 
+    click_on 'Adicionar ao Pedido'
 
     # Assert
-    expect(page).to have_content 'Pedido aberto com sucesso'
-    expect(page).to have_content 'Dados do cliente'
-    expect(page).to have_content 'Nome do cliente: Samuel'
-    expect(page).to have_content 'E-mail: samuel@gmail.com'
-    expect(page).to have_content 'Telefone: 71992594946'
-    expect(page).to have_link 'Adicionar Item'
+    expect(page).to have_content 'Visualizar Pedido'
+    expect(page).to have_content 'Porção grande - lasagna - R$ 55,00 - Observação: Sem cebola'
+    expect(page).to have_link 'Finalizar Pedido'
+    expect(page).to have_content 'Continuar adicionando itens'
   end
+
 end

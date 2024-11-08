@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_07_124005) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_08_004201) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -148,7 +148,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_07_124005) do
     t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "establishment_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["establishment_id"], name: "index_orders_on_establishment_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -168,7 +170,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_07_124005) do
     t.string "cpf"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -185,4 +186,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_07_124005) do
   add_foreign_key "offers", "formats"
   add_foreign_key "operating_hours", "establishments"
   add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "establishments"
 end

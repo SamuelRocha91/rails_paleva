@@ -218,3 +218,15 @@ select:focus {
   align-items: center;
   gap: 5px;
 }
+
+.custom-icon {
+  font-size: 40px;
+  height: 60px;
+  width: 60px;
+  color: #007bff;
+  transition: transform 0.2s ease;
+}
+
+.custom-icon:hover {
+  transform: scale(1.2);
+}

@@ -8,7 +8,6 @@ class User < ApplicationRecord
   validates :cpf, :first_name, :last_name, presence: true
   validates :cpf, uniqueness: true
   has_one :establishment
-  enum role: { admin: 0, buyer: 2 }
 
 
   def description

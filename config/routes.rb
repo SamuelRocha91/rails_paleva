@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'search', to: 'search#search'
 
+  get 'orders/preview', to: 'orders#preview_order', as: 'preview_order'
+
   resources :establishments, only: [:index, :new, :create, :edit, :update] do
   
     resources :dishes, only: [:new, :create, :index, :edit, :update, :show, :destroy]
@@ -45,4 +47,10 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create, :show] do
     get 'offer/new', on: :member, to: 'orders#new_offer'
   end
+
+  resources :orders, only: [] do
+    get 'add_item/:portion_id', to: 'orders#new_item', as: 'new_item_to_order', on: :collection
+    post 'add_item/:portion_id', to: 'orders#add_item', as: 'add_item_to_order', on: :collection
+  end
+
 end

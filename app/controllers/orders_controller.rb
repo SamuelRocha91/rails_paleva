@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       redirect_to @order, 
-                    notice: 'Pedido aberto com sucesso'
+                    notice: 'Pedido criado com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
@@ -21,6 +21,31 @@ class OrdersController < ApplicationController
   end
 
   def new_offer
+  end
+
+  def new_item
+    @portion = Offer.find(params[:portion_id])
+  end
+
+  def add_item
+    @portion = Offer.find(params[:portion_id]) 
+    session[:order_items] ||= []
+    session[:order_items] << {
+      portion_id: @portion.id,
+      observation: params[:observation]
+    }
+    
+    redirect_to preview_order_path
+  end
+
+  def preview_order
+    @order_items = session[:order_items] || []
+    @portions = []
+    @order_items.each do |item|
+      portion = Offer.find(item["portion_id"]) 
+      @portions << { portion: portion, observation: item["observation"] }
+      p @portions
+    end
   end
 
   private
