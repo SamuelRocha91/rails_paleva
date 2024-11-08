@@ -44,7 +44,6 @@ class OrdersController < ApplicationController
     @order_items.each do |item|
       portion = Offer.find(item["portion_id"]) 
       @portions << { portion: portion, observation: item["observation"] }
-      p @portions
     end
   end
 
