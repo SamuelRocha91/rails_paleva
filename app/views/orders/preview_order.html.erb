@@ -11,9 +11,9 @@
     <% end %>
     <p>Valor Total: <%= number_to_currency(@total, unit: 'R$', separator: ',', precision: 2) %><p>
   </ul>
+  <%= link_to 'Finalizar Pedido', new_order_path, class: 'btn btn-primary' %>
 <% else %>
   <p>Nenhum item foi adicionado ao pedido ainda.</p>
 <% end %>
 
-<%= link_to 'Finalizar Pedido', new_order_path, class: 'btn btn-primary' %>
 <%= link_to 'Continuar adicionando itens', root_path, class: 'btn btn-secondary' %>

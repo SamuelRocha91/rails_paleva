@@ -40,7 +40,7 @@
         <dd><%= item.offer.item.name %></dd>
       </div>
       <div>
-        <dt>Ofeta:</dt>
+        <dt>Pedido:</dt>
         <dd><%= item.offer.format.name %> - <%= number_to_currency(item.offer.price, unit: "R$", separator: ",", precision: 2) %></dd>
       </div>
     <% end %>
@@ -51,9 +51,12 @@
       <dd><%= I18n.t("activerecord.enums.order.status.#{@order.status}") %></dd>
     </div>
     <div class='field-value'>
-      <dt><%= OrderItem.human_attribute_name(:price) %>:</dt>
+      <dt>Total:</dt>
       <dd><%= number_to_currency(total, unit: "R$", separator: ",", precision: 2) %></dd>
     </div>
   </div>
-  <%= link_to 'Adicionar Item', root_path %>
+  <%= button_to 'Marcar como Cancelado', canceled_order_path(@order.id) if @order.status != "delivered" && @order.status != "canceled"%>
+  <%= button_to 'Marcar como ENTREGUE', delivered_order_path(@order.id) if @order.status == "ready"%>
+  <%= button_to 'Marcar como EM PREPARO', in_preparation_order_path(@order.id) if @order.status == "pending_kitchen_confirmation"%>
+  <%= button_to 'Marcar como PRONTO PARA ENTREGA', ready_order_path(@order.id) if @order.status == "in_preparation"%>
 </div>

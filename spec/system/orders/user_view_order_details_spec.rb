@@ -84,7 +84,7 @@ describe 'Usuário acompanha um pedido' do
     expect(page).to have_content 'Nome do prato: lasagna'
     expect(page).to have_content 'Status: Aguardando confirmação da cozinha'
     expect(page).to have_content 'Total: R$ 55,00'
-    expect(page).to have_link 'Cancelar Pedido'
-    expect(page).to have_link 'Preparar Pedido'
+    expect(page).to have_button 'Marcar como Cancelado'
+    expect(page).to have_button 'Marcar como EM PREPARO'
   end
 end
