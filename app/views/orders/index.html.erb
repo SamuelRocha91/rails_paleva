@@ -15,7 +15,7 @@
     <% @orders.each do |order| %>
       <tbody>
         <tr>
-          <td><%= order.code %></td>
+          <td><%= link_to order.code, order_path(order.id) %></td>
           <td><%= order.customer.name %></td>
           <td><%= order.created_at.strftime("%d-%m-%Y") %></td>
           <% total = order.order_items.reduce(0) { |acc, curr|  acc + curr.offer.price } %>

@@ -32,5 +32,28 @@
       </div>
     <% end %>
   </div>
+  <div>
+    <% total = @order.order_items.reduce(0) { |acc, curr|  acc + curr.offer.price } %>
+    <% @order.order_items.each do |item| %>
+      <div class='field-value'>
+        <dt>Nome do prato:</dt>
+        <dd><%= item.offer.item.name %></dd>
+      </div>
+      <div>
+        <dt>Ofeta:</dt>
+        <dd><%= item.offer.format.name %> - <%= number_to_currency(item.offer.price, unit: "R$", separator: ",", precision: 2) %></dd>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <div class='field-value'>
+      <dt><%= Order.human_attribute_name(:status) %>:</dt>
+      <dd><%= I18n.t("activerecord.enums.order.status.#{@order.status}") %></dd>
+    </div>
+    <div class='field-value'>
+      <dt><%= OrderItem.human_attribute_name(:price) %>:</dt>
+      <dd><%= number_to_currency(total, unit: "R$", separator: ",", precision: 2) %></dd>
+    </div>
+  </div>
   <%= link_to 'Adicionar Item', root_path %>
 </div>
