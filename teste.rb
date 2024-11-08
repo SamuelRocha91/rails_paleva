@@ -34,7 +34,7 @@ describe 'Usuário cadastra um pedido' do
     click_on 'Registrar pedido'
 
     # Assert
-    expect(page).to have_content 'Cadastro de novo pedido'
+    expect(page).to have_content 'Dados do cliente'
     expect(page).to have_content 'E-mail'
     expect(page).to have_content 'CPF'
     expect(page).to have_content 'Telefone'
