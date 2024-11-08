@@ -36,6 +36,9 @@ class EstablishmentsController < ApplicationController
     end
   end
 
+  def pre_registration_employee
+  end
+  
   private
 
   def establishment_params

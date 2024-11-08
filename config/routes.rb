@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'orders/preview', to: 'orders#preview_order', as: 'preview_order'
 
   resources :establishments, only: [:index, :new, :create, :edit, :update] do
+    get 'employee/new', on: :member, to: 'establishments#pre_registration_employee'
   
     resources :dishes, only: [:new, :create, :index, :edit, :update, :show, :destroy]
   
