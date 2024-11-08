@@ -9,6 +9,7 @@
         Observação: <%= item[:observation] %>
       </li>
     <% end %>
+    <p>Valor Total: <%= number_to_currency(@total, unit: 'R$', separator: ',', precision: 2) %><p>
   </ul>
 <% else %>
   <p>Nenhum item foi adicionado ao pedido ainda.</p>

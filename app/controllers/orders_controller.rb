@@ -48,9 +48,11 @@ class OrdersController < ApplicationController
   def preview_order
     @order_items = session[:order_items] || []
     @portions = []
+    @total = 0
     @order_items.each do |item|
       portion = Offer.find(item["portion_id"]) 
       @portions << { portion: portion, observation: item["observation"] }
+      @total += portion.price
     end
   end
 
