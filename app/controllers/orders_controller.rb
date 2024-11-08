@@ -8,9 +8,16 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.establishment_id = current_user.establishment.id
+    session_items = session[:order_items] || []
+
     if @order.save
-      redirect_to @order, 
-                    notice: 'Pedido criado com sucesso'
+      session_items.each do |item|
+        portion = Offer.find(item["portion_id"])
+        OrderItem.create!(offer: portion, note: item["observation"], order: @order)
+      end
+      redirect_to root_path, 
+                    notice: 'Pedido realizado com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
