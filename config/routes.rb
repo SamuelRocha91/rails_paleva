@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     post 'canceled', on: :member
     post 'in-preparation', on: :member
     post 'ready', on: :member
-
+    post 'delivered', on: :member
   end
 
 end
