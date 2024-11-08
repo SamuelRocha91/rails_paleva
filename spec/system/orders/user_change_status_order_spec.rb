@@ -5,7 +5,7 @@ describe 'Usuário muda status do pedido' do
     # ACT
     visit orders_path
     # Assert
-    expect(current_path).to eq new_user_session_path  
+    expect(current_path).to eq new_user_session_path 
   end
 
   it 'de aguardando confirmação da cozinha PARA em preparo' do
