@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_order, only: [:in_preparation]
   
   def index
     @orders = Order.where(establishment: current_user.establishment)
@@ -60,6 +61,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def in_preparation
+    if @order.in_preparation!
+      redirect_to orders_path, notice: 'Status do Pedido atualizado com sucesso'
+    end
+  end
+
   private
 
   def order_params
@@ -67,5 +74,9 @@ class OrdersController < ApplicationController
       customer_attributes: 
         [:name, :cpf, :email, :phone_number]
     )
+  end
+
+  def set_order
+    @order = Order.find(params[:id])
   end
 end
