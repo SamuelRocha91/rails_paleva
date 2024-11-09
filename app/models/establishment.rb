@@ -4,7 +4,7 @@ class Establishment < ApplicationRecord
 
   before_validation :generate_code, on: :create
   has_many :menus
-  belongs_to :user
+  has_many :users   
   has_many :operating_hours, dependent: :destroy
   has_many :dishes
   has_many :beverages
