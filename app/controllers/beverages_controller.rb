@@ -116,9 +116,8 @@ class BeveragesController < ApplicationController
 
   def check_user
     @establishment = Establishment.find(params[:establishment_id])
-    if @establishment.user != current_user
-      redirect_to root_path, 
-        notice: 'Você não possui acesso a essa bebida'
+    if !@establishment.users.any? { |user| user.id == current_user.id}
+      redirect_to root_path, notice: 'Você não possui acesso a essa bebida'
     end
   end
 

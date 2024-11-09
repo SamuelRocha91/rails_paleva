@@ -122,7 +122,7 @@ class DishesController < ApplicationController
 
   def check_user
     @establishment = Establishment.find(params[:establishment_id])
-    if @establishment.user != current_user
+    if !@establishment.users.any? { |user| user.id == current_user.id}
       redirect_to root_path, notice: 'Você não possui acesso a esse prato'
     end
   end

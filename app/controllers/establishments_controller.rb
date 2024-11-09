@@ -16,8 +16,8 @@ class EstablishmentsController < ApplicationController
 
   def create
     @establishment = Establishment.new(establishment_params)
-    @establishment.user = current_user
     if @establishment.save
+      current_user.update(establishment: @establishment)
       redirect_to establishments_path, 
                     notice: 'Cadastro de restaurante efetuado com sucesso!'
     else
@@ -50,7 +50,7 @@ class EstablishmentsController < ApplicationController
     )
 
     if @user.save
-      redirect_to establishment_path, notice: 'Pré-cadastro realizado com sucesso'
+      redirect_to establishments_path, notice: 'Pré-cadastro realizado com sucesso'
     else
       render :form_registration_user, status: :unprocessable_entity
     end
@@ -80,3 +80,4 @@ class EstablishmentsController < ApplicationController
   end
 
 end
+
