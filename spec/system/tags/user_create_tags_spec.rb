@@ -10,21 +10,21 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e visualiza página corretamente' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     Tag.create!(name: 'Apimentado')
     Tag.create!(name: 'Vegano')
@@ -36,6 +36,7 @@ describe "Usuário acessa página de marcadores" do
     visit root_path
     click_on 'Pratos'
     click_on 'Marcadores'
+
     # Assert
     expect(page).to have_content 'Marcadores Disponíveis'
     expect(page).to have_link 'Cadastrar novo marcador'
@@ -47,21 +48,21 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e visualiza mensagem instrutiva se não houver tags cadastradas' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     # Act
@@ -77,21 +78,21 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e visualiza página de cadastro de tags corretamente' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     # Act
@@ -109,21 +110,21 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e falha ao cadastrar marcador sem campo obrigatório' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     # Act
@@ -140,21 +141,21 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e cadastra marcador com sucesso previamente' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     # Act
@@ -174,22 +175,21 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e cadastra tags direto no formulário de criação de prato' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
-    Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     # Act
@@ -204,20 +204,13 @@ describe "Usuário acessa página de marcadores" do
     fill_in 'Quantidade de calorias',	with: '105'
     click_on 'Salvar'
     click_on 'Lasagna'
+
     # Assert
     expect(page).to have_content '#misto #parmegiana'
   end
 
   it 'e cadastra tags no formulário de edição de pratos' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -225,7 +218,14 @@ describe "Usuário acessa página de marcadores" do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     Dish.create!(
@@ -242,6 +242,7 @@ describe "Usuário acessa página de marcadores" do
     click_on 'Editar prato'
     fill_in 'Características',	with: 'misto, parmegiana'
     click_on 'Salvar'
+
     # Assert
     expect(page).to have_content '#misto #parmegiana'
   end

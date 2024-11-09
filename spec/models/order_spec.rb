@@ -4,13 +4,6 @@ RSpec.describe Order, type: :model do
   describe 'Após criar um pedido' do
     it 'Deve ser setado com status correto' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -18,12 +11,20 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
       order = Order.new(establishment: establishment, customer: customer)
+      
       # Act
       order.save
 
@@ -33,13 +34,6 @@ RSpec.describe Order, type: :model do
 
     it 'status pending_kitchen_confirmation não pode ser alterado pra ready' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -47,7 +41,14 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
@@ -65,13 +66,6 @@ RSpec.describe Order, type: :model do
 
     it 'status pending_kitchen_confirmation não pode ser alterado pra delivered' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -79,7 +73,14 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
@@ -97,13 +98,6 @@ RSpec.describe Order, type: :model do
 
     it 'status in_preparation não pode ser alterado pra pending_kitchen_confirmation' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -111,12 +105,23 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
-      order = Order.create!(establishment: establishment, customer: customer, status: 2)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer, 
+        status: 2
+      )
 
       # Act
       order.status = 'delivered' 
@@ -129,13 +134,6 @@ RSpec.describe Order, type: :model do
 
     it 'status in_preparation não pode ser alterado pra ready' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -143,12 +141,23 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
-      order = Order.create!(establishment: establishment, customer: customer, status: 2)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer, 
+        status: 2
+      )
 
       # Act
       order.status = 'delivered' 
@@ -161,13 +170,6 @@ RSpec.describe Order, type: :model do
 
     it 'status ready não pode ser alterado pra pending_kitchen_confirmation' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -175,12 +177,23 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
-      order = Order.create!(establishment: establishment, customer: customer, status: 5)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer, 
+        status: 5
+      )
 
       # Act
       order.status = 'pending_kitchen_confirmation' 
@@ -193,13 +206,6 @@ RSpec.describe Order, type: :model do
 
     it 'status ready não pode ser alterado pra in_preparation' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -207,12 +213,23 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
-      order = Order.create!(establishment: establishment, customer: customer, status: 5)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer, 
+        status: 5
+      )
 
       # Act
       order.status = 'in_preparation' 
@@ -225,13 +242,6 @@ RSpec.describe Order, type: :model do
 
     it 'status delivered não pode ser alterado pra pending_kitchen_confirmation' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -239,12 +249,23 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
-      order = Order.create!(establishment: establishment, customer: customer, status: 7)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer, 
+        status: 7
+      )
 
       # Act
       order.status = 'pending_kitchen_confirmation' 
@@ -257,13 +278,6 @@ RSpec.describe Order, type: :model do
 
     it 'status delivered não pode ser alterado pra in_preparation' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -271,7 +285,14 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
@@ -289,13 +310,6 @@ RSpec.describe Order, type: :model do
 
     it 'status delivered não pode ser alterado pra ready' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -303,12 +317,23 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
-      order = Order.create!(establishment: establishment, customer: customer, status: 7)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer, 
+        status: 7
+      )
 
       # Act
       order.status = 'ready' 
@@ -321,13 +346,6 @@ RSpec.describe Order, type: :model do
 
     it 'status delivered não pode ser alterado pra canceled' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -335,7 +353,14 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
@@ -353,13 +378,6 @@ RSpec.describe Order, type: :model do
 
     it 'status canceled não pode ser alterado pra pending_kitchen_confirmation' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -367,12 +385,22 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
       )
-
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
-      order = Order.create!(establishment: establishment, customer: customer, status: 9)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer, 
+        status: 9
+      )
 
       # Act
       order.status = 'pending_kitchen_confirmation' 
@@ -385,13 +413,6 @@ RSpec.describe Order, type: :model do
 
     it 'status canceled não pode ser alterado pra in_preparation' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -399,7 +420,14 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
@@ -417,13 +445,6 @@ RSpec.describe Order, type: :model do
 
     it 'status canceled não pode ser alterado pra ready' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -431,12 +452,23 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
-      order = Order.create!(establishment: establishment, customer: customer, status: 9)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer, 
+        status: 9
+      )
 
       # Act
       order.status = 'ready' 
@@ -449,13 +481,6 @@ RSpec.describe Order, type: :model do
 
     it 'status canceled não pode ser alterado pra delivered' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -463,12 +488,22 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
       )
-
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
-      order = Order.create!(establishment: establishment, customer: customer, status: 9)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer, 
+        status: 9
+      )
 
       # Act
       order.status = 'delivered' 
@@ -481,13 +516,6 @@ RSpec.describe Order, type: :model do
 
     it 'Deve gerar código alfanumérico' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -495,7 +523,14 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
@@ -510,13 +545,6 @@ RSpec.describe Order, type: :model do
 
     it 'Código alfanumérico não é atualizado com atualização de pedido' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -524,7 +552,14 @@ RSpec.describe Order, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')

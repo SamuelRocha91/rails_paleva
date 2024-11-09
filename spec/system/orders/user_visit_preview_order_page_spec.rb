@@ -11,22 +11,21 @@ describe 'Usuário acessa página de pré-visualização de pedido' do
 
   it 'sem itens adicionados' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
-    Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     # Act
@@ -40,14 +39,6 @@ describe 'Usuário acessa página de pré-visualização de pedido' do
 
   it 'com itens, observa valor total do pedido' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -55,7 +46,14 @@ describe 'Usuário acessa página de pré-visualização de pedido' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
     menu_two = Menu.create!(establishment: establishment, name: 'Almoço')

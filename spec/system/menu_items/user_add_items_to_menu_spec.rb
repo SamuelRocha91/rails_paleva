@@ -3,14 +3,6 @@ require 'rails_helper'
 describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
   it 'e deve estar autenticado' do
     # Arrange
-     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -18,7 +10,14 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     menu = Menu.create!(
@@ -35,14 +34,6 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
 
   it 'e cadastra prato com sucesso' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -50,10 +41,17 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
-    menu = Menu.create!(
+    Menu.create!(
       establishment: establishment, 
       name: 'Café da manhã'
     )
@@ -87,14 +85,6 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
 
   it 'e cadastra bebida com sucesso' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -102,10 +92,17 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
-    menu = Menu.create!(
+    Menu.create!(
       establishment: establishment, 
       name: 'Café da manhã'
     )
@@ -139,14 +136,6 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
 
   it 'item já cadastrado não pode ser duplicado no cardápio' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -154,7 +143,14 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     menu = Menu.create!(

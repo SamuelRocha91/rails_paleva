@@ -11,14 +11,6 @@ describe 'Usuário cadastra um pedido' do
 
   it 'e visualiza página de cadastro de observações' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -26,7 +18,14 @@ describe 'Usuário cadastra um pedido' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
     Menu.create!(establishment: establishment, name: 'Almoço')
@@ -69,14 +68,6 @@ describe 'Usuário cadastra um pedido' do
 
   it 'e adiciona item ao pedido' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -84,7 +75,14 @@ describe 'Usuário cadastra um pedido' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
     Menu.create!(establishment: establishment, name: 'Almoço')
@@ -129,14 +127,6 @@ describe 'Usuário cadastra um pedido' do
 
   it 'de mais de um cardápio diferente' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -144,7 +134,14 @@ describe 'Usuário cadastra um pedido' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
     menu_two = Menu.create!(establishment: establishment, name: 'Almoço')
@@ -209,14 +206,6 @@ describe 'Usuário cadastra um pedido' do
 
   it 'e visualiza formulário de finalização de pedido' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -224,7 +213,14 @@ describe 'Usuário cadastra um pedido' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
     Menu.create!(establishment: establishment, name: 'Almoço')
@@ -272,14 +268,6 @@ describe 'Usuário cadastra um pedido' do
 
   it 'falha ao tentar vincular cliente ao pedido' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -287,7 +275,14 @@ describe 'Usuário cadastra um pedido' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
     Menu.create!(establishment: establishment, name: 'Almoço')
@@ -326,20 +321,13 @@ describe 'Usuário cadastra um pedido' do
     fill_in 'E-mail',	with: ''
     fill_in 'Nome',	with: 'Samuel'
     click_on 'Salvar'
+
     # Assert
     expect(page).to have_content 'E-mail ou telefone deve ser preenchido'
   end
 
   it 'com sucesso' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -347,7 +335,14 @@ describe 'Usuário cadastra um pedido' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
     Menu.create!(establishment: establishment, name: 'Almoço')

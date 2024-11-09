@@ -3,21 +3,21 @@ require 'rails_helper'
 describe 'Usuário acessa página de detalhes de item' do
   it 'e consegue ver histórico de ofertas de um prato' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    establishment = Establishment.create!(
+   establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     dish = Dish.create!(
       name: 'lasagna', 
@@ -75,21 +75,21 @@ describe 'Usuário acessa página de detalhes de item' do
 
   it 'e consegue ver histórico de ofertas de uma bebida' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    establishment = Establishment.create!(
+   establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     beverage = Beverage.create!(
       name: 'Cachaça', 

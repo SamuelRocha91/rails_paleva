@@ -4,13 +4,6 @@ RSpec.describe TemporaryUser, type: :model do
   describe 'Validação' do
     it 'Email deve ser único na aplicação' do 
       # Arrange
-      user = User.create!(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'samuel@hotmail.com', 
-          password: '12345678910111',  
-          cpf: '22611819572'
-        )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -18,7 +11,14 @@ RSpec.describe TemporaryUser, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       temporary_user = TemporaryUser.new(
@@ -36,13 +36,6 @@ RSpec.describe TemporaryUser, type: :model do
 
      it 'Email deve ser válido' do 
       # Arrange
-      user = User.create!(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'sasasx@hotmail.com', 
-          password: '12345678910111',  
-          cpf: '22611819572'
-        )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -50,7 +43,14 @@ RSpec.describe TemporaryUser, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       temporary_user = TemporaryUser.new(
@@ -68,13 +68,6 @@ RSpec.describe TemporaryUser, type: :model do
 
     it 'CPF deve ser único na aplicação' do 
       # Arrange
-      user = User.create!(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'samuel@hotmail.com', 
-          password: '12345678910111',  
-          cpf: '22611819572'
-        )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -82,7 +75,14 @@ RSpec.describe TemporaryUser, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       temporary_user = TemporaryUser.new(
@@ -100,13 +100,6 @@ RSpec.describe TemporaryUser, type: :model do
 
     it 'CPF deve ser válido' do 
       # Arrange
-      user = User.create!(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'assfdfd@hotmail.com', 
-          password: '12345678910111',  
-          cpf: '22611819572'
-        )
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -114,7 +107,14 @@ RSpec.describe TemporaryUser, type: :model do
         cnpj: '56924048000140',
         phone_number: '71992594946', 
         address: 'Rua das Alamedas avenidas',
-        user: user
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
       )
 
       temporary_user = TemporaryUser.new(

@@ -11,13 +11,6 @@ describe 'Usuário acessa página de estabelecimento' do
 
   it 'com sucesso' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -25,7 +18,14 @@ describe 'Usuário acessa página de estabelecimento' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     operating_hour = []
@@ -39,8 +39,7 @@ describe 'Usuário acessa página de estabelecimento' do
     )
     
     establishment.operating_hours = operating_hour
-    establishment.user = user
-    establishment.save!
+ 
     # Act
     login_as user
     visit root_path

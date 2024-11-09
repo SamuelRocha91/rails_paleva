@@ -3,26 +3,27 @@ require 'rails_helper'
 describe 'Usuário busca por um item' do
   it 'a partir do menu' do
     # Arrange 
-     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
-    Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
     )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
+    )
+  
     # Act
     login_as(user)
     visit root_path
+  
     # Assert
     within('header') do
       expect(page).to have_field 'Buscar Item'
@@ -36,14 +37,6 @@ describe 'Usuário busca por um item' do
 
   it 'e encontra um item de bebida pelo nome' do
     # Arrange 
-     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -51,7 +44,14 @@ describe 'Usuário busca por um item' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     Beverage.create!(
@@ -69,6 +69,7 @@ describe 'Usuário busca por um item' do
       establishment: establishment, 
       is_alcoholic: false
     )
+  
     # Act
     login_as(user)
     visit root_path
@@ -84,22 +85,21 @@ describe 'Usuário busca por um item' do
 
   it 'e encontra um item de comida pelo nome' do
     # Arrange 
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
-    establishment = Establishment.create!(
+   establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     Dish.create!(
@@ -114,6 +114,7 @@ describe 'Usuário busca por um item' do
       calories: '15', 
       establishment: establishment
     )
+
     # Act
     login_as(user)
     visit root_path
@@ -129,14 +130,6 @@ describe 'Usuário busca por um item' do
 
   it 'e encontra item de comida e bebida ao mesmo tempo' do
     # Arrange 
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -144,7 +137,14 @@ describe 'Usuário busca por um item' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     Dish.create!(
@@ -174,6 +174,7 @@ describe 'Usuário busca por um item' do
       establishment: establishment, 
       is_alcoholic: false
     )
+
     # Act
     login_as(user)
     visit root_path
