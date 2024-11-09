@@ -13,19 +13,6 @@ class Customer < ApplicationRecord
     end
   end
 
-  def valid_email?
-    regex = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-    if self.email && !self.email.match?(regex)
-       self.errors.add :base, 'E-mail deve ser válido'
-    end
-  end
-
-  def is_valid_cpf?
-    if self.cpf.present? && self.cpf.length > 0 && !CPF.valid?(cpf)
-      self.errors.add :base, 'CPF deve ser um número válido'
-    end
-  end
-
   def is_valid_phone_number?
     if self.phone_number.present? && self.phone_number.length > 0
       if self.phone_number.length > 11 || self.phone_number.length < 10

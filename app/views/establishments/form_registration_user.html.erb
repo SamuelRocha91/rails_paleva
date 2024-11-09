@@ -1,3 +1,16 @@
+<h1>Pré-cadastro de usuário</h1>
+
+<% if @user.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @user.errors.full_messages.each do |msg|%>
+     <li>
+        <%= msg %>
+     </li>
+     <% end %>
+  </ul>
+<% end %>
+
 <%= form_with(url: user_new_establishment_path(@establishment.id) , class: 'form-edit') do |f| %>
   <div class='mb-3 mt-5'>
     <%= f.label :email, 'E-mail', class: 'form-label' %>
