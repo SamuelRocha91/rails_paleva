@@ -8,6 +8,33 @@ describe "Usuário acessa página de marcadores" do
     expect(current_path).to eq new_user_session_path 
   end
 
+  it 'não deve ter role :employee' do
+    # Arrange
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment,
+      role: 1
+    )
+    # Act
+    login_as user
+    visit tags_path
+    # Assert
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Você não tem permissão para acessar esse recurso'
+  end
+
   it 'e visualiza página corretamente' do
     # Arrange
     establishment = Establishment.create!(

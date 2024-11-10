@@ -27,6 +27,6 @@
 <% end %>
 
 <div class="menu-actions">
-  <%= link_to 'Adicionar Prato ao Menu', new_menu_menu_item_path(@menu, type: 'dish'), class: 'btn btn-secondary' %>
-  <%= link_to 'Adicionar Bebida ao Menu', new_menu_menu_item_path(@menu, type: 'beverage'), class: 'btn btn-secondary' %>
+  <%= link_to 'Adicionar Prato ao Menu', new_menu_menu_item_path(@menu, type: 'dish'), class: 'btn btn-secondary' if current_user.admin? %>
+  <%= link_to 'Adicionar Bebida ao Menu', new_menu_menu_item_path(@menu, type: 'beverage'), class: 'btn btn-secondary' if current_user.admin? %>
 </div>

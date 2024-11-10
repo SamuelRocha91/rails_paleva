@@ -2,6 +2,7 @@ class EstablishmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :establishment_created, only: [:new]
   before_action :set_establishment, only: [:edit, :update]
+  before_action :employee?, except: [:index]
 
   def index
     @establishment = current_user.establishment

@@ -33,6 +33,42 @@ describe 'Usuário edita um prato' do
     expect(current_path).to eq new_user_session_path  
   end
 
+  it 'e deve ser :admin' do
+    # Arrange
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment,
+      role: 1
+    )
+
+    dish = Dish.create!(
+      name: 'lasagna', 
+      description: 'pão com ovo', 
+      calories: '185', 
+      establishment: establishment
+    )
+    
+    # Act
+    login_as user
+    visit edit_establishment_dish_path(establishment.id, dish.id)
+
+    # Assert
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Você não tem permissão para acessar esse recurso'
+  end
+
   it 'e vê página de detalhes com botão de editar e de atualizar status' do
     # Arrange
     establishment = Establishment.create!(
@@ -58,11 +94,13 @@ describe 'Usuário edita um prato' do
       calories: '185', 
       establishment: establishment
     )
+
     # Act
     login_as user
     visit root_path
     click_on 'Pratos'
     click_on 'lasagna'
+
     # Assert
     expect(page).to have_content 'Nome: lasagna'
     expect(page).to have_content 'Descrição: massa, queijo e presunto'

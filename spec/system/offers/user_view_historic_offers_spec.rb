@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário acessa página de detalhes de item' do
   it 'e consegue ver histórico de ofertas de um prato' do
     # Arrange
-   establishment = Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 
@@ -75,7 +75,7 @@ describe 'Usuário acessa página de detalhes de item' do
 
   it 'e consegue ver histórico de ofertas de uma bebida' do
     # Arrange
-   establishment = Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 

@@ -4,7 +4,6 @@ class BeveragesController < ApplicationController
     :edit, 
     :show, 
     :update, 
-    :destroy,
     :create_offer,
     :deactivate, 
     :activate,
@@ -16,6 +15,7 @@ class BeveragesController < ApplicationController
   before_action :check_user, only: [:show, :edit, :index, :update]
   before_action :set_format, only: [:create_offer]
   before_action :set_offer, only: [:edit_offer, :update_offer, :deactivate_offer]
+  before_action :employee?
 
   def index
     @beverages = current_user.establishment.beverages
@@ -63,12 +63,6 @@ class BeveragesController < ApplicationController
       @beverage.establishment, 
       @beverage
     )
-  end
-  def destroy
-    if @beverage.destroy
-      redirect_to establishment_beverages_path(current_user.establishment), 
-                    notice: 'Registro excluído com sucesso'
-    end
   end
 
   def offer

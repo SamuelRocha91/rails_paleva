@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     get 'user/new', on: :member, to: 'establishments#form_registration_user'
     post 'user/new', on: :member, to: 'establishments#pre_registration_user'
 
-    resources :dishes, only: [:new, :create, :index, :edit, :update, :show, :destroy]
+    resources :dishes, only: [:new, :create, :index, :edit, :update, :show]
   
-    resources :beverages, only: [:index, :new, :create, :edit, :update, :show, :destroy]
+    resources :beverages, only: [:index, :new, :create, :edit, :update, :show]
   end
 
   resources :dishes, only: [] do

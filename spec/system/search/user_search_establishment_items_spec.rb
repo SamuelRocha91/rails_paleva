@@ -35,6 +35,41 @@ describe 'Usuário busca por um item' do
     end
   end
 
+  it 'se sua role não for employee' do
+    # Arrange 
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment,
+      role: 1
+    )
+  
+    # Act
+    login_as(user)
+    visit root_path
+  
+    # Assert
+    within('header') do
+      expect(page).not_to have_field 'Buscar Item'
+      expect(page).not_to have_select(
+        'type',
+         with_options: ['Bebida', 'Comida', 'Ambos']
+      )
+      expect(page).not_to have_button 'Pesquisar'  
+    end
+  end
+
   it 'e encontra um item de bebida pelo nome' do
     # Arrange 
     establishment = Establishment.create!(

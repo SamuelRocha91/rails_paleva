@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   before_action :authenticate_user!
-
+  before_action :employee?
   def index
     @tags = Tag.all
   end

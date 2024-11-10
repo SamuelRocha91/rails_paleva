@@ -6,13 +6,11 @@ class DishesController < ApplicationController
     :new, 
     :update, 
     :edit, 
-    :destroy
   ]
   before_action :set_dish, only: [
     :edit,
     :show,
     :update, 
-    :destroy, 
     :deactivate, 
     :activate,
     :offer,
@@ -21,6 +19,7 @@ class DishesController < ApplicationController
     :update_offer,
     :deactivate_offer
   ]
+  before_action :employee?
 
   before_action :set_format, only: [:create_offer]
 
@@ -78,13 +77,6 @@ class DishesController < ApplicationController
   def activate
     @dish.update(status: true)
     redirect_to establishment_dish_path(@dish.establishment, @dish)
-  end
-
-  def destroy
-    if @dish.destroy
-      redirect_to establishment_dishes_path(current_user.establishment), 
-                   notice: 'Registro excluído com sucesso'
-    end
   end
 
   def offer

@@ -24,6 +24,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def employee?
+    if current_user.employee?
+      redirect_to root_path, alert: 'Você não tem permissão para acessar esse recurso.'
+    end
+  end
+
   def set_format
     @format = Format.find_by(name: params[:format][:name])
     if @format.nil?
