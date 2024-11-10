@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
-  
+  before_action :employee?
+
   def search
     if params[:type] == 'Bebida'
       search_beverages

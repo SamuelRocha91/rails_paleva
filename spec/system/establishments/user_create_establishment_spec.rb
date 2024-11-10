@@ -17,9 +17,11 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
       password: '12345678910111',  
       cpf: '22611819572'
     )
+
     # Act
     login_as user
     visit root_path
+
     # Assert
     expect(current_path).to eq new_establishment_path  
     expect(page).to have_content 'Cadastrar Restaurante'
@@ -49,6 +51,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
       password: '12345678910111',  
       cpf: '22611819572'
     )
+
     # Act
     login_as user
     visit root_path
@@ -56,7 +59,9 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     fill_in 'Nome Social',	with: 'Comidícia'
     fill_in 'CNPJ',	with: '56924048000140'
     fill_in 'Endereço',	with: 'Rua da Fome, 100'
+
     click_on 'Salvar'
+
     # Assert
     expect(page).to have_content 'Nome Fantasia não pode ficar em branco'
     expect(page).to have_content 'Telefone não pode ficar em branco'
@@ -72,6 +77,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
       password: '12345678910111',  
       cpf: '22611819572'
     )
+
     # Act
     login_as user
     visit root_path
@@ -89,6 +95,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     find('input[type="checkbox"].wednesday').set(true)
 
     click_on 'Salvar'
+
     # Assert
     expect(page).not_to have_content 'Horário de funcionamento de Sábado deve ser definido ou marcado como fechado.'
     expect(page).to have_content 'Horário de funcionamento de Quinta deve ser definido ou marcado como fechado.'
@@ -105,6 +112,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
       password: '12345678910111',  
       cpf: '22611819572'
     )
+
     # Act
     login_as user
     visit root_path
@@ -129,6 +137,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     all('input[type="time"].saturday')[1].set('22:00')
   
     click_on 'Salvar'
+
     # Assert
     expect(page).to have_content 'Horário de funcionamento de Quinta deve ser definido ' +
            'corretamente(Hora de abertura deve ser menor que a de fechamento).'
@@ -144,6 +153,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
       password: '12345678910111',  
       cpf: '22611819572'
     )
+
     # Act
     login_as user
     visit root_path
@@ -168,6 +178,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
     all('input[type="time"].saturday')[1].set('22:00')
   
     click_on 'Salvar'
+
     # Assert
     expect(current_path).to eq establishments_path
     expect(page).to have_content 'Cadastro de restaurante efetuado com sucesso!'
@@ -176,31 +187,31 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
 
   it 'ja tendo um cadastrado e é redirecionado' do
     # Arrange
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
     user = User.create!(
       first_name: 'Samuel', 
       last_name: 'Rocha', 
       email: 'samuel@hotmail.com', 
       password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    establishment = Establishment.new(
-      email:'sam@gmail.com', 
-      trade_name: 'Samsumg', 
-      legal_name: 'Samsumg LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas' 
+      cpf: '22611819572',
+      establishment: establishment
     )
     operating_hour = []
     7.times { |i| operating_hour << OperatingHour
                                       .new(week_day: i, is_closed: true)}
     establishment.operating_hours = operating_hour
-    establishment.save
-    user.establishment = establishment 
 
     # Act
     login_as user
     visit new_establishment_path
+
     # Assert
     expect(current_path).to eq root_path  
   end

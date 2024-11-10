@@ -5,11 +5,6 @@ RSpec.describe Establishment, type: :model do
     context 'presença obrigatória de' do
       it 'email' do
         # Arrange
-        user = User.new(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'sam@hotmail.com'
-        )
         establishment = Establishment.new(
           email:'', 
           trade_name: 'Samsumg', 
@@ -18,7 +13,6 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas' 
         )
-        establishment.user = user
         # Act
         result = establishment.valid?
         # Assert
@@ -27,11 +21,6 @@ RSpec.describe Establishment, type: :model do
 
       it 'trade_name' do
         # Arrange
-        user = User.new(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'sam@hotmail.com'
-        )
         establishment = Establishment.new(
           email:'sam@hotmail.com', 
           trade_name: '', 
@@ -40,7 +29,6 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas' 
         )
-        establishment.user = user
         # Act
         result = establishment.valid?
         # Assert
@@ -49,11 +37,6 @@ RSpec.describe Establishment, type: :model do
 
       it 'legal_name' do
         # Arrange
-        user = User.new(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'sam@hotmail.com'
-        )
         establishment = Establishment.new(
           email:'sam@hotmail.com', 
           trade_name: 'Samsumg', 
@@ -62,7 +45,6 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas' 
         )
-        establishment.user = user
         # Act
         result = establishment.valid?
         # Assert
@@ -71,11 +53,6 @@ RSpec.describe Establishment, type: :model do
 
       it 'cnpj' do
         # Arrange
-        user = User.new(
-          first_name: 'Samuel',
-          last_name: 'Rocha',
-          email: 'sam@hotmail.com'
-        )
         establishment = Establishment.new(
           email:'sam@hotmail.com',
           trade_name: 'Samsumg', 
@@ -84,7 +61,6 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas' 
         )
-        establishment.user = user
         # Act
         result = establishment.valid?
         # Assert
@@ -93,11 +69,6 @@ RSpec.describe Establishment, type: :model do
 
       it 'phone_number' do
         # Arrange
-        user = User.new(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'sam@hotmail.com'
-        )
         establishment = Establishment.new(
           email:'sam@hotmail.com', 
           trade_name: 'Samsumg', 
@@ -106,7 +77,6 @@ RSpec.describe Establishment, type: :model do
           phone_number: '', 
           address: 'Rua das Alamedas avenidas' 
         )
-        establishment.user = user
         # Act
         result = establishment.valid?
         # Assert
@@ -114,12 +84,7 @@ RSpec.describe Establishment, type: :model do
       end
 
       it 'address' do
-        # Arrange
-        user = User.new(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'sam@hotmail.com'
-        )
+        # Arrange)
         establishment = Establishment.new(
           email:'sam@hotmail.com', 
           trade_name: 'Samsumg', 
@@ -128,7 +93,6 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: '' 
         )
-        establishment.user = user
         # Act
         result = establishment.valid?
         # Assert
@@ -139,11 +103,6 @@ RSpec.describe Establishment, type: :model do
     context 'deve ser válido' do
       it 'cnpj' do
         # Arrange
-        user = User.new(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'sam@hotmail.com'
-        )
         establishment = Establishment.new(
           email:'samsu@gmail.com', 
           trade_name: 'Samsumg', 
@@ -152,7 +111,6 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas'
         )
-        establishment.user = user
         # Act
         result = establishment.valid?
         # Assert
@@ -161,11 +119,6 @@ RSpec.describe Establishment, type: :model do
 
       it 'phone_number' do
         # Arrange
-        user = User.new(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'sam@hotmail.com'
-        )
         establishment = Establishment.new(
           email:'samsu@gmail.com', 
           trade_name: 'Samsumg', 
@@ -174,7 +127,6 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594a4', 
           address: 'Rua das Alamedas avenidas' 
         )
-        establishment.user = user
         # Act
         result = establishment.valid?
         # Assert
@@ -184,11 +136,6 @@ RSpec.describe Establishment, type: :model do
 
       it 'email' do
         # Arrange
-        user = User.new(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'sam@hotmail.com'
-        )
         establishment = Establishment.new(
           email:'samsu@gmail', 
           trade_name: 'Samsumg', 
@@ -197,7 +144,6 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas'
         )
-        establishment.user = user
         # Act
         result = establishment.valid?
         # Assert
@@ -209,13 +155,6 @@ RSpec.describe Establishment, type: :model do
   describe 'gera um código aleatório' do 
     it 'ao criar um novo estabelecimento' do 
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.new(
         email:'sam@gmail.com', 
         trade_name: 'Samsumg', 
@@ -228,7 +167,6 @@ RSpec.describe Establishment, type: :model do
       7.times { |i| operating_hour << OperatingHour
                                         .new(week_day: i, is_closed: true)}
       establishment.operating_hours = operating_hour
-      user.establishment = establishment 
       # Act
       establishment.save
       # Assert
@@ -238,20 +176,6 @@ RSpec.describe Establishment, type: :model do
 
     it 'e o código é único' do 
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
-      user_two = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuelson@hotmail.com', 
-        password: '12345678910111',  
-        cpf: CPF.generate
-      )
       establishment = Establishment.new(
         email:'sam@gmail.com', 
         trade_name: 'Samsumg', 
@@ -279,9 +203,7 @@ RSpec.describe Establishment, type: :model do
                                             .new(week_day: i, is_closed: true)}
 
       establishment.operating_hours = operating_hour
-      user.establishment = establishment
       establishment_two.operating_hours = operating_hour_two
-      user_two.establishment = establishment_two
       # Act
       establishment.save
       establishment_two.save
@@ -291,13 +213,6 @@ RSpec.describe Establishment, type: :model do
 
      it 'e não muda com atualização do estabelecimento' do 
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-      )
       establishment = Establishment.new(
         email:'sam@gmail.com', 
         trade_name: 'Samsumg', 
@@ -311,7 +226,6 @@ RSpec.describe Establishment, type: :model do
                                         .new(week_day: i, is_closed: true)}
 
       establishment.operating_hours = operating_hour
-      user.establishment = establishment
       establishment.save
       original_code = establishment.code
       # Act

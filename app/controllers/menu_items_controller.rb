@@ -1,5 +1,6 @@
 class MenuItemsController < ApplicationController
   before_action :authenticate_user!
+  before_action :employee?
 
   def new
     @menu = Menu.find(params[:menu_id])

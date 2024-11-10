@@ -1,12 +1,16 @@
 class MenusController < ApplicationController
   before_action :authenticate_user!
+  before_action :employee?, only: [:create, :new] 
 
   def new
     @menu = Menu.new
   end
 
   def create
-    @menu = Menu.new(establishment: current_user.establishment, name: menu_params[:name])
+    @menu = Menu.new(
+      establishment: current_user.establishment, 
+      name: menu_params[:name]
+    )
     if @menu.save
       redirect_to @menu, notice: 'Cardápio cadastrado com sucesso'
     else

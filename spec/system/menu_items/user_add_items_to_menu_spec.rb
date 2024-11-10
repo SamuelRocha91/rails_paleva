@@ -3,14 +3,6 @@ require 'rails_helper'
 describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
   it 'e deve estar autenticado' do
     # Arrange
-     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -18,7 +10,14 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     menu = Menu.create!(
@@ -33,16 +32,8 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
     expect(current_path).to eq new_user_session_path
   end
 
-  it 'e cadastra prato com sucesso' do
+  it 'e deve ser :admin' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -50,10 +41,51 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment,
+      role: 1
     )
 
     menu = Menu.create!(
+      establishment: establishment, 
+      name: 'Café da manhã'
+    )
+
+    # Act
+    login_as user
+    visit new_menu_menu_item_path menu
+
+    # Assert
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Você não tem permissão para acessar esse recurso'
+  end
+
+  it 'e cadastra prato com sucesso' do
+    # Arrange
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
+    )
+
+    Menu.create!(
       establishment: establishment, 
       name: 'Café da manhã'
     )
@@ -87,14 +119,6 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
 
   it 'e cadastra bebida com sucesso' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -102,10 +126,17 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
-    menu = Menu.create!(
+    Menu.create!(
       establishment: establishment, 
       name: 'Café da manhã'
     )
@@ -139,14 +170,6 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
 
   it 'item já cadastrado não pode ser duplicado no cardápio' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -154,7 +177,14 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     menu = Menu.create!(

@@ -2,16 +2,8 @@ require 'rails_helper'
 
 describe 'Usuário vê suas próprias bebidas' do
 
-  it 'e navega para a página de detalhes' do
+  it 'e deve ser :admin' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -19,7 +11,50 @@ describe 'Usuário vê suas próprias bebidas' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment,
+      role: 1
+    )
+    Beverage.create!(
+      name: 'cachaça', 
+      description: 'alcool delicioso baiano', 
+      calories: '185', 
+      establishment: establishment, 
+      is_alcoholic: true
+    )
+    
+    # Act
+    login_as user
+    visit establishment_beverages_path(establishment.id)
+
+    # Assert
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Você não tem permissão para acessar esse recurso'
+  end
+
+  it 'e navega para a página de detalhes' do
+    # Arrange
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     beverage = Beverage.create!(
@@ -42,6 +77,7 @@ describe 'Usuário vê suas próprias bebidas' do
       establishment: establishment, 
       is_alcoholic: false
     )
+
     # Act
     login_as user
     visit root_path
@@ -57,27 +93,10 @@ describe 'Usuário vê suas próprias bebidas' do
     expect(page).to have_content 'É alcoólica? Sim'
     expect(page).to have_link 'Cadastrar volume'
     expect(page).to have_link 'Editar bebida'  
-    expect(page).to have_button 'Excluir bebida'  
   end 
 
   it 'e não vê bebidas de outros estabelecimentos' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
-    user_two = User.create!(
-      first_name: 'Bill', 
-      last_name: 'Gates', 
-      email: 'ng@hotmail.com', 
-      password: '12345678910111',  
-      cpf: CPF.generate
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -85,7 +104,14 @@ describe 'Usuário vê suas próprias bebidas' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     establishment_two = Establishment.create!(
@@ -95,7 +121,15 @@ describe 'Usuário vê suas próprias bebidas' do
       cnpj: '12345678000195',
       phone_number: '71992594950', 
       address: 'Rua da Microsoft',
-      user: user_two
+    )
+
+    User.create!(
+      first_name: 'Bill', 
+      last_name: 'Gates', 
+      email: 'ng@hotmail.com', 
+      password: '12345678910111',  
+      cpf: CPF.generate,
+      establishment: establishment_two
     )
 
     beverage = Beverage.create!(
@@ -140,22 +174,6 @@ describe 'Usuário vê suas próprias bebidas' do
 
    it 'e não página de deetalhes de bebidas de outros estabelecimentos' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
-    user_two = User.create!(
-      first_name: 'Bill', 
-      last_name: 'Gates', 
-      email: 'ng@hotmail.com', 
-      password: '12345678910111',  
-      cpf: CPF.generate
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -163,7 +181,14 @@ describe 'Usuário vê suas próprias bebidas' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     establishment_two = Establishment.create!(
@@ -173,7 +198,15 @@ describe 'Usuário vê suas próprias bebidas' do
       cnpj: '12345678000195',
       phone_number: '71992594950', 
       address: 'Rua da Microsoft',
-      user: user_two
+    )
+
+    User.create!(
+      first_name: 'Bill', 
+      last_name: 'Gates', 
+      email: 'ng@hotmail.com', 
+      password: '12345678910111',  
+      cpf: CPF.generate,
+      establishment: establishment_two
     )
 
     beverage = Beverage.create!(

@@ -3,20 +3,21 @@ require 'rails_helper'
 describe 'Usuário edita seu restabelecimento' do
   it 'a partir da página home' do
     # Arrange
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
     user = User.create!(
       first_name: 'Samuel', 
       last_name: 'Rocha', 
       email: 'samuel@hotmail.com', 
       password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    establishment = Establishment.new(
-      email:'sam@gmail.com', 
-      trade_name: 'Samsumg', 
-      legal_name: 'Samsumg LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas' 
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     operating_hour = []
@@ -30,13 +31,13 @@ describe 'Usuário edita seu restabelecimento' do
     )
   
     establishment.operating_hours = operating_hour
-    establishment.save
-    user.establishment = establishment 
+  
     # Act
     login_as user
     visit root_path
     click_on establishment.trade_name
     click_on 'Editar informações'
+
     # Assert
     expect(current_path).to eq edit_establishment_path establishment.id
     expect(page).to have_content 'Editar Restaurante'
@@ -59,20 +60,21 @@ describe 'Usuário edita seu restabelecimento' do
 
   it 'com dados incompletos' do
     # Arrange
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
     user = User.create!(
       first_name: 'Samuel', 
       last_name: 'Rocha', 
       email: 'samuel@hotmail.com', 
       password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    establishment = Establishment.new(
-      email:'sam@gmail.com', 
-      trade_name: 'Samsumg', 
-      legal_name: 'Samsumg LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas' 
+      cpf: '22611819572',
+      establishment: establishment
     )
   
     operating_hour = []
@@ -85,8 +87,7 @@ describe 'Usuário edita seu restabelecimento' do
       is_closed: false
     )
     establishment.operating_hours = operating_hour
-    establishment.save
-    user.establishment = establishment 
+
     # Act
     login_as user
     visit root_path
@@ -95,26 +96,28 @@ describe 'Usuário edita seu restabelecimento' do
     fill_in 'Endereço',	with: ''
     fill_in 'Telefone',	with: ''
     click_on 'Salvar'
+
     # Assert
     expect(page).to have_content 'Não foi possível atualizar o estabelecimento'  
   end
 
   it 'com sucesso' do
     # Arrange
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
     user = User.create!(
       first_name: 'Samuel', 
       last_name: 'Rocha', 
       email: 'samuel@hotmail.com', 
       password: '12345678910111',  
-      cpf: '22611819572'
-    )
-    establishment = Establishment.new(
-      email:'sam@gmail.com', 
-      trade_name: 'Samsumg', 
-      legal_name: 'Samsumg LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas' 
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     operating_hour = []
@@ -128,16 +131,17 @@ describe 'Usuário edita seu restabelecimento' do
     )
 
     establishment.operating_hours = operating_hour
-    establishment.save
-    user.establishment = establishment 
+
     # Act
     login_as user
     visit root_path
+
     click_on establishment.trade_name
     click_on 'Editar informações'
     fill_in 'Endereço',	with: 'Rua nova das novidades'
     fill_in 'Telefone',	with: '85992594946'
     click_on 'Salvar'
+
     # Assert
     expect(page).to have_content 'Estabelecimento atualizado com sucesso'
     expect(page).to have_content "Código: #{establishment.code}"

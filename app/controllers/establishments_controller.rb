@@ -2,6 +2,7 @@ class EstablishmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :establishment_created, only: [:new]
   before_action :set_establishment, only: [:edit, :update]
+  before_action :employee?, except: [:index]
 
   def index
     @establishment = current_user.establishment
@@ -16,8 +17,8 @@ class EstablishmentsController < ApplicationController
 
   def create
     @establishment = Establishment.new(establishment_params)
-    @establishment.user = current_user
     if @establishment.save
+      current_user.update(establishment: @establishment)
       redirect_to establishments_path, 
                     notice: 'Cadastro de restaurante efetuado com sucesso!'
     else
@@ -36,6 +37,26 @@ class EstablishmentsController < ApplicationController
     end
   end
 
+  def form_registration_user
+    @establishment = current_user.establishment
+    @user = TemporaryUser.new 
+  end
+
+  def pre_registration_user
+    @establishment = current_user.establishment
+    @user = TemporaryUser.new(
+      cpf: params[:cpf], 
+      email: params[:email],
+      establishment: @establishment
+    )
+
+    if @user.save
+      redirect_to establishments_path, notice: 'Pré-cadastro realizado com sucesso'
+    else
+      render :form_registration_user, status: :unprocessable_entity
+    end
+  end
+  
   private
 
   def establishment_params
@@ -60,3 +81,4 @@ class EstablishmentsController < ApplicationController
   end
 
 end
+

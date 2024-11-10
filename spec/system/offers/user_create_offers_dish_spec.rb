@@ -3,13 +3,6 @@ require 'rails_helper'
 describe 'Usuário acessa formulário de criar oferta de um prato' do
   it 'e deve estar autenticado' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -17,7 +10,14 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     dish = Dish.create!(
       name: 'lasagna', 
@@ -32,16 +32,9 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
     # Assert
     expect(current_path).to eq new_user_session_path
   end
-  
-  it 'e vê os campos corretamente' do
+
+  it 'e deve ser :admin' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -49,7 +42,49 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment,
+      role: 1
+    )
+    dish = Dish.create!(
+      name: 'lasagna', 
+      description: 'massa, queijo e presunto', 
+      calories: '185', 
+      establishment: establishment
+    )
+
+    # Act
+    login_as user
+    visit offer_dish_path(dish.id)
+
+    # Assert
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Você não tem permissão para acessar esse recurso'
+  end
+  
+  it 'e vê os campos corretamente' do
+    # Arrange
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     Dish.create!(
       name: 'lasagna', 
@@ -75,13 +110,6 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
 
   it 'falha por ausência de campo obrigatório' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -89,7 +117,14 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     Dish.create!(
       name: 'lasagna', 
@@ -113,13 +148,6 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
 
   it 'com sucesso' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -127,7 +155,14 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     Dish.create!(
       name: 'lasagna', 
@@ -158,13 +193,6 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
 
   it 'consegue vincular mais de um tipo de porção a um prato' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -172,7 +200,14 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     format = Format.create!(name: 'Porção Giga gante')
     dish = Dish.create!(
@@ -206,13 +241,6 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
 
   it 'falha ao tentar cadastrar porção de mesmo nome de outra ja existente para um mesmo prato' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -220,7 +248,14 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     format = Format.create!(name: 'Porção Giga gante')
     dish = Dish.create!(
@@ -253,13 +288,6 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
 
   it 'consegue cadastrar mesmo nome de porção pra um prato diferente' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -267,7 +295,14 @@ describe 'Usuário acessa formulário de criar oferta de um prato' do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
     format = Format.create!(name: 'Porção Giga gante')
     dish = Dish.create!(

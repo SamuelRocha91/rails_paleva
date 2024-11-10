@@ -3,14 +3,6 @@ require 'rails_helper'
 RSpec.describe MenuItem, type: :model do
   it 'Não deve ser possível vincular o mesmo prato duas vezes a um mesmo cardápio' do 
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -18,7 +10,14 @@ RSpec.describe MenuItem, type: :model do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
@@ -42,14 +41,6 @@ RSpec.describe MenuItem, type: :model do
 
   it 'Não deve ser possível vincular a mesma bebida duas vezes a um mesmo cardápio' do 
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -57,7 +48,14 @@ RSpec.describe MenuItem, type: :model do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
@@ -82,14 +80,6 @@ RSpec.describe MenuItem, type: :model do
 
   it 'É possível vincular um prato a dois cardápios diferentes' do 
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -97,7 +87,14 @@ RSpec.describe MenuItem, type: :model do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
@@ -122,14 +119,6 @@ RSpec.describe MenuItem, type: :model do
 
   it 'É possível vincular ums bebida a dois cardápios diferentes' do 
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572'
-    )
-
     establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
@@ -137,7 +126,14 @@ RSpec.describe MenuItem, type: :model do
       cnpj: '56924048000140',
       phone_number: '71992594946', 
       address: 'Rua das Alamedas avenidas',
-      user: user
+    )
+    User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     menu = Menu.create!(establishment: establishment, name: 'Café da manhã')

@@ -10,21 +10,21 @@ describe 'Usuário muda status do pedido' do
 
   it 'de aguardando confirmação da cozinha PARA em preparo' do
     # Arrange
-    user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-    )
     establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
-        cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
-        user: user
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
@@ -66,21 +66,21 @@ describe 'Usuário muda status do pedido' do
 
   it 'de em preparo PARA pronto para entrega' do
     # Arrange
-    user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
+   establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
     )
-    establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
-        cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
-        user: user
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
@@ -121,21 +121,21 @@ describe 'Usuário muda status do pedido' do
 
   it 'de pronto para entrega PARA entregue' do
     # Arrange
-    user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-    )
     establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
-        cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
-        user: user
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
@@ -176,21 +176,21 @@ describe 'Usuário muda status do pedido' do
 
   it 'de pronto para entrega PARA Cancelado' do
     # Arrange
-    user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572'
-    )
     establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
-        cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
-        user: user
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+    )
+    user = User.create!(
+      first_name: 'Samuel', 
+      last_name: 'Rocha', 
+      email: 'samuel@hotmail.com', 
+      password: '12345678910111',  
+      cpf: '22611819572',
+      establishment: establishment
     )
 
     customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
