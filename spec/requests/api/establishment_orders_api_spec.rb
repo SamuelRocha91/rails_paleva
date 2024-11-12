@@ -134,6 +134,42 @@ describe 'Orders API' do
       expect(response.status).to eq 200
       expect(response.body).to eq '[]' 
     end
+
+    it 'e falha se houver um erro interno' do
+      # Arrange
+      allow(Establishment).to receive(:find_by).and_raise(ActiveRecord::ActiveRecordError)
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+
+      # Act
+      get "/api/v1/establishment/#{establishment.code}/orders"
+
+      # Assert
+      expect(response.status).to eq 500
+    end
+
+    it 'e falha se o estabelecimento não existir' do
+      # Arrange
+      # Act
+      get "/api/v1/establishment/azds/orders"
+
+      # Assert
+      expect(response.status).to eq 404  
+    end
   end
   
 end
