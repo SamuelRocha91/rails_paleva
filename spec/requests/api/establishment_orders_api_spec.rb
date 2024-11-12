@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Orders API' do
-  context 'GET /api/v1/:code/orders/' do
+  context 'GET /api/v1/establishment/:code/orders/' do
     it 'sem status, lista todos os pedidos do estabelecimento' do
       # Arrange
       establishment = Establishment.create!(
