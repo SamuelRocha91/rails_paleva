@@ -9,6 +9,7 @@ class Establishment < ApplicationRecord
   has_many :dishes
   has_many :beverages
   has_many :temporary_users
+  has_many :orders
   accepts_nested_attributes_for :operating_hours, allow_destroy: true, 
                                                     update_only: true
 
