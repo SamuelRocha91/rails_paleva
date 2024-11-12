@@ -44,6 +44,7 @@ describe 'Orders API' do
 
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders"
+  
       # Assert
       expect(response.status).to eq(200)
       expect(response.content_type).to include('application/json')
@@ -99,12 +100,39 @@ describe 'Orders API' do
 
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders?status=in_preparation"
+
       # Assert
       expect(response.status).to eq(200)
       json_response = JSON.parse(response.body)
       expect(json_response.length).to eq 1
       expect(json_response[0]["code"]).to eq order_two.code
       expect(json_response[0]["status"]).to eq 'in_preparation'
+    end
+
+    it 'retorna vazio se não houverem pedidos cadastrados' do
+      # Arrange
+       establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+      # Act
+      get "/api/v1/establishment/#{establishment.code}/orders"
+
+      # Assert
+      expect(response.status).to eq 200
+      expect(response.body).to eq '[]' 
     end
   end
   
