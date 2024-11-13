@@ -21,8 +21,14 @@ describe 'Orders API' do
         establishment: establishment
       )
 
-      customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
-      customer_two = Customer.create!(name: 'Ana', email: 'ana@gmail.com')
+      customer = Customer.create!(
+        name: 'Samuel',
+        email: 'sam@gmail.com'
+      )
+      customer_two = Customer.create!(
+        name: 'Ana', 
+        email: 'ana@gmail.com'
+      )
 
       dish = Dish.create!(
             name: 'lasagna', 
@@ -32,8 +38,14 @@ describe 'Orders API' do
       )
       format = Format.create!(name: 'Porção grande')
 
-      order = Order.create!(establishment: establishment, customer: customer)
-      order_two = Order.create!(establishment: establishment, customer: customer_two)
+      order = Order.create!(
+        establishment: establishment,
+        customer: customer
+      )
+      order_two = Order.create!(
+        establishment: establishment, 
+        customer: customer_two
+      )
       order_two.in_preparation!
       offer = Offer.create!(
         format: format,
@@ -77,8 +89,14 @@ describe 'Orders API' do
         establishment: establishment
       )
 
-      customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
-      customer_two = Customer.create!(name: 'Ana', email: 'ana@gmail.com')
+      customer = Customer.create!(
+        name: 'Samuel', 
+        email: 'sam@gmail.com'
+      )
+      customer_two = Customer.create!(
+        name: 'Ana', 
+        email: 'ana@gmail.com'
+      )
 
       dish = Dish.create!(
             name: 'lasagna', 
@@ -88,8 +106,14 @@ describe 'Orders API' do
       )
       format = Format.create!(name: 'Porção grande')
 
-      order = Order.create!(establishment: establishment, customer: customer)
-      order_two = Order.create!(establishment: establishment, customer: customer_two)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer
+      )
+      order_two = Order.create!(
+        establishment: establishment, 
+        customer: customer_two
+      )
       order_two.in_preparation!
       offer = Offer.create!(
         format: format,
@@ -193,7 +217,10 @@ describe 'Orders API' do
         establishment: establishment
       )
 
-      customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
+      customer = Customer.create!(
+        name: 'Samuel',
+        email: 'sam@gmail.com'
+      )
 
       dish = Dish.create!(
             name: 'lasagna', 
@@ -203,13 +230,20 @@ describe 'Orders API' do
       )
       format = Format.create!(name: 'Porção grande')
 
-      order = Order.create!(establishment: establishment, customer: customer)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer
+      )
       offer = Offer.create!(
         format: format,
         item: dish,
         price: 55
       )
-      OrderItem.create!(offer: offer, order: order, note: 'sem cebola' )
+      OrderItem.create!(
+        offer: offer, 
+        order: order, 
+        note: 'sem cebola' 
+      )
 
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders/#{order.code}"
@@ -220,8 +254,10 @@ describe 'Orders API' do
       expect(json_response["customer"]["name"]).to eq customer.name
       expect(json_response["status"]).to eq 'pending_kitchen_confirmation'
       expect(json_response["order_items"][0]["note"]).to eq 'sem cebola'
-      expect(json_response["order_items"][0]["offer"]["format"]["name"]).to eq 'Porção grande'
-      expect(json_response["order_items"][0]["offer"]["item"]["name"]).to eq 'lasagna'
+      expect(json_response["order_items"][0]["offer"]["format"]["name"]
+                                                ).to eq 'Porção grande'
+      expect(json_response["order_items"][0]["offer"]["item"]["name"]
+                                                ).to eq 'lasagna'
       expect(json_response.keys).to include 'created_at'
       expect(json_response["customer"]["name"]).to eq 'Samuel'
     end
