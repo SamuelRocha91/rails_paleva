@@ -21,15 +21,92 @@ Este projeto está sendo desenvolvido como requisito avaliativo do programa <a h
 
 <details>
 
-<summary> <h2>Gems Utilizadas</h2> </summary>
+<summary> <h2>Instruções de uso</h2> </summary>
 
-- Devise
+---
 
-A gem devise é utilizada para a autenticação de usuários e controle de acesso às rotas.
+## 1. Clonando o Repositório
 
-- Active Storage (Gerenciamento de Arquivos)
+Primeiro, você precisa clonar o repositório para o seu ambiente local. Abra o terminal e execute o seguinte comando:
 
-A aplicação também utiliza o Active Storage para fazer upload e gerenciamento de arquivos, como imagens de comidas e bebidas.
+```bash
+git clone git@github.com:SamuelRocha91/rails_paleva.git
+cd rails_paleva
+```
+
+
+## 2. Instalando as Dependências
+
+Antes de rodar a aplicação, é necessário instalar as dependências. Para isso, use o Bundler:
+
+```bash
+bundle install
+```
+
+Isso irá instalar todas as gems necessárias para a aplicação.
+
+## 3. Configurando o Banco de Dados
+
+A aplicação utiliza o banco de dados para armazenar os dados. Siga os passos abaixo para configurar e migrar o banco de dados.
+
+### Criar o Banco de Dados
+
+Execute o seguinte comando para criar o banco de dados:
+
+```bash
+rails db:create
+```
+
+### Rodar as Migrações
+
+Agora, você deve rodar as migrações para garantir que a estrutura do banco de dados esteja atualizada:
+
+```bash
+rails db:migrate
+```
+
+### Rodando as Seeds
+
+Após as migrações, você pode rodar as *seeds* para popular o banco de dados com dados iniciais, como usuários e registros do sistema. Para isso, execute:
+
+```bash
+rails db:seed
+```
+
+Isso irá criar usuários e outros dados necessários para começar a testar a aplicação.
+
+## 4. Usuários Preexistentes
+
+Para facilitar a navegação e testes no sistema, preparamos alguns usuários padrão que você pode usar para se autenticar na aplicação:
+
+### Usuários Administradores
+
+- **Email**: urso@gmail.com
+- **Senha**: 1234567891234
+
+Este usuário tem acesso completo ao sistema e pode gerenciar todos os aspectos da aplicação.
+
+### Usuários Comuns
+
+- **Email**: boimanso@gmail.com'
+- **Senha**: 1234567891234
+
+Este usuário pode acessar as funcionalidades limitadas da aplicação, mas não tem permissões administrativas.
+
+## 5. Rodando a Aplicação
+
+Agora que o banco de dados foi configurado e as seeds foram aplicadas, você pode rodar a aplicação localmente. Execute o seguinte comando para iniciar o servidor:
+
+```bash
+rails server
+```
+
+Isso irá iniciar o servidor localmente. Você pode acessar a aplicação através do navegador, indo para [http://localhost:3000](http://localhost:3000).
+
+## 6. Testando a Aplicação
+
+Com o servidor em funcionamento, use as credenciais dos usuários fornecidos para navegar pela aplicação. O usuário administrador pode acessar todas as funcionalidades, enquanto o usuário comum pode testar funcionalidades limitadas.
+
 
 </details>
 

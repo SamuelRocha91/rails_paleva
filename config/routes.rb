@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  namespace :api do
+    namespace :v1 do
+      resources :establishment, only: [], param: :code do
+        get '/orders', to: 'establishments#list_orders', on: :member
+        get '/orders/:order_code', to: 'establishments#show_order', on: :member
+        put '/orders/:order_code/in-preparation', to: 'establishments#accept_order', on: :member
+        put '/orders/:order_code/ready', to: 'establishments#ready', on: :member
+      end
+    end
+  end
+
   root "home#index"
 
   get 'search', to: 'search#search'
