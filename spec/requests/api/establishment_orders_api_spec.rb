@@ -172,4 +172,58 @@ describe 'Orders API' do
     end
   end
   
+  context 'GET /api/v1/establishment/:code/orders/:order_code' do
+     it 'e lista um pedido específico do estabelecimento' do
+      # Arrange
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+
+      customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
+
+      dish = Dish.create!(
+            name: 'lasagna', 
+            description: 'massa, queijo e presunto', 
+            calories: '185', 
+            establishment: establishment
+      )
+      format = Format.create!(name: 'Porção grande')
+
+      order = Order.create!(establishment: establishment, customer: customer)
+      offer = Offer.create!(
+        format: format,
+        item: dish,
+        price: 55
+      )
+      OrderItem.create!(offer: offer, order: order, note: 'sem cebola' )
+
+      # Act
+      get "/api/v1/establishment/#{establishment.code}/orders/#{order.code}"
+  
+      # Assert
+      expect(response.status).to eq(200)
+      json_response = JSON.parse(response.body)
+      expect(json_response["customer"]["name"]).to eq customer.name
+      expect(json_response["status"]).to eq 'pending_kitchen_confirmation'
+      expect(json_response["order_items"][0]["note"]).to eq 'sem cebola'
+      expect(json_response["order_items"][0]["offer"]["format"]["name"]).to eq 'Porção grande'
+      expect(json_response["order_items"][0]["offer"]["item"]["name"]).to eq 'lasagna'
+      expect(json_response.keys).to include 'created_at'
+      expect(json_response["customer"]["name"]).to eq 'Samuel'
+    end
+
+  end
 end

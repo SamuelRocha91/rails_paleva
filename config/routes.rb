@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :establishment, only: [], param: :code do
         get '/orders', to: 'establishments#list_orders', on: :member
+        get '/orders/:order_code', to: 'establishments#show_order', on: :member
       end
     end
   end
