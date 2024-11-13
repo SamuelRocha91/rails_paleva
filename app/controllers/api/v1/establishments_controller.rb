@@ -39,8 +39,17 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
     )
 
     render status: 200, json: order_json
+  end
 
+  def accept_order
+    establishment = Establishment.find_by(code: params[:code])
+    order = Order.find_by(code: params[:order_code], establishment: establishment)
+    if order.nil?
+       raise ActiveRecord::RecordNotFound
+    end
 
+    order.in_preparation!
+    render status: 200, json: order.as_json(only: [:code, :status])
   end
 
 end
