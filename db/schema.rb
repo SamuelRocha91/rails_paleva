@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_09_120841) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_13_020501) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -78,29 +78,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_09_120841) do
     t.datetime "updated_at", null: false
     t.boolean "status", default: true
     t.index ["establishment_id"], name: "index_dishes_on_establishment_id"
-  end
-
-  create_table "employees", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "cpf", null: false
-    t.integer "establishment_id", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: nil
-    t.datetime "remember_created_at", precision: nil
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at", precision: nil
-    t.datetime "last_sign_in_at", precision: nil
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.index ["cpf"], name: "index_employees_on_cpf", unique: true
-    t.index ["email"], name: "index_employees_on_email", unique: true
-    t.index ["establishment_id"], name: "index_employees_on_establishment_id"
-    t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
   create_table "establishments", force: :cascade do |t|
@@ -225,7 +202,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_09_120841) do
   add_foreign_key "dish_tags", "dishes"
   add_foreign_key "dish_tags", "tags"
   add_foreign_key "dishes", "establishments"
-  add_foreign_key "employees", "establishments"
   add_foreign_key "menu_items", "menus"
   add_foreign_key "menus", "establishments"
   add_foreign_key "offers", "formats"
