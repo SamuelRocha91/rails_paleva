@@ -225,5 +225,30 @@ describe 'Orders API' do
       expect(json_response["customer"]["name"]).to eq 'Samuel'
     end
 
+    it 'retorna status 404 se não for encontrado o pedido' do
+      # Arrange
+       establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+  
+      # Act
+      get "/api/v1/establishment/#{establishment.code}/orders/12345"
+
+      # Assert
+      expect(response.status).to eq 404
+    end
   end
 end
