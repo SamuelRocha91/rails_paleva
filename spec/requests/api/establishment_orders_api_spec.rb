@@ -137,7 +137,8 @@ describe 'Orders API' do
 
     it 'e falha se houver um erro interno' do
       # Arrange
-      allow(Establishment).to receive(:find_by).and_raise(ActiveRecord::ActiveRecordError)
+      allow(Establishment).to receive(:find_by)
+                               .and_raise(ActiveRecord::ActiveRecordError)
       establishment = Establishment.create!(
         email: 'sam@gmail.com', 
         trade_name: 'Samsung', 
@@ -246,6 +247,16 @@ describe 'Orders API' do
   
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders/12345"
+
+      # Assert
+      expect(response.status).to eq 404
+    end
+
+    it 'retorna status 404 se não for encontrado o estabelecimento' do
+      # Arrange
+  
+      # Act
+      get "/api/v1/establishment/555/orders/12345"
 
       # Assert
       expect(response.status).to eq 404
