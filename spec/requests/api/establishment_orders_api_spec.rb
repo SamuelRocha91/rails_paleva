@@ -510,5 +510,98 @@ describe 'Orders API' do
       expect(json_response["status"]).to eq 'ready'
     end
 
+    it 'e falha quando se tenta atualizar status indevidamente' do
+      # Arrange
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+      customer = Customer.create!(
+        name: 'Samuel',
+        email: 'sam@gmail.com'
+      )
+      dish = Dish.create!(
+            name: 'lasagna', 
+            description: 'massa, queijo e presunto', 
+            calories: '185', 
+            establishment: establishment
+      )
+      format = Format.create!(name: 'Porção grande')
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer,
+      )
+      offer = Offer.create!(
+        format: format,
+        item: dish,
+        price: 55
+      )
+      OrderItem.create!(
+        offer: offer, 
+        order: order, 
+        note: 'sem cebola' 
+      )
+      order.in_preparation!
+      order.ready!
+
+      # Act
+      put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/ready"
+  
+      # Assert
+      expect(response.status).to eq(400)
+      json_response = JSON.parse(response.body)
+      expect(json_response["message"]
+                             ).to eq "Status 'ready' não é válido para esse pedido"
+    end
+
+    it 'retorna status 404 se não for encontrado o pedido' do
+      # Arrange
+       establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+  
+      # Act
+      get "/api/v1/establishment/#{establishment.code}/orders/12345/ready"
+
+      # Assert
+      expect(response.status).to eq 404
+    end
+
+    it 'retorna status 404 se não for encontrado o estabelecimento' do
+      # Arrange
+  
+      # Act
+      get "/api/v1/establishment/555/orders/12345/ready"
+
+      # Assert
+      expect(response.status).to eq 404
+    end
+    
+
   end
 end
