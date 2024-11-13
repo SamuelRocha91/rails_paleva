@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         get '/orders', to: 'establishments#list_orders', on: :member
         get '/orders/:order_code', to: 'establishments#show_order', on: :member
         put '/orders/:order_code/in-preparation', to: 'establishments#accept_order', on: :member
+        put '/orders/:order_code/ready', to: 'establishments#ready', on: :member
       end
     end
   end

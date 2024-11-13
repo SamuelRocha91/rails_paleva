@@ -1,5 +1,5 @@
 class Api::V1::EstablishmentsController <  Api::V1::ApiController
-  before_action :set_establishment_and_order, only: [:show_order, :accept_order]
+  before_action :set_establishment_and_order, only: [:show_order, :accept_order, :ready]
 
   def list_orders
     establishment = Establishment.find_by(code: params[:code])
@@ -45,6 +45,17 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
     end
 
     @order.in_preparation!
+
+    render status: 200, json: @order.as_json(only: [:code, :status])
+  end
+
+  def ready
+    if @order.status != 'in_preparation'
+      message = { message: "Status 'ready' não é válido para esse pedido" } 
+      return render status: 400, json: message.to_json      
+    end
+
+    @order.ready!
 
     render status: 200, json: @order.as_json(only: [:code, :status])
   end
