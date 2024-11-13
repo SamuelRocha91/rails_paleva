@@ -1,4 +1,5 @@
 class Api::V1::EstablishmentsController <  Api::V1::ApiController
+  before_action :set_establishment_and_order, only: [:show_order, :accept_order]
 
   def list_orders
     establishment = Establishment.find_by(code: params[:code])
@@ -15,17 +16,7 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
   end
 
   def show_order
-    establishment = Establishment.find_by(code: params[:code])
-    order = Order.find_by(
-      code: params[:order_code], 
-      establishment: establishment
-    )
-
-    if order.nil?
-       raise ActiveRecord::RecordNotFound
-    end
-
-    order_json = order.as_json(
+    order_json = @order.as_json(
       include: {
         customer: { only: :name },
         order_items: {
@@ -48,23 +39,27 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
   end
 
   def accept_order
-    establishment = Establishment.find_by(code: params[:code])
-    order = Order.find_by(
-      code: params[:order_code], 
-      establishment: establishment
-    )
-    if order.nil?
-       raise ActiveRecord::RecordNotFound
-    end
-
-    if order.status != 'pending_kitchen_confirmation'
+    if @order.status != 'pending_kitchen_confirmation'
       message = { message: "Status 'in_progress' não é válido para esse pedido" } 
       return render status: 400, json: message.to_json      
     end
 
-    order.in_preparation!
+    @order.in_preparation!
 
-    render status: 200, json: order.as_json(only: [:code, :status])
+    render status: 200, json: @order.as_json(only: [:code, :status])
+  end
+
+  private
+
+  def set_establishment_and_order
+    @establishment = Establishment.find_by(code: params[:code])
+    @order = Order.find_by(
+      code: params[:order_code], 
+      establishment: @establishment
+    )
+    if @order.nil?
+       raise ActiveRecord::RecordNotFound
+    end
   end
 
 end
