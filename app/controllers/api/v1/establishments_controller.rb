@@ -7,7 +7,7 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
        raise ActiveRecord::RecordNotFound
     end
     orders = establishment.orders
-    orders = orders.where(status: params[:status]) if params[:status]
+    orders = orders.where(status: params[:status]) if params[:status] && params[:status] != ''
 
     render status: 200, json: orders.as_json(
       include: :customer, 
