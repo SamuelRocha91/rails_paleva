@@ -33,6 +33,8 @@ gem 'turbo-rails'
 
 gem "stimulus-rails"
 
+gem 'rack-cors', require: 'rack/cors'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -40,7 +42,6 @@ group :development, :test do
   gem "capybara"
   gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
-
 end
 
 group :development do
