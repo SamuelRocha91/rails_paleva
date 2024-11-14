@@ -18,7 +18,7 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
   def show_order
     order_json = @order.as_json(
       include: {
-        customer: { only: :name },
+        customer: { only: [:name, :phone_number, :email] },
         order_items: {
           only: [:note],
           include: {
