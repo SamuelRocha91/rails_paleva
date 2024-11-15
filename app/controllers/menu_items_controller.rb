@@ -10,7 +10,7 @@ class MenuItemsController < ApplicationController
       @type = 'Dish'
       @items = current_user.establishment.dishes.reject do |dish|
         existing_items.any? { |item| dish.id == item.id && 
-                                          item.type == 'Dish'}
+                                          item.item_type == 'Dish'}
       end
     else
       @type = 'Beverage'
