@@ -1,14 +1,14 @@
-<h1>Adicionar Porção ao Pedido</h1>
+<h1 class="title">Adicionar Porção ao Pedido</h1>
 
-<%= form_with(url: add_item_to_order_orders_path(@portion.id), method: :post) do |form| %>
+<%= form_with(url: add_item_to_order_orders_path(@portion.id), method: :post, class: 'form-edit') do |form| %>
   <div class="form-group">
     <%= form.text_field :item_name, value: @portion.item.name, readonly: true, class: 'form-control'  %>
     <%= form.text_field :portion_info, value: "#{@portion.format.name} - #{number_to_currency(@portion.price, unit: "R$", separator: ",", precision: 2) }", class: 'form-control', readonly: true %>
   </div>
-  <div class="form-group">
-    <%= form.label :observation, 'Observação' %>
+  <div class="form-group mt-5">
+    <%= form.label :observation, 'Observação:' %>
     <%= form.text_area :observation, rows: 3, class: 'form-control' %>
   </div>
 
-  <%= form.submit 'Adicionar ao Pedido', class: 'btn btn-primary' %>
+  <%= form.submit 'Adicionar ao Pedido', class: 'btn btn-primary mt-1' %>
 <% end %>

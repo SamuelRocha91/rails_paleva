@@ -1,4 +1,4 @@
-<h1>Pré-cadastro de usuário</h1>
+<h1 class='title'>Pré-cadastro de usuário</h1>
 
 <% if @user.errors.any? %>
   <p>Verifique os erros abaixo:</p>
@@ -14,7 +14,7 @@
 <%= form_with(url: user_new_establishment_path(@establishment.id) , class: 'form-edit') do |f| %>
   <div class='mb-3 mt-5'>
     <%= f.label :email, 'E-mail', class: 'form-label' %>
-    <%= f.text_field :email, class: 'form-control', placeholder: 'ex: Café da manhã' %>
+    <%= f.email_field :email, class: 'form-control', placeholder: 'email@example.com' %>
   </div>
   <div class='mb-3 mt-5'>
     <%= f.label :cpf, 'CPF', class: 'form-label' %>

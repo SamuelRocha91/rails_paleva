@@ -1,17 +1,21 @@
 <h1 class="title">Visualizar Pedido</h1>
 
 <% if @portions.any? %>
-  <ul>
-    <% @portions.each do |item| %>
-      <li>
-        <%= item[:portion].format.name %> - <%= item[:portion].item.name %> -
-        <%= number_to_currency(item[:portion].price, unit: 'R$', separator: ',', precision: 2) %> - 
-        Observação: <%= item[:observation] %>
-      </li>
-    <% end %>
-    <p>Valor Total: <%= number_to_currency(@total, unit: 'R$', separator: ',', precision: 2) %><p>
-  </ul>
-  <%= link_to 'Finalizar Pedido', new_order_path, class: 'btn btn-succes' %>
+  <div class="order-preview mt-5">
+    <ul>
+      <% @portions.each do |item| %>
+        <li>
+          <%= item[:portion].format.name %> - <%= item[:portion].item.name %> -
+          <%= number_to_currency(item[:portion].price, unit: 'R$', separator: ',', precision: 2) %> -
+          Observação: <%= item[:observation] %>
+        </li>
+      <% end %>
+      <p class="title mt-3"><strong>Valor Total:</strong> <spam class="active value-total"> <%= number_to_currency(@total, unit: 'R$', separator: ',', precision: 2)%> </spam><p>
+    </ul>
+    <div>
+      <%= link_to 'Finalizar Pedido', new_order_path, class: 'btn btn-success' %>
+    <div>
+  </div>
 <% else %>
   <p class="title">Nenhum item foi adicionado ao pedido ainda.</p>
 <% end %>
