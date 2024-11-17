@@ -1,4 +1,4 @@
-<h1>Atualização de preço</h1>
+<h1 class='title'>Atualização de preço</h1>
 
 <% if @beverage.errors.any? %>
   <p>Verifique os erros abaixo:</p>
@@ -11,18 +11,18 @@
   </ul>
 <% end %>
 
-<%= form_with(url: update_offer_beverage_path(@beverage.id, @offer.id)) do |f| %>
-  <div>
-    <%= f.label :name, 'Nome do volume' %>
-    <%= f.text_field :name, name: 'format[name]', value: @offer.format.name, readonly: true %>
+<%= form_with(url: update_offer_beverage_path(@beverage.id, @offer.id), class: 'form-edit') do |f| %>
+  <div class='mb-3 mt-5'>
+    <%= f.label :name, 'Nome do volume', class: 'form-label' %>
+    <%= f.text_field :name, name: 'format[name]', value: @offer.format.name, readonly: true, class: 'form-control' %>
   </div>
-  <div>
-    <%= f.label :details, 'Detalhes do volume' %>
-    <%= f.text_field :details, name: 'offer[details]' %>
+  <div class='mb-3 mt-5'>
+    <%= f.label :details, 'Detalhes do volume', class: 'form-label' %>
+    <%= f.text_field :details, name: 'offer[details]', class: 'form-control' %>
   </div>
-   <div>
-    <%= f.label :price, 'Preço do volume' %>
-    <%= f.number_field :price, name: 'offer[price]' %>
-  </div>
-  <%= f.submit 'Salvar' %>
+   <div class='mb-3 mt-5'>
+    <%= f.label :price, 'Preço do volume', class: 'form-label' %>
+    <%= f.number_field :price, name: 'offer[price]', class: 'form-control' %>
+  </div class='mb-3 mt-5'>
+  <%= f.submit 'Salvar', class: 'btn btn-primary' %>
 <% end %>
