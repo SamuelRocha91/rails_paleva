@@ -566,6 +566,7 @@ RSpec.describe Order, type: :model do
 
       order = Order.create!(establishment: establishment, customer: customer)
       initial_code = order.code
+
       # Act
       order.in_preparation!
 

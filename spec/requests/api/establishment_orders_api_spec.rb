@@ -602,6 +602,5 @@ describe 'Orders API' do
       expect(response.status).to eq 404
     end
     
-
   end
 end

@@ -6,6 +6,7 @@ describe 'Usuário que não é ainda cadastrado' do
       # Act
       visit root_path
       click_on 'Criar conta'
+  
       # Assert
       expect(current_path).to eq new_user_registration_path
       expect(page).to have_content 'E-mail'
@@ -25,6 +26,7 @@ describe 'Usuário que não é ainda cadastrado' do
       fill_in 'Senha',	with: '12345678912345'
       fill_in 'Confirme sua senha',	with: '12345678912345'
       click_on 'Cadastrar'
+
       # Assert
       expect(page).to have_content 'Não foi possível salvar usuário: 3 erros.'
       expect(page).to have_content 'CPF não pode ficar em branco'
@@ -45,6 +47,7 @@ describe 'Usuário que não é ainda cadastrado' do
       fill_in 'Sobrenome',	with: 'Rocha'
 
       click_on 'Cadastrar'
+
       # Assert
       expect(page).to have_content 'Não foi possível salvar usuário: 2 erros.'
       expect(page).to have_content 'CPF deve ser um número válido'
@@ -64,6 +67,7 @@ describe 'Usuário que não é ainda cadastrado' do
       fill_in 'Sobrenome',	with: 'Rocha'
 
       click_on 'Cadastrar'
+
       # Assert
       user = User.last
       expect(page).to have_content 'Você realizou seu registro com sucesso'
@@ -109,6 +113,7 @@ describe 'Usuário que não é ainda cadastrado' do
       fill_in 'Sobrenome',	with: 'Lopes'
 
       click_on 'Cadastrar'
+
       # Assert
       user = User.last
       expect(page).to have_content 'Você realizou seu registro com sucesso'

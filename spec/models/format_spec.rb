@@ -6,8 +6,10 @@ RSpec.describe Format, type: :model do
       it 'name' do
         # Arrange
         format = Format.new
+
         # Act
         result = format.valid?
+
         # Assert
         expect(result).to eq false  
       end

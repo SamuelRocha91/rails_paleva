@@ -113,6 +113,7 @@ describe 'Usuário acessa página para desativar oferta de um prato' do
     click_on 'Pratos'
     click_on 'lasagna'
     find('button.Porção-Giga-gante').click
+  
     # Assert
     expect(page).not_to have_content 'Porção Giga gante: R$ 25,00'
     expect(page).to have_content 'Porção pequena: R$ 33,00'

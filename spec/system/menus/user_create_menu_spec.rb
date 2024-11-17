@@ -92,6 +92,7 @@ describe 'Usuário acessa formulário de cadastro de cardápio' do
     visit root_path
     click_on 'Cadastrar cardápio'
     click_on 'Salvar'
+
     # Assert
     expect(page).to have_content 'Nome do Cardápio não pode ficar em branco'
   end
