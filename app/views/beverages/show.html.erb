@@ -40,7 +40,7 @@
               <div class='btn-group-double d-flex justify-content-around mb-3'>
                 <%= link_to 'Editar Preço', 
                             edit_offer_beverage_path(@beverage.id, volume.id), 
-                            class: 'btn btn-secondary' %>
+                            class: 'btn btn-warning' %>
                 <%= button_to 'Retirar Oferta', 
                               deactivate_offer_beverage_path(@beverage.id, volume.id), 
                               class: "#{volume.format.name.gsub(' ', '-')} btn btn-danger" %>
@@ -51,21 +51,18 @@
       </div>
       <hr/>
       <div class='btn-group'>
-        <div class='btn-group-single'>
-          <%= link_to 'Cadastrar volume',
-          offer_beverage_path(@beverage.id), class: 'btn btn-primary mb-2' %>
-          <%= button_to 'Desativar Bebida',
-                         deactivate_beverage_path(@beverage.id), 
-                         class: 'btn btn-danger mb-2'  if @beverage.status %>
-          <%= button_to 'Ativar Bebida', 
-                          activate_beverage_path(@beverage.id), 
-                          class: 'btn btn-success mb-2' unless @beverage.status %>
-        </div>
-        <div class='btn-group-single'>
-          <%= link_to 'Editar bebida',
+        <%= link_to 'Editar bebida',
                        edit_establishment_beverage_path(@beverage), 
                        class: 'btn btn-warning mb-2' %>
-        </div>
+        <%= link_to 'Cadastrar volume',
+                    offer_beverage_path(@beverage.id),
+                     class: 'btn btn-primary mb-2' %>
+        <%= button_to 'Desativar Bebida',
+                       deactivate_beverage_path(@beverage.id), 
+                        class: 'btn btn-danger mb-2'  if @beverage.status %>
+        <%= button_to 'Ativar Bebida', 
+                       activate_beverage_path(@beverage.id), 
+                      class: 'btn btn-success mb-2' unless @beverage.status %>
       </div>
     </div>
   </dl>

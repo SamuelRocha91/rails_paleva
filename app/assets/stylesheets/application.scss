@@ -167,6 +167,11 @@ select:focus {
   max-width: 600px;
   padding: 20px;
   gap: 10px;
+  box-shadow: 2px 2px black;
+}
+
+.portion-single {
+  box-shadow: 2px 2px black;
 }
 
 .info-line {
