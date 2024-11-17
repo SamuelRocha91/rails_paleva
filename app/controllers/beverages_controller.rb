@@ -70,7 +70,8 @@ class BeveragesController < ApplicationController
   end
 
   def create_offer
-    if @beverage.volumes.any? {|volume| volume.active && (volume.format.name == @format.name)}
+    if @beverage.volumes.any? {|volume| volume.active && 
+                                           (volume.format.name == @format.name)}
       flash[:alert] = 'Não é possível cadastrar volumes idênticos para a mesma bebida'
       render :offer, status: :unprocessable_entity
     else

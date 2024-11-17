@@ -23,7 +23,11 @@ class DishesController < ApplicationController
 
   before_action :set_format, only: [:create_offer]
 
-  before_action :set_offer, only: [:edit_offer, :update_offer, :deactivate_offer]
+  before_action :set_offer, only: [
+    :edit_offer, 
+    :update_offer, 
+    :deactivate_offer
+  ]
   
   def index
     @dishes = current_user.establishment.dishes
@@ -36,11 +40,16 @@ class DishesController < ApplicationController
     @dish = Dish.new(dish_params)
     @dish.establishment = Establishment.find(params[:establishment_id])
     if @dish.save
+
       if params[:dish][:tag_names].present?
-        tag_names = params[:dish][:tag_names].split(',').map { |item| item.strip }
-        tags = tag_names.map { |name| Tag.find_or_create_by(name: name) }
+        tag_names = params[:dish][:tag_names]
+                      .split(',')
+                      .map { |item| item.strip }
+        tags = tag_names
+                 .map { |name| Tag.find_or_create_by(name: name) }
         @dish.tags = tags
       end
+
       redirect_to establishment_dishes_path, 
                     notice: 'Prato cadastrado com sucesso'
     else
@@ -55,13 +64,18 @@ class DishesController < ApplicationController
 
   def update
     if @dish.update(dish_params)
+
       if params[:dish][:tag_names].present?
-        tag_names = params[:dish][:tag_names].split(',').map { |item| item.strip }
-        tags = tag_names.map { |name| Tag.find_or_create_by(name: name) }
+        tag_names = params[:dish][:tag_names]
+                      .split(',')
+                      .map { |item| item.strip }
+        tags = tag_names
+                  .map { |name| Tag.find_or_create_by(name: name) }
         @dish.tags = tags
       else
         @dish.tags = []
       end
+
       redirect_to establishment_dish_path(
         current_user.establishment,
          @dish
@@ -84,7 +98,8 @@ class DishesController < ApplicationController
   end
 
   def create_offer
-    if @dish.portions.any? {|portion| portion.active && (portion.format.name == @format.name)}
+    if @dish.portions.any? {|portion| portion.active && 
+                                        (portion.format.name == @format.name)}
       flash[:alert] = 'Não é possível cadastrar porções idênticas para o mesmo prato'
       render :offer, status: :unprocessable_entity
     else

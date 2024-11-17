@@ -1,6 +1,11 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: [:in_preparation, :ready, :delivered, :canceled]
+  before_action :set_order, only: [
+    :in_preparation, 
+    :ready, 
+    :delivered, 
+    :canceled
+  ]
   
   def index
     @orders = Order.where(establishment: current_user.establishment)
@@ -18,7 +23,11 @@ class OrdersController < ApplicationController
     if @order.save
       session_items.each do |item|
         portion = Offer.find(item["portion_id"])
-        OrderItem.create!(offer: portion, note: item["observation"], order: @order)
+        OrderItem.create!(
+          offer: portion, 
+          note: item["observation"], 
+          order: @order
+        )
       end
       session[:order_items] = nil
       redirect_to root_path, 
@@ -56,32 +65,39 @@ class OrdersController < ApplicationController
     @total = 0
     @order_items.each do |item|
       portion = Offer.find(item["portion_id"]) 
-      @portions << { portion: portion, observation: item["observation"] }
+      @portions << { 
+        portion: portion, 
+        observation: item["observation"] 
+      }
       @total += portion.price
     end
   end
 
   def in_preparation
     if @order.in_preparation!
-      redirect_to orders_path, notice: 'Status do Pedido atualizado com sucesso'
+      redirect_to orders_path, 
+                    notice: 'Status do Pedido atualizado com sucesso'
     end
   end
 
   def ready
     if @order.ready!
-      redirect_to orders_path, notice: 'Status do Pedido atualizado com sucesso'
+      redirect_to orders_path, 
+                    notice: 'Status do Pedido atualizado com sucesso'
     end
   end
 
   def delivered
     if @order.delivered!
-      redirect_to orders_path, notice: 'Status do Pedido atualizado com sucesso'
+      redirect_to orders_path, 
+                    notice: 'Status do Pedido atualizado com sucesso'
     end
   end
 
   def canceled
     if @order.canceled!
-      redirect_to orders_path, notice: 'Status do Pedido atualizado com sucesso'
+      redirect_to orders_path, 
+                    notice: 'Status do Pedido atualizado com sucesso'
     end
   end
 

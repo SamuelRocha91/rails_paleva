@@ -7,7 +7,8 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
        raise ActiveRecord::RecordNotFound
     end
     orders = establishment.orders
-    orders = orders.where(status: params[:status]) if params[:status] && params[:status] != ''
+    orders = orders.where(status: params[:status]) if params[:status] && 
+                                                        params[:status] != ''
 
     render status: 200, json: orders.as_json(
       include: :customer, 
@@ -40,7 +41,9 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
 
   def accept_order
     if @order.status != 'pending_kitchen_confirmation'
-      message = { message: "Status 'in_progress' não é válido para esse pedido" } 
+      message = { 
+        message: "Status 'in_progress' não é válido para esse pedido"
+      } 
       return render status: 400, json: message.to_json      
     end
 
@@ -51,7 +54,9 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
 
   def ready
     if @order.status != 'in_preparation'
-      message = { message: "Status 'ready' não é válido para esse pedido" } 
+      message = { 
+        message: "Status 'ready' não é válido para esse pedido" 
+      } 
       return render status: 400, json: message.to_json      
     end
 
