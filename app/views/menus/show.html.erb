@@ -1,30 +1,46 @@
-<h1>Cardápio: <%= @menu.name %></h1>
+<h1 class="title">Cardápio: <%= @menu.name %></h1>
 
-<% @menu.menu_items.each do |menu_item| %>
-  <% if menu_item.item_type == 'Dish' %>
-    <p>Prato: <%=  menu_item.item.name  %></p>
-    <% menu_item.item.portions.each do |portion| %>
-      <% if portion.active %>
-        <div class='field-value'>
-          <dt>Porção <%= portion.format.name %>:</dt>
-          <dd class='active'> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
-          <%= link_to 'Adicionar ao pedido', new_item_to_order_orders_path(portion.id), class: "btn btn-primary #{portion.format.name.gsub(' ', '-')}-#{menu_item.item.name}"%> 
+<div class='card p-3 shadow-sm'>
+  <dl class='menu-items'>
+    <% @menu.menu_items.each do |menu_item| %>
+      <% if menu_item.item_type == 'Dish' %>
+        <div class="menu-item">
+          <p class="title"><strong>Prato:</strong> <%=  menu_item.item.name  %></p>
+          <% menu_item.item.portions.each do |portion| %>
+            <% if portion.active %>
+              <div class="portion-price">
+                <div class='field-value'>
+                  <dt>Porção <%= portion.format.name %>:</dt>
+                  <dd class='active'> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
+                </div>
+                <div>
+                  <%= link_to 'Adicionar ao pedido', new_item_to_order_orders_path(portion.id), class: "btn btn-primary #{portion.format.name.gsub(' ', '-')}-#{menu_item.item.name}"%>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% elsif menu_item.item_type == 'Beverage' %>
+        <div class="menu-item">
+          <p class="title"><strong>Bebida:</strong> <%= menu_item.item.name %></p>
+          <% menu_item.item.volumes.each do |volume| %>
+            <% if volume.active %>
+              <div class="portion-price">
+                <div class='field-value'>
+                  <dt>Volume <%= volume.format.name %>:</dt>
+                  <dd class='active'> <%= number_to_currency(volume.price, unit: "R$", separator: ",", precision: 2) %></dd>
+                </div>
+                <div>
+                  <%= link_to 'Adicionar ao pedido', new_item_to_order_orders_path(volume.id), class: "btn btn-primary #{volume.format.name.gsub(' ', '-')}-#{menu_item.item.name}-" %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
         </div>
       <% end %>
     <% end %>
-  <% elsif menu_item.item_type == 'Beverage' %>
-    <p>Bebida: <%= menu_item.item.name %></p>
-    <% menu_item.item.volumes.each do |volume| %>
-      <% if volume.active %>
-        <div class='field-value'>
-          <dt>Volume <%= volume.format.name %>:</dt>
-          <dd class='active'> <%= number_to_currency(volume.price, unit: "R$", separator: ",", precision: 2) %></dd>
-          <%= link_to 'Adicionar ao pedido', new_item_to_order_orders_path(volume.id), class: "btn btn-primary #{volume.format.name.gsub(' ', '-')}-#{menu_item.item.name}-" %> 
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
-<% end %>
+  </dl>
+</div>
 
 <div class="menu-actions">
   <%= link_to 'Adicionar Prato ao Menu', new_menu_menu_item_path(@menu, type: 'dish'), class: 'btn btn-secondary' if current_user.admin? %>
