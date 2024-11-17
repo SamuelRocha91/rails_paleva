@@ -4,6 +4,7 @@ describe 'Usuário cadastra um pedido' do
   it 'e deve estar autenticado' do
     # ACT
     visit new_order_path
+
     # Assert
     expect(current_path).to eq new_user_session_path  
   end
@@ -444,7 +445,6 @@ describe 'Usuário cadastra um pedido' do
       login_as user
       visit root_path
       click_on 'Café da manhã'
-      save_page
       find('.Porção-grande-lasagna').click
   
       # Assert

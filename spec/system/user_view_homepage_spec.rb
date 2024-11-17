@@ -4,6 +4,7 @@ describe "Usuário acessa a aplicação" do
   it 'não logado é direcionado para a página de login' do
     # Act
     visit root_path
+
     # Assert
     expect(current_path).to eq new_user_session_path 
   end
@@ -23,6 +24,7 @@ describe "Usuário acessa a aplicação" do
       fill_in "E-mail",	with: "samuel@hotmail.com" 
       fill_in "Senha",	with: "12345678910111"
       click_on 'Entrar'
+  
       # Assert
       expect(current_path).to eq new_establishment_path
     end
@@ -36,9 +38,11 @@ describe "Usuário acessa a aplicação" do
         password: '12345678910111',  
         cpf: '22611819572'
       )
+
       # Act
       login_as user
       visit root_path
+
       # Assert
       expect(current_path).to eq new_establishment_path
       expect(page).to have_content 'Você precisa criar um estabelecimento antes de continuar.' 

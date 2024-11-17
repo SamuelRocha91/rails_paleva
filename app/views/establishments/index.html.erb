@@ -1,6 +1,6 @@
 <div class='general-panel'>
   <h2>Dados do estabelecimento</h2>
-  <dl class='list-dl'>
+  <dl class='list-dl mt-3'>
     <div class='field-value'>
       <dt><%= Establishment.human_attribute_name(:trade_name) %>:</dt>
       <dd><%= @establishment.trade_name %></dd>
@@ -33,7 +33,7 @@
 </div>
 <div class='general-panel'>
   <h2><%= Establishment.human_attribute_name(:operating_hours) %></h2>
-  <dl class='list-dl'>
+  <dl class='list-dl mt-3'>
     <% @establishment.operating_hours.each do |day| %>
       <% if day.is_closed == true %>
         <div class='field-value'>
@@ -43,7 +43,9 @@
       <% else %>
         <div class='field-value'>
           <dd><%= I18n.t(day.week_day) %>:</dd>
-          <dd><%= day.start_time.strftime("%H:%M") %> - <%= day.end_time.strftime("%H:%M") %> </dd>
+          <dd>
+            <%= day.start_time.strftime("%H:%M") %> - <%= day.end_time.strftime("%H:%M") %> 
+          </dd>
         </div>
       <% end %>
     <% end %>
@@ -51,6 +53,10 @@
 </div>
 
 <div class='btn-container'>
-  <%= link_to 'Editar informações', edit_establishment_path(@establishment.id), class: 'btn btn-primary' if current_user.admin? %>
-   <%= link_to 'Fazer pré-cadastro de usuário', user_new_establishment_path(@establishment.id) if current_user.admin? %>
+  <%= link_to 'Editar informações', 
+              edit_establishment_path(@establishment.id), 
+              class: 'btn btn-warning' if current_user.admin? %>
+   <%= link_to 'Fazer pré-cadastro de usuário', 
+                user_new_establishment_path(@establishment.id), 
+                class: 'btn btn-primary' if current_user.admin? %>
 </div>

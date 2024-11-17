@@ -28,8 +28,10 @@ RSpec.describe Beverage, type: :model do
           establishment: establishment, 
           is_alcoholic: true
         )
+
         # Act
         result = beverage.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -59,8 +61,10 @@ RSpec.describe Beverage, type: :model do
           establishment: establishment, 
           is_alcoholic: true
         )
+
         # Act
         result = beverage.valid?
+
         # Assert
         expect(result).to eq false
       end

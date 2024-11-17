@@ -1,17 +1,19 @@
 <dl class='list-container'>
   <div class='card-header ch'>
-    <dt><%=  Dish.human_attribute_name(:name) %>:</dt>
+    <dt><%=  Dish.human_attribute_name(:name) %>: </dt>
     <dd><%= link_to dish.name,
       establishment_dish_path(current_user.establishment.id, dish.id) %></dd>
   </div>
-  <div class='card-body text-primary'>
+  <div class='card-body'>
       <div class='info-line'>
-        <dt class='card-title'><%= Dish.human_attribute_name(:description) %>:</dt>
+        <dt class='card-title'><%= Dish.human_attribute_name(:description) %>:  </dt>
         <dd class='card-text'><%= dish.description %></dd>
       </div>
       <div class='info-line'>
-        <dt class='card-text'><%= Dish.human_attribute_name(:status) %>:</dt>
-        <dd class=<%= dish.status ? 'active' : 'inative' %>><%= dish.status ? 'Ativo' : 'Inativo' %></dd>
+        <dt class='card-text'><%= Dish.human_attribute_name(:status) %>:  </dt>
+        <dd class=<%= dish.status ? 'active' : 'inative' %>>
+          <%= dish.status ? 'Ativo' : 'Inativo' %>
+        </dd>
       </div>
   </div>
 </dl>

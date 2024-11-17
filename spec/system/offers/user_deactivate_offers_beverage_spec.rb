@@ -128,6 +128,7 @@ describe 'Usuário acessa página para desativar oferta de uma bebida' do
     click_on 'Bebidas'
     click_on 'Cachaça'
     find('button.Bombinha-50ml').click
+
     # Assert
     expect(page).not_to have_content 'Volume Bombinha 50ml: R$ 50,00'
     expect(page).to have_content 'Volume Bombinha 1l: R$ 33,00'

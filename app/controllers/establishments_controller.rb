@@ -30,7 +30,8 @@ class EstablishmentsController < ApplicationController
 
   def update
     if @establishment.update(establishment_params)
-      redirect_to establishments_path, notice: 'Estabelecimento atualizado com sucesso'
+      redirect_to establishments_path, 
+                    notice: 'Estabelecimento atualizado com sucesso'
     else
       flash.now[:alert] = 'Não foi possível atualizar o estabelecimento'
       render :new, status: :unprocessable_entity
@@ -51,7 +52,8 @@ class EstablishmentsController < ApplicationController
     )
 
     if @user.save
-      redirect_to establishments_path, notice: 'Pré-cadastro realizado com sucesso'
+      redirect_to establishments_path, 
+                    notice: 'Pré-cadastro realizado com sucesso'
     else
       render :form_registration_user, status: :unprocessable_entity
     end

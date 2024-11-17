@@ -1,17 +1,19 @@
 <dl class='list-container'>
   <div class="card-header ch">
-    <dt><%= Beverage.human_attribute_name(:name) %>:</dt>
+    <dt><%= Beverage.human_attribute_name(:name) %>: </dt>
     <dd><%= link_to beverage.name,
         establishment_beverage_path(current_user.establishment.id,beverage.id) %></dd>
   </div>
-  <div class="card-body text-primary">
+  <div class="card-body">
     <div class='info-line'> 
-      <dt class="card-title"><%= Beverage.human_attribute_name(:description) %>:</dt>
+      <dt class="card-title"><%= Beverage.human_attribute_name(:description) %>: </dt>
       <dd class="card-text"><%= beverage.description %></dd>
     </div>
     <div class='info-line'>
-      <dt class='card-text'><%= Beverage.human_attribute_name(:status) %>:</dt>
-      <dd><%= beverage.status ? 'Ativo' : 'Inativo' %></dd>
+      <dt class='card-text'><%= Beverage.human_attribute_name(:status) %>: </dt>
+      <dd class=<%= beverage.status ? 'active' : 'inative' %>>
+        <%= beverage.status ? 'Ativo' : 'Inativo' %>
+      </dd>
     </div>
   </div>
 </dl>

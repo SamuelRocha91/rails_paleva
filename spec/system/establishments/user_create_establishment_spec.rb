@@ -4,6 +4,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
   it 'e deve estar autenticado' do
     # Act
     visit new_establishment_path
+
     # Assert
     expect(current_path).to eq new_user_session_path  
   end

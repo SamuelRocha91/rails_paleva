@@ -26,8 +26,10 @@ RSpec.describe Dish, type: :model do
           description: 'massa, queijo e presunto com molho de tomate'
         )
         dish.establishment = establishment
+
         # Act
         result = dish.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -52,8 +54,10 @@ RSpec.describe Dish, type: :model do
         )
         dish = Dish.new(name: 'Lasagna', description: '')
         dish.establishment = establishment
+
         # Act
         result = dish.valid?
+
         # Assert
         expect(result).to eq false
       end

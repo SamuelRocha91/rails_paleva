@@ -10,8 +10,10 @@ RSpec.describe User, type: :model do
         last_name: 'Rocha', 
         email: 'sam@hotmail.com'
       )
+
       # Act
       result = user.description
+
       # Assert
       expect(result).to eq 'Samuel Rocha - sam@hotmail.com'  
     end
@@ -28,8 +30,10 @@ RSpec.describe User, type: :model do
           password: '123456789101112', 
           cpf: random_cpf
         )
+
         # Act
         result = user.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -43,8 +47,10 @@ RSpec.describe User, type: :model do
           password: '123456789101112', 
           cpf: random_cpf
         )
+
         # Act
         result = user.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -58,8 +64,10 @@ RSpec.describe User, type: :model do
           password: '123456789101112', 
           cpf: random_cpf
         )
+
         # Act
         result = user.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -73,8 +81,10 @@ RSpec.describe User, type: :model do
           password: '', 
           cpf: random_cpf
         )
+
         # Act
         result = user.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -88,8 +98,10 @@ RSpec.describe User, type: :model do
           password: '123456789101112', 
           cpf: ''
         )
+
         # Act
         result = user.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -116,6 +128,7 @@ RSpec.describe User, type: :model do
 
         # Act
         result = user_two.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -139,6 +152,7 @@ RSpec.describe User, type: :model do
 
         # Act
         result = user_two.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -154,8 +168,10 @@ RSpec.describe User, type: :model do
           password: '123456789101112', 
           cpf: '0348859995'
         )
+
         # Act
         result = user.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -169,8 +185,10 @@ RSpec.describe User, type: :model do
           password: '12345671011', 
           cpf: CPF.generate.to_s
         )
+
         # Act
         result = user.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -186,8 +204,10 @@ RSpec.describe User, type: :model do
           password: '12345671011', 
           cpf: '034667985AZ'
         )
+
         # Act
         result = user.valid?
+
         # Assert
         expect(result).to eq false
       end

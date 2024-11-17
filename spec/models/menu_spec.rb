@@ -138,6 +138,7 @@ RSpec.describe Menu, type: :model do
         establishment: establishment_two, 
         name: 'Café da manhã'
       )
+
       # Act
       result = menu_two.valid?
 

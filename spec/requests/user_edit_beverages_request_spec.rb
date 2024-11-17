@@ -21,7 +21,6 @@ describe 'Usuário edita uma bebida' do
       role: 1
     )
 
-
     beverage = Beverage.create!(
       name: 'cachaça', 
       description: 'alcool delicioso baiano', 

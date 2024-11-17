@@ -1,13 +1,15 @@
 <h1 class='title'>Marcadores Disponíveis</h1>
 
 <div class='title mb-5'>
-  <%= link_to 'Cadastrar novo marcador', new_tag_path, class:'btn btn-dark'  %>
+  <%= link_to 'Cadastrar novo marcador', new_tag_path, class:'btn btn-primary'  %>
 <div>
 
 <% if @tags.present? %>
-  <div class='card-container'>
+  <div class='card-container mt-5'>
     <% @tags.each do |tag| %>
-      <h3>#<%= tag.name %></h3>
+      <div class="card-tags" >
+        <h3>#<%= tag.name %></h3>
+      </div>
     <% end %>
   </div>
 <% else %>

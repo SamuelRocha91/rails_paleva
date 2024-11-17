@@ -1,20 +1,34 @@
 <h1 class='title'>Cardápios</h1>
 <div class='d-flex justify-content-center mb-3 mt-4 gap-2'>
-  <%= link_to 'Cadastrar cardápio', new_menu_path, class: 'btn btn-dark' if current_user.admin? %>
+  <%= link_to 'Cadastrar cardápio', 
+              new_menu_path, 
+              class: 'btn btn-primary' if current_user.admin? %>
 </div>
 <% if @menus.empty? %>
   <p class='title'>Não existem ainda cardápios cadastrados</p>
 <% else %>
-  <% @menus.each do |menu| %>
-    <%= link_to menu_path(menu) do %>
-      <h3><%= menu.name %></h3>
+  <div class='card-container'>
+    <% @menus.each do |menu| %>
+      <div class='card-single mb-3'>
+        <dl class='list-container'>
+          <div class="card-body">
+            <%= link_to menu_path(menu) do %>
+              <h3 class="card-title mb-3"><%= menu.name %></h3>
+            <% end %>
+            <% menu.menu_items.each do |menu_item| %>
+              <% if menu_item.item_type == 'Dish' %>
+                <p class="card-text">
+                  <strong>Prato:</strong> <%=  menu_item.item.name  %>
+                </p>
+              <% elsif menu_item.item_type == 'Beverage' %>
+                <p class="card-text">
+                  <strong>Bebida:</strong> <%= menu_item.item.name %>
+                </p>
+              <% end %>
+            <% end %>
+          </div>
+        </dl>
+      </div>
     <% end %>
-    <% menu.menu_items.each do |menu_item| %>
-      <% if menu_item.item_type == 'Dish' %>
-        <p>Prato: <%=  menu_item.item.name  %></p>
-      <% elsif menu_item.item_type == 'Beverage' %>
-        <p>Bebida: <%= menu_item.item.name %></p>
-      <% end %>
-    <% end %>
-  <% end %>
+  </div>
 <% end %>

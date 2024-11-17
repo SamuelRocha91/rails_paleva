@@ -14,6 +14,7 @@ header {
   text-decoration: none;
   font-weight: 700;
 }
+
 .data-user {
   display: flex;
   gap: 10px;
@@ -166,6 +167,11 @@ select:focus {
   max-width: 600px;
   padding: 20px;
   gap: 10px;
+  box-shadow: 2px 2px black;
+}
+
+.portion-single {
+  box-shadow: 2px 2px black;
 }
 
 .info-line {
@@ -177,6 +183,7 @@ select:focus {
   display: flex;
   width: 25%;
   border: 1px solid blue;
+  box-shadow: 2px 2px black;
   padding: 10px;
 }
 
@@ -210,6 +217,8 @@ select:focus {
 
 .btn-group {
   gap: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .btn-group-single {
@@ -229,4 +238,63 @@ select:focus {
 
 .custom-icon:hover {
   transform: scale(1.2);
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  border: 1px dashed blue;
+  padding: 10px;
+}
+
+.menu-items {
+  width: 700px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.portion-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.menu-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 5px;
+}
+
+.order-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.value-total {
+  margin-left: 8px;
+}
+
+.card-tags {
+  display: flex;
+  border: 1px solid black;
+  padding: 20px;
+  box-shadow: 2px 2px black;
+}
+
+.card-search {
+  font-size: 20px;
+  border: 1px solid black;
+  box-shadow: 2px 2px black;
+  padding: 10px;
+}
+
+.btn-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
 }

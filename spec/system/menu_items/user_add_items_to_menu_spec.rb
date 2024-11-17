@@ -212,6 +212,7 @@ describe 'Usuário acessa formulário de cadastro de item para um cardápio' do
     visit root_path
     click_on 'Café da manhã'
     click_on 'Adicionar Bebida'
+
     # Assert
     expect(page).not_to have_content 'Café amargo'
     expect(page).to have_content 'Coca-Cola'

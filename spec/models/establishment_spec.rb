@@ -13,8 +13,10 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas' 
         )
+
         # Act
         result = establishment.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -31,6 +33,7 @@ RSpec.describe Establishment, type: :model do
         )
         # Act
         result = establishment.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -45,8 +48,10 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas' 
         )
+
         # Act
         result = establishment.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -61,8 +66,10 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas' 
         )
+
         # Act
         result = establishment.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -77,8 +84,10 @@ RSpec.describe Establishment, type: :model do
           phone_number: '', 
           address: 'Rua das Alamedas avenidas' 
         )
+
         # Act
         result = establishment.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -93,8 +102,10 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: '' 
         )
+
         # Act
         result = establishment.valid?
+
         # Assert
         expect(result).to eq false
       end
@@ -111,8 +122,10 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas'
         )
+
         # Act
         result = establishment.valid?
+
         # Assert
         expect(result).to eq false   
       end
@@ -127,8 +140,10 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594a4', 
           address: 'Rua das Alamedas avenidas' 
         )
+
         # Act
         result = establishment.valid?
+
         # Assert
         expect(result).to eq false   
       end
@@ -144,8 +159,10 @@ RSpec.describe Establishment, type: :model do
           phone_number: '71992594946', 
           address: 'Rua das Alamedas avenidas'
         )
+
         # Act
         result = establishment.valid?
+  
         # Assert
         expect(result).to eq false   
       end
@@ -167,8 +184,10 @@ RSpec.describe Establishment, type: :model do
       7.times { |i| operating_hour << OperatingHour
                                         .new(week_day: i, is_closed: true)}
       establishment.operating_hours = operating_hour
+
       # Act
       establishment.save
+
       # Assert
       expect(establishment.code).not_to be_empty
       expect(establishment.code.length).to eq 6
@@ -204,9 +223,11 @@ RSpec.describe Establishment, type: :model do
 
       establishment.operating_hours = operating_hour
       establishment_two.operating_hours = operating_hour_two
+
       # Act
       establishment.save
       establishment_two.save
+
       # Assert
       expect(establishment.code).not_to eq establishment_two.code
     end
@@ -228,8 +249,10 @@ RSpec.describe Establishment, type: :model do
       establishment.operating_hours = operating_hour
       establishment.save
       original_code = establishment.code
+
       # Act
       establishment.update!(phone_number: '85992588546')
+  
       # Assert
       expect(establishment.code).to eq original_code
     end

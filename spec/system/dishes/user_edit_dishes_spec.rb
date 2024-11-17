@@ -180,6 +180,7 @@ describe 'Usuário edita um prato' do
     click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Ativar Prato'
+
     # Assert
     expect(page).to have_content 'Nome: lasagna'
     expect(page).to have_content 'Descrição: massa, queijo e presunto'
@@ -214,6 +215,7 @@ describe 'Usuário edita um prato' do
       calories: '185', 
       establishment: establishment
     )
+
     # Act
     login_as user
     visit root_path
@@ -224,6 +226,7 @@ describe 'Usuário edita um prato' do
     fill_in 'Descrição',	with: 'ovo de galinha 10 reais'
     fill_in 'Quantidade de calorias',	with: '105'
     click_on 'Salvar'
+
     # Assert
     expect(page).to have_content 'Prato atualizado com sucesso'
     expect(page).to have_content 'Nome: Pão com ovo'
