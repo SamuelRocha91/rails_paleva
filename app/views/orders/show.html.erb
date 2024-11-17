@@ -1,6 +1,5 @@
  <h1 class="title">Pedido</h1>
 
- 
 <div>
   <div>
     <h3 class="title">Dados do cliente<h3>
@@ -44,7 +43,11 @@
       </div>
       <div class='field-value'>
         <dt>Pedido:</dt>
-        <dd><%= item.offer.format.name %> - <%= number_to_currency(item.offer.price, unit: "R$", separator: ",", precision: 2) %></dd>
+        <dd>
+          <%= item.offer.format.name %> - <%= number_to_currency(
+                                          item.offer.price, unit: "R$", separator: ",", precision: 2
+                                          ) %>
+        </dd>
       </div>
     <% end %>
   </div>
@@ -59,9 +62,17 @@
     </div>
   </div>
   <div class='d-flex justify-content-center mb-3 mt-4 gap-2'>
-    <%= button_to 'Marcar como Cancelado', canceled_order_path(@order.id), class: 'btn btn-danger' if @order.status != "delivered" && @order.status != "canceled"%>
-    <%= button_to 'Marcar como ENTREGUE', delivered_order_path(@order.id), class: 'btn btn-success' if @order.status == "ready"%>
-    <%= button_to 'Marcar como EM PREPARO', in_preparation_order_path(@order.id), class: 'btn btn-success' if @order.status == "pending_kitchen_confirmation"%>
-    <%= button_to 'Marcar como PRONTO PARA ENTREGA', ready_order_path(@order.id), class: 'btn btn-success' if @order.status == "in_preparation"%>
+    <%= button_to 'Marcar como Cancelado', 
+                  canceled_order_path(@order.id), 
+                  class: 'btn btn-danger' if @order.status != "delivered" && @order.status != "canceled"%>
+    <%= button_to 'Marcar como ENTREGUE', 
+                  delivered_order_path(@order.id), 
+                  class: 'btn btn-success' if @order.status == "ready"%>
+    <%= button_to 'Marcar como EM PREPARO', 
+                  in_preparation_order_path(@order.id), 
+                  class: 'btn btn-success' if @order.status == "pending_kitchen_confirmation"%>
+    <%= button_to 'Marcar como PRONTO PARA ENTREGA', 
+                  ready_order_path(@order.id), 
+                  class: 'btn btn-success' if @order.status == "in_preparation"%>
   </div>
 </div>

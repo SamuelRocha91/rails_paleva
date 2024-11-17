@@ -1,6 +1,7 @@
 <div class='card p-3 shadow-sm'>
   <dl class='list-item'>
-    <%= image_tag url_for(@dish.image), class: 'card-img-top' if @dish.image.attached? %>
+    <%= image_tag url_for(@dish.image), 
+                  class: 'card-img-top' if @dish.image.attached? %>
     <div class="card-body border border-primary">
       <div class='field-value'>
         <dt><%= Dish.human_attribute_name(:name) %>:</dt>
@@ -16,7 +17,9 @@
       </div>
       <div class='field-value'>
         <dt><%= Dish.human_attribute_name(:status) %>:</dt>
-        <dd class=<%= @dish.status ? 'active' : 'inative' %>><%= @dish.status ? 'Ativo' : 'Inativo' %></dd>
+        <dd class=<%= @dish.status ? 'active' : 'inative' %>>
+          <%= @dish.status ? 'Ativo' : 'Inativo' %>
+        </dd>
       </div>
       <div class='field-value'>
         <% if @dish.tags.any? %>
@@ -33,11 +36,17 @@
             <% if portion.active %>
               <div class='field-value'>
                 <dt>Porção <%= portion.format.name %>:</dt>
-                <dd class='active'> <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %></dd>
+                <dd class='active'> 
+                  <%= number_to_currency(portion.price, unit: "R$", separator: ",", precision: 2) %>
+                </dd>
               </div>
               <div class='btn-group-double d-flex justify-content-around mb-3'>
-                <%= link_to 'Editar Preço', edit_offer_dish_path(@dish.id, portion.id), class: 'btn btn-secondary'  %>
-                <%= button_to 'Retirar Oferta',deactivate_offer_dish_path(@dish.id, portion.id), class: "#{portion.format.name.gsub(' ', '-')} btn btn-danger" %>
+                <%= link_to 'Editar Preço', 
+                            edit_offer_dish_path(@dish.id, portion.id), 
+                            class: 'btn btn-secondary'  %>
+                <%= button_to 'Retirar Oferta',
+                              deactivate_offer_dish_path(@dish.id, portion.id), 
+                              class: "#{portion.format.name.gsub(' ', '-')} btn btn-danger" %>
               </div>
             <% end %>
           <% end %>
@@ -46,12 +55,20 @@
       <hr/>
       <div class='btn-group'>
         <div class='btn-group-single'>
-          <%= link_to 'Cadastrar porção', offer_dish_path(@dish.id), class: 'btn btn-primary mb-2' %>
-          <%= button_to 'Desativar Prato', deactivate_dish_path(@dish.id), class: 'btn btn-danger mb-2' if @dish.status %>
-          <%= button_to 'Ativar Prato', activate_dish_path(@dish.id), class: 'btn btn-success mb-2' unless @dish.status %>
+          <%= link_to 'Cadastrar porção', 
+                      offer_dish_path(@dish.id), 
+                      class: 'btn btn-primary mb-2' %>
+          <%= button_to 'Desativar Prato', 
+                        deactivate_dish_path(@dish.id), 
+                        class: 'btn btn-danger mb-2' if @dish.status %>
+          <%= button_to 'Ativar Prato', 
+                        activate_dish_path(@dish.id), 
+                        class: 'btn btn-success mb-2' unless @dish.status %>
         </div>
         <div class='btn-group-single'>
-          <%= link_to 'Editar prato', edit_establishment_dish_path(current_user.establishment.id, @dish.id), class: 'btn btn-warning mb-2' %>
+          <%= link_to 'Editar prato', 
+                      edit_establishment_dish_path(current_user.establishment.id, @dish.id), 
+                      class: 'btn btn-warning mb-2' %>
         </div>
       </div>
     </div>

@@ -25,11 +25,17 @@
 <%= form_with(url: offer_dish_path(@dish.id), class: 'form-edit') do |f| %>
   <div class='mb-3 mt-5'>
     <%= f.label :name, 'Nome da porção', class: 'form-label'  %>
-    <%= f.text_field :name, name: 'format[name]', class: 'form-control', placeholder: 'Porção grande'  %>
+    <%= f.text_field :name, 
+                      name: 'format[name]', 
+                      class: 'form-control',
+                      placeholder: 'Porção grande'  %>
   </div>
   <div class='mb-3'>
     <%= f.label :details, 'Detalhes da porção', class: 'form-label'  %>
-    <%= f.text_field :details, name: 'offer[details]', class: 'form-control', placeholder: 'Serve x pessoas'  %>
+    <%= f.text_field :details, 
+                      name: 'offer[details]', 
+                      class: 'form-control', 
+                      placeholder: 'Serve x pessoas'  %>
   </div>
    <div class='mb-3'>
     <%= f.label :price, 'Preço da porção', class: 'form-label'  %>

@@ -19,8 +19,12 @@
           <td><%= order.customer.name %></td>
           <td><%= order.created_at.strftime("%d-%m-%Y") %></td>
           <% total = order.order_items.reduce(0) { |acc, curr|  acc + curr.offer.price } %>
-          <td><%= number_to_currency(total, unit: "R$", separator: ",", precision: 2) %></td>
-          <td><%= I18n.t("activerecord.enums.order.status.#{order.status}") %></td>
+          <td>
+            <%= number_to_currency(total, unit: "R$", separator: ",", precision: 2) %>
+          </td>
+          <td>
+            <%= I18n.t("activerecord.enums.order.status.#{order.status}") %>
+          </td>
         </tr>
       </tbody>
     <% end %>

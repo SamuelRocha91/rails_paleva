@@ -11,7 +11,9 @@
       </div>
       <div class='info-line'>
         <dt class='card-text'><%= Dish.human_attribute_name(:status) %>:  </dt>
-        <dd class=<%= dish.status ? 'active' : 'inative' %>><%= dish.status ? 'Ativo' : 'Inativo' %></dd>
+        <dd class=<%= dish.status ? 'active' : 'inative' %>>
+          <%= dish.status ? 'Ativo' : 'Inativo' %>
+        </dd>
       </div>
   </div>
 </dl>

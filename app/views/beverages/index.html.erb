@@ -2,7 +2,8 @@
 
 <div class='title mb-3'>
   <%= link_to 'Cadastrar nova bebida',
-    new_establishment_beverage_path(current_user.establishment.id), class:'btn btn-primary' %>
+               new_establishment_beverage_path(current_user.establishment.id), 
+               class:'btn btn-primary' %>
 </div>
 <div class='card-container'>
   <% @beverages.each do |beverage| %>

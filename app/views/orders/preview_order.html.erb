@@ -10,7 +10,10 @@
           Observação: <%= item[:observation] %>
         </li>
       <% end %>
-      <p class="title mt-3"><strong>Valor Total:</strong> <spam class="active value-total"> <%= number_to_currency(@total, unit: 'R$', separator: ',', precision: 2)%> </spam><p>
+      <p class="title mt-3">
+        <strong>Valor Total:</strong> <spam class="active value-total"> 
+          <%= number_to_currency(@total, unit: 'R$', separator: ',', precision: 2)%> </spam>
+      <p>
     </ul>
     <div>
       <%= link_to 'Finalizar Pedido', new_order_path, class: 'btn btn-success' %>

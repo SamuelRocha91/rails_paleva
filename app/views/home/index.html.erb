@@ -1,6 +1,8 @@
 <h1 class='title'>Cardápios</h1>
 <div class='d-flex justify-content-center mb-3 mt-4 gap-2'>
-  <%= link_to 'Cadastrar cardápio', new_menu_path, class: 'btn btn-primary' if current_user.admin? %>
+  <%= link_to 'Cadastrar cardápio', 
+              new_menu_path, 
+              class: 'btn btn-primary' if current_user.admin? %>
 </div>
 <% if @menus.empty? %>
   <p class='title'>Não existem ainda cardápios cadastrados</p>
@@ -15,9 +17,13 @@
             <% end %>
             <% menu.menu_items.each do |menu_item| %>
               <% if menu_item.item_type == 'Dish' %>
-                <p class="card-text"><strong>Prato:</strong> <%=  menu_item.item.name  %></p>
+                <p class="card-text">
+                  <strong>Prato:</strong> <%=  menu_item.item.name  %>
+                </p>
               <% elsif menu_item.item_type == 'Beverage' %>
-                <p class="card-text"><strong>Bebida:</strong> <%= menu_item.item.name %></p>
+                <p class="card-text">
+                  <strong>Bebida:</strong> <%= menu_item.item.name %>
+                </p>
               <% end %>
             <% end %>
           </div>
