@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   resources :orders, only: [] do
     get 'add_item/:portion_id', to: 'orders#new_item', as: 'new_item_to_order', on: :collection
     post 'add_item/:portion_id', to: 'orders#add_item', as: 'add_item_to_order', on: :collection
+    post 'remove-item/:portion_id', to: 'orders#remove_item', as: 'remove_item_to_order', on: :collection
     post 'canceled', on: :member
     post 'in-preparation', on: :member
     post 'ready', on: :member

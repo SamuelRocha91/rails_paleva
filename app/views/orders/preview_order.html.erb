@@ -1,13 +1,18 @@
 <h1 class="title">Visualizar Pedido</h1>
 
 <% if @portions.any? %>
-  <div class="order-preview mt-5">
+  <div class="order-preview mt-5 w-100">
     <ul>
       <% @portions.each do |item| %>
-        <li>
+        <li class='mb-5 w-100'>
           <%= item[:portion].format.name %> - <%= item[:portion].item.name %> -
           <%= number_to_currency(item[:portion].price, unit: 'R$', separator: ',', precision: 2) %> -
-          Observação: <%= item[:observation] %>
+          Observação: <%= item[:observation] %> 
+          <div class='btn-center'>
+            <%= button_to 'Remover',
+                          remove_item_to_order_orders_path(item[:portion].id),
+                          class: 'btn btn-danger' %>
+          </div>
         </li>
       <% end %>
       <p class="title mt-3">

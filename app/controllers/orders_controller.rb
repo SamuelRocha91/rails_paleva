@@ -59,6 +59,11 @@ class OrdersController < ApplicationController
     redirect_to preview_order_path
   end
 
+  def remove_item
+    session[:order_items] = session[:order_items].reject { |item| item["portion_id"] == params[:portion_id].to_i }
+    redirect_to root_path, notice: 'Item removido do carrinho com sucesso'
+  end
+
   def preview_order
     @order_items = session[:order_items] || []
     @portions = []

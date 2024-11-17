@@ -292,3 +292,9 @@ select:focus {
   box-shadow: 2px 2px black;
   padding: 10px;
 }
+
+.btn-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
