@@ -22,17 +22,20 @@
         <dt><%= Beverage.human_attribute_name(:status) %>:</dt>
         <dd class=<%= @beverage.status ? 'active' : 'inative' %>><%= @beverage.status ? 'Ativo' : 'Inativo' %></dd>
       </div>
+      <hr/>
       <div class='mt-3'>
-        <h5 class='mb-3'>Volumes Disponíveis</h5>
         <% if @beverage.volumes.any? %>
+          <h5 class='mb-3'>Volumes Disponíveis</h5>
           <% @beverage.volumes.each do |volume| %>
             <% if volume.active %>
               <div class='field-value'>
                 <dt>Volume <%= volume.format.name %>:</dt>
                 <dd class='active'> <%= number_to_currency(volume.price, unit: "R$", separator: ",", precision: 2) %></dd>
               </div>
-              <%= link_to 'Editar Preço', edit_offer_beverage_path(@beverage.id, volume.id), class: 'btn btn-secondary' %>
-              <%= button_to 'Retirar Oferta', deactivate_offer_beverage_path(@beverage.id, volume.id), class: "#{volume.format.name.gsub(' ', '-')} btn btn-danger" %>
+              <div class='btn-group-double d-flex justify-content-around mb-3'>
+                <%= link_to 'Editar Preço', edit_offer_beverage_path(@beverage.id, volume.id), class: 'btn btn-secondary' %>
+                <%= button_to 'Retirar Oferta', deactivate_offer_beverage_path(@beverage.id, volume.id), class: "#{volume.format.name.gsub(' ', '-')} btn btn-danger" %>
+              </div>
             <% end %>
           <% end %>
         <% end %>
@@ -41,12 +44,12 @@
       <div class='btn-group'>
         <div class='btn-group-single'>
           <%= link_to 'Cadastrar volume',
-          offer_beverage_path(@beverage.id)%>
-          <%= button_to 'Desativar Bebida', deactivate_beverage_path(@beverage.id), class: 'btn btn-warning mb-2'  if @beverage.status %>
+          offer_beverage_path(@beverage.id), class: 'btn btn-primary mb-2' %>
+          <%= button_to 'Desativar Bebida', deactivate_beverage_path(@beverage.id), class: 'btn btn-danger mb-2'  if @beverage.status %>
           <%= button_to 'Ativar Bebida', activate_beverage_path(@beverage.id), class: 'btn btn-success mb-2' unless @beverage.status %>
         </div>
         <div class='btn-group-single'>
-          <%= link_to 'Editar bebida', edit_establishment_beverage_path(@beverage) %>
+          <%= link_to 'Editar bebida', edit_establishment_beverage_path(@beverage), class: 'btn btn-warning mb-2' %>
         </div>
       </div>
     </div>

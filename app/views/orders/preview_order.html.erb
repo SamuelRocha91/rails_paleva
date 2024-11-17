@@ -1,4 +1,4 @@
-<h1>Visualizar Pedido</h1>
+<h1 class="title">Visualizar Pedido</h1>
 
 <% if @portions.any? %>
   <ul>
@@ -11,9 +11,11 @@
     <% end %>
     <p>Valor Total: <%= number_to_currency(@total, unit: 'R$', separator: ',', precision: 2) %><p>
   </ul>
-  <%= link_to 'Finalizar Pedido', new_order_path, class: 'btn btn-primary' %>
+  <%= link_to 'Finalizar Pedido', new_order_path, class: 'btn btn-succes' %>
 <% else %>
-  <p>Nenhum item foi adicionado ao pedido ainda.</p>
+  <p class="title">Nenhum item foi adicionado ao pedido ainda.</p>
 <% end %>
 
-<%= link_to 'Continuar adicionando itens', root_path, class: 'btn btn-secondary' %>
+<div class='d-flex justify-content-center mb-3 mt-4 gap-2'>
+  <%= link_to 'Continuar adicionando itens', root_path, class: 'btn btn-secondary' %>
+</div>

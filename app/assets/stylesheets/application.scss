@@ -210,6 +210,8 @@ select:focus {
 
 .btn-group {
   gap: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .btn-group-single {
