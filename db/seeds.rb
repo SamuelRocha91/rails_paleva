@@ -153,7 +153,7 @@ Beverage.find_or_create_by(
 # Ofertas de Pratos e Bebidas
 format = Format.find_or_create_by(name: 'Promocional')
 
-Offer.find_or_create_by(
+offer = Offer.find_or_create_by(
   format: format, 
   item_type: 'Dish', 
   item_id: dish1.id, 
@@ -198,4 +198,17 @@ Offer.find_or_create_by(
   end_offer: Time.zone.now + 1.week
 )
 
-p User.all
+
+menu = Menu.find_or_create_by(
+  establishment: establishment, 
+  name: 'Café da manhã'
+)
+
+MenuItem.find_or_create_by(item: dish1, menu: menu)
+MenuItem.find_or_create_by(item: beverage2, menu: menu)
+
+customer = Customer.find_or_create_by(name: 'Onça', email: 'soncapintada@gmail.com')
+
+order = Order.find_or_create_by(establishment: establishment, customer: customer)
+
+OrderItem.find_or_create_by(offer: offer, order: order, note: 'Sem feijão')

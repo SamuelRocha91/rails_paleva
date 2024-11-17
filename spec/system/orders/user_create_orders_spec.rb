@@ -445,7 +445,6 @@ describe 'Usuário cadastra um pedido' do
       login_as user
       visit root_path
       click_on 'Café da manhã'
-      save_page
       find('.Porção-grande-lasagna').click
   
       # Assert
