@@ -24,6 +24,21 @@ Este projeto está sendo desenvolvido como requisito avaliativo do programa <a h
 <summary> <h2>Instruções de uso</h2> </summary>
 
 ---
+## Configuração do Ruby
+Este projeto requer o Ruby na versão `3.2.2`. Recomendamos usar [RVM](https://rvm.io/) ou [rbenv](https://github.com/rbenv/rbenv) para gerenciar versões do Ruby.
+
+### Com RVM:
+```bash
+rvm install 3.2.2
+rvm use 3.2.2
+```
+
+### Com rbenv:
+```bash
+rbenv install 3.2.2
+rbenv local 3.2.2
+```
+Outra opção é inserir a sua versão do ruby diretamente no gemfile da aplicação.
 
 ## 1. Clonando o Repositório
 
