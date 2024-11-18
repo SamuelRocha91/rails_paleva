@@ -1,12 +1,12 @@
-current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/sassc-2.4.0/ext
+current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/sassc-2.4.0/ext
 /home/samuel/.rbenv/versions/3.2.2/bin/ruby extconf.rb
 creating Makefile
 
-current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/sassc-2.4.0/ext
-make DESTDIR\= sitearchdir\=./.gem.20241021-771741-9kb1dm sitelibdir\=./.gem.20241021-771741-9kb1dm clean
+current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/sassc-2.4.0/ext
+make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-lmwro8 sitelibdir\=./.gem.20241117-3083657-lmwro8 clean
 
-current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/sassc-2.4.0/ext
-make DESTDIR\= sitearchdir\=./.gem.20241021-771741-9kb1dm sitelibdir\=./.gem.20241021-771741-9kb1dm
+current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/sassc-2.4.0/ext
+make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-lmwro8 sitelibdir\=./.gem.20241117-3083657-lmwro8
 compiling ./libsass/src/ast.cpp
 compiling ./libsass/src/ast2c.cpp
 compiling ./libsass/src/ast_fwd_decl.cpp
@@ -75,9 +75,9 @@ compiling ./libsass/src/util_string.cpp
 compiling ./libsass/src/values.cpp
 linking shared-object sassc/libsass.so
 
-current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/sassc-2.4.0/ext
-make DESTDIR\= sitearchdir\=./.gem.20241021-771741-9kb1dm sitelibdir\=./.gem.20241021-771741-9kb1dm install
-/usr/bin/install -c -m 0755 libsass.so ./.gem.20241021-771741-9kb1dm/sassc
+current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/sassc-2.4.0/ext
+make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-lmwro8 sitelibdir\=./.gem.20241117-3083657-lmwro8 install
+/usr/bin/install -c -m 0755 libsass.so ./.gem.20241117-3083657-lmwro8/sassc
 
-current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/sassc-2.4.0/ext
-make DESTDIR\= sitearchdir\=./.gem.20241021-771741-9kb1dm sitelibdir\=./.gem.20241021-771741-9kb1dm clean
+current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/sassc-2.4.0/ext
+make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-lmwro8 sitelibdir\=./.gem.20241117-3083657-lmwro8 clean
