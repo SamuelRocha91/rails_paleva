@@ -71,7 +71,7 @@ Execute o seguinte comando para criar o banco de dados:
 rails db:create
 ```
 
-### OBS: Em caso de erro erro no procedimento anterior, pode ser preciso rodar: 
+### OBS: Em caso de erro no procedimento anterior, não sendo a questão inicialmente tratada da versão do ruby no gemfile x local, pode ser preciso rodar: 
 ```bash
 bundle install
 bundle pristine
@@ -109,7 +109,7 @@ Este usuário tem acesso completo ao sistema e pode gerenciar todos os aspectos 
 
 ### Usuários Comuns
 
-- **Email**: boimanso@gmail.com'
+- **Email**: boimanso@gmail.com
 - **Senha**: 1234567891234
 
 Este usuário pode acessar as funcionalidades limitadas da aplicação, mas não tem permissões administrativas.
@@ -128,6 +128,11 @@ Isso irá iniciar o servidor localmente. Você pode acessar a aplicação atrav�
 
 Com o servidor em funcionamento, use as credenciais dos usuários fornecidos para navegar pela aplicação. O usuário administrador pode acessar todas as funcionalidades, enquanto o usuário comum pode testar funcionalidades limitadas.
 
+É possível também rodar os testes de sistema, unitários e de request da aplicação a partir do seguinte comando:
+
+```bash
+bundle exec rspec
+```
 
 </details>
 
