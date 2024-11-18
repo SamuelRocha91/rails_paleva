@@ -49,7 +49,6 @@ git clone git@github.com:SamuelRocha91/rails_paleva.git
 cd rails_paleva
 ```
 
-
 ## 2. Instalando as Dependências
 
 Antes de rodar a aplicação, é necessário instalar as dependências. Para isso, use o Bundler:
@@ -69,6 +68,13 @@ A aplicação utiliza o banco de dados para armazenar os dados. Siga os passos a
 Execute o seguinte comando para criar o banco de dados:
 
 ```bash
+rails db:create
+```
+
+### OBS: Em caso de erro erro no procedimento anterior, pode ser preciso rodar: 
+```bash
+bundle install
+bundle pristine
 rails db:create
 ```
 
