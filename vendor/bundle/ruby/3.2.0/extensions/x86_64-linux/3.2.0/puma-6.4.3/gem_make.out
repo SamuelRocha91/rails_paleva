@@ -1,4 +1,4 @@
-current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/puma-6.4.3/ext/puma_http11
+current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/puma-6.4.3/ext/puma_http11
 /home/samuel/.rbenv/versions/3.2.2/bin/ruby extconf.rb
 using OpenSSL pkgconfig (openssl.pc)
 checking for openssl/bio.h... yes
@@ -13,19 +13,19 @@ checking for SSL_get1_peer_certificate() in openssl/ssl.h... yes
 checking for Random.bytes... yes
 creating Makefile
 
-current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/puma-6.4.3/ext/puma_http11
-make DESTDIR\= sitearchdir\=./.gem.20241021-737255-8c4gxf sitelibdir\=./.gem.20241021-737255-8c4gxf clean
+current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/puma-6.4.3/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-8hpvj2 sitelibdir\=./.gem.20241117-3083657-8hpvj2 clean
 
-current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/puma-6.4.3/ext/puma_http11
-make DESTDIR\= sitearchdir\=./.gem.20241021-737255-8c4gxf sitelibdir\=./.gem.20241021-737255-8c4gxf
+current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/puma-6.4.3/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-8hpvj2 sitelibdir\=./.gem.20241117-3083657-8hpvj2
 compiling http11_parser.c
 compiling mini_ssl.c
 compiling puma_http11.c
 linking shared-object puma/puma_http11.so
 
-current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/puma-6.4.3/ext/puma_http11
-make DESTDIR\= sitearchdir\=./.gem.20241021-737255-8c4gxf sitelibdir\=./.gem.20241021-737255-8c4gxf install
-/usr/bin/install -c -m 0755 puma_http11.so ./.gem.20241021-737255-8c4gxf/puma
+current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/puma-6.4.3/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-8hpvj2 sitelibdir\=./.gem.20241117-3083657-8hpvj2 install
+/usr/bin/install -c -m 0755 puma_http11.so ./.gem.20241117-3083657-8hpvj2/puma
 
-current directory: /home/samuel/projectsByOrganizations/treinaDev13/paleva/vendor/bundle/ruby/3.2.0/gems/puma-6.4.3/ext/puma_http11
-make DESTDIR\= sitearchdir\=./.gem.20241021-737255-8c4gxf sitelibdir\=./.gem.20241021-737255-8c4gxf clean
+current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/puma-6.4.3/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-8hpvj2 sitelibdir\=./.gem.20241117-3083657-8hpvj2 clean
