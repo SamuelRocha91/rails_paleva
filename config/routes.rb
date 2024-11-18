@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'orders/preview', to: 'orders#preview_order', as: 'preview_order'
 
   resources :establishments, only: [:index, :new, :create, :edit, :update] do
+    get 'user/show', on: :member, to: 'establishments#show_users'
     get 'user/new', on: :member, to: 'establishments#form_registration_user'
     post 'user/new', on: :member, to: 'establishments#pre_registration_user'
 

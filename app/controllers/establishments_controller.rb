@@ -58,6 +58,10 @@ class EstablishmentsController < ApplicationController
       render :form_registration_user, status: :unprocessable_entity
     end
   end
+
+  def show_users
+    @users = TemporaryUser.where(establishment_id: current_user.establishment.id) + User.where(role: :employee, establishment: current_user.establishment)
+  end
   
   private
 

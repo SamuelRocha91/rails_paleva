@@ -67,6 +67,12 @@ describe 'Usuário acompanha um pedido' do
       item: dish,
       price: 55
     )
+    menu = Menu.create!(
+      establishment: establishment, 
+      name: 'Café da manhã'
+    )
+    MenuItem.create!(item: dish, menu: menu)
+
 
     OrderItem.create!(offer: offer, order: order )
 

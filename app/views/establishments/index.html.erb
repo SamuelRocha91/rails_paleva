@@ -56,7 +56,8 @@
   <%= link_to 'Editar informações', 
               edit_establishment_path(@establishment.id), 
               class: 'btn btn-warning' if current_user.admin? %>
-   <%= link_to 'Fazer pré-cadastro de usuário', 
-                user_new_establishment_path(@establishment.id), 
-                class: 'btn btn-primary' if current_user.admin? %>
+              
+  <%= link_to 'Gerenciar usuários do estabelecimento', 
+              user_show_establishment_path(@establishment.id), 
+              class: 'btn btn-primary' if current_user.admin? %>
 </div>

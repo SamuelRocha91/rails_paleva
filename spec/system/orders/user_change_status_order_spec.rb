@@ -38,6 +38,11 @@ describe 'Usuário muda status do pedido' do
           establishment: establishment
     )
     format = Format.create!(name: 'Porção grande')
+    menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
 
     order = Order.create!(establishment: establishment, customer: customer)
     Order.create!(establishment: establishment, customer: customer_two)
@@ -94,6 +99,11 @@ describe 'Usuário muda status do pedido' do
           establishment: establishment
     )
     format = Format.create!(name: 'Porção grande')
+    menu = Menu.create!(
+      establishment: establishment, 
+      name: 'Café da manhã'
+    )
+    MenuItem.create!(item: dish, menu: menu)
 
     order = Order.create!(establishment: establishment, customer: customer, status: 2)
     Order.create!(establishment: establishment, customer: customer_two)
@@ -159,6 +169,12 @@ describe 'Usuário muda status do pedido' do
       price: 55
     )
 
+    menu = Menu.create!(
+      establishment: establishment, 
+      name: 'Café da manhã'
+    )
+    MenuItem.create!(item: dish, menu: menu)
+
     OrderItem.create!(offer: offer, order: order )
 
     # Act
@@ -213,6 +229,12 @@ describe 'Usuário muda status do pedido' do
       item: dish,
       price: 55
     )
+    menu = Menu.create!(
+      establishment: establishment, 
+      name: 'Café da manhã'
+    )
+    MenuItem.create!(item: dish, menu: menu)
+
 
     OrderItem.create!(offer: offer, order: order )
 

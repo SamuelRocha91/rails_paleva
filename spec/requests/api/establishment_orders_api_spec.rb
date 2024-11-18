@@ -37,6 +37,11 @@ describe 'Orders API' do
             establishment: establishment
       )
       format = Format.create!(name: 'Porção grande')
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
 
       order = Order.create!(
         establishment: establishment,
@@ -53,6 +58,7 @@ describe 'Orders API' do
         price: 55
       )
       OrderItem.create!(offer: offer, order: order )
+
 
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders"
@@ -105,6 +111,11 @@ describe 'Orders API' do
             establishment: establishment
       )
       format = Format.create!(name: 'Porção grande')
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
 
       order = Order.create!(
         establishment: establishment, 
@@ -229,6 +240,11 @@ describe 'Orders API' do
             establishment: establishment
       )
       format = Format.create!(name: 'Porção grande')
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
 
       order = Order.create!(
         establishment: establishment, 
@@ -331,6 +347,11 @@ describe 'Orders API' do
             establishment: establishment
       )
       format = Format.create!(name: 'Porção grande')
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
 
       order = Order.create!(
         establishment: establishment, 
@@ -386,6 +407,12 @@ describe 'Orders API' do
             establishment: establishment
       )
       format = Format.create!(name: 'Porção grande')
+       menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
+
       order = Order.create!(
         establishment: establishment, 
         customer: customer,
@@ -493,6 +520,12 @@ describe 'Orders API' do
         item: dish,
         price: 55
       )
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
+
       OrderItem.create!(
         offer: offer, 
         order: order, 
@@ -538,6 +571,12 @@ describe 'Orders API' do
             calories: '185', 
             establishment: establishment
       )
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
+
       format = Format.create!(name: 'Porção grande')
       order = Order.create!(
         establishment: establishment, 
