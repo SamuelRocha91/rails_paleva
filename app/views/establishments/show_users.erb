@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center mb-3">
+    <%= link_to 'Fazer pré-cadastro de usuário',
+                user_new_establishment_path(current_user.establishment.id),
+                class: 'btn btn-primary' if current_user.admin? %>
+</div>
+
+<table class='table table-dark table-striped caption-top'>
+  <caption class='title'>
+    Acompanhamento de usuários
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">E-mail</th>
+      <th scope="col">CPF</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <% if @users.any? %>
+    <% @users.each do |user| %>
+        <tbody>
+          <tr>
+            <td><%= user.email %></td>
+            <td><%= user.cpf %></td>
+            <td>
+              <%= user.is_a?(TemporaryUser) ? 'Cadastrado' : 'Pré-cadastrado'%>
+            </td>
+          </tr>
+        </tbody>
+    <% end %>
+  <% end %>
+</table>
