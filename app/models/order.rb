@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   belongs_to :establishment
   accepts_nested_attributes_for :customer
   has_many :order_items
+  has_one :cancellation
   before_validation :generate_code, on: :create
   enum status: { 
     pending_kitchen_confirmation: 0,

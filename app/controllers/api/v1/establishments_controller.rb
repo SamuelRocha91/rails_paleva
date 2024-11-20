@@ -78,10 +78,14 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
       return render status: 400, json: message.to_json    
     end
 
-    @order.canceled!
-
-    render status: 200, json: @order.as_json(only: [:code, :status])
-
+    if !params[:justification]
+      render status: 400, json: {error: 'Cancelamento deve ser justificado'}
+    else
+      justification = Cancellation.new(justification: params[:justification]) 
+      @order.cancellation = justification
+      @order.canceled!
+      render status: 200, json: @order.as_json(only: [:code, :status])
+    end
   end
 
   private
