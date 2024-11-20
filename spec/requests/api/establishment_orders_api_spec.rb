@@ -706,6 +706,129 @@ describe 'Orders API' do
       expect(json_response["code"]).to eq order.code
       expect(json_response["status"]).to eq 'canceled'
     end
+
+    it 'e falha quando se tenta atualizar cancelar após o ele já ter sido aceito' do
+      # Arrange
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+      customer = Customer.create!(
+        name: 'Samuel',
+        email: 'sam@gmail.com'
+      )
+      dish = Dish.create!(
+            name: 'lasagna', 
+            description: 'massa, queijo e presunto', 
+            calories: '185', 
+            establishment: establishment
+      )
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
+
+      format = Format.create!(name: 'Porção grande')
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer,
+      )
+      offer = Offer.create!(
+        format: format,
+        item: dish,
+        price: 55
+      )
+      OrderItem.create!(
+        offer: offer, 
+        order: order, 
+        note: 'sem cebola' 
+      )
+      order.in_preparation!
+
+      # Act
+      put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/cancel"
+  
+      # Assert
+      expect(response.status).to eq(400)
+      json_response = JSON.parse(response.body)
+      expect(json_response["message"]
+                             ).to eq "Status 'canceled' não é válido para esse pedido"
+    end
+
+    it 'e falha quando se tenta atualizar cancelar após o pedido estar pronto' do
+      # Arrange
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+      customer = Customer.create!(
+        name: 'Samuel',
+        email: 'sam@gmail.com'
+      )
+      dish = Dish.create!(
+            name: 'lasagna', 
+            description: 'massa, queijo e presunto', 
+            calories: '185', 
+            establishment: establishment
+      )
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
+
+      format = Format.create!(name: 'Porção grande')
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer,
+      )
+      offer = Offer.create!(
+        format: format,
+        item: dish,
+        price: 55
+      )
+      OrderItem.create!(
+        offer: offer, 
+        order: order, 
+        note: 'sem cebola' 
+      )
+      order.in_preparation!
+      order.ready!
+
+      # Act
+      put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/cancel"
+  
+      # Assert
+      expect(response.status).to eq(400)
+      json_response = JSON.parse(response.body)
+      expect(json_response["message"]
+                             ).to eq "Status 'canceled' não é válido para esse pedido"
+    end
   end
   
 end

@@ -73,7 +73,7 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
   def cancel
     if @order.status != 'pending_kitchen_confirmation'
       message = { 
-        message: "Status 'in_progress' não é válido para esse pedido"
+        message: "Status 'canceled' não é válido para esse pedido"
       }
       return render status: 400, json: message.to_json    
     end
