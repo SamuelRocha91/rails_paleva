@@ -1,5 +1,10 @@
 class Api::V1::EstablishmentsController <  Api::V1::ApiController
-  before_action :set_establishment_and_order, only: [:show_order, :accept_order, :ready]
+  before_action :set_establishment_and_order, only: [
+    :show_order, 
+    :accept_order, 
+    :ready, 
+    :cancel
+  ]
 
   def list_orders
     establishment = Establishment.find_by(code: params[:code])
@@ -63,6 +68,20 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
     @order.ready!
 
     render status: 200, json: @order.as_json(only: [:code, :status])
+  end
+
+  def cancel
+    if @order.status != 'pending_kitchen_confirmation'
+      message = { 
+        message: "Status 'in_progress' não é válido para esse pedido"
+      }
+      return render status: 400, json: message.to_json    
+    end
+
+    @order.canceled!
+
+    render status: 200, json: @order.as_json(only: [:code, :status])
+
   end
 
   private

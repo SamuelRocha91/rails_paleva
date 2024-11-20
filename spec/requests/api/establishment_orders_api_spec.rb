@@ -315,7 +315,7 @@ describe 'Orders API' do
     end
   end
 
-  context 'GET /api/v1/establishment/:code/orders/:order_code/in-preparation' do
+  context 'PUT /api/v1/establishment/:code/orders/:order_code/in-preparation' do
     it 'e atualiza status de aguardando o aceite para em preparação' do
       # Arrange
       establishment = Establishment.create!(
@@ -478,7 +478,7 @@ describe 'Orders API' do
     
   end
 
-  context 'GET /api/v1/establishment/:code/orders/:order_code/ready' do
+  context 'PUT /api/v1/establishment/:code/orders/:order_code/ready' do
     it 'e atualiza status de em preparo para pronto' do
       # Arrange
       establishment = Establishment.create!(
@@ -642,4 +642,70 @@ describe 'Orders API' do
     end
     
   end
+
+  context 'PUT /api/v1/establishment/:code/orders/:order_code/cancel' do
+     it 'e atualiza status de em aguardo para cancelado' do
+      # Arrange
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+
+      customer = Customer.create!(
+        name: 'Samuel',
+        email: 'sam@gmail.com'
+      )
+
+      dish = Dish.create!(
+            name: 'lasagna', 
+            description: 'massa, queijo e presunto', 
+            calories: '185', 
+            establishment: establishment
+      )
+      format = Format.create!(name: 'Porção grande')
+
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer
+      )
+      offer = Offer.create!(
+        format: format,
+        item: dish,
+        price: 55
+      )
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
+
+      OrderItem.create!(
+        offer: offer, 
+        order: order, 
+        note: 'sem cebola' 
+      )
+      
+      # Act
+      put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/cancel"
+  
+      # Assert
+      expect(response.status).to eq(200)
+      json_response = JSON.parse(response.body)
+      expect(json_response["code"]).to eq order.code
+      expect(json_response["status"]).to eq 'canceled'
+    end
+  end
+  
 end
