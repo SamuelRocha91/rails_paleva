@@ -7,4 +7,15 @@ class Menu < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3}
   validates :name, uniqueness: { scope: :establishment_id }
 
+  validate :valid_seasonal_dates
+
+  private
+
+  def valid_seasonal_dates
+    if self.valid_from && !self.valid_until
+      self.errors.add :valid_until, ' deve estar presente no cadastro de pratos sazonais'
+    elsif !self.valid_from && self.valid_until
+      self.errors.add :valid_from, ' deve estar presente no cadastro de pratos sazonais'
+    end
+  end
 end
