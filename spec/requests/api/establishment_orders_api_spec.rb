@@ -22,9 +22,10 @@ describe 'Orders API' do
       )
 
       customer = Customer.create!(
-        name: 'Samuel',
-        email: 'sam@gmail.com'
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
       )
+
       customer_two = Customer.create!(
         name: 'Ana', 
         email: 'ana@gmail.com'
@@ -73,7 +74,7 @@ describe 'Orders API' do
       expect(json_response[1]["code"]).to eq order_two.code
       expect(json_response[1]["status"]).to eq 'in_preparation'
       expect(json_response[0].keys).not_to include 'updated_at'
-      expect(json_response[0]["customer"]["name"]).to eq 'Samuel'
+      expect(json_response[0]["customer"]["name"]).to eq 'Sorocaba'
     end
 
     it 'filtra os pedidos do estabelecimento por status' do
@@ -94,11 +95,11 @@ describe 'Orders API' do
         cpf: '22611819572',
         establishment: establishment
       )
-
       customer = Customer.create!(
-        name: 'Samuel', 
-        email: 'sam@gmail.com'
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
       )
+
       customer_two = Customer.create!(
         name: 'Ana', 
         email: 'ana@gmail.com'
@@ -229,9 +230,10 @@ describe 'Orders API' do
       )
 
       customer = Customer.create!(
-        name: 'Samuel',
-        email: 'sam@gmail.com'
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
       )
+
 
       dish = Dish.create!(
             name: 'lasagna', 
@@ -275,7 +277,7 @@ describe 'Orders API' do
       expect(json_response["order_items"][0]["offer"]["item"]["name"]
                                                 ).to eq 'lasagna'
       expect(json_response.keys).to include 'created_at'
-      expect(json_response["customer"]["name"]).to eq 'Samuel'
+      expect(json_response["customer"]["name"]).to eq 'Sorocaba'
     end
 
     it 'retorna status 404 se não for encontrado o pedido' do
@@ -315,7 +317,7 @@ describe 'Orders API' do
     end
   end
 
-  context 'GET /api/v1/establishment/:code/orders/:order_code/in-preparation' do
+  context 'PUT /api/v1/establishment/:code/orders/:order_code/in-preparation' do
     it 'e atualiza status de aguardando o aceite para em preparação' do
       # Arrange
       establishment = Establishment.create!(
@@ -334,11 +336,11 @@ describe 'Orders API' do
         cpf: '22611819572',
         establishment: establishment
       )
-
       customer = Customer.create!(
-        name: 'Samuel',
-        email: 'sam@gmail.com'
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
       )
+
 
       dish = Dish.create!(
             name: 'lasagna', 
@@ -397,9 +399,10 @@ describe 'Orders API' do
         establishment: establishment
       )
       customer = Customer.create!(
-        name: 'Samuel',
-        email: 'sam@gmail.com'
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
       )
+
       dish = Dish.create!(
             name: 'lasagna', 
             description: 'massa, queijo e presunto', 
@@ -478,7 +481,7 @@ describe 'Orders API' do
     
   end
 
-  context 'GET /api/v1/establishment/:code/orders/:order_code/ready' do
+  context 'PUT /api/v1/establishment/:code/orders/:order_code/ready' do
     it 'e atualiza status de em preparo para pronto' do
       # Arrange
       establishment = Establishment.create!(
@@ -497,11 +500,11 @@ describe 'Orders API' do
         cpf: '22611819572',
         establishment: establishment
       )
-
       customer = Customer.create!(
-        name: 'Samuel',
-        email: 'sam@gmail.com'
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
       )
+
 
       dish = Dish.create!(
             name: 'lasagna', 
@@ -562,9 +565,10 @@ describe 'Orders API' do
         establishment: establishment
       )
       customer = Customer.create!(
-        name: 'Samuel',
-        email: 'sam@gmail.com'
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
       )
+
       dish = Dish.create!(
             name: 'lasagna', 
             description: 'massa, queijo e presunto', 
@@ -642,4 +646,260 @@ describe 'Orders API' do
     end
     
   end
+
+  context 'PUT /api/v1/establishment/:code/orders/:order_code/cancel' do
+    it 'e atualiza status de em aguardo para cancelado com sucesso' do
+      # Arrange
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+
+      customer = Customer.create!(
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
+      )
+
+
+      dish = Dish.create!(
+            name: 'lasagna', 
+            description: 'massa, queijo e presunto', 
+            calories: '185', 
+            establishment: establishment
+      )
+      format = Format.create!(name: 'Porção grande')
+
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer
+      )
+      offer = Offer.create!(
+        format: format,
+        item: dish,
+        price: 55
+      )
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
+
+      OrderItem.create!(
+        offer: offer, 
+        order: order, 
+        note: 'sem cebola' 
+      )
+      
+      # Act
+      put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/cancel",  
+            params: { justification:  'cachorro Duki comeu os materiais'}
+  
+      # Assert
+      expect(response.status).to eq(200)
+      json_response = JSON.parse(response.body)
+      expect(json_response["code"]).to eq order.code
+      expect(json_response["status"]).to eq 'canceled'
+      expect(order.cancellation.justification).to eq 'cachorro Duki comeu os materiais'
+    end
+
+    it 'falha sem envio de justificativa' do
+      # Arrange
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+
+      customer = Customer.create!(
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
+      )
+
+      dish = Dish.create!(
+            name: 'lasagna', 
+            description: 'massa, queijo e presunto', 
+            calories: '185', 
+            establishment: establishment
+      )
+      format = Format.create!(name: 'Porção grande')
+
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer
+      )
+      offer = Offer.create!(
+        format: format,
+        item: dish,
+        price: 55
+      )
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
+
+      OrderItem.create!(
+        offer: offer, 
+        order: order, 
+        note: 'sem cebola' 
+      )
+      
+      # Act
+      put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/cancel"
+  
+      # Assert
+      expect(response.status).to eq(400)
+      json_response = JSON.parse(response.body)
+      expect(json_response["error"]).to eq 'Cancelamento deve ser justificado'
+    end
+
+    it 'e falha quando se tenta atualizar cancelar após o ele já ter sido aceito' do
+      # Arrange
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+      customer = Customer.create!(
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
+      )
+
+      dish = Dish.create!(
+            name: 'lasagna', 
+            description: 'massa, queijo e presunto', 
+            calories: '185', 
+            establishment: establishment
+      )
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
+
+      format = Format.create!(name: 'Porção grande')
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer,
+      )
+      offer = Offer.create!(
+        format: format,
+        item: dish,
+        price: 55
+      )
+      OrderItem.create!(
+        offer: offer, 
+        order: order, 
+        note: 'sem cebola' 
+      )
+      order.in_preparation!
+
+      # Act
+      put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/cancel"
+  
+      # Assert
+      expect(response.status).to eq(400)
+      json_response = JSON.parse(response.body)
+      expect(json_response["message"]
+                             ).to eq "Status 'canceled' não é válido para esse pedido"
+    end
+
+    it 'e falha quando se tenta atualizar cancelar após o pedido estar pronto' do
+      # Arrange
+      establishment = Establishment.create!(
+        email: 'sam@gmail.com', 
+        trade_name: 'Samsung', 
+        legal_name: 'Samsung LTDA', 
+        cnpj: '56924048000140',
+        phone_number: '71992594946', 
+        address: 'Rua das Alamedas avenidas',
+      )
+      User.create!(
+        first_name: 'Samuel', 
+        last_name: 'Rocha', 
+        email: 'samuel@hotmail.com', 
+        password: '12345678910111',  
+        cpf: '22611819572',
+        establishment: establishment
+      )
+      customer = Customer.create!(
+        name: 'Sorocaba',
+        email: 'samssd@gmail.com'
+      )
+
+      dish = Dish.create!(
+            name: 'lasagna', 
+            description: 'massa, queijo e presunto', 
+            calories: '185', 
+            establishment: establishment
+      )
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
+      MenuItem.create!(item: dish, menu: menu)
+
+      format = Format.create!(name: 'Porção grande')
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer,
+      )
+      offer = Offer.create!(
+        format: format,
+        item: dish,
+        price: 55
+      )
+      OrderItem.create!(
+        offer: offer, 
+        order: order, 
+        note: 'sem cebola' 
+      )
+      order.in_preparation!
+      order.ready!
+
+      # Act
+      put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/cancel"
+  
+      # Assert
+      expect(response.status).to eq(400)
+      json_response = JSON.parse(response.body)
+      expect(json_response["message"]
+                             ).to eq "Status 'canceled' não é válido para esse pedido"
+    end
+  end
+  
 end
