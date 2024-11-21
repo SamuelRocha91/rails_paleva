@@ -16,6 +16,8 @@ class Menu < ApplicationRecord
       self.errors.add :valid_until, ' deve estar presente no cadastro de pratos sazonais'
     elsif !self.valid_from && self.valid_until
       self.errors.add :valid_from, ' deve estar presente no cadastro de pratos sazonais'
+    elsif self.valid_from && self.valid_until && self.valid_from >= self.valid_until
+      self.errors.add :valid_from, ' deve estar ser menor que a data de fim da validade'
     end
   end
 end
