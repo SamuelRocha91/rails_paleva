@@ -7,14 +7,12 @@ class MenusController < ApplicationController
   end
 
   def create
-    @menu = Menu.new(
-      establishment: current_user.establishment, 
-      name: menu_params[:name]
-    )
+    @menu = Menu.new(menu_params)
+    @menu.establishment = current_user.establishment
     if @menu.save
       redirect_to @menu, notice: 'Cardápio cadastrado com sucesso'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -25,6 +23,6 @@ class MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:name)
+    params.require(:menu).permit(:name, :valid_from, :valid_until)
   end
 end

@@ -51,6 +51,8 @@ pt-BR:
         name: Nome do marcador
       menu:
         name: Nome do Cardápio
+        valid_from: Início da validade
+        valid_until: Término da validade
       order:
         customer_id: Cliente
         status: Status
