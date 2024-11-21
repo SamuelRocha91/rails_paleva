@@ -5,14 +5,16 @@
 
 
 <% if @dish.errors.any? %>
-  <p>Verifique os erros abaixo:</p>
-  <ul>
-    <% @dish.errors.full_messages.each do |msg|%>
-     <li>
-        <%= msg %>
-     </li>
-     <% end %>
-  </ul>
+  <div class='d-flex flex-column align-items-center mt-5'>
+    <p>Verifique os erros abaixo:</p>
+    <ul>
+      <% @dish.errors.full_messages.each do |msg|%>
+       <li>
+          <%= msg %>
+       </li>
+       <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= render 'form' %>

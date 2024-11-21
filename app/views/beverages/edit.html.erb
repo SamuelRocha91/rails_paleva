@@ -1,14 +1,16 @@
 <h1 class='title'>Editar Bebida</h1>
 
 <% if @beverage.errors.any? %>
-  <p>Verifique os erros abaixo:</p>
-  <ul>
-    <% @beverage.errors.full_messages.each do |msg|%>
-     <li>
-        <%= msg %>
-     </li>
-     <% end %>
-  </ul>
+  <div class='d-flex flex-column align-items-center mt-5'>
+    <p>Verifique os erros abaixo:</p>
+    <ul>
+      <% @beverage.errors.full_messages.each do |msg|%>
+       <li class='text-danger'>
+          <%= msg %>
+       </li>
+       <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= render 'form' %>

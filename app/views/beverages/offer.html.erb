@@ -1,25 +1,29 @@
 <h1>Cadastro de volume de <%= @beverage.name%></h1>
 
 <% if @format.errors.any? %>
-  <p>Verifique os erros abaixo:</p>
-  <ul>
-    <% @format.errors.full_messages.each do |msg|%>
-     <li>
-        <%= msg %>
-     </li>
-     <% end %>
-  </ul>
+  <div class='d-flex flex-column align-items-center mt-5'>
+    <p>Verifique os erros abaixo:</p>
+    <ul>
+      <% @format.errors.full_messages.each do |msg|%>
+       <li class='text-danger'>
+          <%= msg %>
+       </li>
+       <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <% if @beverage.errors.any? %>
-  <p>Verifique os erros abaixo:</p>
-  <ul>
-    <% @beverage.errors.full_messages.each do |msg|%>
-     <li>
-        <%= msg %>
-     </li>
-     <% end %>
-  </ul>
+  <div class='d-flex flex-column align-items-center mt-5'>
+    <p>Verifique os erros abaixo:</p>
+    <ul>
+      <% @beverage.errors.full_messages.each do |msg|%>
+       <li class='text-danger'>
+          <%= msg %>
+       </li>
+       <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= form_with(url: offer_beverage_path(@beverage.id)) do |f| %>
