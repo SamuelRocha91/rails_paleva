@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   get 'search', to: 'search#search'
+  get 'search-order', to: 'search#search_order'
+
 
   get 'orders/preview', to: 'orders#preview_order', as: 'preview_order'
 

@@ -90,5 +90,15 @@ describe 'Usuário acompanha um pedido' do
       end
     end
 
+    it 'pesquisa por um pedido inexistente' do
+      # Act
+      visit root_path
+      fill_in 'Possui um pedido? Acompanhe aqui',	with: '45614567'
+      click_on 'Pesquisar'
+
+      # Assert
+      expect(page).to have_content 'Não foi possível encontar o pedido. Favor, verifique o código.'
+    end
+
   end  
 end
