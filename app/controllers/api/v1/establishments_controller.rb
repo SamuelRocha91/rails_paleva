@@ -77,7 +77,6 @@ class Api::V1::EstablishmentsController <  Api::V1::ApiController
       }
       return render status: 400, json: message.to_json    
     end
-
     if !params[:justification]
       render status: 400, json: {error: 'Cancelamento deve ser justificado'}
     else
