@@ -12,7 +12,6 @@ class MenusController < ApplicationController
     if @menu.save
       redirect_to @menu, notice: 'Cardápio cadastrado com sucesso'
     else
-      p 'aqui?'
       render :new, status: :unprocessable_entity
     end
   end
