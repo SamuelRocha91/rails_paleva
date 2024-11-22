@@ -574,4 +574,105 @@ RSpec.describe Order, type: :model do
       expect(initial_code).to eq order.code
     end
   end
+
+  context 'atualização de status' do
+    describe 'gera preenchimento de campo datetime' do
+      it 'accepted_at quando o status muda pra in_preparation' do
+        # Arrange
+        establishment = Establishment.create!(
+          email: 'sam@gmail.com', 
+          trade_name: 'Samsung', 
+          legal_name: 'Samsung LTDA', 
+          cnpj: '56924048000140',
+          phone_number: '71992594946', 
+          address: 'Rua das Alamedas avenidas',
+        )
+        User.create!(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'samuel@hotmail.com', 
+          password: '12345678910111',  
+          cpf: '22611819572',
+          establishment: establishment
+        )
+
+        customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
+
+        order = Order.create!(establishment: establishment, customer: customer)
+
+        # Act
+        order.in_preparation!
+
+        # Assert
+        expect(order.accepted_at.strftime("%d-%m-%Y")
+                           ).to eq DateTime.current.strftime("%d-%m-%Y")
+      end
+
+      it 'completed_at quando o status muda pra ready' do
+        # Arrange
+        establishment = Establishment.create!(
+          email: 'sam@gmail.com', 
+          trade_name: 'Samsung', 
+          legal_name: 'Samsung LTDA', 
+          cnpj: '56924048000140',
+          phone_number: '71992594946', 
+          address: 'Rua das Alamedas avenidas',
+        )
+        User.create!(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'samuel@hotmail.com', 
+          password: '12345678910111',  
+          cpf: '22611819572',
+          establishment: establishment
+        )
+
+        customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
+
+        order = Order.create!(establishment: establishment, customer: customer)
+
+        # Act
+        order.in_preparation!
+        order.ready!
+
+        # Assert
+        expect(order.completed_at.strftime("%d-%m-%Y")
+                           ).to eq DateTime.current.strftime("%d-%m-%Y")
+      end
+
+      it 'delivered_at quando o status muda pra delivered' do
+        # Arrange
+        establishment = Establishment.create!(
+          email: 'sam@gmail.com', 
+          trade_name: 'Samsung', 
+          legal_name: 'Samsung LTDA', 
+          cnpj: '56924048000140',
+          phone_number: '71992594946', 
+          address: 'Rua das Alamedas avenidas',
+        )
+        User.create!(
+          first_name: 'Samuel', 
+          last_name: 'Rocha', 
+          email: 'samuel@hotmail.com', 
+          password: '12345678910111',  
+          cpf: '22611819572',
+          establishment: establishment
+        )
+
+        customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
+
+        order = Order.create!(establishment: establishment, customer: customer)
+
+        # Act
+        order.in_preparation!
+        order.ready!
+        order.delivered!
+
+        # Assert
+        expect(order.delivered_at.strftime("%d-%m-%Y")
+                           ).to eq DateTime.current.strftime("%d-%m-%Y")
+      end
+    end
+  end
+
 end

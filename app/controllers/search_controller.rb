@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  before_action :employee?
+  before_action :employee?, only: [:search]
 
   def search
     if params[:type] == 'Bebida'
@@ -13,6 +13,10 @@ class SearchController < ApplicationController
       search_dishes
       @count = @beverages.length + @dishes.length
     end
+  end
+
+  def search_order
+    @order = Order.find_by(code: params[:query])
   end
 
   private

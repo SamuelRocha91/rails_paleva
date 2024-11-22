@@ -49,6 +49,17 @@
          <% end %>
           <%= button_to 'Sair', destroy_user_session_path, method: :delete, class:'btn btn-danger' %>
         </div>
+      <% else %>
+        <%= form_with(url: search_order_path, method: :get, class:'form-header') do |form| %>
+
+          <div class='form-header-fields gap-0'>
+            <%= form.label :query, 'Possui um pedido? Acompanhe aqui', class: 'text-danger' %>
+            <%= form.text_field :query, class: 'form-control w-75', placeholder: 'digite o código do pedido' %>
+          </div>
+
+          <%= form.submit 'Pesquisar', class:'btn btn-primary' %>
+        <% end %> 
+        
       <% end %>   
     </header>
     <main>

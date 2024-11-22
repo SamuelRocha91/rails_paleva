@@ -1,0 +1,50 @@
+<% if !@order.present? %>
+  <div class='d-flex flex-column align-items-center mt-5'>
+    <p class='text-danger'>
+      Não foi possível encontar o pedido. Favor, verifique o código.
+    </p>
+  </div>
+<% else %>
+  <div class='general-panel mt-5'>
+    <h2>Dados do estabelecimento</h2>
+    <dl class='list-dl mt-3'>
+      <div class='field-value'>
+        <dt><%= Establishment.human_attribute_name(:trade_name) %>:</dt>
+        <dd><%= @order.establishment.trade_name %></dd>
+      </div>
+      <div class='field-value'>
+        <dt><%= Establishment.human_attribute_name(:phone_number) %>:</dt>
+        <dd><%= @order.establishment.phone_number %></dd>
+      </div>
+      <div class='field-value'>
+        <dt><%= Establishment.human_attribute_name(:email) %>:</dt>
+        <dd><%= @order.establishment.email %></dd>
+      </div>
+      <div class='field-value'>
+        <dt><%= Establishment.human_attribute_name(:address) %>:</dt>
+        <dd><%= @order.establishment.address %></dd>
+      </div>
+    </dl>
+  </div>
+  <table class='table table-dark table-striped caption-top'>
+    <caption class='title'>
+      Acompanhamento do pedido
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col"><%= Order.human_attribute_name(:created_at) %> </th>
+        <th scope="col"><%= Order.human_attribute_name(:accepted_at) %></th>
+        <th scope="col"><%= Order.human_attribute_name(:completed_at) %></th>
+        <th scope="col"><%= Order.human_attribute_name(:delivered_at) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @order.created_at.strftime("%d-%m-%Y") %> </td>
+        <td><%=  @order.accepted_at ? @order.accepted_at.strftime("%d-%m-%Y") : 'Pendente' %> </td>
+        <td> <%=  @order.completed_at ? @order.completed_at.strftime("%d-%m-%Y") : 'Pendente' %> </td>
+        <td> <%= @order.delivered_at ? @order.delivered_at.strftime("%d-%m-%Y") : 'Pendente'%> </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

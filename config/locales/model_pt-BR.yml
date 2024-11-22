@@ -56,6 +56,10 @@ pt-BR:
       order:
         customer_id: Cliente
         status: Status
+        created_at: Data de criação
+        delivered_at: Data de entrega
+        accepted_at: Data de aceite do pedido
+        completed_at: Data de conclusão do pedido
       customer:
         name: Nome do cliente
         phone_number: Telefone

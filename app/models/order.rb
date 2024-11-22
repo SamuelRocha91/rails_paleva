@@ -13,6 +13,7 @@ class Order < ApplicationRecord
     canceled: 9 
   }
   validate :check_status_change, on: :update
+  validate :set_datetime, on: :update
 
   private
 
@@ -61,6 +62,16 @@ class Order < ApplicationRecord
     if status != 'delivered' && status != 'canceled'
       self.status = previous_status 
       self.errors.add :status, " deve ser um valor válido"
+    end
+  end
+
+  def set_datetime
+    if self.status == 'in_preparation'
+      self.accepted_at = DateTime.current
+    elsif self.status == 'ready'
+      self.completed_at = DateTime.current
+    elsif self.status == 'delivered'
+      self.delivered_at = DateTime.current
     end
   end
 end
