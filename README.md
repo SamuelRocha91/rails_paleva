@@ -40,10 +40,6 @@ rbenv local 3.2.2
 ```
 Outra opção é inserir a sua versão do ruby diretamente no gemfile da aplicação.
 
-Aqui está um exemplo de texto para o seu README, explicando como configurar o ambiente para atender ao requisito da versão do Rails:
-
----
-
 ### Requisitos de Versão do Rails
 
 Este projeto utiliza o **Rails ~> 7.1.3**, o que significa que ele é compatível com qualquer versão **>= 7.1.3 e < 7.2.0**. 
