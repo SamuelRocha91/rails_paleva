@@ -13,10 +13,15 @@
   </div>
 <% end %>
 
-<%= form_with(url: user_new_establishment_path(@establishment.id) , class: 'form-edit') do |f| %>
+<%= form_with(
+  url: user_new_establishment_path(@establishment.id), 
+  class: 'form-edit'
+  ) do |f| %>
   <div class='mb-3 mt-5'>
     <%= f.label :email, 'E-mail', class: 'form-label' %>
-    <%= f.email_field :email, class: 'form-control', placeholder: 'email@example.com' %>
+    <%= f.email_field :email, 
+                      class: 'form-control', 
+                      placeholder: 'email@example.com' %>
   </div>
   <div class='mb-3 mt-5'>
     <%= f.label :cpf, 'CPF', class: 'form-label' %>

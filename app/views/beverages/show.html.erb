@@ -13,7 +13,9 @@
       </div>
       <div class='field-value'>
         <dt><%= Beverage.human_attribute_name(:calories) %>:</dt>
-        <dd><%= @beverage.calories.present? ? @beverage.calories : 'Não informado' %></dd>
+        <dd>
+          <%= @beverage.calories.present? ? @beverage.calories : 'Não informado' %>
+        </dd>
       </div>
       <div class='field-value'>
         <dt><%= Beverage.human_attribute_name(:is_alcoholic) %></dt>

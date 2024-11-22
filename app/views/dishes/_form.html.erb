@@ -1,4 +1,7 @@
-<%= form_with(model: [current_user.establishment, @dish], class: 'form-edit') do |f| %>
+<%= form_with(
+  model: [current_user.establishment, @dish], 
+  class: 'form-edit'
+  ) do |f| %>
     
   <div class='mb-3'>
     <%= f.label :image, class: 'form-label' %>
