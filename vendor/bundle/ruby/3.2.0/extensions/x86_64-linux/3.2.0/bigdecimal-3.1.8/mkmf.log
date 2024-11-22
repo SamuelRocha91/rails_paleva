@@ -135,8 +135,8 @@ checked program was:
 have_func: checking for _lzcnt_u32() in x86intrin.h... -------------------- no
 
 LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -o conftest -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC conftest.c  -L. -L/home/samuel/.rbenv/versions/3.2.2/lib -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L/home/samuel/.rbenv/versions/3.2.2/lib -lruby  -lm -lpthread  -lc"
-/usr/bin/ld: /tmp/ccoVkt01.o: na função "t":
-/home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal/conftest.c:16: referência não definida para "_lzcnt_u32"
+/usr/bin/ld: /tmp/ccVxt9k0.o: na função "t":
+/home/samuel/teste02/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal/conftest.c:16: referência não definida para "_lzcnt_u32"
 collect2: error: ld returned 1 exit status
 checked program was:
 /* begin */
@@ -197,8 +197,8 @@ checked program was:
 have_func: checking for _lzcnt_u64() in x86intrin.h... -------------------- no
 
 LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -o conftest -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC conftest.c  -L. -L/home/samuel/.rbenv/versions/3.2.2/lib -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L/home/samuel/.rbenv/versions/3.2.2/lib -lruby  -lm -lpthread  -lc"
-/usr/bin/ld: /tmp/ccatjqoH.o: na função "t":
-/home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal/conftest.c:16: referência não definida para "_lzcnt_u64"
+/usr/bin/ld: /tmp/ccu3eEfg.o: na função "t":
+/home/samuel/teste02/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal/conftest.c:16: referência não definida para "_lzcnt_u64"
 collect2: error: ld returned 1 exit status
 checked program was:
 /* begin */
@@ -601,8 +601,8 @@ checked program was:
 /* end */
 
 LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -o conftest -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC conftest.c  -L. -L/home/samuel/.rbenv/versions/3.2.2/lib -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L/home/samuel/.rbenv/versions/3.2.2/lib -lruby  -lm -lpthread  -lc"
-/usr/bin/ld: /tmp/ccOByzu6.o: na função "t":
-/home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal/conftest.c:17: referência não definida para "__builtin_isfinite"
+/usr/bin/ld: /tmp/ccEvzn6d.o: na função "t":
+/home/samuel/teste02/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal/conftest.c:17: referência não definida para "__builtin_isfinite"
 collect2: error: ld returned 1 exit status
 checked program was:
 /* begin */

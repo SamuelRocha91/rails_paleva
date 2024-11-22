@@ -1,4 +1,4 @@
-current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
+current directory: /home/samuel/teste02/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
 /home/samuel/.rbenv/versions/3.2.2/bin/ruby extconf.rb
 checking for __builtin_clz()... yes
 checking for __builtin_clzl()... yes
@@ -31,18 +31,18 @@ checking for rb_category_warn() in ruby.h... yes
 checking for RB_WARN_CATEGORY_DEPRECATED in ruby.h... yes
 creating Makefile
 
-current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-45i7ac sitelibdir\=./.gem.20241117-3083657-45i7ac clean
+current directory: /home/samuel/teste02/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
+make DESTDIR\= sitearchdir\=./.gem.20241122-669833-7phw6e sitelibdir\=./.gem.20241122-669833-7phw6e clean
 
-current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-45i7ac sitelibdir\=./.gem.20241117-3083657-45i7ac
+current directory: /home/samuel/teste02/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
+make DESTDIR\= sitearchdir\=./.gem.20241122-669833-7phw6e sitelibdir\=./.gem.20241122-669833-7phw6e
 compiling bigdecimal.c
 compiling missing.c
 linking shared-object bigdecimal.so
 
-current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-45i7ac sitelibdir\=./.gem.20241117-3083657-45i7ac install
-/usr/bin/install -c -m 0755 bigdecimal.so ./.gem.20241117-3083657-45i7ac
+current directory: /home/samuel/teste02/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
+make DESTDIR\= sitearchdir\=./.gem.20241122-669833-7phw6e sitelibdir\=./.gem.20241122-669833-7phw6e install
+/usr/bin/install -c -m 0755 bigdecimal.so ./.gem.20241122-669833-7phw6e
 
-current directory: /home/samuel/reactWeather/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20241117-3083657-45i7ac sitelibdir\=./.gem.20241117-3083657-45i7ac clean
+current directory: /home/samuel/teste02/rails_paleva/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
+make DESTDIR\= sitearchdir\=./.gem.20241122-669833-7phw6e sitelibdir\=./.gem.20241122-669833-7phw6e clean
