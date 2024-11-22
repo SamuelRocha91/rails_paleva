@@ -72,7 +72,7 @@ describe 'Usuário muda status do pedido' do
 
   it 'de em preparo PARA pronto para entrega' do
     # Arrange
-   establishment = Establishment.create!(
+    establishment = Establishment.create!(
       email: 'sam@gmail.com', 
       trade_name: 'Samsung', 
       legal_name: 'Samsung LTDA', 

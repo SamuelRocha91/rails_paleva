@@ -100,5 +100,40 @@ describe 'Usuário acompanha um pedido' do
       expect(page).to have_content 'Não foi possível encontar o pedido. Favor, verifique o código.'
     end
 
+    it 'acompanha dados do pedido com sucesso' do
+      # Arrange
+      
+      establishment = Establishment.create!(
+      email: 'sam@gmail.com', 
+      trade_name: 'Samsung', 
+      legal_name: 'Samsung LTDA', 
+      cnpj: '56924048000140',
+      phone_number: '71992594946', 
+      address: 'Rua das Alamedas avenidas',
+      )
+      customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
+      order = Order.create!(establishment: establishment, customer: customer)
+      order.in_preparation!
+      order.ready!
+      order.delivered!
+
+      # Act
+      visit root_path
+      fill_in 'Possui um pedido? Acompanhe aqui',	with: order.code
+      click_on 'Pesquisar'
+
+      # Assert
+      expect(page).to have_content 'Nome Social: Samsung'
+      expect(page).to have_content 'Telefone: (71) 99259-4946'
+      expect(page).to have_content 'E-mail: sam@gmail.com'
+      expect(page).to have_content 'Dados do estabelecimento'  
+      within('table') do
+        expect(page).to have_content 'Data de criação'
+        expect(page).to have_content 'Data de entrega'
+        expect(page).to have_content 'Data de aceite do pedido'
+        expect(page).to have_content 'Data de conclusão do pedido'
+        expect(page).to have_content "#{Time.current.to_date.strftime("%d-%m-%Y")}"
+      end
+    end
   end  
 end

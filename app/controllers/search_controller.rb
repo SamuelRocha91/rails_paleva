@@ -16,7 +16,7 @@ class SearchController < ApplicationController
   end
 
   def search_order
-    @order = Order.where(code: params[:query])
+    @order = Order.find_by(code: params[:query])
   end
 
   private

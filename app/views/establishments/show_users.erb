@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center mb-3">
-    <%= link_to 'Fazer pré-cadastro de usuário',
+  <%= link_to 'Fazer pré-cadastro de usuário',
                 user_new_establishment_path(current_user.establishment.id),
                 class: 'btn btn-primary' if current_user.admin? %>
 </div>
