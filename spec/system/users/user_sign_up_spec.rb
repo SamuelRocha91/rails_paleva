@@ -102,6 +102,7 @@ describe 'Usuário que não é ainda cadastrado' do
         cpf: '03466798507', 
         establishment: establishment
       )
+  
       # Act
       visit root_path    
       click_on 'Criar conta'

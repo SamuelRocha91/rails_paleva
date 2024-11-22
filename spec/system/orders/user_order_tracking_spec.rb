@@ -40,8 +40,14 @@ describe 'Usuário acompanha um pedido' do
       )
       format = Format.create!(name: 'Porção grande')
 
-      order = Order.create!(establishment: establishment, customer: customer)
-      order_two = Order.create!(establishment: establishment, customer: customer_two)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer
+      )
+      order_two = Order.create!(
+        establishment: establishment, 
+        customer: customer_two
+      )
 
       offer = Offer.create!(
         format: format,
@@ -112,7 +118,10 @@ describe 'Usuário acompanha um pedido' do
       address: 'Rua das Alamedas avenidas',
       )
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
-      order = Order.create!(establishment: establishment, customer: customer)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer
+      )
       order.in_preparation!
       order.ready!
       order.delivered!

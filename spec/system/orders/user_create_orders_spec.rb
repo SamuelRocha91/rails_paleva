@@ -28,7 +28,10 @@ describe 'Usuário cadastra um pedido' do
         cpf: '22611819572',
         establishment: establishment
       )
-      menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
+      menu = Menu.create!(
+        establishment: establishment, 
+        name: 'Café da manhã'
+      )
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(

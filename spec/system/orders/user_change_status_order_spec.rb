@@ -160,7 +160,11 @@ describe 'Usuário muda status do pedido' do
     )
     format = Format.create!(name: 'Porção grande')
 
-    order = Order.create!(establishment: establishment, customer: customer, status: 5)
+    order = Order.create!(
+      establishment: establishment, 
+      customer: customer, 
+      status: 5
+    )
     Order.create!(establishment: establishment, customer: customer_two)
 
     offer = Offer.create!(
@@ -221,7 +225,11 @@ describe 'Usuário muda status do pedido' do
     )
     format = Format.create!(name: 'Porção grande')
 
-    order = Order.create!(establishment: establishment, customer: customer, status: 5)
+    order = Order.create!(
+      establishment: establishment, 
+      customer: customer, 
+      status: 5
+    )
     Order.create!(establishment: establishment, customer: customer_two)
 
     offer = Offer.create!(

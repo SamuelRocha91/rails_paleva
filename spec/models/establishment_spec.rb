@@ -93,7 +93,7 @@ RSpec.describe Establishment, type: :model do
       end
 
       it 'address' do
-        # Arrange)
+        # Arrange
         establishment = Establishment.new(
           email:'sam@hotmail.com', 
           trade_name: 'Samsumg', 
@@ -232,7 +232,7 @@ RSpec.describe Establishment, type: :model do
       expect(establishment.code).not_to eq establishment_two.code
     end
 
-     it 'e não muda com atualização do estabelecimento' do 
+    it 'e não muda com atualização do estabelecimento' do 
       # Arrange
       establishment = Establishment.new(
         email:'sam@gmail.com', 
