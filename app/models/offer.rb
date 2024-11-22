@@ -21,7 +21,8 @@ class Offer < ApplicationRecord
   def is_valid_price?
     price = self.price.to_f
     if self.price.present? && (price < 1)
-      self.errors.add :price, " não pode ficar em branco e deve ser maior que R$ 1,00"
+      self.errors.add :price, 
+                  " não pode ficar em branco e deve ser maior que R$ 1,00"
     end
   end
 end
