@@ -55,8 +55,14 @@ describe 'Usuário acessa página de pré-visualização de pedido' do
       cpf: '22611819572',
       establishment: establishment
     )
-    menu = Menu.create!(establishment: establishment, name: 'Café da manhã')
-    menu_two = Menu.create!(establishment: establishment, name: 'Almoço')
+    menu = Menu.create!(
+      establishment: establishment, 
+      name: 'Café da manhã'
+    )
+    menu_two = Menu.create!(
+      establishment: establishment, 
+      name: 'Almoço'
+    )
 
     dish = Dish.create!(
           name: 'lasagna', 

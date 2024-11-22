@@ -60,7 +60,6 @@ describe 'Orders API' do
       )
       OrderItem.create!(offer: offer, order: order )
 
-
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders"
   
@@ -163,6 +162,7 @@ describe 'Orders API' do
         cpf: '22611819572',
         establishment: establishment
       )
+
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders"
 
@@ -504,7 +504,6 @@ describe 'Orders API' do
         name: 'Sorocaba',
         email: 'samssd@gmail.com'
       )
-
 
       dish = Dish.create!(
             name: 'lasagna', 

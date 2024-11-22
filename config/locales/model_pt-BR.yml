@@ -1,15 +1,19 @@
 pt-BR:
   activerecord:
     models:
-     establishment: Restaurante
-     operating_hours: Horário de funcionamento
-     dish:
-       one: Prato
-       other: Pratos
-     beverage:
-       one: Bebida
-       other: Bebidas
-     customer: Clientes
+      establishment: Restaurante
+      operating_hours: Horário de funcionamento
+      dish:
+        one: Prato
+        other: Pratos
+      beverage:
+        one: Bebida
+        other: Bebidas
+      customer: 
+        one: Cliente
+        other: Clientes
+      order:
+        one: Pedido
     attributes:
       establishment:
         trade_name: Nome Social
@@ -46,6 +50,9 @@ pt-BR:
       format:
         name: Nome da porção
       offer:
+        price: Preço
+        start_offer: Data de início
+        end_offer: Data de término
         price: Preço
       tag:
         name: Nome do marcador

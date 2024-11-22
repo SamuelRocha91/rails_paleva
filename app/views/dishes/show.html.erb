@@ -77,10 +77,18 @@
   </caption>
   <thead>
     <tr>
-      <th scope="col">Nome da porção</th>
-      <th scope="col">Data de início</th>
-      <th scope="col">Data de término</th>
-      <th scope="col">Preço</th>
+      <th scope="col">
+        <%= Format.human_attribute_name(:name) %>
+      </th>
+      <th scope="col">
+        <%= Offer.human_attribute_name(:start_offer) %>
+      </th>
+      <th scope="col">
+        <%= Offer.human_attribute_name(:end_offer) %>
+      </th>
+      <th scope="col">
+        <%= Offer.human_attribute_name(:price) %>
+      </th>
     </tr>
   </thead>
   <% if @dish.portions.any? %>

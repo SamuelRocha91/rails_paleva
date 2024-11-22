@@ -14,7 +14,11 @@ class BeveragesController < ApplicationController
   ]
   before_action :check_user, only: [:show, :edit, :index, :update]
   before_action :set_format, only: [:create_offer]
-  before_action :set_offer, only: [:edit_offer, :update_offer, :deactivate_offer]
+  before_action :set_offer, only: [
+    :edit_offer, 
+    :update_offer, 
+    :deactivate_offer
+  ]
   before_action :employee?
 
   def index
@@ -27,7 +31,9 @@ class BeveragesController < ApplicationController
 
   def create
     @beverage = Beverage.new(beverage_params)
-    @beverage.establishment = Establishment.find(params[:establishment_id])
+    @beverage.establishment = Establishment.find(
+      params[:establishment_id]
+    )
     if @beverage.save
       redirect_to establishment_beverages_path, 
                     notice: 'Bebida cadastrada com sucesso'

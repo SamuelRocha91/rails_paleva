@@ -40,6 +40,53 @@ rbenv local 3.2.2
 ```
 Outra opção é inserir a sua versão do ruby diretamente no gemfile da aplicação.
 
+### Requisitos de Versão do Rails
+
+Este projeto utiliza o **Rails ~> 7.1.3**, o que significa que ele é compatível com qualquer versão **>= 7.1.3 e < 7.2.0**. 
+
+#### Verificando a Versão do Rails
+
+Para verificar a versão do Rails instalada no seu ambiente, execute:
+
+```bash
+rails -v
+```
+
+Se a versão instalada não atender ao requisito, siga as etapas abaixo para instalar a versão correta.
+
+#### Instalando a Versão do Rails
+
+1. **Comando para instalar uma versão específica do Rails:**
+
+   Certifique-se de ter o RubyGems configurado corretamente e execute o seguinte comando:
+
+   ```bash
+   gem install rails -v '~> 7.1.3'
+   ```
+
+2. **Atualizando o projeto para usar a versão correta do Rails:**
+
+   Após instalar a versão do Rails, você pode usar o Bundler para garantir que a versão correta seja utilizada:
+
+   ```bash
+   bundle install
+   ```
+
+3. **Confirmando a versão no projeto:**
+
+   Verifique se o arquivo `Gemfile.lock` contém a versão correta:
+
+   ```bash
+   cat Gemfile.lock | grep 'rails ('
+   ```
+
+   O resultado deve incluir algo como:
+
+   ```plaintext
+   rails (7.1.3)
+   ```
+
+
 ## 1. Clonando o Repositório
 
 Primeiro, você precisa clonar o repositório para o seu ambiente local. Abra o terminal e execute o seguinte comando:

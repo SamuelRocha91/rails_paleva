@@ -432,7 +432,11 @@ RSpec.describe Order, type: :model do
 
       customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
 
-      order = Order.create!(establishment: establishment, customer: customer, status: 9)
+      order = Order.create!(
+        establishment: establishment, 
+        customer: customer, 
+        status: 9
+      )
 
       # Act
       order.status = 'in_preparation' 
@@ -636,8 +640,9 @@ RSpec.describe Order, type: :model do
         order.ready!
 
         # Assert
-        expect(order.completed_at.strftime("%d-%m-%Y")
-                           ).to eq DateTime.current.strftime("%d-%m-%Y")
+        expect(
+          order.completed_at.strftime("%d-%m-%Y")
+        ).to eq DateTime.current.strftime("%d-%m-%Y")
       end
 
       it 'delivered_at quando o status muda pra delivered' do

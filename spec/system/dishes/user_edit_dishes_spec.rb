@@ -140,6 +140,7 @@ describe 'Usuário edita um prato' do
     click_on 'Pratos'
     click_on 'lasagna'
     click_on 'Desativar Prato'
+
     # Assert
     expect(page).to have_content 'Nome: lasagna'
     expect(page).to have_content 'Descrição: massa, queijo e presunto'
@@ -174,6 +175,7 @@ describe 'Usuário edita um prato' do
       establishment: establishment, 
       status: false
     )
+
     # Act
     login_as user
     visit root_path

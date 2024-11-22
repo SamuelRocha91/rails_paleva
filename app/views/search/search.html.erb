@@ -10,7 +10,9 @@
       <div class='card-search mb-3'>
         <%= render 'shared/beverage', beverage: beverage %>
         <%= link_to 'Editar bebida', 
-                    edit_establishment_beverage_path(current_user.establishment.id, beverage), 
+                    edit_establishment_beverage_path(
+                      current_user.establishment.id, beverage
+                    ), 
                     class: 'btn btn-warning' %>
       </div>
     <% end %>
@@ -21,7 +23,9 @@
       <div class='card-search mb-3'>
         <%= render 'shared/dish', dish: dish %>
         <%= link_to 'Editar prato', 
-                    edit_establishment_dish_path(current_user.establishment.id, dish.id), 
+                    edit_establishment_dish_path(
+                      current_user.establishment.id, dish.id
+                    ), 
                     class: 'btn btn-warning' %>
       </div>
     <% end %>
