@@ -60,7 +60,9 @@ class OrdersController < ApplicationController
   end
 
   def remove_item
-    session[:order_items] = session[:order_items].reject { |item| item["portion_id"] == params[:portion_id].to_i }
+    session[:order_items] = session[:order_items]
+      .reject { |item| item["portion_id"] == params[:portion_id].to_i }
+
     redirect_to root_path, notice: 'Item removido do carrinho com sucesso'
   end
 

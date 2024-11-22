@@ -60,7 +60,9 @@ class EstablishmentsController < ApplicationController
   end
 
   def show_users
-    @users = TemporaryUser.where(establishment_id: current_user.establishment.id) + User.where(role: :employee, establishment: current_user.establishment)
+    @users = TemporaryUser.where(
+      establishment_id: current_user.establishment.id
+    ) + User.where(role: :employee, establishment: current_user.establishment)
   end
   
   private

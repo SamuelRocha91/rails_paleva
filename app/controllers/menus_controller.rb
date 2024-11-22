@@ -23,6 +23,10 @@ class MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:name, :valid_from, :valid_until)
+    params.require(:menu).permit(
+      :name, 
+      :valid_from, 
+      :valid_until
+    )
   end
 end
