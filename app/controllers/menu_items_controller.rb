@@ -8,16 +8,10 @@ class MenuItemsController < ApplicationController
     existing_items = @menu.menu_items
     if params[:type] == 'dish'
       @type = 'Dish'
-      @items = current_user.establishment.dishes.reject do |dish|
-        existing_items.any? { |item| dish.id == item.id && 
-                                          item.item_type == 'Dish'}
-      end
+      @items = reject_dishes existing_items
     else
       @type = 'Beverage'
-      @items = current_user.establishment.beverages.reject do |beverage|
-        existing_items.any? { |item| item.item_id == beverage.id &&
-                                      item.item_type == 'Beverage' }
-      end
+      @items = reject_beverages existing_items
     end
   end
 
@@ -35,5 +29,17 @@ class MenuItemsController < ApplicationController
 
   def menu_item_params
     params.require(:menu_item).permit(:item_type, :item_id, :menu_id)
+  end
+
+  def reject_dishes(existing_items)
+    current_user.establishment.dishes.reject do |dish|
+      existing_items.any? { |item| dish.id == item.id && item.item_type == 'Dish' }
+    end
+  end
+
+  def reject_beverages(existing_items)
+    current_user.establishment.beverages.reject do |beverage|
+      existing_items.any? { |item| item.item_id == beverage.id && item.item_type == 'Beverage' }
+    end
   end
 end

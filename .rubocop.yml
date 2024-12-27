@@ -13,3 +13,6 @@ Style/FrozenStringLiteralComment:
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
+
+Naming/VariableNumber:
+  Enabled: false
