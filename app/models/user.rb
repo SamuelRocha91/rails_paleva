@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validate :is_valid_cpf? 
+  validate :is_valid_cpf?
   validates :cpf, :first_name, :last_name, presence: true
   validates :cpf, uniqueness: true
   belongs_to :establishment, optional: true

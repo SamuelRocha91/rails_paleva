@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_22_002053) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_27_201551) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -66,6 +66,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_22_002053) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "discount_offers", force: :cascade do |t|
+    t.integer "offer_id", null: false
+    t.integer "discount_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discount_id"], name: "index_discount_offers_on_discount_id"
+    t.index ["offer_id"], name: "index_discount_offers_on_offer_id"
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.decimal "percent", precision: 4, scale: 2
+    t.integer "limit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "establishment_id", null: false
+    t.index ["establishment_id"], name: "index_discounts_on_establishment_id"
   end
 
   create_table "dish_tags", force: :cascade do |t|
@@ -204,6 +225,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_22_002053) do
     t.datetime "updated_at", null: false
     t.integer "establishment_id"
     t.integer "role", default: 0
+    t.index ["cpf"], name: "index_users_on_cpf", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -212,6 +234,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_22_002053) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "beverages", "establishments"
   add_foreign_key "cancellations", "orders"
+  add_foreign_key "discount_offers", "discounts"
+  add_foreign_key "discount_offers", "offers"
+  add_foreign_key "discounts", "establishments"
   add_foreign_key "dish_tags", "dishes"
   add_foreign_key "dish_tags", "tags"
   add_foreign_key "dishes", "establishments"
