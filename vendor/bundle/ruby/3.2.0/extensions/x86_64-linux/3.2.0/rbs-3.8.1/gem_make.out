@@ -1,0 +1,28 @@
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/rails_paleva/vendor/bundle/ruby/3.2.0/gems/rbs-3.8.1/ext/rbs_extension
+/home/samuel/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+/home/samuel/.rbenv/versions/3.2.2/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
+checking for whether -std=gnu99 is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/rails_paleva/vendor/bundle/ruby/3.2.0/gems/rbs-3.8.1/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20241227-303147-42z3u6 sitelibdir\=./.gem.20241227-303147-42z3u6 clean
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/rails_paleva/vendor/bundle/ruby/3.2.0/gems/rbs-3.8.1/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20241227-303147-42z3u6 sitelibdir\=./.gem.20241227-303147-42z3u6
+compiling ./../../src/constants.c
+compiling ./../../src/ruby_objs.c
+compiling lexer.c
+compiling lexstate.c
+compiling location.c
+compiling main.c
+compiling parser.c
+compiling parserstate.c
+compiling unescape.c
+linking shared-object rbs_extension.so
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/rails_paleva/vendor/bundle/ruby/3.2.0/gems/rbs-3.8.1/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20241227-303147-42z3u6 sitelibdir\=./.gem.20241227-303147-42z3u6 install
+/usr/bin/install -c -m 0755 rbs_extension.so ./.gem.20241227-303147-42z3u6
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/rails_paleva/vendor/bundle/ruby/3.2.0/gems/rbs-3.8.1/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20241227-303147-42z3u6 sitelibdir\=./.gem.20241227-303147-42z3u6 clean
