@@ -1,0 +1,15 @@
+require: rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false 
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact

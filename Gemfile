@@ -43,6 +43,8 @@ group :development, :test do
   gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :development do
