@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validate :is_valid_cpf?
+  validate :valid_cpf?
   validates :cpf, :first_name, :last_name, presence: true
   validates :cpf, uniqueness: true
   belongs_to :establishment, optional: true
@@ -17,19 +17,18 @@ class User < ApplicationRecord
 
   private
 
-  def is_valid_cpf?
-    if self.cpf.present? && !CPF.valid?(cpf)
-      self.errors.add :cpf, " deve ser um número válido"
-    end
+  def valid_cpf?
+    return unless cpf.present? && !CPF.valid?(cpf)
+
+    errors.add :cpf, ' deve ser um número válido'
   end
 
   def set_establishment_from_temp_user
-    temp_user = TemporaryUser.find_by(email: self.email, cpf: self.cpf)
-    if temp_user.present?
-      self.establishment_id = temp_user.establishment_id
-      self.role = :employee
-      temp_user.destroy
-    end
-  end
+    temp_user = TemporaryUser.find_by(email: email, cpf: cpf)
+    return if temp_user.blank?
 
+    self.establishment_id = temp_user.establishment_id
+    self.role = :employee
+    temp_user.destroy
+  end
 end
