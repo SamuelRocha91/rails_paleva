@@ -4,25 +4,25 @@ describe 'Usuário acessa página para desativar oferta de um prato' do
   it 'e deve estar autenticado' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
     dish = Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
       establishment: establishment
     )
 
@@ -36,26 +36,26 @@ describe 'Usuário acessa página para desativar oferta de um prato' do
   it 'e deve ser :admin' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment,
       role: 1
     )
     dish = Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
       establishment: establishment
     )
 
@@ -68,29 +68,28 @@ describe 'Usuário acessa página para desativar oferta de um prato' do
     expect(page).to have_content 'Você não tem permissão para acessar esse recurso'
   end
 
-
   it 'e desativa com sucesso' do
     # Arrange
-   establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
     dish = Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
       establishment: establishment
     )
     format = Format.create!(name: 'Porção Giga gante')
@@ -113,7 +112,7 @@ describe 'Usuário acessa página para desativar oferta de um prato' do
     click_on 'Pratos'
     click_on 'lasagna'
     find('button.Porção-Giga-gante').click
-  
+
     # Assert
     expect(page).not_to have_content 'Porção Giga gante: R$ 25,00'
     expect(page).to have_content 'Porção pequena: R$ 33,00'

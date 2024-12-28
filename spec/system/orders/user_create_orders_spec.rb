@@ -6,39 +6,39 @@ describe 'Usuário cadastra um pedido' do
     visit new_order_path
 
     # Assert
-    expect(current_path).to eq new_user_session_path  
+    expect(current_path).to eq new_user_session_path
   end
 
   context 'admin' do
     it 'e visualiza página de cadastro de observações' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment
       )
       menu = Menu.create!(
-        establishment: establishment, 
+        establishment: establishment,
         name: 'Café da manhã'
       )
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
       )
 
       format = Format.create!(name: 'Porção grande')
@@ -64,7 +64,7 @@ describe 'Usuário cadastra um pedido' do
       find('.Porção-grande-lasagna').click
 
       # Assert
-      expect(page).to have_content  'Adicionar Porção ao Pedido'
+      expect(page).to have_content 'Adicionar Porção ao Pedido'
       expect(page).to have_field 'Observação'
       expect(page).to have_button 'Adicionar ao Pedido'
     end
@@ -72,18 +72,18 @@ describe 'Usuário cadastra um pedido' do
     it 'e adiciona item ao pedido' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment
       )
@@ -91,10 +91,10 @@ describe 'Usuário cadastra um pedido' do
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
       )
 
       format = Format.create!(name: 'Porção grande')
@@ -118,7 +118,7 @@ describe 'Usuário cadastra um pedido' do
       visit root_path
       click_on 'Café da manhã'
       find('.Porção-grande-lasagna').click
-      fill_in 'Observação',	with: 'Sem cebola' 
+      fill_in 'Observação',	with: 'Sem cebola'
       click_on 'Adicionar ao Pedido'
 
       # Assert
@@ -131,18 +131,18 @@ describe 'Usuário cadastra um pedido' do
     it 'de mais de um cardápio diferente' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment
       )
@@ -150,17 +150,17 @@ describe 'Usuário cadastra um pedido' do
       menu_two = Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
-          )
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
+      )
       dish_two = Dish.create!(
-            name: 'feijoada', 
-            description: 'feijao e condimentos', 
-            calories: '185', 
-            establishment: establishment
-          )
+        name: 'feijoada',
+        description: 'feijao e condimentos',
+        calories: '185',
+        establishment: establishment
+      )
 
       format = Format.create!(name: 'Porção grande')
       format_two = Format.create!(name: 'Porção média')
@@ -185,18 +185,17 @@ describe 'Usuário cadastra um pedido' do
       MenuItem.create!(item: dish, menu: menu)
       MenuItem.create!(item: dish_two, menu: menu_two)
 
-
       # Act
       login_as user
       visit root_path
       click_on 'Almoço'
       find('.Porção-grande-feijoada').click
-      fill_in 'Observação',	with: 'Sem sal' 
+      fill_in 'Observação',	with: 'Sem sal'
       click_on 'Adicionar ao Pedido'
       click_on 'Continuar adicionando itens'
       click_on 'Café da manhã'
       find('.Porção-grande-lasagna').click
-      fill_in 'Observação',	with: 'Sem cebola' 
+      fill_in 'Observação',	with: 'Sem cebola'
       click_on 'Adicionar ao Pedido'
 
       # Assert
@@ -210,18 +209,18 @@ describe 'Usuário cadastra um pedido' do
     it 'e visualiza formulário de finalização de pedido' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment
       )
@@ -229,10 +228,10 @@ describe 'Usuário cadastra um pedido' do
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
       )
 
       format = Format.create!(name: 'Porção grande')
@@ -256,7 +255,7 @@ describe 'Usuário cadastra um pedido' do
       visit root_path
       click_on 'Café da manhã'
       find('.Porção-grande-lasagna').click
-      fill_in 'Observação',	with: 'Sem cebola' 
+      fill_in 'Observação',	with: 'Sem cebola'
       click_on 'Adicionar ao Pedido'
       click_on 'Finalizar Pedido'
 
@@ -272,18 +271,18 @@ describe 'Usuário cadastra um pedido' do
     it 'falha ao tentar vincular cliente ao pedido' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment
       )
@@ -291,10 +290,10 @@ describe 'Usuário cadastra um pedido' do
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
       )
 
       format = Format.create!(name: 'Porção grande')
@@ -318,7 +317,7 @@ describe 'Usuário cadastra um pedido' do
       visit root_path
       click_on 'Café da manhã'
       find('.Porção-grande-lasagna').click
-      fill_in 'Observação',	with: 'Sem cebola' 
+      fill_in 'Observação',	with: 'Sem cebola'
       click_on 'Adicionar ao Pedido'
       click_on 'Finalizar Pedido'
       fill_in 'E-mail',	with: ''
@@ -332,18 +331,18 @@ describe 'Usuário cadastra um pedido' do
     it 'com sucesso' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment
       )
@@ -351,10 +350,10 @@ describe 'Usuário cadastra um pedido' do
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
       )
 
       format = Format.create!(name: 'Porção grande')
@@ -377,10 +376,10 @@ describe 'Usuário cadastra um pedido' do
       login_as user
       visit root_path
       click_on 'Café da manhã'
-    
+
       find('.Porção-grande-lasagna').click
 
-      fill_in 'Observação',	with: 'Sem cebola' 
+      fill_in 'Observação',	with: 'Sem cebola'
       click_on 'Adicionar ao Pedido'
 
       click_on 'Finalizar Pedido'
@@ -393,7 +392,7 @@ describe 'Usuário cadastra um pedido' do
       # Assert
       expect(page).to have_content 'Pedido realizado com sucesso'
       order = Order.last
-      expect(order.order_items.length).to eq 1  
+      expect(order.order_items.length).to eq 1
       expect(order.order_items[0].note).to eq 'Sem cebola'
     end
   end
@@ -402,18 +401,18 @@ describe 'Usuário cadastra um pedido' do
     it 'e visualiza página de cadastro de observações' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment,
         role: 1
@@ -422,9 +421,9 @@ describe 'Usuário cadastra um pedido' do
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-        name: 'lasagna', 
-        description: 'massa, queijo e presunto', 
-        calories: '185', 
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
         establishment: establishment
       )
 
@@ -449,9 +448,9 @@ describe 'Usuário cadastra um pedido' do
       visit root_path
       click_on 'Café da manhã'
       find('.Porção-grande-lasagna').click
-  
+
       # Assert
-      expect(page).to have_content  'Adicionar Porção ao Pedido'
+      expect(page).to have_content 'Adicionar Porção ao Pedido'
       expect(page).to have_field 'Observação'
       expect(page).to have_button 'Adicionar ao Pedido'
     end
@@ -459,18 +458,18 @@ describe 'Usuário cadastra um pedido' do
     it 'e adiciona item ao pedido' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment,
         role: 1
@@ -479,10 +478,10 @@ describe 'Usuário cadastra um pedido' do
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
       )
 
       format = Format.create!(name: 'Porção grande')
@@ -506,7 +505,7 @@ describe 'Usuário cadastra um pedido' do
       visit root_path
       click_on 'Café da manhã'
       find('.Porção-grande-lasagna').click
-      fill_in 'Observação',	with: 'Sem cebola' 
+      fill_in 'Observação',	with: 'Sem cebola'
       click_on 'Adicionar ao Pedido'
 
       # Assert
@@ -519,18 +518,18 @@ describe 'Usuário cadastra um pedido' do
     it 'de mais de um cardápio diferente' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment,
         role: 1
@@ -539,17 +538,17 @@ describe 'Usuário cadastra um pedido' do
       menu_two = Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
-          )
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
+      )
       dish_two = Dish.create!(
-            name: 'feijoada', 
-            description: 'feijao e condimentos', 
-            calories: '185', 
-            establishment: establishment
-          )
+        name: 'feijoada',
+        description: 'feijao e condimentos',
+        calories: '185',
+        establishment: establishment
+      )
 
       format = Format.create!(name: 'Porção grande')
       format_two = Format.create!(name: 'Porção média')
@@ -574,18 +573,17 @@ describe 'Usuário cadastra um pedido' do
       MenuItem.create!(item: dish, menu: menu)
       MenuItem.create!(item: dish_two, menu: menu_two)
 
-
       # Act
       login_as user
       visit root_path
       click_on 'Almoço'
       find('.Porção-grande-feijoada').click
-      fill_in 'Observação',	with: 'Sem sal' 
+      fill_in 'Observação',	with: 'Sem sal'
       click_on 'Adicionar ao Pedido'
       click_on 'Continuar adicionando itens'
       click_on 'Café da manhã'
       find('.Porção-grande-lasagna').click
-      fill_in 'Observação',	with: 'Sem cebola' 
+      fill_in 'Observação',	with: 'Sem cebola'
       click_on 'Adicionar ao Pedido'
 
       # Assert
@@ -599,18 +597,18 @@ describe 'Usuário cadastra um pedido' do
     it 'e visualiza formulário de finalização de pedido' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment,
         role: 1
@@ -619,10 +617,10 @@ describe 'Usuário cadastra um pedido' do
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
       )
 
       format = Format.create!(name: 'Porção grande')
@@ -646,7 +644,7 @@ describe 'Usuário cadastra um pedido' do
       visit root_path
       click_on 'Café da manhã'
       find('.Porção-grande-lasagna').click
-      fill_in 'Observação',	with: 'Sem cebola' 
+      fill_in 'Observação',	with: 'Sem cebola'
       click_on 'Adicionar ao Pedido'
       click_on 'Finalizar Pedido'
 
@@ -662,18 +660,18 @@ describe 'Usuário cadastra um pedido' do
     it 'falha ao tentar vincular cliente ao pedido' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment,
         role: 1
@@ -682,10 +680,10 @@ describe 'Usuário cadastra um pedido' do
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
       )
 
       format = Format.create!(name: 'Porção grande')
@@ -709,7 +707,7 @@ describe 'Usuário cadastra um pedido' do
       visit root_path
       click_on 'Café da manhã'
       find('.Porção-grande-lasagna').click
-      fill_in 'Observação',	with: 'Sem cebola' 
+      fill_in 'Observação',	with: 'Sem cebola'
       click_on 'Adicionar ao Pedido'
       click_on 'Finalizar Pedido'
       fill_in 'E-mail',	with: ''
@@ -723,18 +721,18 @@ describe 'Usuário cadastra um pedido' do
     it 'com sucesso' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment,
         role: 1
@@ -743,10 +741,10 @@ describe 'Usuário cadastra um pedido' do
       Menu.create!(establishment: establishment, name: 'Almoço')
 
       dish = Dish.create!(
-            name: 'lasagna', 
-            description: 'massa, queijo e presunto', 
-            calories: '185', 
-            establishment: establishment
+        name: 'lasagna',
+        description: 'massa, queijo e presunto',
+        calories: '185',
+        establishment: establishment
       )
 
       format = Format.create!(name: 'Porção grande')
@@ -769,10 +767,10 @@ describe 'Usuário cadastra um pedido' do
       login_as user
       visit root_path
       click_on 'Café da manhã'
-    
+
       find('.Porção-grande-lasagna').click
 
-      fill_in 'Observação',	with: 'Sem cebola' 
+      fill_in 'Observação',	with: 'Sem cebola'
       click_on 'Adicionar ao Pedido'
 
       click_on 'Finalizar Pedido'
@@ -785,9 +783,8 @@ describe 'Usuário cadastra um pedido' do
       # Assert
       expect(page).to have_content 'Pedido realizado com sucesso'
       order = Order.last
-      expect(order.order_items.length).to eq 1  
+      expect(order.order_items.length).to eq 1
       expect(order.order_items[0].note).to eq 'Sem cebola'
     end
   end
-
 end

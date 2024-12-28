@@ -4,54 +4,56 @@ describe 'Usuário acessa formulário de criar pratos' do
   it 'e deve estar autenticado' do
     # Arrange
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572'
     )
     establishment = Establishment.new(
-      email:'sam@gmail.com', 
-      trade_name: 'Samsumg', 
-      legal_name: 'Samsumg LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsumg',
+      legal_name: 'Samsumg LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas' 
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     operating_hour = []
-    6.times { |i| operating_hour << OperatingHour
-                                      .new(week_day: i, is_closed: true)}
-    operating_hour <<  OperatingHour.new(
-      week_day: 6, 
-      start_time: Time.zone.parse('08:00'), 
-      end_time: Time.zone.parse('22:00'), 
+    6.times do |i|
+      operating_hour << OperatingHour
+                        .new(week_day: i, is_closed: true)
+    end
+    operating_hour << OperatingHour.new(
+      week_day: 6,
+      start_time: Time.zone.parse('08:00'),
+      end_time: Time.zone.parse('22:00'),
       is_closed: false
     )
 
     establishment.operating_hours = operating_hour
     establishment.save
-    user.establishment = establishment 
+    user.establishment = establishment
     # Act
     visit new_establishment_dish_path establishment.id
     # Assert
-    expect(current_path).to eq new_user_session_path  
+    expect(current_path).to eq new_user_session_path
   end
 
   it 'deve ser :admin' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment,
       role: 1
@@ -69,18 +71,18 @@ describe 'Usuário acessa formulário de criar pratos' do
   it 'e vê os campos corretamente' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -95,8 +97,8 @@ describe 'Usuário acessa formulário de criar pratos' do
     expect(current_path).to eq new_establishment_dish_path establishment.id
     expect(page).to have_content 'Cadastro de novo prato'
     expect(page).to have_field 'Nome'
-    expect(page).to have_field 'Descrição' 
-    expect(page).to have_field 'Quantidade de calorias' 
+    expect(page).to have_field 'Descrição'
+    expect(page).to have_field 'Quantidade de calorias'
     expect(page).to have_field 'Imagem do prato'
     expect(page).to have_button 'Salvar'
   end
@@ -104,18 +106,18 @@ describe 'Usuário acessa formulário de criar pratos' do
   it 'falha no cadastro por falta de campo obrigatório' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -136,18 +138,18 @@ describe 'Usuário acessa formulário de criar pratos' do
   it 'e cadastra prato com sucesso' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -161,7 +163,7 @@ describe 'Usuário acessa formulário de criar pratos' do
     fill_in 'Descrição',	with: 'pao com ovo'
     fill_in 'Quantidade de calorias',	with: '185'
     fill_in 'Características',	with: 'misto, parmegiana'
-    attach_file 'Imagem', Rails.root.join('spec', 'support', 'pao.jpg')
+    attach_file 'Imagem', Rails.root.join('spec/support/pao.jpg')
     click_on 'Salvar'
 
     # Assert

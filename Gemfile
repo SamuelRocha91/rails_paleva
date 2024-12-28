@@ -1,50 +1,59 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-ruby "3.2.2"
+ruby '3.2.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3"
+gem 'rails', '~> 7.1.3'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem 'sprockets-rails'
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+gem 'sqlite3', '~> 1.4'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
+gem 'puma', '>= 5.0'
 
-gem "importmap-rails"
+gem 'importmap-rails'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem 'tzinfo-data', platforms: %i[windows jruby]
 
-gem "sassc-rails"
+gem 'sassc-rails'
 
-gem "bootstrap"
+gem 'bootstrap'
 
-gem "cpf_cnpj"
+gem 'cpf_cnpj'
 
-gem "image_processing", ">= 1.2"
+gem 'image_processing', '>= 1.2'
 
 gem 'activestorage'
 
 gem 'turbo-rails'
 
-gem "stimulus-rails"
+gem 'stimulus-rails'
 
 gem 'rack-cors', require: 'rack/cors'
 
+gem 'panolint'
+
+gem 'rubocop-discourse'
+
+gem 'rubocop-rubycw'
+
+gem 'rubocop-on-rbs'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
-  gem "rspec-rails"
-  gem "capybara"
+  gem 'capybara'
   gem 'database_cleaner-active_record'
-  gem 'selenium-webdriver'
-  gem 'simplecov', require: false
+  gem 'debug', platforms: %i[mri windows]
+  gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rake', require: false
+  gem 'selenium-webdriver'
+  gem 'simplecov', require: false
 end
 
 group :development do
@@ -52,5 +61,4 @@ group :development do
   # gem "spring"
 end
 
-
-gem "devise", "~> 4.9"
+gem 'devise', '~> 4.9'

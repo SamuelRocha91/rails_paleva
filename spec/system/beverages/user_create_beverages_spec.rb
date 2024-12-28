@@ -4,18 +4,18 @@ describe 'Usuário acessa formulário de criar bebidas' do
   it 'e deve estar autenticado' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -24,30 +24,29 @@ describe 'Usuário acessa formulário de criar bebidas' do
     visit new_establishment_beverage_path establishment.id
 
     # Assert
-    expect(current_path).to eq new_user_session_path  
+    expect(current_path).to eq new_user_session_path
   end
 
   it 'e deve ser :admin' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment,
       role: 1
     )
 
-    
     # Act
     login_as user
     visit new_establishment_beverage_path establishment.id
@@ -60,18 +59,18 @@ describe 'Usuário acessa formulário de criar bebidas' do
   it 'e vê os campos corretamente' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -85,8 +84,8 @@ describe 'Usuário acessa formulário de criar bebidas' do
     # Assert
     expect(page).to have_content 'Cadastro de nova bebida'
     expect(page).to have_field 'Nome'
-    expect(page).to have_field 'Descrição' 
-    expect(page).to have_field 'Quantidade de calorias' 
+    expect(page).to have_field 'Descrição'
+    expect(page).to have_field 'Quantidade de calorias'
     expect(page).to have_field 'Imagem da bebida'
     expect(page).to have_field 'É alcoólica?'
     expect(page).to have_button 'Salvar'
@@ -95,18 +94,18 @@ describe 'Usuário acessa formulário de criar bebidas' do
   it 'falha no cadastro por falta de campo obrigatório' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -127,18 +126,18 @@ describe 'Usuário acessa formulário de criar bebidas' do
   it 'e cadastra bebida com sucesso' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -150,9 +149,9 @@ describe 'Usuário acessa formulário de criar bebidas' do
     click_on 'Cadastrar nova bebida'
     fill_in 'Nome',	with: 'Cachaça'
     fill_in 'Quantidade de calorias',	with: '185'
-    attach_file 'Imagem', Rails.root.join('spec', 'support', 'pao.jpg')
+    attach_file 'Imagem', Rails.root.join('spec/support/pao.jpg')
     check 'É alcoólica?'
-    fill_in "Descrição",	with: "bebida forte 99 porcento alcool" 
+    fill_in 'Descrição',	with: 'bebida forte 99 porcento alcool'
     click_on 'Salvar'
 
     # Assert

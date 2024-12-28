@@ -1,29 +1,29 @@
 require 'rails_helper'
 
-describe "Usuário acessa página de marcadores" do
+describe 'Usuário acessa página de marcadores' do
   it 'e deve estar autenticado' do
     # Act
     visit tags_path
 
     # Assert
-    expect(current_path).to eq new_user_session_path 
+    expect(current_path).to eq new_user_session_path
   end
 
   it 'não deve ter role :employee' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment,
       role: 1
@@ -39,18 +39,18 @@ describe "Usuário acessa página de marcadores" do
   it 'e visualiza página corretamente' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -77,18 +77,18 @@ describe "Usuário acessa página de marcadores" do
   it 'e visualiza mensagem instrutiva se não houver tags cadastradas' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -107,18 +107,18 @@ describe "Usuário acessa página de marcadores" do
   it 'e visualiza página de cadastro de tags corretamente' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -139,18 +139,18 @@ describe "Usuário acessa página de marcadores" do
   it 'e falha ao cadastrar marcador sem campo obrigatório' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -170,18 +170,18 @@ describe "Usuário acessa página de marcadores" do
   it 'e cadastra marcador com sucesso previamente' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -192,11 +192,11 @@ describe "Usuário acessa página de marcadores" do
     click_on 'Pratos'
     click_on 'Marcadores'
     click_on 'Cadastrar novo marcador'
-    fill_in 'Nome do marcador',	with: 'Apimentado' 
+    fill_in 'Nome do marcador',	with: 'Apimentado'
     click_on 'Salvar'
 
     # Assert
-    expect(current_path).to eq tags_path  
+    expect(current_path).to eq tags_path
     expect(page).to have_content 'Marcador cadastrado com sucesso'
     expect(page).to have_content 'Apimentado'
   end
@@ -204,18 +204,18 @@ describe "Usuário acessa página de marcadores" do
   it 'e cadastra tags direto no formulário de criação de prato' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -240,18 +240,18 @@ describe "Usuário acessa página de marcadores" do
   it 'e cadastra tags no formulário de edição de pratos' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )

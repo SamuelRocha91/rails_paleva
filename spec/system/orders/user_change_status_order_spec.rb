@@ -4,26 +4,26 @@ describe 'Usuário muda status do pedido' do
   it 'e deve estar autenticado' do
     # ACT
     visit orders_path
-  
+
     # Assert
-    expect(current_path).to eq new_user_session_path 
+    expect(current_path).to eq new_user_session_path
   end
 
   it 'de aguardando confirmação da cozinha PARA em preparo' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -32,17 +32,17 @@ describe 'Usuário muda status do pedido' do
     customer_two = Customer.create!(name: 'Ana', email: 'ana@gmail.com')
 
     dish = Dish.create!(
-          name: 'lasagna', 
-          description: 'massa, queijo e presunto', 
-          calories: '185', 
-          establishment: establishment
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
+      establishment: establishment
     )
     format = Format.create!(name: 'Porção grande')
     menu = Menu.create!(
-        establishment: establishment, 
-        name: 'Café da manhã'
-      )
-      MenuItem.create!(item: dish, menu: menu)
+      establishment: establishment,
+      name: 'Café da manhã'
+    )
+    MenuItem.create!(item: dish, menu: menu)
 
     order = Order.create!(establishment: establishment, customer: customer)
     Order.create!(establishment: establishment, customer: customer_two)
@@ -53,7 +53,7 @@ describe 'Usuário muda status do pedido' do
       price: 55
     )
 
-    OrderItem.create!(offer: offer, order: order )
+    OrderItem.create!(offer: offer, order: order)
 
     # Act
     login_as user
@@ -62,29 +62,28 @@ describe 'Usuário muda status do pedido' do
     click_on order.code
     click_on 'Marcar como EM PREPARO'
 
-
     # Assert
     expect(page).to have_content 'Status do Pedido atualizado com sucesso'
     within('table') do
-      expect(page).to have_content 'Em preparação'  
-    end  
+      expect(page).to have_content 'Em preparação'
+    end
   end
 
   it 'de em preparo PARA pronto para entrega' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -93,14 +92,14 @@ describe 'Usuário muda status do pedido' do
     customer_two = Customer.create!(name: 'Ana', email: 'ana@gmail.com')
 
     dish = Dish.create!(
-          name: 'lasagna', 
-          description: 'massa, queijo e presunto', 
-          calories: '185', 
-          establishment: establishment
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
+      establishment: establishment
     )
     format = Format.create!(name: 'Porção grande')
     menu = Menu.create!(
-      establishment: establishment, 
+      establishment: establishment,
       name: 'Café da manhã'
     )
     MenuItem.create!(item: dish, menu: menu)
@@ -114,7 +113,7 @@ describe 'Usuário muda status do pedido' do
       price: 55
     )
 
-    OrderItem.create!(offer: offer, order: order )
+    OrderItem.create!(offer: offer, order: order)
 
     # Act
     login_as user
@@ -126,25 +125,25 @@ describe 'Usuário muda status do pedido' do
     # Assert
     expect(page).to have_content 'Status do Pedido atualizado com sucesso'
     within('table') do
-      expect(page).to have_content 'Pronto para entrega'  
-    end  
+      expect(page).to have_content 'Pronto para entrega'
+    end
   end
 
   it 'de pronto para entrega PARA entregue' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -153,16 +152,16 @@ describe 'Usuário muda status do pedido' do
     customer_two = Customer.create!(name: 'Ana', email: 'ana@gmail.com')
 
     dish = Dish.create!(
-          name: 'lasagna', 
-          description: 'massa, queijo e presunto', 
-          calories: '185', 
-          establishment: establishment
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
+      establishment: establishment
     )
     format = Format.create!(name: 'Porção grande')
 
     order = Order.create!(
-      establishment: establishment, 
-      customer: customer, 
+      establishment: establishment,
+      customer: customer,
       status: 5
     )
     Order.create!(establishment: establishment, customer: customer_two)
@@ -174,12 +173,12 @@ describe 'Usuário muda status do pedido' do
     )
 
     menu = Menu.create!(
-      establishment: establishment, 
+      establishment: establishment,
       name: 'Café da manhã'
     )
     MenuItem.create!(item: dish, menu: menu)
 
-    OrderItem.create!(offer: offer, order: order )
+    OrderItem.create!(offer: offer, order: order)
 
     # Act
     login_as user
@@ -191,25 +190,25 @@ describe 'Usuário muda status do pedido' do
     # Assert
     expect(page).to have_content 'Status do Pedido atualizado com sucesso'
     within('table') do
-      expect(page).to have_content 'Entregue'  
-    end  
+      expect(page).to have_content 'Entregue'
+    end
   end
 
   it 'de pronto para entrega PARA Cancelado' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -218,16 +217,16 @@ describe 'Usuário muda status do pedido' do
     customer_two = Customer.create!(name: 'Ana', email: 'ana@gmail.com')
 
     dish = Dish.create!(
-          name: 'lasagna', 
-          description: 'massa, queijo e presunto', 
-          calories: '185', 
-          establishment: establishment
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
+      establishment: establishment
     )
     format = Format.create!(name: 'Porção grande')
 
     order = Order.create!(
-      establishment: establishment, 
-      customer: customer, 
+      establishment: establishment,
+      customer: customer,
       status: 5
     )
     Order.create!(establishment: establishment, customer: customer_two)
@@ -238,13 +237,12 @@ describe 'Usuário muda status do pedido' do
       price: 55
     )
     menu = Menu.create!(
-      establishment: establishment, 
+      establishment: establishment,
       name: 'Café da manhã'
     )
     MenuItem.create!(item: dish, menu: menu)
 
-
-    OrderItem.create!(offer: offer, order: order )
+    OrderItem.create!(offer: offer, order: order)
 
     # Act
     login_as user
@@ -256,7 +254,7 @@ describe 'Usuário muda status do pedido' do
     # Assert
     expect(page).to have_content 'Status do Pedido atualizado com sucesso'
     within('table') do
-      expect(page).to have_content 'Cancelado'  
-    end  
+      expect(page).to have_content 'Cancelado'
+    end
   end
 end

@@ -4,6 +4,8 @@ AllCops:
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
+    - 'vendor/**/*'
+    - 'bin/**'
 
 Style/Documentation:
   Enabled: false

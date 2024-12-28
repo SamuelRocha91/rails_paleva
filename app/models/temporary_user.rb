@@ -1,6 +1,6 @@
 class TemporaryUser < ApplicationRecord
   belongs_to :establishment
-  validate :is_valid_cpf?
+  validate :valid_cpf?
   validate :valid_email?
   validates :cpf, uniqueness: true
   validate :cpf_must_be_unique_in_system

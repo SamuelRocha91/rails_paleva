@@ -4,62 +4,62 @@ describe 'Usuário edita um prato' do
   it 'e deve estar autenticado' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
     dish = Dish.create!(
-      name: 'lasagna', 
-      description: 'pão com ovo', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'pão com ovo',
+      calories: '185',
       establishment: establishment
     )
-    
+
     # Act
     visit edit_establishment_dish_path(establishment.id, dish.id)
     # Assert
-    expect(current_path).to eq new_user_session_path  
+    expect(current_path).to eq new_user_session_path
   end
 
   it 'e deve ser :admin' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment,
       role: 1
     )
 
     dish = Dish.create!(
-      name: 'lasagna', 
-      description: 'pão com ovo', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'pão com ovo',
+      calories: '185',
       establishment: establishment
     )
-    
+
     # Act
     login_as user
     visit edit_establishment_dish_path(establishment.id, dish.id)
@@ -72,26 +72,26 @@ describe 'Usuário edita um prato' do
   it 'e vê página de detalhes com botão de editar e de atualizar status' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
     Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
       establishment: establishment
     )
 
@@ -112,25 +112,25 @@ describe 'Usuário edita um prato' do
   it 'e desativa um prato' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
     Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
       calories: '185',
       establishment: establishment
     )
@@ -149,30 +149,30 @@ describe 'Usuário edita um prato' do
     expect(page).to have_button 'Ativar Prato'
   end
 
-   it 'e ativa um prato' do
+  it 'e ativa um prato' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
     Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
-      calories: '185', 
-      establishment: establishment, 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
+      establishment: establishment,
       status: false
     )
 
@@ -195,26 +195,26 @@ describe 'Usuário edita um prato' do
   it 'com sucesso' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
     Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
       establishment: establishment
     )
 
@@ -240,44 +240,44 @@ describe 'Usuário edita um prato' do
   it 'Caso seja o responsável' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
     establishment_two = Establishment.create!(
-      email: 'bill@gmail.com', 
-      trade_name: 'Microsoft', 
-      legal_name: 'Microsoft LTDA', 
+      email: 'bill@gmail.com',
+      trade_name: 'Microsoft',
+      legal_name: 'Microsoft LTDA',
       cnpj: '12345678000195',
-      phone_number: '71992594950', 
-      address: 'Rua da Microsoft',
+      phone_number: '71992594950',
+      address: 'Rua da Microsoft'
     )
 
     user_two = User.create!(
-      first_name: 'Bill', 
-      last_name: 'Gates', 
-      email: 'ng@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Bill',
+      last_name: 'Gates',
+      email: 'ng@hotmail.com',
+      password: '12345678910111',
       cpf: CPF.generate,
       establishment: establishment_two
     )
 
     dish = Dish.create!(
-      name: 'lasagna', 
-      description: 'pão com ovo', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'pão com ovo',
+      calories: '185',
       establishment: establishment
     )
 

@@ -5,29 +5,13 @@ RSpec.describe Beverage, type: :model do
     context 'presença obrigatória de' do
       it 'name' do
         # Arrange
-        establishment = Establishment.create!(
-          email: 'sam@gmail.com', 
-          trade_name: 'Samsung', 
-          legal_name: 'Samsung LTDA', 
-          cnpj: '56924048000140',
-          phone_number: '71992594946', 
-          address: 'Rua das Alamedas avenidas',
-        )
-        User.create!(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'samuel@hotmail.com', 
-          password: '12345678910111',  
-          cpf: '22611819572',
-          establishment: establishment
-        )
-        beverage = Beverage.new(
-          name: '', 
-          description: 'alcool delicioso baiano', 
-          calories: '185', 
-          establishment: establishment, 
-          is_alcoholic: true
-        )
+        establishment = Establishment.create!(email: 'sam@gmail.com', trade_name: 'Samsung', legal_name: 'Samsung LTDA',
+                                              cnpj: '56924048000140', phone_number: '71992594946',
+                                              address: 'Rua das Alamedas avenidas')
+        User.create!(first_name: 'Samuel', last_name: 'Rocha', email: 'samuel@hotmail.com', password: '12345678910111',
+                     cpf: '22611819572', establishment: establishment)
+        beverage = Beverage.new(name: '', description: 'alcool delicioso baiano', calories: '185',
+                                establishment: establishment, is_alcoholic: true)
 
         # Act
         result = beverage.valid?
@@ -38,29 +22,13 @@ RSpec.describe Beverage, type: :model do
 
       it 'description' do
         # Arrange
-         establishment = Establishment.create!(
-          email: 'sam@gmail.com', 
-          trade_name: 'Samsung', 
-          legal_name: 'Samsung LTDA', 
-          cnpj: '56924048000140',
-          phone_number: '71992594946', 
-          address: 'Rua das Alamedas avenidas',
-        )
-        User.create!(
-          first_name: 'Samuel', 
-          last_name: 'Rocha', 
-          email: 'samuel@hotmail.com', 
-          password: '12345678910111',  
-          cpf: '22611819572',
-          establishment: establishment
-        )
-        beverage = Beverage.new(
-          name: 'Cachaça', 
-          description: '', 
-          calories: '185', 
-          establishment: establishment, 
-          is_alcoholic: true
-        )
+        establishment = Establishment.create!(email: 'sam@gmail.com', trade_name: 'Samsung', legal_name: 'Samsung LTDA',
+                                              cnpj: '56924048000140', phone_number: '71992594946',
+                                              address: 'Rua das Alamedas avenidas')
+        User.create!(first_name: 'Samuel', last_name: 'Rocha', email: 'samuel@hotmail.com', password: '12345678910111',
+                     cpf: '22611819572', establishment: establishment)
+        beverage = Beverage.new(name: 'Cachaça', description: '', calories: '185', establishment: establishment,
+                                is_alcoholic: true)
 
         # Act
         result = beverage.valid?

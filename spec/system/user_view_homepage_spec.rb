@@ -1,30 +1,30 @@
 require 'rails_helper'
 
-describe "Usuário acessa a aplicação" do
+describe 'Usuário acessa a aplicação' do
   it 'não logado é direcionado para a página de login' do
     # Act
     visit root_path
 
     # Assert
-    expect(current_path).to eq new_user_session_path 
+    expect(current_path).to eq new_user_session_path
   end
 
   context 'admin' do
     it 'sem estabelecimento cadastrado é direcionado para cadastrar' do
       # Arrange
       User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572'
       )
       # Act
       visit root_path
-      fill_in "E-mail",	with: "samuel@hotmail.com" 
-      fill_in "Senha",	with: "12345678910111"
+      fill_in 'E-mail',	with: 'samuel@hotmail.com'
+      fill_in 'Senha',	with: '12345678910111'
       click_on 'Entrar'
-  
+
       # Assert
       expect(current_path).to eq new_establishment_path
     end
@@ -32,10 +32,10 @@ describe "Usuário acessa a aplicação" do
     it 'sem estabelecimento não consegue acessar outra rota' do
       # Arrange
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572'
       )
 
@@ -45,24 +45,24 @@ describe "Usuário acessa a aplicação" do
 
       # Assert
       expect(current_path).to eq new_establishment_path
-      expect(page).to have_content 'Você precisa criar um estabelecimento antes de continuar.' 
+      expect(page).to have_content 'Você precisa criar um estabelecimento antes de continuar.'
     end
 
     it 'com estabelecimento criado e sem cardápio cadastrado' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment
       )
@@ -76,10 +76,10 @@ describe "Usuário acessa a aplicação" do
         expect(page).to have_link 'Pratos'
         expect(page).to have_link 'Bebidas'
         expect(page).to have_link 'Cardápios'
-        expect(page).to have_link "#{establishment.trade_name}"
-        expect(page).to have_content 'Samuel Rocha - samuel@hotmail.com'  
+        expect(page).to have_link establishment.trade_name.to_s
+        expect(page).to have_content 'Samuel Rocha - samuel@hotmail.com'
       end
-      expect(page).to have_content 'Cardápios'  
+      expect(page).to have_content 'Cardápios'
       expect(page).to have_content 'Não existem ainda cardápios cadastrados'
       expect(page).to have_link 'Cadastrar cardápio'
     end
@@ -87,41 +87,41 @@ describe "Usuário acessa a aplicação" do
     it 'com estabelecimento criado e cardápios cadastrados' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment
       )
-      
+
       dish = Dish.create!(
-        name: 'Lasagna', 
-        description: 'queijo, presunto e molho', 
-        calories: '185', 
+        name: 'Lasagna',
+        description: 'queijo, presunto e molho',
+        calories: '185',
         establishment: establishment
       )
 
       dish_two = Dish.create!(
-        name: 'Macarrão', 
-        description: 'ao dente', 
-        calories: '15', 
+        name: 'Macarrão',
+        description: 'ao dente',
+        calories: '15',
         establishment: establishment
       )
 
       beverage = Beverage.create!(
-        name: 'Cachaça', 
-        description: 'alcool delicioso baiano', 
-        calories: '185', 
-        establishment: establishment, 
+        name: 'Cachaça',
+        description: 'alcool delicioso baiano',
+        calories: '185',
+        establishment: establishment,
         is_alcoholic: true
       )
 
@@ -135,7 +135,7 @@ describe "Usuário acessa a aplicação" do
       visit root_path
 
       # Assert
-      expect(page).to have_content 'Cardápios'  
+      expect(page).to have_content 'Cardápios'
       expect(page).not_to have_content 'Não existem ainda cardápios cadastrados'
       expect(page).to have_content 'Café da manhã'
       expect(page).to have_content 'Cachaça'
@@ -146,41 +146,41 @@ describe "Usuário acessa a aplicação" do
     it 'visualiza a página de menu e consegue voltar à página principal' do
       # Arrange
       establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
+        email: 'sam@gmail.com',
+        trade_name: 'Samsung',
+        legal_name: 'Samsung LTDA',
         cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
+        phone_number: '71992594946',
+        address: 'Rua das Alamedas avenidas'
       )
       user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
+        first_name: 'Samuel',
+        last_name: 'Rocha',
+        email: 'samuel@hotmail.com',
+        password: '12345678910111',
         cpf: '22611819572',
         establishment: establishment
       )
-      
+
       dish = Dish.create!(
-        name: 'Lasagna', 
-        description: 'queijo, presunto e molho', 
-        calories: '185', 
+        name: 'Lasagna',
+        description: 'queijo, presunto e molho',
+        calories: '185',
         establishment: establishment
       )
 
       dish_two = Dish.create!(
-        name: 'Macarrão', 
-        description: 'ao dente', 
-        calories: '15', 
+        name: 'Macarrão',
+        description: 'ao dente',
+        calories: '15',
         establishment: establishment
       )
 
       beverage = Beverage.create!(
-        name: 'Cachaça', 
-        description: 'alcool delicioso baiano', 
-        calories: '185', 
-        establishment: establishment, 
+        name: 'Cachaça',
+        description: 'alcool delicioso baiano',
+        calories: '185',
+        establishment: establishment,
         is_alcoholic: true
       )
 
@@ -196,7 +196,7 @@ describe "Usuário acessa a aplicação" do
       click_on 'Voltar'
 
       # Assert
-      expect(current_path).to eq root_path  
+      expect(current_path).to eq root_path
     end
   end
 end

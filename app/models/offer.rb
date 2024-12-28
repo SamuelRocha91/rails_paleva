@@ -3,7 +3,7 @@ class Offer < ApplicationRecord
   belongs_to :item, polymorphic: true
   before_validation :set_start_offer, on: :create
   before_validation :set_end_offer
-  validate :is_valid_price?
+  validate :valid_price?
   validates :price, presence: true
 
   private
@@ -13,16 +13,16 @@ class Offer < ApplicationRecord
   end
 
   def set_end_offer
-    if self.active == false
-      self.end_offer = DateTime.now
-    end
+    return unless active == false
+
+    self.end_offer = DateTime.now
   end
 
-  def is_valid_price?
+  def valid_price?
     price = self.price.to_f
-    if self.price.present? && (price < 1)
-      self.errors.add :price, 
-                  " não pode ficar em branco e deve ser maior que R$ 1,00"
-    end
+    return unless self.price.present? && (price < 1)
+
+    errors.add :price,
+               ' não pode ficar em branco e deve ser maior que R$ 1,00'
   end
 end

@@ -3,25 +3,25 @@ require 'rails_helper'
 describe 'Usuário acessa página de visualização de cardápio' do
   it 'e deve estar autenticado' do
     # Arrange
-   establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+    establishment = Establishment.create!(
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
     menu = Menu.create!(
-      establishment: establishment, 
+      establishment: establishment,
       name: 'Café da manhã'
     )
 
@@ -35,32 +35,32 @@ describe 'Usuário acessa página de visualização de cardápio' do
   it 'e visualiza menu' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
     menu = Menu.create!(
-      establishment: establishment, 
+      establishment: establishment,
       name: 'Café da manhã'
     )
 
     beverage = Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
+      name: 'Cachaça',
+      description: 'alcool delicioso baiano',
+      calories: '185',
+      establishment: establishment,
       is_alcoholic: true
     )
     format = Format.create!(name: 'Bombinha 50ml')
@@ -71,9 +71,9 @@ describe 'Usuário acessa página de visualização de cardápio' do
     )
 
     dish = Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
       establishment: establishment
     )
     format_two = Format.create!(name: 'Giga gante')
@@ -105,40 +105,39 @@ describe 'Usuário acessa página de visualização de cardápio' do
   it 'desde que o menu esteja no seu período sazonal' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
-    menu = Menu.create!(
-      establishment: establishment, 
+    Menu.create!(
+      establishment: establishment,
       name: 'Café da manhã'
     )
 
-
     menu = Menu.create!(
-      establishment: establishment, 
+      establishment: establishment,
       name: 'Almoço',
       valid_from: 1.day.from_now,
-      valid_until: 5.day.from_now
+      valid_until: 5.days.from_now
     )
 
     beverage = Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
+      name: 'Cachaça',
+      description: 'alcool delicioso baiano',
+      calories: '185',
+      establishment: establishment,
       is_alcoholic: true
     )
     format = Format.create!(name: 'Bombinha 50ml')
@@ -149,9 +148,9 @@ describe 'Usuário acessa página de visualização de cardápio' do
     )
 
     dish = Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
       establishment: establishment
     )
     format_two = Format.create!(name: 'Giga gante')
@@ -179,43 +178,41 @@ describe 'Usuário acessa página de visualização de cardápio' do
   end
 
   it 'dentro do perído específico, visualiza cardápio sazonal' do
-
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
-    menu = Menu.create!(
-      establishment: establishment, 
+    Menu.create!(
+      establishment: establishment,
       name: 'Café da manhã'
     )
 
-
     menu = Menu.create!(
-      establishment: establishment, 
+      establishment: establishment,
       name: 'Almoço',
       valid_from: 1.day.from_now,
-      valid_until: 5.day.from_now
+      valid_until: 5.days.from_now
     )
 
     beverage = Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
+      name: 'Cachaça',
+      description: 'alcool delicioso baiano',
+      calories: '185',
+      establishment: establishment,
       is_alcoholic: true
     )
     format = Format.create!(name: 'Bombinha 50ml')
@@ -226,9 +223,9 @@ describe 'Usuário acessa página de visualização de cardápio' do
     )
 
     dish = Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
       establishment: establishment
     )
     format_two = Format.create!(name: 'Giga gante')
@@ -247,7 +244,6 @@ describe 'Usuário acessa página de visualização de cardápio' do
     MenuItem.create!(item: dish, menu: menu)
     MenuItem.create!(item: beverage, menu: menu)
     travel_to 1.day.from_now do
-
       # Act
       login_as user
       visit root_path
@@ -260,32 +256,32 @@ describe 'Usuário acessa página de visualização de cardápio' do
   it 'e visualiza pratos com itens e porções na página do cardápio' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
 
     menu = Menu.create!(
-      establishment: establishment, 
+      establishment: establishment,
       name: 'Café da manhã'
     )
 
     beverage = Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
+      name: 'Cachaça',
+      description: 'alcool delicioso baiano',
+      calories: '185',
+      establishment: establishment,
       is_alcoholic: true
     )
     format = Format.create!(name: 'Bombinha 50ml')
@@ -296,9 +292,9 @@ describe 'Usuário acessa página de visualização de cardápio' do
     )
 
     dish = Dish.create!(
-      name: 'lasagna', 
-      description: 'massa, queijo e presunto', 
-      calories: '185', 
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
       establishment: establishment
     )
     format_two = Format.create!(name: 'Giga gante')

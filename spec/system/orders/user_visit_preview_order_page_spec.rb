@@ -6,24 +6,24 @@ describe 'Usuário acessa página de pré-visualização de pedido' do
     visit preview_order_path
 
     # Assert
-    expect(current_path).to eq new_user_session_path  
+    expect(current_path).to eq new_user_session_path
   end
 
   it 'sem itens adicionados' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -40,42 +40,42 @@ describe 'Usuário acessa página de pré-visualização de pedido' do
   it 'com itens, observa valor total do pedido' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
     menu = Menu.create!(
-      establishment: establishment, 
+      establishment: establishment,
       name: 'Café da manhã'
     )
     menu_two = Menu.create!(
-      establishment: establishment, 
+      establishment: establishment,
       name: 'Almoço'
     )
 
     dish = Dish.create!(
-          name: 'lasagna', 
-          description: 'massa, queijo e presunto', 
-          calories: '185', 
-          establishment: establishment
-        )
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
+      establishment: establishment
+    )
     dish_two = Dish.create!(
-          name: 'feijoada', 
-          description: 'feijao e condimentos', 
-          calories: '185', 
-          establishment: establishment
-        )
+      name: 'feijoada',
+      description: 'feijao e condimentos',
+      calories: '185',
+      establishment: establishment
+    )
 
     format = Format.create!(name: 'Porção grande')
     format_two = Format.create!(name: 'Porção média')
@@ -100,18 +100,17 @@ describe 'Usuário acessa página de pré-visualização de pedido' do
     MenuItem.create!(item: dish, menu: menu)
     MenuItem.create!(item: dish_two, menu: menu_two)
 
-
     # Act
     login_as user
     visit root_path
     click_on 'Almoço'
     find('.Porção-grande-feijoada').click
-    fill_in 'Observação',	with: 'Sem sal' 
+    fill_in 'Observação',	with: 'Sem sal'
     click_on 'Adicionar ao Pedido'
     click_on 'Continuar adicionando itens'
     click_on 'Café da manhã'
     find('.Porção-grande-lasagna').click
-    fill_in 'Observação',	with: 'Sem cebola' 
+    fill_in 'Observação',	with: 'Sem cebola'
     click_on 'Adicionar ao Pedido'
 
     # Assert
@@ -119,21 +118,21 @@ describe 'Usuário acessa página de pré-visualização de pedido' do
     expect(page).to have_button 'Remover'
   end
 
-  it 'e remove item com sucesso' do 
+  it 'e remove item com sucesso' do
     # Arrange
     establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
+      email: 'sam@gmail.com',
+      trade_name: 'Samsung',
+      legal_name: 'Samsung LTDA',
       cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
+      phone_number: '71992594946',
+      address: 'Rua das Alamedas avenidas'
     )
     user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
+      first_name: 'Samuel',
+      last_name: 'Rocha',
+      email: 'samuel@hotmail.com',
+      password: '12345678910111',
       cpf: '22611819572',
       establishment: establishment
     )
@@ -141,17 +140,17 @@ describe 'Usuário acessa página de pré-visualização de pedido' do
     menu_two = Menu.create!(establishment: establishment, name: 'Almoço')
 
     dish = Dish.create!(
-          name: 'lasagna', 
-          description: 'massa, queijo e presunto', 
-          calories: '185', 
-          establishment: establishment
-        )
+      name: 'lasagna',
+      description: 'massa, queijo e presunto',
+      calories: '185',
+      establishment: establishment
+    )
     dish_two = Dish.create!(
-          name: 'feijoada', 
-          description: 'feijao e condimentos', 
-          calories: '185', 
-          establishment: establishment
-        )
+      name: 'feijoada',
+      description: 'feijao e condimentos',
+      calories: '185',
+      establishment: establishment
+    )
 
     format = Format.create!(name: 'Porção grande')
     format_two = Format.create!(name: 'Porção média')
@@ -181,12 +180,12 @@ describe 'Usuário acessa página de pré-visualização de pedido' do
     visit root_path
     click_on 'Almoço'
     find('.Porção-grande-feijoada').click
-    fill_in 'Observação',	with: 'Sem sal' 
+    fill_in 'Observação',	with: 'Sem sal'
     click_on 'Adicionar ao Pedido'
     click_on 'Remover'
 
     # Assert
     expect(current_path).to eq root_path
-    expect(page).to have_content 'Item removido do carrinho com sucesso'  
+    expect(page).to have_content 'Item removido do carrinho com sucesso'
   end
 end
