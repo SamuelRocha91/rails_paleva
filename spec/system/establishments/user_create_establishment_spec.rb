@@ -11,13 +11,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
 
   it 'e encontra todos dados de cadastro' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572'
-    )
+    user = create(:user, :within_establishment)
 
     # Act
     login_as user
@@ -45,13 +39,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
 
   it 'tem cadastro recusado por falta de campo obrigatório' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572'
-    )
+    user = create(:user, :within_establishment)
 
     # Act
     login_as user
@@ -71,13 +59,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
 
   it 'deve cadastrar todos os dias da semana' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572'
-    )
+    user = create(:user, :within_establishment)
 
     # Act
     login_as user
@@ -106,13 +88,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
 
   it 'tenta cadastrar horario de fechamento menor que o de abertura' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572'
-    )
+    user = create(:user, :within_establishment)
 
     # Act
     login_as user
@@ -146,13 +122,7 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
 
   it 'cadastra restaurante e é direcionado pra página root' do
     # Arrange
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572'
-    )
+    user = create(:user, :within_establishment)
 
     # Act
     login_as user
@@ -186,28 +156,11 @@ describe 'Usuário acessa formulário de cadastro de estabelecimento' do
 
   it 'ja tendo um cadastrado e é redirecionado' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment
-    )
-    operating_hour = []
+    establishment = FactoryBot.create(:establishment)
+    user = create(:user, establishment: establishment)
     7.times do |i|
-      operating_hour << OperatingHour
-                        .new(week_day: i, is_closed: true)
+      create(:operating_hour, week_day: i)
     end
-    establishment.operating_hours = operating_hour
 
     # Act
     login_as user

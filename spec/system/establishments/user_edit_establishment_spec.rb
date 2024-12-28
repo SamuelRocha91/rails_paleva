@@ -1,38 +1,13 @@
 require 'rails_helper'
 
-describe 'Usuário edita seu restabelecimento' do
+describe 'Usuário edita seu estabelecimento' do
   it 'a partir da página home' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment
-    )
-
-    operating_hour = []
-    6.times do |i|
-      operating_hour << OperatingHour
-                        .new(week_day: i, is_closed: true)
+    establishment = FactoryBot.create(:establishment)
+    user = create(:user, establishment: establishment)
+    7.times do |i|
+      create(:operating_hour, week_day: i, establishment: establishment)
     end
-    operating_hour << OperatingHour.new(
-      week_day: 6,
-      start_time: Time.zone.parse('08:00'),
-      end_time: Time.zone.parse('22:00'),
-      is_closed: false
-    )
-
-    establishment.operating_hours = operating_hour
 
     # Act
     login_as user
@@ -62,35 +37,11 @@ describe 'Usuário edita seu restabelecimento' do
 
   it 'com dados incompletos' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment
-    )
-
-    operating_hour = []
-    6.times do |i|
-      operating_hour << OperatingHour
-                        .new(week_day: i, is_closed: true)
+    establishment = FactoryBot.create(:establishment)
+    user = create(:user, establishment: establishment)
+    7.times do |i|
+      create(:operating_hour, week_day: i, establishment: establishment)
     end
-    operating_hour << OperatingHour.new(
-      week_day: 6,
-      start_time: Time.zone.parse('08:00'),
-      end_time: Time.zone.parse('22:00'),
-      is_closed: false
-    )
-    establishment.operating_hours = operating_hour
 
     # Act
     login_as user
@@ -107,22 +58,8 @@ describe 'Usuário edita seu restabelecimento' do
 
   it 'com sucesso' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = FactoryBot.create(:establishment)
+    user = create(:user, establishment: establishment)
 
     operating_hour = []
     6.times do |i|

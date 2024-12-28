@@ -18,3 +18,7 @@ Style/ClassAndModuleChildren:
 
 Naming/VariableNumber:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
