@@ -4,13 +4,7 @@ describe 'Usuário acessa página de login' do
   context 'admin' do
     it 'e faz login com sucesso' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572'
-      )
+      user = create(:user, email: 'samuel@hotmail.com', password: '12345678910111')
 
       # Act
       visit root_path
@@ -24,13 +18,7 @@ describe 'Usuário acessa página de login' do
 
     it 'e faz logout' do
       # Arrange
-      user = User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572'
-      )
+      user = create(:user, email: 'samuel@hotmail.com', password: '12345678910111')
 
       # Act
       visit root_path
@@ -52,23 +40,9 @@ describe 'Usuário acessa página de login' do
   context 'employee' do
     it 'e faz login com sucesso' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      user = User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        role: 1,
-        establishment: establishment
-      )
+      establishment = create(:establishment)
+      user = create(:user, email: 'samuel@hotmail.com', password: '12345678910111', role: 1,
+                           establishment: establishment)
 
       # Act
       visit root_path
@@ -82,23 +56,9 @@ describe 'Usuário acessa página de login' do
 
     it 'e faz logout' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      user = User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        role: 1,
-        establishment: establishment
-      )
+      establishment = create(:establishment)
+      user = create(:user, email: 'samuel@hotmail.com', password: '12345678910111', role: 1,
+                           establishment: establishment)
 
       # Act
       visit root_path
@@ -117,3 +77,4 @@ describe 'Usuário acessa página de login' do
     end
   end
 end
+# 
