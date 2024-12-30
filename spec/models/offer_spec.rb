@@ -5,33 +5,11 @@ RSpec.describe Offer, type: :model do
     context 'Presença obrigatória de' do
       it 'price' do
         # Arrange
-        establishment = Establishment.create!(
-          email: 'sam@gmail.com',
-          trade_name: 'Samsung',
-          legal_name: 'Samsung LTDA',
-          cnpj: '56924048000140',
-          phone_number: '71992594946',
-          address: 'Rua das Alamedas avenidas'
-        )
-        User.create!(
-          first_name: 'Samuel',
-          last_name: 'Rocha',
-          email: 'samuel@hotmail.com',
-          password: '12345678910111',
-          cpf: '22611819572',
-          establishment: establishment
-        )
-        dish = Dish.create!(
-          name: 'lasagna',
-          description: 'massa, queijo e presunto',
-          calories: '185',
-          establishment: establishment
-        )
-        format = Format.create!(name: 'Porção grande')
-        offer = Offer.new(
-          format: format,
-          item: dish
-        )
+        establishment = create(:establishment)
+        create(:user, establishment: establishment)
+        dish = create(:dish, name: 'lasagna', establishment: establishment)
+        format = create(:format, name: 'Porção grande')
+        offer = Offer.new(format: format, item: dish)
 
         # Act
         result = offer.valid?
@@ -44,34 +22,11 @@ RSpec.describe Offer, type: :model do
     context 'após criar uma oferta' do
       it 'o campo active deve ser true' do
         # Arrange
-        establishment = Establishment.create!(
-          email: 'sam@gmail.com',
-          trade_name: 'Samsung',
-          legal_name: 'Samsung LTDA',
-          cnpj: '56924048000140',
-          phone_number: '71992594946',
-          address: 'Rua das Alamedas avenidas'
-        )
-        User.create!(
-          first_name: 'Samuel',
-          last_name: 'Rocha',
-          email: 'samuel@hotmail.com',
-          password: '12345678910111',
-          cpf: '22611819572',
-          establishment: establishment
-        )
-        dish = Dish.create!(
-          name: 'lasagna',
-          description: 'massa, queijo e presunto',
-          calories: '185',
-          establishment: establishment
-        )
-        format = Format.create!(name: 'Porção grande')
-        offer = Offer.new(
-          format: format,
-          item: dish,
-          price: 25
-        )
+        establishment = create(:establishment)
+        create(:user, establishment: establishment)
+        format = create(:format, name: 'Porção grande')
+        dish = create(:dish, name: 'lasagna', establishment: establishment)
+        offer = Offer.new(format: format, item: dish, price: 25)
 
         # Act
         offer.save!
@@ -82,34 +37,11 @@ RSpec.describe Offer, type: :model do
 
       it 'o campo start offer deve ter um valor' do
         # Arrange
-        establishment = Establishment.create!(
-          email: 'sam@gmail.com',
-          trade_name: 'Samsung',
-          legal_name: 'Samsung LTDA',
-          cnpj: '56924048000140',
-          phone_number: '71992594946',
-          address: 'Rua das Alamedas avenidas'
-        )
-        User.create!(
-          first_name: 'Samuel',
-          last_name: 'Rocha',
-          email: 'samuel@hotmail.com',
-          password: '12345678910111',
-          cpf: '22611819572',
-          establishment: establishment
-        )
-        dish = Dish.create!(
-          name: 'lasagna',
-          description: 'massa, queijo e presunto',
-          calories: '185',
-          establishment: establishment
-        )
-        format = Format.create!(name: 'Porção grande')
-        offer = Offer.new(
-          format: format,
-          item: dish,
-          price: 25
-        )
+        establishment = create(:establishment)
+        create(:user, establishment: establishment)
+        format = create(:format, name: 'Porção grande')
+        dish = create(:dish, name: 'lasagna', establishment: establishment)
+        offer = Offer.new(format: format, item: dish, price: 25)
 
         # Act
         offer.save!
@@ -123,35 +55,11 @@ RSpec.describe Offer, type: :model do
     context 'após desativar uma oferta' do
       it 'o campo end_offer deve ser true' do
         # Arrange
-        establishment = Establishment.create!(
-          email: 'sam@gmail.com',
-          trade_name: 'Samsung',
-          legal_name: 'Samsung LTDA',
-          cnpj: '56924048000140',
-          phone_number: '71992594946',
-          address: 'Rua das Alamedas avenidas'
-        )
-        User.create!(
-          first_name: 'Samuel',
-          last_name: 'Rocha',
-          email: 'samuel@hotmail.com',
-          password: '12345678910111',
-          cpf: '22611819572',
-          establishment: establishment
-        )
-        dish = Dish.create!(
-          name: 'lasagna',
-          description: 'massa, queijo e presunto',
-          calories: '185',
-          establishment: establishment
-        )
-        format = Format.create!(name: 'Porção grande')
-        offer = Offer.new(
-          format: format,
-          item: dish,
-          price: 25,
-          active: false
-        )
+        establishment = create(:establishment)
+        create(:user, establishment: establishment)
+        format = create(:format, name: 'Porção grande')
+        dish = create(:dish, name: 'lasagna', establishment: establishment)
+        offer = Offer.new(format: format, item: dish, price: 25, active: false)
 
         # Act
         offer.save!
@@ -166,35 +74,11 @@ RSpec.describe Offer, type: :model do
     context 'Presença obrigatória de' do
       it 'price' do
         # Arrange
-        establishment = Establishment.create!(
-          email: 'sam@gmail.com',
-          trade_name: 'Samsung',
-          legal_name: 'Samsung LTDA',
-          cnpj: '56924048000140',
-          phone_number: '71992594946',
-          address: 'Rua das Alamedas avenidas'
-        )
-        User.create!(
-          first_name: 'Samuel',
-          last_name: 'Rocha',
-          email: 'samuel@hotmail.com',
-          password: '12345678910111',
-          cpf: '22611819572',
-          establishment: establishment
-        )
-        beverage = Beverage.create!(
-          name: 'Cachaça',
-          description: 'alcool delicioso baiano',
-          calories: '185',
-          establishment: establishment,
-          is_alcoholic: true
-        )
-        format = Format.create!(name: 'Bombinha 50ml')
-
-        offer = Offer.new(
-          format: format,
-          item: beverage
-        )
+        establishment = create(:establishment)
+        create(:user, establishment: establishment)
+        beverage = create(:beverage, establishment: establishment)
+        format = create(:format, name: 'Bombinha 50ml')
+        offer = Offer.new(format: format, item: beverage)
 
         # Act
         result = offer.valid?
@@ -207,36 +91,11 @@ RSpec.describe Offer, type: :model do
     context 'após criar uma oferta' do
       it 'o campo active deve ser true' do
         # Arrange
-        establishment = Establishment.create!(
-          email: 'sam@gmail.com',
-          trade_name: 'Samsung',
-          legal_name: 'Samsung LTDA',
-          cnpj: '56924048000140',
-          phone_number: '71992594946',
-          address: 'Rua das Alamedas avenidas'
-        )
-        User.create!(
-          first_name: 'Samuel',
-          last_name: 'Rocha',
-          email: 'samuel@hotmail.com',
-          password: '12345678910111',
-          cpf: '22611819572',
-          establishment: establishment
-        )
-        beverage = Beverage.create!(
-          name: 'Cachaça',
-          description: 'alcool delicioso baiano',
-          calories: '185',
-          establishment: establishment,
-          is_alcoholic: true
-        )
-        format = Format.create!(name: 'Bombinha 50ml')
-
-        offer = Offer.create!(
-          format: format,
-          item: beverage,
-          price: 25
-        )
+        establishment = create(:establishment)
+        create(:user, establishment: establishment)
+        beverage = create(:beverage, establishment: establishment)
+        format = create(:format, name: 'Bombinha 50ml')
+        offer = Offer.create!(format: format, item: beverage, price: 25)
 
         # Act
         offer.save!
@@ -247,36 +106,11 @@ RSpec.describe Offer, type: :model do
 
       it 'o campo start offer deve ter um valor' do
         # Arrange
-        establishment = Establishment.create!(
-          email: 'sam@gmail.com',
-          trade_name: 'Samsung',
-          legal_name: 'Samsung LTDA',
-          cnpj: '56924048000140',
-          phone_number: '71992594946',
-          address: 'Rua das Alamedas avenidas'
-        )
-        User.create!(
-          first_name: 'Samuel',
-          last_name: 'Rocha',
-          email: 'samuel@hotmail.com',
-          password: '12345678910111',
-          cpf: '22611819572',
-          establishment: establishment
-        )
-        beverage = Beverage.create!(
-          name: 'Cachaça',
-          description: 'alcool delicioso baiano',
-          calories: '185',
-          establishment: establishment,
-          is_alcoholic: true
-        )
-        format = Format.create!(name: 'Bombinha 50ml')
-
-        offer = Offer.create!(
-          format: format,
-          item: beverage,
-          price: 25
-        )
+        establishment = create(:establishment)
+        create(:user, establishment: establishment)
+        beverage = create(:beverage, establishment: establishment)
+        format = create(:format, name: 'Bombinha 50ml')
+        offer = Offer.create!(format: format, item: beverage, price: 25)
 
         # Act
         offer.save!
@@ -289,37 +123,11 @@ RSpec.describe Offer, type: :model do
     context 'após desativar uma oferta' do
       it 'o campo end_offer deve ser true' do
         # Arrange
-        establishment = Establishment.create!(
-          email: 'sam@gmail.com',
-          trade_name: 'Samsung',
-          legal_name: 'Samsung LTDA',
-          cnpj: '56924048000140',
-          phone_number: '71992594946',
-          address: 'Rua das Alamedas avenidas'
-        )
-        User.create!(
-          first_name: 'Samuel',
-          last_name: 'Rocha',
-          email: 'samuel@hotmail.com',
-          password: '12345678910111',
-          cpf: '22611819572',
-          establishment: establishment
-        )
-        beverage = Beverage.create!(
-          name: 'Cachaça',
-          description: 'alcool delicioso baiano',
-          calories: '185',
-          establishment: establishment,
-          is_alcoholic: true
-        )
-        format = Format.create!(name: 'Bombinha 50ml')
-
-        offer = Offer.create!(
-          format: format,
-          item: beverage,
-          price: 25,
-          active: false
-        )
+        establishment = create(:establishment)
+        create(:user, establishment: establishment)
+        beverage = create(:beverage, establishment: establishment)
+        format = create(:format, name: 'Bombinha 50ml')
+        offer = Offer.create!(format: format, item: beverage, price: 25, active: false)
 
         # Act
         offer.save!

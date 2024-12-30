@@ -4,60 +4,18 @@ describe 'Orders API' do
   context 'GET /api/v1/establishment/:code/orders/' do
     it 'lista todos os pedidos do estabelecimento' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      customer_two = Customer.create!(
-        name: 'Ana',
-        email: 'ana@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      format = Format.create!(name: 'Porção grande')
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer, name: 'Sorocaba')
+      customer_two = create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      order_two = Order.create!(
-        establishment: establishment,
-        customer: customer_two
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      order_two = Order.create!(establishment: establishment, customer: customer_two)
       order_two.in_preparation!
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
+      offer = Offer.create!(format: format, item: dish, price: 55)
       OrderItem.create!(offer: offer, order: order)
 
       # Act
@@ -78,59 +36,18 @@ describe 'Orders API' do
 
     it 'filtra os pedidos do estabelecimento por status' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      customer_two = Customer.create!(
-        name: 'Ana',
-        email: 'ana@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      format = Format.create!(name: 'Porção grande')
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer)
+      customer_two = create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      order_two = Order.create!(
-        establishment: establishment,
-        customer: customer_two
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      order_two = Order.create!(establishment: establishment, customer: customer_two)
       order_two.in_preparation!
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
+      offer = Offer.create!(format: format, item: dish, price: 55)
       OrderItem.create!(offer: offer, order: order)
 
       # Act
@@ -146,22 +63,8 @@ describe 'Orders API' do
 
     it 'retorna vazio se não houverem pedidos cadastrados' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
 
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders"
@@ -175,22 +78,8 @@ describe 'Orders API' do
       # Arrange
       allow(Establishment).to receive(:find_by)
         .and_raise(ActiveRecord::ActiveRecordError)
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
 
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders"
@@ -212,55 +101,17 @@ describe 'Orders API' do
   context 'GET /api/v1/establishment/:code/orders/:order_code' do
     it 'e lista um pedido específico do estabelecimento' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      format = Format.create!(name: 'Porção grande')
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer, name: 'Sorocaba')
+      create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
-      OrderItem.create!(
-        offer: offer,
-        order: order,
-        note: 'sem cebola'
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      offer = Offer.create!(format: format, item: dish, price: 55)
+      OrderItem.create!(offer: offer, order: order, note: 'sem cebola')
 
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders/#{order.code}"
@@ -279,22 +130,8 @@ describe 'Orders API' do
 
     it 'retorna status 404 se não for encontrado o pedido' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
 
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders/12345"
@@ -317,54 +154,16 @@ describe 'Orders API' do
   context 'PUT /api/v1/establishment/:code/orders/:order_code/in-preparation' do
     it 'e atualiza status de aguardando o aceite para em preparação' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      format = Format.create!(name: 'Porção grande')
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
-      OrderItem.create!(
-        offer: offer,
-        order: order,
-        note: 'sem cebola'
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      offer = Offer.create!(format: format, item: dish, price: 55)
+      OrderItem.create!(offer: offer, order: order, note: 'sem cebola')
 
       # Act
       put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/in-preparation"
@@ -378,54 +177,16 @@ describe 'Orders API' do
 
     it 'e falha quando se tenta atualizar status indevidamente' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      format = Format.create!(name: 'Porção grande')
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
-      OrderItem.create!(
-        offer: offer,
-        order: order,
-        note: 'sem cebola'
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      offer = Offer.create!(format: format, item: dish, price: 55)
+      OrderItem.create!(offer: offer, order: order, note: 'sem cebola')
       order.in_preparation!
       order.ready!
 
@@ -440,22 +201,8 @@ describe 'Orders API' do
 
     it 'retorna status 404 se não for encontrado o pedido' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
 
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders/12345/in-preparation"
@@ -478,55 +225,16 @@ describe 'Orders API' do
   context 'PUT /api/v1/establishment/:code/orders/:order_code/ready' do
     it 'e atualiza status de em preparo para pronto' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      format = Format.create!(name: 'Porção grande')
-
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      OrderItem.create!(
-        offer: offer,
-        order: order,
-        note: 'sem cebola'
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      offer = Offer.create!(format: format, item: dish, price: 55)
+      OrderItem.create!(offer: offer, order: order, note: 'sem cebola')
       order.in_preparation!
 
       # Act
@@ -541,54 +249,16 @@ describe 'Orders API' do
 
     it 'e falha quando se tenta atualizar status indevidamente' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      format = Format.create!(name: 'Porção grande')
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
-      OrderItem.create!(
-        offer: offer,
-        order: order,
-        note: 'sem cebola'
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      offer = Offer.create!(format: format, item: dish, price: 55)
+      OrderItem.create!(offer: offer, order: order, note: 'sem cebola')
       order.in_preparation!
       order.ready!
 
@@ -603,22 +273,8 @@ describe 'Orders API' do
 
     it 'retorna status 404 se não for encontrado o pedido' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
 
       # Act
       get "/api/v1/establishment/#{establishment.code}/orders/12345/ready"
@@ -641,56 +297,16 @@ describe 'Orders API' do
   context 'PUT /api/v1/establishment/:code/orders/:order_code/cancel' do
     it 'e atualiza status de em aguardo para cancelado com sucesso' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      format = Format.create!(name: 'Porção grande')
-
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      OrderItem.create!(
-        offer: offer,
-        order: order,
-        note: 'sem cebola'
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      offer = Offer.create!(format: format, item: dish, price: 55)
+      OrderItem.create!(offer: offer, order: order, note: 'sem cebola')
 
       # Act
       put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/cancel",
@@ -706,56 +322,16 @@ describe 'Orders API' do
 
     it 'falha sem envio de justificativa' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      format = Format.create!(name: 'Porção grande')
-
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      OrderItem.create!(
-        offer: offer,
-        order: order,
-        note: 'sem cebola'
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      offer = Offer.create!(format: format, item: dish, price: 55)
+      OrderItem.create!(offer: offer, order: order, note: 'sem cebola')
 
       # Act
       put "/api/v1/establishment/#{establishment.code}/orders/#{order.code}/cancel"
@@ -768,54 +344,16 @@ describe 'Orders API' do
 
     it 'e falha quando se tenta atualizar cancelar após o ele já ter sido aceito' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      format = Format.create!(name: 'Porção grande')
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
-      OrderItem.create!(
-        offer: offer,
-        order: order,
-        note: 'sem cebola'
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      offer = Offer.create!(format: format, item: dish, price: 55)
+      OrderItem.create!(offer: offer, order: order, note: 'sem cebola')
       order.in_preparation!
 
       # Act
@@ -829,54 +367,16 @@ describe 'Orders API' do
 
     it 'e falha quando se tenta atualizar cancelar após o pedido estar pronto' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com',
-        trade_name: 'Samsung',
-        legal_name: 'Samsung LTDA',
-        cnpj: '56924048000140',
-        phone_number: '71992594946',
-        address: 'Rua das Alamedas avenidas'
-      )
-      User.create!(
-        first_name: 'Samuel',
-        last_name: 'Rocha',
-        email: 'samuel@hotmail.com',
-        password: '12345678910111',
-        cpf: '22611819572',
-        establishment: establishment
-      )
-      customer = Customer.create!(
-        name: 'Sorocaba',
-        email: 'samssd@gmail.com'
-      )
-
-      dish = Dish.create!(
-        name: 'lasagna',
-        description: 'massa, queijo e presunto',
-        calories: '185',
-        establishment: establishment
-      )
-      menu = Menu.create!(
-        establishment: establishment,
-        name: 'Café da manhã'
-      )
+      establishment = create(:establishment)
+      create(:user, establishment: establishment)
+      customer = create(:customer)
+      dish = create(:dish, name: 'lasagna', establishment: establishment)
+      format = create(:format, name: 'Porção grande')
+      menu = create(:menu, establishment: establishment, name: 'Café da manhã')
       MenuItem.create!(item: dish, menu: menu)
-
-      format = Format.create!(name: 'Porção grande')
-      order = Order.create!(
-        establishment: establishment,
-        customer: customer
-      )
-      offer = Offer.create!(
-        format: format,
-        item: dish,
-        price: 55
-      )
-      OrderItem.create!(
-        offer: offer,
-        order: order,
-        note: 'sem cebola'
-      )
+      order = Order.create!(establishment: establishment, customer: customer)
+      offer = Offer.create!(format: format, item: dish, price: 55)
+      OrderItem.create!(offer: offer, order: order, note: 'sem cebola')
       order.in_preparation!
       order.ready!
 

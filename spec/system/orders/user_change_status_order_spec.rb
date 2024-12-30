@@ -11,48 +11,17 @@ describe 'Usuário muda status do pedido' do
 
   it 'de aguardando confirmação da cozinha PARA em preparo' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment
-    )
-
-    customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
-    customer_two = Customer.create!(name: 'Ana', email: 'ana@gmail.com')
-
-    dish = Dish.create!(
-      name: 'lasagna',
-      description: 'massa, queijo e presunto',
-      calories: '185',
-      establishment: establishment
-    )
-    format = Format.create!(name: 'Porção grande')
-    menu = Menu.create!(
-      establishment: establishment,
-      name: 'Café da manhã'
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    customer = create(:customer)
+    customer_two = create(:customer)
+    dish = create(:dish, establishment: establishment)
+    format = create(:format)
+    menu = create(:menu, establishment: establishment)
     MenuItem.create!(item: dish, menu: menu)
-
     order = Order.create!(establishment: establishment, customer: customer)
     Order.create!(establishment: establishment, customer: customer_two)
-
-    offer = Offer.create!(
-      format: format,
-      item: dish,
-      price: 55
-    )
-
+    offer = Offer.create!(format: format, item: dish, price: 55)
     OrderItem.create!(offer: offer, order: order)
 
     # Act
@@ -71,48 +40,17 @@ describe 'Usuário muda status do pedido' do
 
   it 'de em preparo PARA pronto para entrega' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment
-    )
-
-    customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
-    customer_two = Customer.create!(name: 'Ana', email: 'ana@gmail.com')
-
-    dish = Dish.create!(
-      name: 'lasagna',
-      description: 'massa, queijo e presunto',
-      calories: '185',
-      establishment: establishment
-    )
-    format = Format.create!(name: 'Porção grande')
-    menu = Menu.create!(
-      establishment: establishment,
-      name: 'Café da manhã'
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    customer = create(:customer)
+    customer_two = create(:customer)
+    dish = create(:dish, establishment: establishment)
+    format = create(:format)
+    menu = create(:menu, establishment: establishment)
     MenuItem.create!(item: dish, menu: menu)
-
     order = Order.create!(establishment: establishment, customer: customer, status: 2)
     Order.create!(establishment: establishment, customer: customer_two)
-
-    offer = Offer.create!(
-      format: format,
-      item: dish,
-      price: 55
-    )
-
+    offer = Offer.create!(format: format, item: dish, price: 55)
     OrderItem.create!(offer: offer, order: order)
 
     # Act
@@ -131,53 +69,17 @@ describe 'Usuário muda status do pedido' do
 
   it 'de pronto para entrega PARA entregue' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment
-    )
-
-    customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
-    customer_two = Customer.create!(name: 'Ana', email: 'ana@gmail.com')
-
-    dish = Dish.create!(
-      name: 'lasagna',
-      description: 'massa, queijo e presunto',
-      calories: '185',
-      establishment: establishment
-    )
-    format = Format.create!(name: 'Porção grande')
-
-    order = Order.create!(
-      establishment: establishment,
-      customer: customer,
-      status: 5
-    )
-    Order.create!(establishment: establishment, customer: customer_two)
-
-    offer = Offer.create!(
-      format: format,
-      item: dish,
-      price: 55
-    )
-
-    menu = Menu.create!(
-      establishment: establishment,
-      name: 'Café da manhã'
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    customer = create(:customer)
+    customer_two = create(:customer)
+    dish = create(:dish, establishment: establishment)
+    format = create(:format)
+    menu = create(:menu, establishment: establishment)
     MenuItem.create!(item: dish, menu: menu)
-
+    order = Order.create!(establishment: establishment, customer: customer, status: 5)
+    Order.create!(establishment: establishment, customer: customer_two)
+    offer = Offer.create!(format: format, item: dish, price: 55)
     OrderItem.create!(offer: offer, order: order)
 
     # Act
@@ -196,52 +98,17 @@ describe 'Usuário muda status do pedido' do
 
   it 'de pronto para entrega PARA Cancelado' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment
-    )
-
-    customer = Customer.create!(name: 'Samuel', email: 'sam@gmail.com')
-    customer_two = Customer.create!(name: 'Ana', email: 'ana@gmail.com')
-
-    dish = Dish.create!(
-      name: 'lasagna',
-      description: 'massa, queijo e presunto',
-      calories: '185',
-      establishment: establishment
-    )
-    format = Format.create!(name: 'Porção grande')
-
-    order = Order.create!(
-      establishment: establishment,
-      customer: customer,
-      status: 5
-    )
-    Order.create!(establishment: establishment, customer: customer_two)
-
-    offer = Offer.create!(
-      format: format,
-      item: dish,
-      price: 55
-    )
-    menu = Menu.create!(
-      establishment: establishment,
-      name: 'Café da manhã'
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    customer = create(:customer)
+    customer_two = create(:customer)
+    dish = create(:dish, establishment: establishment)
+    format = create(:format)
+    menu = create(:menu, establishment: establishment)
     MenuItem.create!(item: dish, menu: menu)
-
+    order = Order.create!(establishment: establishment, customer: customer, status: 5)
+    Order.create!(establishment: establishment, customer: customer_two)
+    offer = Offer.create!(format: format, item: dish, price: 55)
     OrderItem.create!(offer: offer, order: order)
 
     # Act

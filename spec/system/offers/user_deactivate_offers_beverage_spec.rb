@@ -3,35 +3,11 @@ require 'rails_helper'
 describe 'Usuário acessa página para desativar oferta de uma bebida' do
   it 'e deve estar autenticado' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment
-    )
-    beverage = Beverage.create!(
-      name: 'Cachaça',
-      description: 'alcool delicioso baiano',
-      calories: '185',
-      establishment: establishment,
-      is_alcoholic: true
-    )
-    format = Format.create!(name: 'Bombinha 50ml')
-    Offer.create!(
-      format: format,
-      item: beverage,
-      price: 25
-    )
+    establishment = create(:establishment)
+    create(:user, establishment: establishment)
+    format = create(:format, name: 'Bombinha 50ml')
+    beverage = create(:beverage, name: 'Cachaça', establishment: establishment)
+    Offer.create!(format: format, item: beverage, price: 25)
 
     # Act
     visit establishment_beverage_path(establishment.id, beverage.id)
@@ -42,36 +18,11 @@ describe 'Usuário acessa página para desativar oferta de uma bebida' do
 
   it 'e deve ser :admin' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment,
-      role: 1
-    )
-    beverage = Beverage.create!(
-      name: 'Cachaça',
-      description: 'alcool delicioso baiano',
-      calories: '185',
-      establishment: establishment,
-      is_alcoholic: true
-    )
-    format = Format.create!(name: 'Bombinha 50ml')
-    Offer.create!(
-      format: format,
-      item: beverage,
-      price: 25
-    )
+    establishment = create(:establishment)
+    user = create(:user, :employee, establishment: establishment)
+    format = create(:format, name: 'Bombinha 50ml')
+    beverage = create(:beverage, name: 'Cachaça', establishment: establishment)
+    Offer.create!(format: format, item: beverage, price: 25)
 
     # Act
     login_as user
@@ -84,43 +35,13 @@ describe 'Usuário acessa página para desativar oferta de uma bebida' do
 
   it 'e desativa com sucesso' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com',
-      trade_name: 'Samsung',
-      legal_name: 'Samsung LTDA',
-      cnpj: '56924048000140',
-      phone_number: '71992594946',
-      address: 'Rua das Alamedas avenidas'
-    )
-    user = User.create!(
-      first_name: 'Samuel',
-      last_name: 'Rocha',
-      email: 'samuel@hotmail.com',
-      password: '12345678910111',
-      cpf: '22611819572',
-      establishment: establishment
-    )
-    beverage = Beverage.create!(
-      name: 'Cachaça',
-      description: 'alcool delicioso baiano',
-      calories: '185',
-      establishment: establishment,
-      is_alcoholic: true
-    )
-    format = Format.create!(name: 'Bombinha 50ml')
-    format_two = Format.create!(name: 'Bombinha 1l')
-
-    Offer.create!(
-      format: format,
-      item: beverage,
-      price: 25
-    )
-
-    Offer.create!(
-      format: format_two,
-      item: beverage,
-      price: 33
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    format = create(:format, name: 'Bombinha 50ml')
+    beverage = create(:beverage, name: 'Cachaça', establishment: establishment)
+    Offer.create!(format: format, item: beverage, price: 50)
+    format_two = create(:format, name: 'Bombinha 1l')
+    Offer.create!(format: format_two, item: beverage, price: 33)
 
     # Act
     login_as user
