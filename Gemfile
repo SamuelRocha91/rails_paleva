@@ -37,7 +37,7 @@ gem 'rack-cors', require: 'rack/cors'
 
 gem 'panolint'
 
-gem 'rubocop-discourse'
+# gem 'rubocop-discourse'
 
 gem 'rubocop-rubycw'
 
