@@ -3,29 +3,9 @@ require 'rails_helper'
 describe 'Usuário acessa formulário de criar oferta de uma bebida' do
   it 'e deve estar autenticado' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
-    beverage = Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
-      is_alcoholic: true
-    )
+    establishment = create(:establishment)
+    create(:user, establishment: establishment)
+    beverage = create(:beverage, establishment: establishment)
 
     # Act
     visit offer_beverage_path(beverage.id)
@@ -36,30 +16,9 @@ describe 'Usuário acessa formulário de criar oferta de uma bebida' do
 
   it 'e deve ser :admin' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment,
-      role: 1
-    )
-    beverage = Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
-      is_alcoholic: true
-    )
+    establishment = create(:establishment)
+    user = create(:user, :employee, establishment: establishment)
+    beverage = create(:beverage, establishment: establishment)
 
     # Act
     login_as user
@@ -72,29 +31,9 @@ describe 'Usuário acessa formulário de criar oferta de uma bebida' do
 
   it 'e vê os campos corretamente' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
-    Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
-      is_alcoholic: true
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    create(:beverage, name: 'Cachaça', establishment: establishment)
 
     # Act
     login_as user
@@ -112,30 +51,10 @@ describe 'Usuário acessa formulário de criar oferta de uma bebida' do
   end
 
   it 'falha por ausência de campo obrigatório' do
-     # Arrange
-   establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
-    Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
-      is_alcoholic: true
-    )
+    # Arrange
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    create(:beverage, name: 'Cachaça', establishment: establishment)
 
     # Act
     login_as user
@@ -152,29 +71,9 @@ describe 'Usuário acessa formulário de criar oferta de uma bebida' do
 
   it 'com sucesso' do
     # Arrange
-   establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
-    Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
-      is_alcoholic: true
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    create(:beverage, name: 'Cachaça', establishment: establishment)
 
     # Act
     login_as user
@@ -189,45 +88,19 @@ describe 'Usuário acessa formulário de criar oferta de uma bebida' do
 
     # Assert
     expect(page).to have_content 'Volume cadastrado com sucesso'
-    expect(page).to have_content 'Volumes Disponíveis' 
+    expect(page).to have_content 'Volumes Disponíveis'
     expect(page).to have_content 'Volume Bombinha 50ml: R$ 50,00'
-    expect(page).to have_link 'Editar Preço'  
-    expect(page).to have_button 'Retirar Oferta' 
+    expect(page).to have_link 'Editar Preço'
+    expect(page).to have_button 'Retirar Oferta'
   end
 
   it 'consegue vincular mais de um tipo de volume a uma bebida' do
     # Arrange
-   establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
-    format = Format.create!(name: 'Bombinha 50ml')
-
-    beverage = Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
-      is_alcoholic: true
-    )
-
-    Offer.create!(
-      format: format,
-      item: beverage,
-      price: 25
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    format = create(:format, name: 'Bombinha 50ml')
+    beverage = create(:beverage, name: 'Cachaça', establishment: establishment)
+    Offer.create!(format: format, item: beverage, price: 25)
 
     # Act
     login_as user
@@ -247,35 +120,12 @@ describe 'Usuário acessa formulário de criar oferta de uma bebida' do
 
   it 'falha ao tentar cadastrar volume de mesmo nome de outro ja existente para um mesmo prato' do
     # Arrange
-   establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
-    beverage = Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
-      is_alcoholic: true
-    )
-    format = Format.create!(name: 'Bombinha 50ml')
-    Offer.create!(
-      format: format,
-      item: beverage,
-      price: 25
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    beverage = create(:beverage, name: 'Cachaça', establishment: establishment)
+    format = create(:format, name: 'Bombinha 50ml')
+    Offer.create!(format: format, item: beverage, price: 25)
+
     # Act
     login_as user
     visit root_path
@@ -293,45 +143,13 @@ describe 'Usuário acessa formulário de criar oferta de uma bebida' do
 
   it 'consegue cadastrar mesmo nome de volume pra uma bebida diferente' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
-    beverage = Beverage.create!(
-      name: 'Cachaça', 
-      description: 'alcool delicioso baiano', 
-      calories: '185', 
-      establishment: establishment, 
-      is_alcoholic: true
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    beverage = create(:beverage, name: 'Cachaça', establishment: establishment)
+    format = create(:format, name: 'Bombinha 50ml')
+    create(:beverage, name: 'água', establishment: establishment)
+    Offer.create!(format: format, item: beverage, price: 25)
 
-    Beverage.create!(
-      name: 'água', 
-      description: 'água light', 
-      calories: '1850', 
-      establishment: establishment, 
-      is_alcoholic: true
-    )
-
-    format = Format.create!(name: 'Bombinha 50ml')
-    Offer.create!(
-      format: format,
-      item: beverage,
-      price: 25
-    )
-  
     # Act
     login_as user
     visit root_path

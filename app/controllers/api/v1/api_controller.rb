@@ -5,10 +5,10 @@ class Api::V1::ApiController < ActionController::API
   private
 
   def return_500
-    render status: 500
+    render status: :internal_server_error
   end
 
   def return_404
-    render status: 404
+    render status: :not_found
   end
 end

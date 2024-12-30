@@ -1,0 +1,25 @@
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/rails_paleva/vendor/bundle/ruby/3.2.0/gems/zlib-3.2.1/ext/zlib
+/home/samuel/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+checking for deflateReset(NULL) in -lz... yes
+checking for crc32_combine() in zlib.h... yes
+checking for adler32_combine() in zlib.h... yes
+checking for z_crc_t in zlib.h... yes
+checking for z_size_t in zlib.h... yes
+checking for crc32_z() in zlib.h... yes
+checking for adler32_z() in zlib.h... yes
+creating Makefile
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/rails_paleva/vendor/bundle/ruby/3.2.0/gems/zlib-3.2.1/ext/zlib
+make DESTDIR\= sitearchdir\=./.gem.20241228-932369-viqnu8 sitelibdir\=./.gem.20241228-932369-viqnu8 clean
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/rails_paleva/vendor/bundle/ruby/3.2.0/gems/zlib-3.2.1/ext/zlib
+make DESTDIR\= sitearchdir\=./.gem.20241228-932369-viqnu8 sitelibdir\=./.gem.20241228-932369-viqnu8
+compiling zlib.c
+linking shared-object zlib.so
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/rails_paleva/vendor/bundle/ruby/3.2.0/gems/zlib-3.2.1/ext/zlib
+make DESTDIR\= sitearchdir\=./.gem.20241228-932369-viqnu8 sitelibdir\=./.gem.20241228-932369-viqnu8 install
+/usr/bin/install -c -m 0755 zlib.so ./.gem.20241228-932369-viqnu8
+
+current directory: /home/samuel/projectsByOrganizations/treinaDev13/rails_paleva/vendor/bundle/ruby/3.2.0/gems/zlib-3.2.1/ext/zlib
+make DESTDIR\= sitearchdir\=./.gem.20241228-932369-viqnu8 sitelibdir\=./.gem.20241228-932369-viqnu8 clean

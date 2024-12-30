@@ -2,16 +2,15 @@ class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
 
   def valid_email?
-    regex = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-    if self.email && !self.email.match?(regex)
-       self.errors.add :base, 'E-mail deve ser válido'
-    end
+    regex = /\A[\w+\-.]+@[a-z\d-]+(\.[a-z]+)*\.[a-z]+\z/i
+    return unless email && !email.match?(regex)
+
+    errors.add :base, 'E-mail deve ser válido'
   end
 
-  def is_valid_cpf?
-    if self.cpf.present? && self.cpf.length > 0 && !CPF.valid?(cpf)
-      self.errors.add :base, 'CPF deve ser um número válido'
-    end
-  end
+  def valid_cpf?
+    return unless cpf.present? && cpf.length.positive? && !CPF.valid?(cpf)
 
+    errors.add :base, 'CPF deve ser um número válido'
+  end
 end

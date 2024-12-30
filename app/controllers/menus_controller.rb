@@ -1,6 +1,6 @@
 class MenusController < ApplicationController
   before_action :authenticate_user!
-  before_action :employee?, only: [:create, :new] 
+  before_action :employee?, only: %i[create new]
 
   def new
     @menu = Menu.new
@@ -24,8 +24,8 @@ class MenusController < ApplicationController
 
   def menu_params
     params.require(:menu).permit(
-      :name, 
-      :valid_from, 
+      :name,
+      :valid_from,
       :valid_until
     )
   end

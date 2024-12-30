@@ -6,8 +6,8 @@ class OrderItem < ApplicationRecord
   private
 
   def offer_has_menu
-    if self.offer.item.menu_items.empty?
-      self.errors.add :offer, " deve estar vinculada a um menu"
-    end
+    return unless offer.item.menu_items.empty?
+
+    errors.add :offer, ' deve estar vinculada a um menu'
   end
 end

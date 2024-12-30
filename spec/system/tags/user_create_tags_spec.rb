@@ -1,36 +1,23 @@
 require 'rails_helper'
 
-describe "Usuário acessa página de marcadores" do
+describe 'Usuário acessa página de marcadores' do
   it 'e deve estar autenticado' do
     # Act
     visit tags_path
 
     # Assert
-    expect(current_path).to eq new_user_session_path 
+    expect(current_path).to eq new_user_session_path
   end
 
   it 'não deve ter role :employee' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment,
-      role: 1
-    )
+    establishment = create(:establishment)
+    user = create(:user, :employee, establishment: establishment)
+
     # Act
     login_as user
     visit tags_path
+
     # Assert
     expect(current_path).to eq root_path
     expect(page).to have_content 'Você não tem permissão para acessar esse recurso'
@@ -38,22 +25,8 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e visualiza página corretamente' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
     Tag.create!(name: 'Apimentado')
     Tag.create!(name: 'Vegano')
     Tag.create!(name: 'Japonesa')
@@ -76,22 +49,8 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e visualiza mensagem instrutiva se não houver tags cadastradas' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
 
     # Act
     login_as user
@@ -106,22 +65,8 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e visualiza página de cadastro de tags corretamente' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
 
     # Act
     login_as user
@@ -138,22 +83,8 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e falha ao cadastrar marcador sem campo obrigatório' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
 
     # Act
     login_as user
@@ -169,22 +100,8 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e cadastra marcador com sucesso previamente' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
 
     # Act
     login_as user
@@ -192,33 +109,19 @@ describe "Usuário acessa página de marcadores" do
     click_on 'Pratos'
     click_on 'Marcadores'
     click_on 'Cadastrar novo marcador'
-    fill_in 'Nome do marcador',	with: 'Apimentado' 
+    fill_in 'Nome do marcador',	with: 'Apimentado'
     click_on 'Salvar'
 
     # Assert
-    expect(current_path).to eq tags_path  
+    expect(current_path).to eq tags_path
     expect(page).to have_content 'Marcador cadastrado com sucesso'
     expect(page).to have_content 'Apimentado'
   end
 
   it 'e cadastra tags direto no formulário de criação de prato' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
 
     # Act
     login_as user
@@ -239,28 +142,9 @@ describe "Usuário acessa página de marcadores" do
 
   it 'e cadastra tags no formulário de edição de pratos' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
-
-    Dish.create!(
-      establishment: establishment,
-      name: 'Lasagna',
-      description: 'Queijo e presunto'
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
+    create(:dish, name: 'Lasagna', description: 'queijo, presunto e molho', establishment: establishment)
 
     # Act
     login_as user

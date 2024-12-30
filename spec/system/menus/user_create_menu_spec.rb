@@ -11,23 +11,8 @@ describe 'Usuário acessa formulário de cadastro de cardápio' do
 
   it 'e deve ser :admin' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment,
-      role: 1
-    )
+    establishment = create(:establishment)
+    user = create(:user, :employee, establishment: establishment)
 
     # Act
     login_as user
@@ -41,22 +26,8 @@ describe 'Usuário acessa formulário de cadastro de cardápio' do
 
   it 'e visualiza campos corretamente' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
 
     # Act
     login_as user
@@ -70,22 +41,8 @@ describe 'Usuário acessa formulário de cadastro de cardápio' do
 
   it 'e falha ao tentar cadastrar sem nome' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
 
     # Act
     login_as user
@@ -99,22 +56,8 @@ describe 'Usuário acessa formulário de cadastro de cardápio' do
 
   it 'e cadastra com sucesso' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
 
     # Act
     login_as user
@@ -122,7 +65,7 @@ describe 'Usuário acessa formulário de cadastro de cardápio' do
     click_on 'Cadastrar cardápio'
     fill_in 'Nome do Cardápio', with: 'Café da manhã'
     click_on 'Salvar'
-    
+
     # Assert
     expect(page).to have_content 'Cardápio cadastrado com sucesso'
     expect(page).to have_content 'Café da manhã'
@@ -132,22 +75,8 @@ describe 'Usuário acessa formulário de cadastro de cardápio' do
 
   it 'e falha ao preencher cardápio sazonal' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
 
     # Act
     login_as user
@@ -156,29 +85,15 @@ describe 'Usuário acessa formulário de cadastro de cardápio' do
     fill_in 'Nome do Cardápio', with: 'Café da manhã'
     fill_in 'Início da validade',	with: 1.day.from_now
     click_on 'Salvar'
-    
+
     # Assert
-    expect(page).to have_content 'Término da validade deve estar presente no cadastro de pratos sazonais' 
+    expect(page).to have_content 'Término da validade deve estar presente no cadastro de pratos sazonais'
   end
 
   it 'e cadastra cardápio sazonal com sucesso' do
     # Arrange
-    establishment = Establishment.create!(
-      email: 'sam@gmail.com', 
-      trade_name: 'Samsung', 
-      legal_name: 'Samsung LTDA', 
-      cnpj: '56924048000140',
-      phone_number: '71992594946', 
-      address: 'Rua das Alamedas avenidas',
-    )
-    user = User.create!(
-      first_name: 'Samuel', 
-      last_name: 'Rocha', 
-      email: 'samuel@hotmail.com', 
-      password: '12345678910111',  
-      cpf: '22611819572',
-      establishment: establishment
-    )
+    establishment = create(:establishment)
+    user = create(:user, establishment: establishment)
 
     # Act
     login_as user
@@ -186,13 +101,13 @@ describe 'Usuário acessa formulário de cadastro de cardápio' do
     click_on 'Cadastrar cardápio'
     fill_in 'Nome do Cardápio', with: 'Café da manhã'
     fill_in 'Início da validade',	with: 1.day.from_now
-    fill_in 'Término da validade',	with: 5.day.from_now
+    fill_in 'Término da validade',	with: 5.days.from_now
     click_on 'Salvar'
-    
+
     # Assert
-    expect(page).to have_content  'Cardápio cadastrado com sucesso'
+    expect(page).to have_content 'Cardápio cadastrado com sucesso'
     menu = Menu.last
     expect(menu.valid_from).to eq 1.day.from_now.to_date
-    expect(menu.valid_until).to eq 5.day.from_now.to_date
+    expect(menu.valid_until).to eq 5.days.from_now.to_date
   end
 end

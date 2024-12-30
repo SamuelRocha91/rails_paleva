@@ -11,7 +11,7 @@ RSpec.describe Format, type: :model do
         result = format.valid?
 
         # Assert
-        expect(result).to eq false  
+        expect(result).to eq false
       end
     end
   end

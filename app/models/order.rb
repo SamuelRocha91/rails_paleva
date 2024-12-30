@@ -2,15 +2,15 @@ class Order < ApplicationRecord
   belongs_to :customer
   belongs_to :establishment
   accepts_nested_attributes_for :customer
-  has_many :order_items
-  has_one :cancellation
+  has_many :order_items, dependent: :nullify
+  has_one :cancellation, dependent: :nullify
   before_validation :generate_code, on: :create
-  enum status: { 
+  enum status: {
     pending_kitchen_confirmation: 0,
-    in_preparation: 2, 
-    ready: 5, 
-    delivered: 7, 
-    canceled: 9 
+    in_preparation: 2,
+    ready: 5,
+    delivered: 7,
+    canceled: 9
   }
   validate :check_status_change, on: :update
   validate :set_datetime, on: :update
@@ -22,55 +22,46 @@ class Order < ApplicationRecord
   end
 
   def check_status_change
-    if status_changed? 
-      previous_status = status_was
-      new_status = status
+    return unless status_changed?
 
-      case previous_status
-      when 'pending_kitchen_confirmation'
-        check_status_pending new_status, previous_status
-      when 'in_preparation'
-        check_status_preparation new_status, previous_status
-      when 'ready'
-        check_status_ready new_status, previous_status
-      when 'delivered'
-        self.status = previous_status
-        self.errors.add :status, " não pode ser alterado"
-      when 'canceled'
-        self.status = previous_status
-        self.errors.add :status, " não pode ser alterado"
-      end
-
+    case status_was
+    when 'pending_kitchen_confirmation' then check_status_pending status, status_was
+    when 'in_preparation' then check_status_preparation status, status_was
+    when 'ready' then check_status_ready status, status_was
+    when 'delivered', 'canceled'
+      self.status = status_was
+      errors.add :status, ' não pode ser alterado'
     end
   end
 
   def check_status_pending(status, previous_status)
-    if status != 'in_preparation' && status != 'canceled'
-      self.status = previous_status
-       self.errors.add :status, " deve ser um valor válido"
-    end
+    return unless status != 'in_preparation' && status != 'canceled'
+
+    self.status = previous_status
+    errors.add :status, ' deve ser um valor válido'
   end
 
   def check_status_preparation(status, previous_status)
-    if status != 'ready' && status != 'canceled'
-      self.status = previous_status 
-      self.errors.add :status, " deve ser um valor válido"
-    end
+    return unless status != 'ready' && status != 'canceled'
+
+    self.status = previous_status
+    errors.add :status, ' deve ser um valor válido'
   end
 
   def check_status_ready(status, previous_status)
-    if status != 'delivered' && status != 'canceled'
-      self.status = previous_status 
-      self.errors.add :status, " deve ser um valor válido"
-    end
+    return unless status != 'delivered' && status != 'canceled'
+
+    self.status = previous_status
+    errors.add :status, ' deve ser um valor válido'
   end
 
   def set_datetime
-    if self.status == 'in_preparation'
+    case status
+    when 'in_preparation'
       self.accepted_at = DateTime.current
-    elsif self.status == 'ready'
+    when 'ready'
       self.completed_at = DateTime.current
-    elsif self.status == 'delivered'
+    when 'delivered'
       self.delivered_at = DateTime.current
     end
   end

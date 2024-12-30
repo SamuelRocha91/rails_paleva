@@ -1,24 +1,10 @@
 class BeveragesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_beverage, only: [
-    :edit, 
-    :show, 
-    :update, 
-    :create_offer,
-    :deactivate, 
-    :activate,
-    :offer,
-    :edit_offer,
-    :update_offer,
-    :deactivate_offer
-  ]
-  before_action :check_user, only: [:show, :edit, :index, :update]
+  before_action :set_beverage, only: %i[edit show update create_offer deactivate activate offer edit_offer update_offer
+                                        deactivate_offer ]
+  before_action :check_user, only: %i[show edit index update]
   before_action :set_format, only: [:create_offer]
-  before_action :set_offer, only: [
-    :edit_offer, 
-    :update_offer, 
-    :deactivate_offer
-  ]
+  before_action :set_offer, only: %i[edit_offer update_offer deactivate_offer]
   before_action :employee?
 
   def index
@@ -31,34 +17,30 @@ class BeveragesController < ApplicationController
 
   def create
     @beverage = Beverage.new(beverage_params)
-    @beverage.establishment = Establishment.find(
-      params[:establishment_id]
-    )
+    @beverage.establishment = Establishment.find(params[:establishment_id])
     if @beverage.save
-      redirect_to establishment_beverages_path, 
-                    notice: 'Bebida cadastrada com sucesso'
+      redirect_to establishment_beverages_path,
+                  notice: 'Bebida cadastrada com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if @beverage.update(beverage_params)
-      redirect_to establishment_beverage_path(current_user.establishment, @beverage), 
-                    notice: 'Bebida atualizada com sucesso'
-    end
+    return unless @beverage.update(beverage_params)
+
+    redirect_to establishment_beverage_path(current_user.establishment, @beverage),
+                notice: 'Bebida atualizada com sucesso'
   end
 
   def deactivate
     @beverage.update(status: false)
     redirect_to establishment_beverage_path(
-      @beverage.establishment, 
+      @beverage.establishment,
       @beverage
     )
   end
@@ -66,7 +48,7 @@ class BeveragesController < ApplicationController
   def activate
     @beverage.update(status: true)
     redirect_to establishment_beverage_path(
-      @beverage.establishment, 
+      @beverage.establishment,
       @beverage
     )
   end
@@ -76,22 +58,21 @@ class BeveragesController < ApplicationController
   end
 
   def create_offer
-    if @beverage.volumes.any? {|volume| volume.active && 
-                                           (volume.format.name == @format.name)}
+    if @beverage.volumes.any? { |volume| volume.active && (volume.format.name == @format.name) }
       flash[:alert] = 'Não é possível cadastrar volumes idênticos para a mesma bebida'
       render :offer, status: :unprocessable_entity
     else
-      set_volume 'Volume cadastrado com sucesso'
+      create_volume 'Volume cadastrado com sucesso'
     end
   end
 
   def edit_offer; end
 
   def update_offer
-    if @offer.update(active: false)
-      @format = Format.find_by(name: params[:format][:name])
-      set_volume 'Volume atualizado com sucesso'
-    end
+    return unless @offer.update(active: false)
+
+    @format = Format.find_by(name: params[:format][:name])
+    create_volume 'Volume atualizado com sucesso'
   end
 
   def deactivate_offer
@@ -102,13 +83,7 @@ class BeveragesController < ApplicationController
   private
 
   def beverage_params
-    params.require(:beverage).permit(
-      :name, 
-      :description, 
-      :calories, 
-      :is_alcoholic, 
-      :image
-    )
+    params.require(:beverage).permit(:name, :description, :calories, :is_alcoholic, :image)
   end
 
   def set_beverage
@@ -117,29 +92,30 @@ class BeveragesController < ApplicationController
 
   def check_user
     @establishment = Establishment.find(params[:establishment_id])
-    if !@establishment.users.any? { |user| user.id == current_user.id}
-      redirect_to root_path, notice: 'Você não possui acesso a essa bebida'
-    end
+    return if @establishment.users.any? { |user| user.id == current_user.id }
+
+    redirect_to root_path, notice: 'Você não possui acesso a essa bebida'
   end
 
-  def set_volume(message)
-    volume = @beverage.volumes.new(
-      format: @format, 
-      details: params[:offer][:details], 
-      price: params[:offer][:price].to_f.round(2), 
-    )
+  def create_volume(message)
+    volume = @beverage.volumes.new(format: @format, details: params[:offer][:details],
+                                   price: params[:offer][:price].to_f.round(2))
     if volume.save
-      redirect_to establishment_beverage_path(@beverage.establishment, @beverage), 
-                    notice: message
+      redirect_to establishment_beverage_path(@beverage.establishment, @beverage),
+                  notice: message
     else
-      volume.errors.full_messages.each do |error_message|
-        @beverage.errors.add(:base, error_message)
-      end
+      add_errors volume
       render :offer, status: :unprocessable_entity
     end
   end
 
   def set_offer
     @offer = Offer.find(params[:offer_id])
+  end
+
+  def add_errors(volume)
+    volume.errors.full_messages.each do |error_message|
+      @beverage.errors.add(:base, error_message)
+    end
   end
 end

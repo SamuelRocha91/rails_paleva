@@ -6,7 +6,7 @@ describe 'Usuário que não é ainda cadastrado' do
       # Act
       visit root_path
       click_on 'Criar conta'
-  
+
       # Assert
       expect(current_path).to eq new_user_registration_path
       expect(page).to have_content 'E-mail'
@@ -15,14 +15,14 @@ describe 'Usuário que não é ainda cadastrado' do
       expect(page).to have_content 'CPF'
       expect(page).to have_content 'Nome'
       expect(page).to have_content 'Sobrenome'
-      expect(page).to have_button 'Cadastrar'  
+      expect(page).to have_button 'Cadastrar'
     end
 
     it 'não consegue cadastro sem preencher campos obrigatórios' do
       # Act
-      visit root_path    
+      visit root_path
       click_on 'Criar conta'
-      fill_in 'E-mail',	with: 'samuel@example.com' 
+      fill_in 'E-mail',	with: 'samuel@example.com'
       fill_in 'Senha',	with: '12345678912345'
       fill_in 'Confirme sua senha',	with: '12345678912345'
       click_on 'Cadastrar'
@@ -37,9 +37,9 @@ describe 'Usuário que não é ainda cadastrado' do
     it 'não consegue cadastro com email e cpf inválidos' do
       # Arrange
       # Act
-      visit root_path    
+      visit root_path
       click_on 'Criar conta'
-      fill_in 'E-mail',	with: 'samuel@example' 
+      fill_in 'E-mail',	with: 'samuel@example'
       fill_in 'Senha',	with: '12345678912345'
       fill_in 'Confirme sua senha',	with: '12345678912345'
       fill_in 'CPF',	with: '12345678912345'
@@ -57,9 +57,9 @@ describe 'Usuário que não é ainda cadastrado' do
     it 'cadastra-se com sucesso' do
       # Arrange
       # Act
-      visit root_path    
+      visit root_path
       click_on 'Criar conta'
-      fill_in 'E-mail',	with: 'samuel@example.com' 
+      fill_in 'E-mail',	with: 'samuel@example.com'
       fill_in 'Senha',	with: '12345678912345'
       fill_in 'Confirme sua senha',	with: '12345678912345'
       fill_in 'CPF',	with: '22611819572'
@@ -71,42 +71,24 @@ describe 'Usuário que não é ainda cadastrado' do
       # Assert
       user = User.last
       expect(page).to have_content 'Você realizou seu registro com sucesso'
-      within('header') do 
+      within('header') do
         expect(page).to have_content user.description
         expect(page).to have_button 'Sair'
-      end 
+      end
     end
   end
 
   context 'employee' do
     it 'pré-cadastrado completa cadastro com sucesso' do
       # Arrange
-      establishment = Establishment.create!(
-        email: 'sam@gmail.com', 
-        trade_name: 'Samsung', 
-        legal_name: 'Samsung LTDA', 
-        cnpj: '56924048000140',
-        phone_number: '71992594946', 
-        address: 'Rua das Alamedas avenidas',
-      )
-      user = User.create!(
-        first_name: 'Samuel', 
-        last_name: 'Rocha', 
-        email: 'samuel@hotmail.com', 
-        password: '12345678910111',  
-        cpf: '22611819572',
-        establishment: establishment
-      )
-      TemporaryUser.create(
-        email: 'temp@user.com',
-        cpf: '03466798507', 
-        establishment: establishment
-      )
-  
+      establishment = create(:establishment, trade_name: 'Samsung')
+      create(:user, email: 'samuel@hotmail.com', password: '12345678910111', establishment: establishment)
+      create(:temporary_user, email: 'temp@user.com', cpf: '03466798507', establishment: establishment)
+
       # Act
-      visit root_path    
+      visit root_path
       click_on 'Criar conta'
-      fill_in 'E-mail',	with: 'temp@user.com' 
+      fill_in 'E-mail',	with: 'temp@user.com'
       fill_in 'Senha',	with: '12345678912345'
       fill_in 'Confirme sua senha',	with: '12345678912345'
       fill_in 'CPF',	with: '03466798507'
@@ -118,7 +100,7 @@ describe 'Usuário que não é ainda cadastrado' do
       # Assert
       user = User.last
       expect(page).to have_content 'Você realizou seu registro com sucesso'
-      within('header') do 
+      within('header') do
         expect(page).to have_content user.description
         expect(page).to have_button 'Sair'
         expect(page).to have_link 'Pedidos'
@@ -126,7 +108,7 @@ describe 'Usuário que não é ainda cadastrado' do
         expect(page).to have_link 'Samsung'
         expect(page).not_to have_link 'Pratos'
         expect(page).not_to have_link 'Bebidas'
-      end 
+      end
       expect(user.role).to eq 'employee'
     end
   end

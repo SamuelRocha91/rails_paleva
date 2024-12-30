@@ -1,0 +1,170 @@
+have_library: checking for deflateReset(NULL) in -lz... -------------------- yes
+
+LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -o conftest -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC conftest.c  -L. -L/home/samuel/.rbenv/versions/3.2.2/lib -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L/home/samuel/.rbenv/versions/3.2.2/lib -lruby  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -o conftest -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC conftest.c  -L. -L/home/samuel/.rbenv/versions/3.2.2/lib -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L/home/samuel/.rbenv/versions/3.2.2/lib -lruby -lz  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <zlib.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: 
+17: int t(void) { deflateReset(NULL); return 0; }
+/* end */
+
+--------------------
+
+checking for kind of operating system... Unix
+have_func: checking for crc32_combine() in zlib.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -o conftest -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC conftest.c  -L. -L/home/samuel/.rbenv/versions/3.2.2/lib -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed    -lz  -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L/home/samuel/.rbenv/versions/3.2.2/lib -lruby -lz  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <zlib.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))crc32_combine; return !p; }
+/* end */
+
+--------------------
+
+have_func: checking for adler32_combine() in zlib.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -o conftest -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC conftest.c  -L. -L/home/samuel/.rbenv/versions/3.2.2/lib -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed    -lz  -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L/home/samuel/.rbenv/versions/3.2.2/lib -lruby -lz  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <zlib.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))adler32_combine; return !p; }
+/* end */
+
+--------------------
+
+have_type: checking for z_crc_t in zlib.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC   -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <zlib.h>
+4: 
+5: /*top*/
+6: typedef z_crc_t conftest_type;
+7: int conftestval[sizeof(conftest_type)?1:-1];
+/* end */
+
+--------------------
+
+have_type: checking for z_size_t in zlib.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC   -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <zlib.h>
+4: 
+5: /*top*/
+6: typedef z_size_t conftest_type;
+7: int conftestval[sizeof(conftest_type)?1:-1];
+/* end */
+
+--------------------
+
+have_func: checking for crc32_z() in zlib.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -o conftest -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC conftest.c  -L. -L/home/samuel/.rbenv/versions/3.2.2/lib -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed    -lz  -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L/home/samuel/.rbenv/versions/3.2.2/lib -lruby -lz  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <zlib.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))crc32_z; return !p; }
+/* end */
+
+--------------------
+
+have_func: checking for adler32_z() in zlib.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/home/samuel/.rbenv/versions/3.2.2/lib "gcc -o conftest -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/x86_64-linux -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/backward -I/home/samuel/.rbenv/versions/3.2.2/include/ruby-3.2.0 -I.    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC conftest.c  -L. -L/home/samuel/.rbenv/versions/3.2.2/lib -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed    -lz  -Wl,-rpath,/home/samuel/.rbenv/versions/3.2.2/lib -L/home/samuel/.rbenv/versions/3.2.2/lib -lruby -lz  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <zlib.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))adler32_z; return !p; }
+/* end */
+
+--------------------
+

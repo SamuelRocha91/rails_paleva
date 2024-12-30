@@ -2,17 +2,8 @@ class SearchController < ApplicationController
   before_action :employee?, only: [:search]
 
   def search
-    if params[:type] == 'Bebida'
-      search_beverages
-      @count = @beverages.length
-    elsif params[:type] == 'Comida'
-      search_dishes
-      @count = @dishes.length
-    else
-      search_beverages
-      search_dishes
-      @count = @beverages.length + @dishes.length
-    end
+    search_item
+    @count = @beverages.length + @dishes.length
   end
 
   def search_order
@@ -21,13 +12,26 @@ class SearchController < ApplicationController
 
   private
 
+  def search_item
+    if params[:type] == 'Bebida'
+      search_beverages
+      @dishes = []
+    elsif params[:type] == 'Comida'
+      search_dishes
+      @beverages = []
+    else
+      search_beverages
+      search_dishes
+    end
+  end
+
   def search_beverages
     @beverages = Beverage.where('name LIKE ? or description LIKE ? ',
-                                  "%#{params[:query]}%",  "%#{params[:query]}%")
+                                "%#{params[:query]}%", "%#{params[:query]}%")
   end
 
   def search_dishes
     @dishes = Dish.left_joins(:tags).where('Dishes.name LIKE ? or Tags.name LIKE ? ',
-                                        "%#{params[:query]}%",  "%#{params[:query]}%")
+                                           "%#{params[:query]}%", "%#{params[:query]}%")
   end
 end
